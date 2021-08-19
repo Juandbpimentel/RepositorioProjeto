@@ -59,4 +59,5 @@
 
         É o nosso garai :b
         Bagulho é doido msm
+        HARDCORE!!!
 
