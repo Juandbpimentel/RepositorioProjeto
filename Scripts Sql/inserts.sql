@@ -1,30 +1,30 @@
 --TABELA ESTADO
-insert into estado (nome, id)
-values ('RJ', 2001), ('CE', 2002), ('PA', 2003), ('PI', 2004), ('AC', 2005)
+insert into estado (nome)
+values ('RJ'), ('CE'), ('PA'), ('PI'), ('AC');
 
 --TABELA CIDADE
-insert into cidade (nome, id, id_estado)
-values ('Rio de Janeiro', 111, 2001), ('Fortaleza', 222, 2002), ('Belem', 333, 2003), ('Teresina', 444, 2004), ('Rio Branco', 555, 2005)
+insert into cidade (nome, id_estado)
+values ('Rio de Janeiro', 1), ('Fortaleza', 2), ('Belem', 3), ('Teresina', 4), ('Rio Branco', 5);
 
 --TABELA BAIRRO
-insert into bairro (id, nome, id_cidade)
-values (011, 'Pavuna', 111), (022, 'Parque Araxa', 222), (033, 'CentroB', 333), (044, 'CentroT', 444), (055, 'CentroRB', 555)
+insert into bairro (nome, id_cidade)
+values ('Pavuna', 1), ('Parque Araxa', 2), ('CentroB', 3), ('CentroT', 4), ('CentroRB', 5);
 
 --TABELA ENDERECO
-insert into endereco (id, numero, cep, rua, complemento, id_bairro)
-values (001, 13, '13112-001', 'Av Brasil', 'Apto', 011), 
-        (002, 23, '23012-002', 'Av Monsenhor Tabosa', 'Apto', 022), 
-        (003, 33, '33333-333', 'Rua belem do para', 'casa', 033), 
-        (004, 44, '4444-444', 'Rua Whindersson Nunes', 'casa', 044), 
-        (005, 55, '55555-555', 'Rua dos Dinossauros', 'Apto', 055)
+insert into endereco (numero, cep, rua, complemento, id_bairro)
+values  ( 13, '13112-001', 'Av Brasil', 'Apto', 1), 
+        ( 23, '23012-002', 'Av Monsenhor Tabosa', 'Apto', 2), 
+        ( 33, '33333-333', 'Rua belem do para', 'casa', 3), 
+        ( 44, '4444-444', 'Rua Whindersson Nunes', 'casa', 4), 
+        ( 55, '55555-555', 'Rua dos Dinossauros', 'Apto', 5);
 
 --TABELA PESSOA
 insert into pessoa (nome, data_nasc, cpf, login, senha, tipo, id_endereco)
-values('Juan Pimentel', '2001-11-13', '111111111-11', 'juanpimentel', '12345', 'DON', 001), 
-        ('Sarah Soares', '2002-01-23', '22222222-22', 'sarahsoares', '122333', 'DIR', 002), 
-        ('Marcus Queiros', '2002-10-17', '3333333-33', 'marcusqueiros', '3333333', 'GER', 003), 
-        ('Ana Beatriz', '2002-03-11', '44444444-44', 'anabeatriz', '444444', 'FUN', 004), 
-        ('Yara Paula', '2002-06-09', '55555555-55', 'yarapaula', '555555', 'EST', 005)
+values('Juan Pimentel', '2001-11-13', '111111111-11', 'juanpimentel', '12345', 'DON', 1), 
+        ('Sarah Soares', '2002-01-23', '22222222-22', 'sarahsoares', '122333', 'DIR', 2), 
+        ('Marcus Queiros', '2002-10-17', '3333333-33', 'marcusqueiros', '3333333', 'GER', 3), 
+        ('Ana Beatriz', '2002-03-11', '44444444-44', 'anabeatriz', '444444', 'FUN', 4), 
+        ('Yara Paula', '2002-06-09', '55555555-55', 'yarapaula', '555555', 'EST', 5)
 
 --TABELA LOG INTERACAO
 insert into log_interacao (data, tipo, codigo, mensagem, login_pessoa)
@@ -39,8 +39,8 @@ insert into empresa(orcamento, cnpj, nome, cpf_dono)
 values(100.000, '1234578-0001', 'bmd.sy', '111111111-11')
 
 --TABELA CATEGORIA
-insert into categoria (nome, id, carga_horaria, descricao, salario, cnpj_empresa)
-values('Programador', 082021, 08, 'Desenvolvedores de programas de computadores', 10.000, '1234578-0001')
+insert into categoria (nome, carga_horaria, descricao, salario, cnpj_empresa)
+values('Programador', 08, 'Desenvolvedores de programas de computadores', 10.000, '1234578-0001')
 
 --TABELA SETOR
 insert into setor(id, nome, orcamento, cnpj_empresa)
