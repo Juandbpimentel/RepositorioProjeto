@@ -233,8 +233,3 @@ create table if not exists gerencia (
 	constraint gerente_fkey foreign key (gerente_cpf)
 	references gerente (cpf)
 );
-
-
-
-
-

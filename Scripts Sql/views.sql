@@ -82,10 +82,20 @@ select log.id as id_log, log.login_pessoa, p.nome, log.data,log.tipo, log.codigo
 
 --Junção dos dados da tabela pessoa com a tabela endereco
 
-select p.nome, p.cpf, p.id_endereco, e.numero, e.rua, e.complemento,
+create view endereco_pessoa
+as select p.nome, p.cpf, p.id_endereco, e.numero, e.rua, e.complemento, 
 	   e.cep, b.nome as nome_bairro ,c.nome as nome_cidade,est.nome as nome_estado
-    from pessoa p
+    from pessoa p 
     inner join endereco e on p.id_endereco = e.id
     inner join bairro b on e.id_bairro = b.id
     inner join cidade c on b.id_cidade = c.id
     inner join estado est on c.id_estado = est.id;
+
+--Junção dos dados da tabela Estagiário com a tabela Setor
+create view estagiario_estagia_setor as
+select e.nome as estagiario, e.cpf, s.nome as setor, e.id_setor,
+e.dia_pagamento, e.id_categoria, e.inicio_estagio, e.tempo_estagio
+from estagiario_pessoa_categoria as e
+inner join setor as s 
+on e.id_setor = s.id;
+
