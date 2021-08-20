@@ -30,12 +30,22 @@ public class Diretor extends Pessoa implements DiretorGUI, DiretorAlterDB {
     }
 
     @Override
+    public void administrarSetores() {
+
+    }
+
+    @Override
     public void consultarFuncionarios() {
 
     }
 
     @Override
     public void consultarEstagiarios() {
+
+    }
+
+    @Override
+    public void consultarSetores() {
 
     }
 

@@ -1,8 +1,8 @@
 package interfaces.gui;
 
 public interface GerenteGUI {
-    void administrarFuncionarios();
-    void administrarEstagiarios();
-    void consultarFuncionarios();
-    void consultarEstagiarios();
+    public abstract void administrarFuncionarios();
+    public abstract void administrarEstagiarios();
+    public abstract void consultarFuncionarios();
+    public abstract void consultarEstagiarios();
 }

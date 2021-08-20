@@ -1,6 +1,7 @@
 package interfaces.gui;
 
 public interface PessoaGUI {
-     void consultarDadosPessoais();
-     void consultarLogs();
+     public abstract void consultarDadosPessoais();
+     public abstract void consultarLogs();
+     public abstract void mostrarMenu();
 }

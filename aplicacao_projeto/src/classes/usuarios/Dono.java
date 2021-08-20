@@ -70,6 +70,16 @@ public class Dono extends Pessoa implements DonoGUI,DonoAlterDB {
 
     }
 
+    @Override
+    public void administrarSetores() {
+
+    }
+
+    @Override
+    public void consultarSetores() {
+
+    }
+
 /**
  * AlterDB
  */

@@ -68,6 +68,9 @@ public class Estagiario extends Pessoa implements EstagiarioGUI {
         this.diaPagamento = diaPagamento;
     }
 
+/**
+ * GUI
+ */
     @Override
     public void consultaDadosEstagio() {
 

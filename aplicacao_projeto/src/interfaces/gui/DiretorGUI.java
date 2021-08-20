@@ -1,8 +1,10 @@
 package interfaces.gui;
 
 public interface DiretorGUI {
-    void administrarFuncionarios();
-    void administrarEstagiarios();
-    void consultarFuncionarios();
-    void consultarEstagiarios();
+    public abstract void administrarFuncionarios();
+    public abstract void administrarEstagiarios();
+    public abstract void administrarSetores();
+    public abstract void consultarFuncionarios();
+    public abstract void consultarEstagiarios();
+    public abstract void consultarSetores();
 }

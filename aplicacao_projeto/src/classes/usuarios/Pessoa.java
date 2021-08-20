@@ -64,10 +64,6 @@ public class Pessoa implements PessoaGUI, PessoaAlterDB {
     public String getSenha() {
         return senha;
     }
-    
-    
-    public void mostrarMenu() {
-    }
 
     public String getTipo() {
 		return tipo;
@@ -123,6 +119,11 @@ public class Pessoa implements PessoaGUI, PessoaAlterDB {
 
     @Override
     public void consultarLogs() {
+
+    }
+
+    @Override
+    public void mostrarMenu() {
 
     }
 

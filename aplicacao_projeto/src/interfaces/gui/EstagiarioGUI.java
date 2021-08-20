@@ -1,5 +1,5 @@
 package interfaces.gui;
 
 public interface EstagiarioGUI {
-    void consultaDadosEstagio();
+    public abstract void consultaDadosEstagio();
 }

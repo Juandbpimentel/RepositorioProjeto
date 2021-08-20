@@ -1,5 +1,5 @@
 package interfaces.alterDB;
 
 public interface PessoaAlterDB {
-    void alterarDadosPessoais();
+    public abstract void alterarDadosPessoais();
 }

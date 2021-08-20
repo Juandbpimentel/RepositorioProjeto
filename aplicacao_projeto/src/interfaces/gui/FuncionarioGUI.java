@@ -1,6 +1,6 @@
 package interfaces.gui;
 
 public interface FuncionarioGUI {
-    void consultarDadosEmprego();
-    void consultarEstagiarios();
+    public abstract void consultarDadosEmprego();
+    public abstract void consultarEstagiarios();
 }
