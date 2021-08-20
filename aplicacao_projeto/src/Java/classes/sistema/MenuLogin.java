@@ -82,8 +82,10 @@ public class MenuLogin extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        //FXMLLoader fxmlLoader = new FXMLLoader(MenuLogin.class.getResource("../../menuPadrao.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("src/resources/Java/classes/menuPadrao.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MenuLogin.class.getResource("menuLoginGUI.fxml"));
+        Parent root = fxmlLoader.load();
+        //Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/resources/Java/classes/menuPadrao.fxml")));
+        //System.out.print(Objects.requireNonNull(getClass().getResource("/resources/Java/classes/menuPadrao.fxml")));
 
         Scene scene = new Scene(root);
         root.setOnMousePressed(evt->{
@@ -100,5 +102,7 @@ public class MenuLogin extends Application {
         stage.setScene(scene);
         stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
+
     }
+
 }
