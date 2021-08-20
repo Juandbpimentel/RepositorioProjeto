@@ -1,6 +1,6 @@
 --TABELA ESTADO
 insert into estado (nome)
-values ('RJ'), ('CE'), ('PA'), ('PI'), ('AC');
+svalues ('RJ'), ('CE'), ('PA'), ('PI'), ('AC');
 
 --TABELA CIDADE
 insert into cidade (nome, id_estado)
