@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="543.0" prefWidth="741.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Java.classes.sistema.ControladorMenuLogin">
+<BorderPane prefHeight="543.0" prefWidth="741.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Java.classes.sistema.ControladorMenuLogin">
    <top>
       <HBox prefHeight="33.0" prefWidth="603.0" style="-fx-background-color: #3B264A;" BorderPane.alignment="CENTER">
          <children>
@@ -43,13 +38,13 @@
             <AnchorPane layoutX="223.0" layoutY="101.0" prefHeight="294.0" prefWidth="296.0" style="-fx-background-color: #55356A; -fx-background-radius: 10px;">
                <children>
                   <TextField fx:id="passwordTextField" layoutX="30.0" layoutY="135.0" prefHeight="31.0" prefWidth="240.0" />
-                  <Button fx:id="loginButton" layoutX="95.0" layoutY="191.0" onAction="#onLoginButtonClick" prefHeight="44.0" prefWidth="111.0" style="-fx-background-color: #f69254; -fx-background-radius: 5px;" text="Fazer Login" textAlignment="CENTER" textFill="#44275b">
+                  <Button fx:id="loginButton" layoutX="95.0" layoutY="181.0" onAction="#onLoginButtonClick" prefHeight="44.0" prefWidth="111.0" style="-fx-background-color: #f69254; -fx-background-radius: 5px;" text="Fazer Login" textAlignment="CENTER" textFill="#44275b">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Button>
                   <TextField fx:id="loginTextField" layoutX="30.0" layoutY="56.0" prefHeight="31.0" prefWidth="240.0" />
-                  <Label fx:id="lblLogin" contentDisplay="CENTER" layoutX="31.0" layoutY="19.0" prefHeight="37.0" prefWidth="111.0" style="-fx-background-color: none;" text="Login" textFill="#ffbf00">
+                  <Label fx:id="lblLogin" contentDisplay="CENTER" layoutX="31.0" layoutY="19.0" prefHeight="37.0" prefWidth="111.0" style="-fx-background-color: none;" text="aaaaaaa" textFill="#ffbf00">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -59,13 +54,11 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblPassword" contentDisplay="CENTER" layoutX="31.0" layoutY="98.0" prefHeight="37.0" prefWidth="111.0" style="-fx-background-color: none;" text="Senha" textFill="#ffbf00">
+                  <Label fx:id="lblPassword" contentDisplay="CENTER" layoutX="31.0" layoutY="98.0" prefHeight="37.0" prefWidth="111.0" style="-fx-background-color: none;" text="aaaaaaa" textFill="#ffbf00">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblErrorLogin" layoutX="32.0" layoutY="90.0" prefHeight="17.0" prefWidth="237.0" textFill="#ff6666" />
-                  <Label fx:id="lblErrorPassword" layoutX="29.0" layoutY="174.0" prefHeight="17.0" prefWidth="237.0" textFill="#ff6666" />
                </children>
             </AnchorPane>
          </children>

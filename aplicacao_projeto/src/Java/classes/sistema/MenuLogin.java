@@ -1,5 +1,7 @@
 package Java.classes.sistema;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.Objects;
@@ -12,18 +14,20 @@ import Java.classes.local.Endereco;
 import Java.classes.usuarios.*;
 
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class MenuLogin extends Application {
+    double x,y = 0;
     private static Pessoa usuario;
 
     public static void main(String[] args) {
-    //    fazerLogin();
-    //    usuario.mostrarMenu();
         launch();
+
     }
 
     /*  public static void main(String[] args) {
@@ -68,69 +72,6 @@ public class MenuLogin extends Application {
         }
     }
 
-    public static void fazerLogin(){
-        Conexao conexao = new Conexao("localhost", "5432", "ProjetoPOO-FBD","postgres", "postgres", "org.postgresql.Driver");
-        conexao.conect();
-        String login="",senha="";
-        Scanner in = new Scanner(System.in);
-        System.out.print("Digite o login: ");
-        login = in.nextLine();
-        System.out.print("Digite o login: ");
-        senha = in.nextLine();
-
-        ResultSet resultado = conexao.executaQuery("select * from pessoa"
-                                                  + "where login = "+login+" and senha = "+senha+";");
-        try {
-            if(resultado.next()){
-                String tipo = resultado.getString("tipo"),
-                       cpf  = resultado.getString("cpf"),
-                       nome = resultado.getString("nome");
-                int idEndereco = resultado.getInt("Endereco");
-                Timestamp dataNasc = new Timestamp(System.currentTimeMillis());
-                switch (tipo) {
-                    case "FUN":
-                        conexao.disconect();
-                        in.close();
-                        //usuario = new Funcionario();
-                        break;
-                    case "GER":
-                        conexao.disconect();
-                        in.close();
-                        //usuario = new Gerente();
-                        break;
-                    case "EST":
-                        conexao.disconect();
-                        in.close();
-                        //usuario = new Estagiario();
-                        break;
-                    case "DON":
-                        conexao.disconect();
-                        in.close();
-                        //usuario = new Dono();
-                        break;
-                    case "DIR":
-                        conexao.disconect();
-                        in.close();
-                        //usuario = new Diretor();
-                        break;
-                    case "ADM":
-                        conexao.disconect();
-                        in.close();
-                        //usuario = new Pessoa();
-                        break;
-                    case "DEM":
-                        System.out.println("Você não tem mais acesso à aplicação");
-                        break;
-                }
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        in.close();
-        usuario = new Pessoa();
-        
-    }
-
     public static Pessoa getUsuario() {
         return usuario;
     }
@@ -141,12 +82,23 @@ public class MenuLogin extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        //FXMLLoader fxmlLoader = new FXMLLoader(MenuLogin.class.getResource("../../menuPadrao.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("src/resources/Java/classes/menuPadrao.fxml"));
 
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("menuLoginGUI.fxml")));
-        //FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("));
         Scene scene = new Scene(root);
+        root.setOnMousePressed(evt->{
+            x = evt.getSceneX();
+            y = evt.getSceneY();
+        });
+
+        root.setOnMouseDragged(evt->{
+            stage.setX(evt.getSceneX());
+            stage.setY(evt.getSceneY());
+        });
+
         stage.setTitle("Hello!");
         stage.setScene(scene);
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
     }
 }
