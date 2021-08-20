@@ -10,4 +10,18 @@ module aplicacao_projeto {
 
     opens Java.classes.sistema to javafx.fxml,javafx.graphics,javafx.controls;
     exports Java.classes.sistema;
+
+    opens Java.classes.empresa to javafx.fxml,javafx.graphics,javafx.controls;
+    exports Java.classes.empresa;
+
+    opens Java.classes.usuarios to javafx.fxml,javafx.graphics,javafx.controls;
+    exports Java.classes.usuarios;
+
+    opens Java.classes.local to javafx.fxml,javafx.graphics,javafx.controls;
+    exports Java.classes.local;
+
+
+    exports Java.interfaces.gui;
+
+    exports Java.interfaces.alterDB;
 }

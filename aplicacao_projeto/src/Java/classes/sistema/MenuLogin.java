@@ -2,7 +2,6 @@ package Java.classes.sistema;
 
 import java.sql.ResultSet;
 import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -10,9 +9,8 @@ import Java.classes.empresa.Categoria;
 import Java.classes.local.Endereco;
 
 
-import Java.classes.usuarios.Estagiario;
-import Java.classes.usuarios.Funcionario;
-import Java.classes.usuarios.Pessoa;
+import Java.classes.usuarios.*;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -93,25 +91,35 @@ public class MenuLogin extends Application {
                     case "FUN":
                         conexao.disconect();
                         in.close();
-                        usuario = new Funcionario();
+                        //usuario = new Funcionario();
                         break;
                     case "GER":
-
+                        conexao.disconect();
+                        in.close();
+                        //usuario = new Gerente();
                         break;
                     case "EST":
-
+                        conexao.disconect();
+                        in.close();
+                        //usuario = new Estagiario();
                         break;
                     case "DON":
-
+                        conexao.disconect();
+                        in.close();
+                        //usuario = new Dono();
                         break;
                     case "DIR":
-
+                        conexao.disconect();
+                        in.close();
+                        //usuario = new Diretor();
                         break;
                     case "ADM":
-
+                        conexao.disconect();
+                        in.close();
+                        //usuario = new Pessoa();
                         break;
                     case "DEM":
-
+                        System.out.println("Você não tem mais acesso à aplicação");
                         break;
                 }
             }
