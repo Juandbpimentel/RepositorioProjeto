@@ -1,17 +1,17 @@
 package Java.interfaces.alterDB;
 
 public interface DonoAlterDB {
-    void admitirDiretor();
-    void demitirDiretor();
-    void alterarNomeEmpresa();
-    void alterarOrcamentoEmpresa();
-    void adicionarSetores();
-    void alterarNomeSetor();
-    void alterarOrcamentoSetor();
-    void demitirFuncionario();
-    void bonificarFuncionario();
-    void admitirFuncionario();
-    void admitirEstagiario();
-    void dispensarEstagiario();
-    void trocarEstagiarioSetor();
+    public abstract void admitirDiretor();
+    public abstract void demitirDiretor();
+    public abstract void alterarNomeEmpresa();
+    public abstract void alterarOrcamentoEmpresa();
+    public abstract void adicionarSetores();
+    public abstract void alterarNomeSetor();
+    public abstract void alterarOrcamentoSetor();
+    public abstract void demitirFuncionario();
+    public abstract void bonificarFuncionario();
+    public abstract void admitirFuncionario();
+    public abstract void admitirEstagiario();
+    public abstract void dispensarEstagiario();
+    public abstract void trocarEstagiarioSetor();
 }
