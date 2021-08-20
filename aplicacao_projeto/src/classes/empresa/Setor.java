@@ -4,17 +4,17 @@ import classes.usuarios.Estagiario;
 import classes.usuarios.Funcionario;
 import classes.usuarios.Gerente;
 
-import java.util.Collection;
+import java.util.ArrayList;
 
 public class Setor {
     private Double orcamento;
     private String nome;
     private int id;
-    private Collection<Funcionario> funcionarios;
-    private Collection<Estagiario> estagiario;
+    private ArrayList<Funcionario> funcionarios;
+    private ArrayList<Estagiario> estagiario;
     private Gerente gerente;
 
-    public Setor(Double orcamento, String nome, int id, Collection<Funcionario> funcionarios, Collection<Estagiario> estagiario, Gerente gerente) {
+    public Setor(Double orcamento, String nome, int id, ArrayList<Funcionario> funcionarios, ArrayList<Estagiario> estagiario, Gerente gerente) {
         this.orcamento = orcamento;
         this.nome = nome;
         this.id = id;
@@ -47,19 +47,19 @@ public class Setor {
         this.id = id;
     }
 
-    public Collection<Funcionario> getFuncionarios() {
+    public ArrayList<Funcionario> getFuncionarios() {
         return funcionarios;
     }
 
-    public void setFuncionarios(Collection<Funcionario> funcionarios) {
+    public void setFuncionarios(ArrayList<Funcionario> funcionarios) {
         this.funcionarios = funcionarios;
     }
 
-    public Collection<Estagiario> getEstagiario() {
+    public ArrayList<Estagiario> getEstagiario() {
         return estagiario;
     }
 
-    public void setEstagiario(Collection<Estagiario> estagiario) {
+    public void setEstagiario(ArrayList<Estagiario> estagiario) {
         this.estagiario = estagiario;
     }
 

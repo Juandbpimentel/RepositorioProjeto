@@ -1,23 +1,23 @@
 package classes.local;
 
-import java.util.Collection;
+import java.util.ArrayList;
 
 public class Cidade {
     private int id;
     private String nome;
-    Collection<Bairro> bairros;
+    ArrayList<Bairro> bairros;
 
-    public Cidade(int id, String nome, Collection<Bairro> bairros) {
+    public Cidade(int id, String nome, ArrayList<Bairro> bairros) {
         this.id = id;
         this.nome = nome;
         this.bairros = bairros;
     }
 
-    public Collection<Bairro> getBairros() {
+    public ArrayList<Bairro> getBairros() {
         return bairros;
     }
 
-    public void setBairros(Collection<Bairro> bairros) {
+    public void setBairros(ArrayList<Bairro> bairros) {
         this.bairros = bairros;
     }
 

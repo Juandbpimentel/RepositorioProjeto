@@ -1,7 +1,7 @@
 package classes.sistema;
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
+
 public class LogAlteracao {
     private Timestamp data;
     private String tipo,codigo,mensagem;

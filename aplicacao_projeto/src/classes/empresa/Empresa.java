@@ -2,16 +2,16 @@ package classes.empresa;
 
 import classes.usuarios.Diretor;
 
-import java.util.Collection;
+import java.util.ArrayList;
 
 public class Empresa {
     private String nome;
     private Double orcamento;
     private String cnpj;
-    Collection<Setor> setores;
-    Collection<Diretor> diretores;
+    ArrayList<Setor> setores;
+    ArrayList<Diretor> diretores;
 
-    public Empresa(String nome, Double orcamento, String cnpj, Collection<Setor> setores, Collection<Diretor> diretores) {
+    public Empresa(String nome, Double orcamento, String cnpj, ArrayList<Setor> setores, ArrayList<Diretor> diretores) {
         this.nome = nome;
         this.orcamento = orcamento;
         this.cnpj = cnpj;
@@ -27,9 +27,7 @@ public class Empresa {
         this.nome = nome;
     }
 
-    public Double getOrcamento() {
-        return orcamento;
-    }
+    public Double getOrcamento() { return orcamento;  }
 
     public void setOrcamento(Double orcamento) {
         this.orcamento = orcamento;
@@ -43,19 +41,19 @@ public class Empresa {
         this.cnpj = cnpj;
     }
 
-    public Collection<Setor> getSetores() {
+    public ArrayList<Setor> getSetores() {
         return setores;
     }
 
-    public void setSetores(Collection<Setor> setores) {
+    public void setSetores(ArrayList<Setor> setores) {
         this.setores = setores;
     }
 
-    public Collection<Diretor> getDiretores() {
+    public ArrayList<Diretor> getDiretores() {
         return diretores;
     }
 
-    public void setDiretores(Collection<Diretor> diretores) {
+    public void setDiretores(ArrayList<Diretor> diretores) {
         this.diretores = diretores;
     }
 }

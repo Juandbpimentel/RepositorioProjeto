@@ -1,23 +1,23 @@
 package classes.local;
 
-import java.util.Collection;
+import java.util.ArrayList;
 
 public class Bairro {
     private int id;
     private String nome;
-    Collection<Endereco> enderecos;
+    ArrayList<Endereco> enderecos;
 
-    public Bairro(int id, String nome, Collection<Endereco> enderecos) {
+    public Bairro(int id, String nome, ArrayList<Endereco> enderecos) {
         this.id = id;
         this.nome = nome;
         this.enderecos = enderecos;
     }
 
-    public Collection<Endereco> getEnderecos() {
+    public ArrayList<Endereco> getEnderecos() {
         return enderecos;
     }
 
-    public void setEnderecos(Collection<Endereco> enderecos) {
+    public void setEnderecos(ArrayList<Endereco> enderecos) {
         this.enderecos = enderecos;
     }
 

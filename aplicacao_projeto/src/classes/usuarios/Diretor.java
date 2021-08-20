@@ -8,7 +8,7 @@ import interfaces.gui.DiretorGUI;
 import java.time.LocalDate;
 
 public class Diretor extends Pessoa implements DiretorGUI, DiretorAlterDB {
-
+    
     public Diretor() {
     }
 

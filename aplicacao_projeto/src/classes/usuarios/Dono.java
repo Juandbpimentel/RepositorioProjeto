@@ -8,31 +8,30 @@ import interfaces.alterDB.DonoAlterDB;
 import interfaces.gui.DonoGUI;
 
 import java.time.LocalDate;
-import java.util.Collection;
+import java.util.ArrayList;
 
 
 public class Dono extends Pessoa implements DonoGUI,DonoAlterDB {
+    private ArrayList<Empresa> empresas;
 
-    public Dono(Collection<Empresa> empresas) {
+    public Dono(ArrayList<Empresa> empresas) {
         this.empresas = empresas;
     }
 
-    public Dono(String nome, String login, String senha, String tipo, String cpf, LocalDate dataNasc, Endereco endereco, Conexao conexao, Collection<Empresa> empresas) {
+    public Dono(String nome, String login, String senha, String tipo, String cpf, LocalDate dataNasc, Endereco endereco, Conexao conexao, ArrayList<Empresa> empresas) {
         super(nome, login, senha, tipo, cpf, dataNasc, endereco, conexao);
         this.empresas = empresas;
     }
 
 
 
-    public Collection<Empresa> getEmpresas() {
+    public ArrayList<Empresa> getEmpresas() {
         return empresas;
     }
 
-    public void setEmpresas(Collection<Empresa> empresas) {
+    public void setEmpresas(ArrayList<Empresa> empresas) {
         this.empresas = empresas;
     }
-
-    Collection<Empresa> empresas;
 /**
  * GUI
  */
