@@ -1,20 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" onMouseClicked="#clearMessage" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Java.classes.sistema.ControladorMenuLogin">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#clearMessage" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #674282;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Java.classes.sistema.ControladorMenuLogin">
    <children>
-      <Button fx:id="closeButton" layoutX="116.0" layoutY="256.0" onAction="#onExitButtonClick" prefHeight="47.0" prefWidth="120.0" text="Fechar Programa" textAlignment="CENTER" textFill="#11100b" />
-      <Label fx:id="lblPrincipal" onMouseClicked="#clearMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="113.0" layoutY="75.0" prefHeight="47.0" prefWidth="375.0" text="Clique no botão do mal para ver uma mensagem" AnchorPane.bottomAnchor="278.0" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="112.0" AnchorPane.topAnchor="75.0">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font></Label>
-      <Button layoutX="365.0" layoutY="256.0" onAction="#onHelloButtonClick" prefHeight="47.0" prefWidth="120.0" text="Botão do MAL" textFill="#f81c1c">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Button>
+      <VBox layoutY="62.0" prefHeight="339.0" prefWidth="110.0" />
+      <HBox layoutX="-2.0" prefHeight="33.0" prefWidth="603.0" style="-fx-background-color: #3B264A;">
+         <children>
+            <ImageView fitHeight="38.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@logo.png" />
+               </image>
+               <HBox.margin>
+                  <Insets bottom="5.0" left="10.0" top="5.0" />
+               </HBox.margin>
+            </ImageView>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets></HBox>
+      <AnchorPane layoutX="209.0" layoutY="95.0" prefHeight="207.0" prefWidth="182.0" style="-fx-background-color: #533568; -fx-opacity: 1; -fx-border-radius: 50px; -fx-background-radius: 10px;">
+         <children>
+            <Label fx:id="lblPrincipal1" alignment="CENTER" contentDisplay="CENTER" layoutX="31.0" layoutY="184.0" onMouseClicked="#clearMessage" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: none;" text="Registrar-se" textFill="#ffbf00">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </Label>
+            <Button fx:id="closeButton1" layoutX="45.0" layoutY="143.0" onAction="#onExitButtonClick" prefHeight="33.0" prefWidth="93.0" style="-fx-background-color: #f69254; -fx-background-radius: 5px;" text="Fazer Login" textAlignment="CENTER" textFill="#3b264a">
+               <font>
+                  <Font name="Roboto" size="13.0" />
+               </font>
+            </Button>
+            <TextField layoutX="17.0" layoutY="33.0" />
+            <TextField layoutX="19.0" layoutY="91.0" />
+            <Label fx:id="lblPrincipal11" contentDisplay="CENTER" layoutX="19.0" layoutY="66.0" onMouseClicked="#clearMessage" prefHeight="25.0" prefWidth="110.0" style="-fx-background-color: none;" text="Senha" textFill="#ffbf00">
+               <font>
+                  <Font name="System Bold" size="10.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblPrincipal111" contentDisplay="CENTER" layoutX="15.0" layoutY="11.0" onMouseClicked="#clearMessage" prefHeight="25.0" prefWidth="110.0" style="-fx-background-color: none;" text="Login" textFill="#ffbf00">
+               <font>
+                  <Font name="System Bold" size="10.0" />
+               </font>
+               <padding>
+                  <Insets left="4.0" />
+               </padding>
+            </Label>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
