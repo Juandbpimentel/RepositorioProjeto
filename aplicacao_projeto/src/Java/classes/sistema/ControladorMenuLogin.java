@@ -1,13 +1,14 @@
 package Java.classes.sistema;
 
 import javafx.application.Platform;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-public class HelloController {
+public class ControladorMenuLogin {
     @FXML
-    private Label welcomeText;
+    private Label lblPrincipal;
 
     @FXML
     private javafx.scene.control.Button closeButton;
@@ -15,7 +16,13 @@ public class HelloController {
     @FXML
     protected void onHelloButtonClick() {
 
-        welcomeText.setText("Welcome to JavaFX Application!");
+        lblPrincipal.setText("Parabéns, você é foda pra carai!!!!");
+    }
+
+    @FXML
+    protected void clearMessage() {
+
+        lblPrincipal.setText("Clique no botão do mal para ver uma mensagem");
     }
 
     @FXML

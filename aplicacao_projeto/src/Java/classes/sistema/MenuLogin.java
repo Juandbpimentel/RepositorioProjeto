@@ -142,7 +142,7 @@ public class MenuLogin extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("hello-view.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("menuLoginGUI.fxml")));
         //FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("));
         Scene scene = new Scene(root);
         stage.setTitle("Hello!");

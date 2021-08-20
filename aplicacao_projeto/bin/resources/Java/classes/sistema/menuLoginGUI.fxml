@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" onMouseClicked="#clearMessage" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Java.classes.sistema.ControladorMenuLogin">
+   <children>
+      <Button fx:id="closeButton" layoutX="116.0" layoutY="256.0" onAction="#onExitButtonClick" prefHeight="47.0" prefWidth="120.0" text="Fechar Programa" textAlignment="CENTER" textFill="#11100b" />
+      <Label fx:id="lblPrincipal" onMouseClicked="#clearMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="113.0" layoutY="75.0" prefHeight="47.0" prefWidth="375.0" text="Clique no botão do mal para ver uma mensagem" AnchorPane.bottomAnchor="278.0" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="112.0" AnchorPane.topAnchor="75.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Label>
+      <Button layoutX="365.0" layoutY="256.0" onAction="#onHelloButtonClick" prefHeight="47.0" prefWidth="120.0" text="Botão do MAL" textFill="#f81c1c">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
