@@ -12,7 +12,7 @@
          <right>
             <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="closeButton" onAction="#onExitButtonClick" prefHeight="25.0" prefWidth="105.0" text="exit" textAlignment="CENTER" />
+                  <Button fx:id="closeButton" onAction="#onExitButtonClick" prefHeight="25.0" prefWidth="105.0" text="Exit" textAlignment="CENTER" />
                   <Button onAction="#onHelloButtonClick" prefHeight="24.0" prefWidth="120.0" text="Hello!" />
                </children>
             </VBox>

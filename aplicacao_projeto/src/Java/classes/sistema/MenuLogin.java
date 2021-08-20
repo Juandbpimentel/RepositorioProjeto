@@ -3,6 +3,7 @@ package Java.classes.sistema;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.Scanner;
 
 import Java.classes.empresa.Categoria;
@@ -12,16 +13,22 @@ import Java.classes.local.Endereco;
 import Java.classes.usuarios.Estagiario;
 import Java.classes.usuarios.Funcionario;
 import Java.classes.usuarios.Pessoa;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-public class MenuLogin {
+public class MenuLogin extends Application {
     private static Pessoa usuario;
 
-    //public static void main(String[] args) {
+    public static void main(String[] args) {
     //    fazerLogin();
     //    usuario.mostrarMenu();
-    //}
+        launch();
+    }
 
-    public static void main(String[] args) {
+    /*  public static void main(String[] args) {
         Pessoa usuario = new Estagiario("Margooooos", "MarretaDeJapa", "40028922","FUN","999.999.999-99",LocalDate.of(2002, 10, 17),new Endereco(1,15,"63780000","Rua MAjor Ventura",""), new Conexao("localhost","5432","BMDSY-Database","postgres","postgres","org.postgresql.Driver"), Timestamp.valueOf("2001-11-13 00:00:00"),6,10,new Categoria(1,6,"Programador","É um escravo para os outros funcionarios",800.0));
         usuario.teste();
         Estagiario estagiario = (Estagiario) usuario;
@@ -32,9 +39,7 @@ public class MenuLogin {
 
         usuario = new Pessoa("Margooooos", "MarretaDeJapa","40028922","FUN" ,"999.999.999-99", LocalDate.of(2002, 10, 17),new Endereco(1,15,"63780000","Rua Major Ventura",""),new Conexao("localhost","5432","BMDSY-Database","postgres","postgres","org.postgresql.Driver"));
 
-        /*
-            adicionado para teste
-         */
+
 
         String sqlCode = "insert into pessoa(nome,data_nasc,cpf,login,senha,tipo,id_endereco)\n"+
                 "values('"+usuario.getNome()+"','"+usuario.getDataNasc()+"','"+usuario.getCpf()+"','"+usuario.getLogin()+"','"+usuario.getSenha()+"','"+usuario.getTipo()+"'," + usuario.getEndereco().getId() + ");";
@@ -46,13 +51,14 @@ public class MenuLogin {
         ResultSet resultado = conexao.executaQuery(sqlCode);
         try {
             while(resultado.next()){
-                System.out.println("Nome: "+ resultado.getString("nome")+" | Cpf: " + resultado.getString("cpf") +" | DataNasc: "+LocalDate.parse(resultado.getString("data_nasc")) );
+                System.out.println("Nome: "+ resultado.getString("nome")+" | Cpf: " + resultado.getString("cpf") +" | DataNasc: "+LocalDate.parse(resultado.getString("data_nasc")) + " | Mensagem :");
             }
         }catch(Exception e){
             e.printStackTrace();
         }
         conexao.executaSql("delete from pessoa where cpf = '999.999.999-99'");
     }
+    */
 
 
     @SuppressWarnings("unused")
@@ -123,5 +129,16 @@ public class MenuLogin {
 
     public static void setUsuario(Pessoa usuario) {
         MenuLogin.usuario = usuario;
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
+
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("hello-view.fxml")));
+        //FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("));
+        Scene scene = new Scene(root);
+        stage.setTitle("Hello!");
+        stage.setScene(scene);
+        stage.show();
     }
 }
