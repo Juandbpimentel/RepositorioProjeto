@@ -18,6 +18,7 @@ public class Conexao {
         configUsuario(usuario, senha);
         setDriverJDBC(driverJDBC);
     }
+
     //Método para gerar conexão com o banco de dados
     public void conect() {
         

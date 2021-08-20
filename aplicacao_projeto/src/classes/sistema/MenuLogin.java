@@ -26,7 +26,7 @@ public class MenuLogin {
         usuario.teste();
         Estagiario estagiario = (Estagiario) usuario;
 
-        System.out.println(estagiario.inicioEstagio);
+        System.out.println(new Timestamp(System.currentTimeMillis()));
 
         Conexao conexao = new Conexao("localhost","5432","BMDSY-Database","postgres","postgres","org.postgresql.Driver");
 
@@ -72,7 +72,7 @@ public class MenuLogin {
         login = in.nextLine();
         System.out.print("Digite o login: ");
         senha = in.nextLine();
-        
+
         ResultSet resultado = conexao.executaQuery("select * from pessoa"
                                                   + "where login = "+login+" and senha = "+senha+";");
         try {
@@ -82,22 +82,30 @@ public class MenuLogin {
                        nome = resultado.getString("nome");
                 int idEndereco = resultado.getInt("Endereco");
                 Timestamp dataNasc = new Timestamp(System.currentTimeMillis());
-                if(tipo.equals("FUN")){
-                    conexao.disconect();
-                    in.close();
-                    usuario = new Funcionario();
-                }else if (tipo.equals("GER")) {
-                    
-                }else if (tipo.equals("EST")) {
-                    
-                }else if (tipo.equals("DON")) {
-                    
-                }else if (tipo.equals("DIR")) {
-                    
-                }else if (tipo.equals("ADM")) {
-                    
-                }else if (tipo.equals("DEM")) {
-                    
+                switch (tipo) {
+                    case "FUN":
+                        conexao.disconect();
+                        in.close();
+                        usuario = new Funcionario();
+                        break;
+                    case "GER":
+
+                        break;
+                    case "EST":
+
+                        break;
+                    case "DON":
+
+                        break;
+                    case "DIR":
+
+                        break;
+                    case "ADM":
+
+                        break;
+                    case "DEM":
+
+                        break;
                 }
             }
         } catch (Exception e) {

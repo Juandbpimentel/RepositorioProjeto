@@ -67,7 +67,6 @@ public class Pessoa implements PessoaGUI, PessoaAlterDB {
     
     
     public void mostrarMenu() {
-        conexao = new Conexao("localhost", "5432", "ProjetoFBD", "postegres", "postegres", "org.postgresql.Driver");
     }
 
     public String getTipo() {

@@ -1,14 +1,14 @@
 package classes.sistema;
 
 import java.sql.Timestamp;
-
+import java.time.LocalDateTime;
 public class LogAlteracao {
     private Timestamp data;
     private String tipo,codigo,mensagem;
     private int id;
 
     public LogAlteracao(Timestamp data, String tipo, String codigo, String mensagem, int id) {
-        this.data = data;
+        this.data = new Timestamp(System.currentTimeMillis());
         this.tipo = tipo;
         this.codigo = codigo;
         this.mensagem = mensagem;

@@ -45,8 +45,8 @@ public class Funcionario extends Pessoa implements FuncionarioGUI {
     public void consultarEstagiarios() {
 
     }
-/**
- * AlterDB
+/*
+ AlterDB
  */
 
 }
