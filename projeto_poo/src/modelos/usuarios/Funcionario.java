@@ -3,7 +3,7 @@ package modelos.usuarios;
 
 import modelos.empresa.Categoria;
 import modelos.lugar.Endereco;
-import modelos.sistema.Conexao;
+import sistema.Conexao;
 import interfaces.gui.FuncionarioGUI;
 
 import java.time.LocalDate;

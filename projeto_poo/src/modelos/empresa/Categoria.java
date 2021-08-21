@@ -1,7 +1,7 @@
 package modelos.empresa;
 
 public class Categoria {
-    private int id,cargaHoraria;;
+    private int id,cargaHoraria;
     private String nome,descricao;
     private Double salario;
 

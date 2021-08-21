@@ -1,7 +1,8 @@
 package modelos.usuarios;
 
-import modelos.sistema.Conexao;
 import modelos.lugar.Endereco;
+import sistema.Conexao;
+
 import java.time.LocalDate;
 
 import interfaces.alterDB.PessoaAlterDB;

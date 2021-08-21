@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package projeto_poo;
-import modelos.sistema.Conexao;
+import sistema.Conexao;
 import views.sistema.menulogin.viewMenuLogin;
 /**
  *

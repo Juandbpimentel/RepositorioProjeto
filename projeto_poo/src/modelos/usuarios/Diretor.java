@@ -1,7 +1,7 @@
 package modelos.usuarios;
 
 import modelos.lugar.Endereco;
-import modelos.sistema.Conexao;
+import sistema.Conexao;
 import interfaces.alterDB.DiretorAlterDB;
 import interfaces.gui.DiretorGUI;
 
