@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import modelos.usuarios.Pessoa;
 import sistema.Conexao;
+
 public class DAOPessoa{
     private Conexao conexao;
     public ArrayList<Pessoa> ReadAll(){
@@ -15,7 +16,8 @@ public class DAOPessoa{
             String sql = "SELECT * FROM Pessoa";
             ResultSet result = conexao.executaQuery(sql);
             while(result.next()){
-                String nome, cpf, login, senha, tipo, endereco;
+                String nome, cpf, login, senha, tipo;
+                int endereco;
                 Date data;
                 nome = result.getString("nome");
                 data = result.getDate("data_nasc");
@@ -23,7 +25,7 @@ public class DAOPessoa{
                 login = result.getString("login");
                 senha = result.getString("senha");
                 tipo = result.getString("tipo");
-                endereco = result.getString("id_endereco");
+                endereco = result.getInt("id_endereco");
             }
             return pessoa;
         } catch (SQLException e) {
