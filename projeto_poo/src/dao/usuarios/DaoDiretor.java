@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class DaoDiretor {
+public class DAODiretor {
     private Conexao conexao;
 
     public ArrayList<Diretor> readAll() {
