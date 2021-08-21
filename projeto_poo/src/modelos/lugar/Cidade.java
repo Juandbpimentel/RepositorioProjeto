@@ -7,10 +7,10 @@ public class Cidade {
     private String nome;
     ArrayList<Bairro> bairros;
 
-    public Cidade(int id, String nome, ArrayList<Bairro> bairros) {
+    public Cidade(int id, String nome/*, ArrayList<Bairro> bairros*/) {
         this.id = id;
         this.nome = nome;
-        this.bairros = bairros;
+        //this.bairros = bairros;
     }
 
     public ArrayList<Bairro> getBairros() {

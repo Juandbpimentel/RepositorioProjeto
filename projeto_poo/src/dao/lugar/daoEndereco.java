@@ -2,23 +2,26 @@ package dao.lugar;
 
 import java.util.ArrayList;
 import modelos.lugar.Endereco;
-import modelos.sistema.Conexao;
+import sistema.Conexao;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class daoEndereco {
+public class DaoEndereco {
     private Conexao conexao;
 
     public ArrayList<Endereco> readAll(){
         try {
+            ArrayList<Endereco> enderecos = new ArrayList<Endereco>();
             conexao = new Conexao();
             conexao.conect();
 
             ResultSet resultado = conexao.executaQuery("select * from Endereco");
-            ArrayList<Endereco> enderecos;
+            
             while (resultado.next()) {
                 
             }
+            return enderecos;
         } catch(SQLException e){
             System.err.println("Erro ao recuperar do banco de dados" + e);
         } catch (Exception e) {

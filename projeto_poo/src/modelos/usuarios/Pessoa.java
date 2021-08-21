@@ -1,38 +1,28 @@
 package modelos.usuarios;
 
-import modelos.sistema.Conexao;
 import modelos.lugar.Endereco;
+import sistema.Conexao;
+
 import java.time.LocalDate;
 
 import interfaces.alterDB.PessoaAlterDB;
 import interfaces.gui.PessoaGUI;
 
 public class Pessoa implements PessoaGUI, PessoaAlterDB {
-    private String nome, login,senha,tipo,cpf;
+    private String nome, login,senha,tipo,cpf,idEndereco;
     private LocalDate dataNasc;
     private Endereco endereco;
     private Conexao conexao;
-    
-    public Pessoa(){
-        this.nome = "admin";
-        this.conexao = new Conexao("localhost","5432","BMDSY-Database","postgres","postgres","org.postgresql.Driver");
-        this.cpf = "999.999.999-99";
-        this.dataNasc = LocalDate.of(1999,9,9);
-        this.endereco = new Endereco(1,15,"63780-000","Rua Sete de Setembro","");
-        this.login = "admin";
-        this.senha = "admin";
-        this.tipo = "ADM";
-    }
 
-    public Pessoa(String nome, String login, String senha, String tipo, String cpf, LocalDate dataNasc, Endereco endereco, Conexao conexao) {
+    public Pessoa(String nome, String login, String senha, String tipo, String cpf, LocalDate dataNasc/*, Endereco endereco, Conexao conexao*/) {
         this.nome = nome;
         this.login = login;
         this.senha = senha;
         this.tipo = tipo;
         this.cpf = cpf;
         this.dataNasc = dataNasc;
-        this.endereco = endereco;
-        this.conexao = conexao;
+        //this.endereco = endereco;
+        //this.conexao = conexao;
     }
 
     public String toString() {
