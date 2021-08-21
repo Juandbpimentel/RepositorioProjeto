@@ -1,7 +1,0 @@
-package Java.interfaces.gui;
-
-public interface PessoaGUI {
-     public abstract void consultarDadosPessoais();
-     public abstract void consultarLogs();
-     public abstract void mostrarMenu();
-}
