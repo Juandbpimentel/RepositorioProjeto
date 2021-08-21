@@ -14,13 +14,15 @@ public class Setor {
     private ArrayList<Estagiario> estagiario;
     private Gerente gerente;
 
-    public Setor(Double orcamento, String nome, int id, ArrayList<Funcionario> funcionarios, ArrayList<Estagiario> estagiario, Gerente gerente) {
+    public Setor(Double orcamento, String nome, int id/*, ArrayList<Funcionario> funcionarios, ArrayList<Estagiario> estagiario, Gerente gerente*/) {
         this.orcamento = orcamento;
         this.nome = nome;
         this.id = id;
+        /*
         this.funcionarios = funcionarios;
         this.estagiario = estagiario;
         this.gerente = gerente;
+        */
     }
 
     public Double getOrcamento() {

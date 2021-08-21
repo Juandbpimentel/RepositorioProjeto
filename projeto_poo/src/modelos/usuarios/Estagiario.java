@@ -13,19 +13,13 @@ public class Estagiario extends Pessoa implements EstagiarioGUI {
    private int diaPagamento;
    private Categoria categoria;
 
-    public Estagiario(Timestamp inicioEstagio, int tempoEstagio, int diaPagamento, Categoria categoria) {
-        this.inicioEstagio = inicioEstagio;
-        this.tempoEstagio = tempoEstagio;
-        this.diaPagamento = diaPagamento;
-        this.categoria = categoria;
-    }
 
-    public Estagiario(String nome, String login, String senha, String tipo, String cpf, LocalDate dataNasc, Endereco endereco, Conexao conexao, Timestamp inicioEstagio, int tempoEstagio, int diaPagamento, Categoria categoria) {
-        super(nome, login, senha, tipo, cpf, dataNasc, endereco, conexao);
+    public Estagiario(String nome, String login, String senha, String tipo, String cpf, LocalDate dataNasc,/* Endereco endereco, Conexao conexao,*/ Timestamp inicioEstagio, int tempoEstagio, int diaPagamento/*, Categoria categoria*/) {
+        super(nome, login, senha, tipo, cpf, dataNasc);
         this.inicioEstagio = inicioEstagio;
         this.tempoEstagio = tempoEstagio;
         this.diaPagamento = diaPagamento;
-        this.categoria = categoria;
+        //this.categoria = categoria;
     }
 
     @Override
