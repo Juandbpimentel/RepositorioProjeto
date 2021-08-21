@@ -1,4 +1,4 @@
-package Java.classes.usuarios;
+package Java.classes.usuarios.pessoa;
 
 import Java.classes.sistema.Conexao;
 import Java.classes.local.Endereco;

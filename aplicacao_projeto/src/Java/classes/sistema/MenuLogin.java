@@ -1,20 +1,8 @@
 package Java.classes.sistema;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.sql.ResultSet;
-import java.sql.Timestamp;
-import java.util.Objects;
-import java.util.Scanner;
 
-import Java.classes.empresa.Categoria;
-import Java.classes.local.Endereco;
-
-
-import Java.classes.usuarios.*;
-
+import Java.classes.usuarios.pessoa.Pessoa;
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -84,10 +72,11 @@ public class MenuLogin extends Application {
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(MenuLogin.class.getResource("menuLoginGUI.fxml"));
         Parent root = fxmlLoader.load();
-        //Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/resources/Java/classes/menuPadrao.fxml")));
-        //System.out.print(Objects.requireNonNull(getClass().getResource("/resources/Java/classes/menuPadrao.fxml")));
+        //Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/resources/Java/classes/menuPrincipalPessoa.fxml")));
+        //System.out.print(Objects.requireNonNull(getClass().getResource("/resources/Java/classes/menuPrincipalPessoa.fxml")));
 
         Scene scene = new Scene(root);
+
         root.setOnMousePressed(evt->{
             x = evt.getSceneX();
             y = evt.getSceneY();
@@ -100,7 +89,8 @@ public class MenuLogin extends Application {
 
         stage.setTitle("Hello!");
         stage.setScene(scene);
-        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initStyle(StageStyle.DECORATED);
+        stage.hide();
         stage.show();
 
     }

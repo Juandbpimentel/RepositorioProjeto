@@ -2,6 +2,7 @@ package Java.classes.usuarios;
 
 import Java.classes.local.Endereco;
 import Java.classes.sistema.Conexao;
+import Java.classes.usuarios.pessoa.Pessoa;
 import Java.interfaces.alterDB.DiretorAlterDB;
 import Java.interfaces.gui.DiretorGUI;
 

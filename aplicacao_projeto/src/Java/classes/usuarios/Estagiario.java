@@ -2,6 +2,7 @@ package Java.classes.usuarios;
 import Java.classes.empresa.Categoria;
 import Java.classes.local.Endereco;
 import Java.classes.sistema.Conexao;
+import Java.classes.usuarios.pessoa.Pessoa;
 import Java.interfaces.gui.EstagiarioGUI;
 
 import java.sql.Timestamp;

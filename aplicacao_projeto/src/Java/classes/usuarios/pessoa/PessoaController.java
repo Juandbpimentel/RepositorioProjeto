@@ -1,28 +1,18 @@
-package Java.classes.sistema;
+package Java.classes.usuarios.pessoa;
 
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.event.ActionEvent;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
-import java.io.IOException;
-import java.util.Objects;
+import javax.swing.text.html.ImageView;
 
-public class ControladorMenuLogin {
-    private double x=0,y=0;
+public class PessoaController {
     private String login = "",senha = "";
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
+    private ImageView logoHEAD;
     @FXML
     protected Label lblRegister;
 
@@ -44,7 +34,7 @@ public class ControladorMenuLogin {
     protected javafx.scene.control.Button closeButton;
 
     @FXML
-    protected void onLoginButtonClick(ActionEvent event) throws IOException  {
+    protected void onLoginButtonClick() {
         boolean errorLogin = false, errorPassword = false;
         if (loginTextField.getText().length() == 0) {
             showErrorLogin();
@@ -66,27 +56,6 @@ public class ControladorMenuLogin {
         setLogin(loginTextField.getText());
 
         System.out.println(this.login + this.senha);
-
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/resources/Java/classes/usuarios/pessoa/menuPrincipalPessoa.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        root.setOnMousePressed(evt->{
-            x = evt.getSceneX();
-            y = evt.getSceneY();
-        });
-
-        root.setOnMouseDragged(evt->{
-            stage.setX(evt.getSceneX());
-            stage.setY(evt.getSceneY());
-        });
-
-        stage.setScene(scene);
-        stage.hide();
-        stage.show();
-    }
-
-    protected void loginDone(ActionEvent event) throws IOException {
-
     }
 
     protected void showErrorLogin(){

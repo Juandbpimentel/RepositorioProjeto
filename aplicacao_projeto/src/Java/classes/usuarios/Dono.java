@@ -4,6 +4,7 @@ package Java.classes.usuarios;
 import Java.classes.empresa.Empresa;
 import Java.classes.local.Endereco;
 import Java.classes.sistema.Conexao;
+import Java.classes.usuarios.pessoa.Pessoa;
 import Java.interfaces.alterDB.DonoAlterDB;
 import Java.interfaces.gui.DonoGUI;
 

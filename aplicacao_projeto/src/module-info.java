@@ -24,4 +24,6 @@ module aplicacao_projeto {
     exports Java.interfaces.gui;
 
     exports Java.interfaces.alterDB;
+    exports Java.classes.usuarios.pessoa;
+    opens Java.classes.usuarios.pessoa to javafx.controls, javafx.fxml, javafx.graphics;
 }
