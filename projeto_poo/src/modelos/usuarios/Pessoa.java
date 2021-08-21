@@ -9,18 +9,19 @@ import interfaces.alterDB.PessoaAlterDB;
 import interfaces.gui.PessoaGUI;
 
 public class Pessoa implements PessoaGUI, PessoaAlterDB {
-    private String nome, login,senha,tipo,cpf,idEndereco;
-    private LocalDate dataNasc;
+    private String nome, login,senha,tipo,cpf;
+    private LocalDate data_nasc;
     private Endereco endereco;
     private Conexao conexao;
 
-    public Pessoa(String nome, String login, String senha, String tipo, String cpf, LocalDate dataNasc/*, Endereco endereco, Conexao conexao*/) {
+    public Pessoa(String nome, String login, String senha, String tipo, String cpf, LocalDate data_nasc/*, Endereco endereco, Conexao conexao*/) {
         this.nome = nome;
         this.login = login;
         this.senha = senha;
         this.tipo = tipo;
         this.cpf = cpf;
-        this.dataNasc = dataNasc;
+
+        this.data_nasc = data_nasc;
         //this.endereco = endereco;
         //this.conexao = conexao;
     }
@@ -72,11 +73,11 @@ public class Pessoa implements PessoaGUI, PessoaAlterDB {
 	}
 
 	public LocalDate getDataNasc() {
-		return dataNasc;
+		return data_nasc;
 	}
 
 	public void setDataNasc(LocalDate dataNasc) {
-		this.dataNasc = dataNasc;
+		this.data_nasc = dataNasc;
 	}
 
 	public Conexao getConexao() {
