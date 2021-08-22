@@ -39,14 +39,6 @@ public class Categoria {
         this.id = id;
     }
 
-    public int getCargaHoraria() {
-        return carga_horaria;
-    }
-
-    public void setCargaHoraria(int cargaHoraria) {
-        this.carga_horaria = cargaHoraria;
-    }
-
     public String getNome() {
         return nome;
     }

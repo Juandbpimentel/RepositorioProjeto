@@ -50,14 +50,35 @@ public class DAOEstado {
                 return false; 
             }
             return true;
-        } 
-        catch(SQLException SQLError){
+        } catch(SQLException SQLError){
             System.err.println("Ocorreu um erro com Inserção no Banco de Dados: " + SQLError);
             return false;
+        } catch(Exception geralError){
+            System.err.println("Ocorreu um erro geral: " + geralError);
+            return false;
+        }
+    }
+
+    public Estado readOnEstado(String uf){
+        try {
+            conexao = new Conexao();
+            Estado estado;
+            String queryEstado = "SELECT * FROM ESTADO WHERE UF = "+uf;
+            ResultSet resultadoQuery = conexao.executaQuery(queryEstado);
+            if (!resultadoQuery.next()) {
+                throw new NullPointerException("Não foi possível achar nenhum estado");
+            } else{
+                String nome = resultadoQuery.getString("nome");
+                estado = new Estado(uf, nome);
+            }
+            return estado;
+        } catch(SQLException SQLError){
+            System.err.println("Ocorreu um erro com Inserção no Banco de Dados: " + SQLError);
+            return null;
         }
         catch(Exception geralError){
             System.err.println("Ocorreu um erro geral: " + geralError);
-            return false;
+            return null;
         }
     }
 }

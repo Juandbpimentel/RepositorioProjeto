@@ -159,8 +159,6 @@ public class Conexao {
         return statement;
     }
 
-
-
     public void startDatabase(){
         try{
             Conexao conexao = new Conexao("localhost", "5432", "postgres", "postgres", "postgres", "org.postgresql.Driver");
@@ -219,7 +217,7 @@ public class Conexao {
 
 
     @SuppressWarnings("unused")
-	private static void sleep(long ms){
+	private void sleep(long ms){
         try {
             Thread.sleep(ms);
         } catch (InterruptedException e) {
