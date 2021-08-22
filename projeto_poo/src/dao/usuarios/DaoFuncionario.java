@@ -28,9 +28,7 @@ public class DAOFuncionario {
                 id_categoria = resultado.getInt("id_categoria");
                 id_setor = resultado.getInt("id_setor");
                 dia_pag = resultado.getInt("dia_pag");
-
                 bonificacao = resultado.getDouble("bonificacao");
-
                 cpf = resultado.getString("cpf");
                 
                 String busca_pessoa = "Select * from pessoa where cpf = " +cpf;
@@ -39,8 +37,10 @@ public class DAOFuncionario {
                 String nome = "", login = "", senha = "", tipo = "";
                 int id_endereco = 0;
                 Date data_nasc = new Date(System.currentTimeMillis());
+                Boolean achou = false;
 
                 if(result_pessoa.next()){
+                    achou = true;
                     nome = result_pessoa.getString("nome");
                     login = result_pessoa.getString("login");
                     senha = result_pessoa.getString("senha");
@@ -49,7 +49,7 @@ public class DAOFuncionario {
                     data_nasc = result_pessoa.getDate("data_nasc");
                 }
 
-                if(nome.equals("")){
+                if(achou){
                     throw new NullPointerException();
                 }
 
