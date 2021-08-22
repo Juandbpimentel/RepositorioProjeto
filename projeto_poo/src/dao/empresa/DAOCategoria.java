@@ -86,7 +86,7 @@ public class DAOCategoria {
                 int salario = resultadoQuery.getInt("salario"), carga = resultadoQuery.getInt("carga_horaria");
                 categoria = new Categoria(id, carga, nome, descricao, salario, cnpj);
             }
-            return false;
+            return categoria;
         }catch (SQLException sqlError) {
             System.err.println("Houve um erro na leitura do Banco de Dados: " + sqlError);
             return null;
