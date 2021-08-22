@@ -3,7 +3,6 @@ package dao.lugar;
 import java.util.ArrayList;
 import modelos.lugar.Endereco;
 import sistema.Conexao;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 

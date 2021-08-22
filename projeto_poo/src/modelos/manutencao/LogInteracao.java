@@ -4,15 +4,16 @@ import java.sql.Timestamp;
 
 public class LogInteracao {
     private Timestamp data;
-    private String tipo,codigo,mensagem;
+    private String tipo,codigo,mensagem,login_pessoa;
     private int id;
 
-    public LogInteracao(Timestamp data, String tipo, String codigo, String mensagem, int id) {
-        this.data = new Timestamp(System.currentTimeMillis());
+    public LogInteracao(Timestamp data, String tipo, String codigo, String mensagem, int id, String login_pessoa) {
+        this.data = data;
         this.tipo = tipo;
         this.codigo = codigo;
         this.mensagem = mensagem;
         this.id = id;
+        this.login_pessoa = login_pessoa;
     }
 
     public Timestamp getData() {

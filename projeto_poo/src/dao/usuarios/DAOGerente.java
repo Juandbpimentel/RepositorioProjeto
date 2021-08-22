@@ -2,7 +2,6 @@ package dao.usuarios;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.sql.Date;
 import java.util.ArrayList;
 import sistema.Conexao;
@@ -62,7 +61,6 @@ public class DAOGerente {
                     dia_pagamento = 0;
                     
                 Date data_inicio;
-                Boolean achou = false; 
                 
                 if(!resultQueryFuncionario.next()){
                     throw new Exception("Não foi achado nenhum funcionario com o cpf especificado");
