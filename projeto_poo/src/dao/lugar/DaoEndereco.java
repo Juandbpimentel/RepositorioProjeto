@@ -12,16 +12,29 @@ public class DAOEndereco {
 
     public ArrayList<Endereco> readAll(){
         try {
-            ArrayList<Endereco> enderecos = new ArrayList<Endereco>();
+            ArrayList<Endereco> arrayEnderecos = new ArrayList<Endereco>();
             conexao = new Conexao();
             conexao.conect();
 
             ResultSet resultado = conexao.executaQuery("select * from Endereco");
             
             while (resultado.next()) {
-                
+                String cep, rua, complemento;
+                int id, id_bairro, numero;
+
+                cep = resultado.getString("cep");
+                rua = resultado.getString("rua");
+                complemento = resultado.getString("complemento");
+
+                id = resultado.getInt("id");
+                id_bairro = resultado.getInt("id_bairro");
+                numero = resultado.getInt("numero");
+
+                Endereco endereco = new Endereco(id, numero, cep, rua, complemento);
+                arrayEnderecos.add(endereco);
+
             }
-            return enderecos;
+            return arrayEnderecos;
         } catch(SQLException e){
             System.err.println("Erro ao recuperar do banco de dados" + e);
             return null;
