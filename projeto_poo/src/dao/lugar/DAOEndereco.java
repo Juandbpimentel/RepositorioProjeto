@@ -34,12 +34,10 @@ public class DAOEndereco {
 
             }
             return arrayEnderecos;
-        } 
-        catch (SQLException e) {
+        } catch (SQLException e) {
             System.err.println("Erro ao recuperar do banco de dados" + e);
             return null;
-        } 
-        catch (Exception e) {
+        } catch (Exception e) {
             System.err.println("Erro Geral: " + e);
             return null;
         }
