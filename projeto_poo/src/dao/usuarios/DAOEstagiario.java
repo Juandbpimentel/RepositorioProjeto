@@ -4,7 +4,6 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import modelos.usuarios.Estagiario;
 import modelos.usuarios.Pessoa;
 import sistema.Conexao;
@@ -13,38 +12,57 @@ public class DAOEstagiario{
     private Conexao conexao;
     public ArrayList<Estagiario> ReadAll(){
         try {
-            ArrayList<Estagiario> estagiario = new ArrayList<Estagiario>();
+            ArrayList<Estagiario> arrayEstagiario = new ArrayList<Estagiario>();
             conexao.conect();
-            String sql = "SELECT * FROM Estagiario";
-            ResultSet result = conexao.executaQuery(sql);
+
+            String codBusca = "Select * from Estagiario";
+            ResultSet result = conexao.executaQuery(codBusca);
+
             while(result.next()){
                 String cpf;
-                int cat, setor, pay, testagio;
-                Date destagio; 
+                int categoria, setor, diaPagamento, tempoEstagio;
+                Date inicioEstagio; 
+                
                 cpf = result.getString("cpf");
-                cat = result.getInt("id_categoria");
+                categoria = result.getInt("id_categoria");
                 setor = result.getInt("id_setor");
-                pay = result.getInt("dia_pagamento");
-                testagio = result.getInt("tempo_estagio");
-                destagio = result.getDate("inicio_estagio");
-                String sql2 = "SELECT * FROM Pessoa WHERE cpf = "+cpf;
-                ResultSet result2 = conexao.executaQuery(sql2);
-                String nome,login,senha,tipo;
-                Date data_nasc;
-                int id_endereco;
-                nome = result2.getString("nome");
-                login = result2.getString("login");
-                senha = result2.getString("senha");
-                tipo = result2.getString("tipo");
-                data_nasc = result2.getDate("data_nasc");
-                id_endereco = result2.getInt("id_endereco");
+                diaPagamento= result.getInt("diaPagamento");
+                tempoEstagio = result.getInt("tempoEstagio");
+                inicioEstagio = result.getDate("inicioEstagio");
+
+                String codBusca_pessoa = "Select * from Pessoa where cpf = "+cpf;
+                ResultSet result_pessoa = conexao.executaQuery(codBusca_pessoa);
+                String nome ="", login = "", senha = "", tipo = "";
+                Date data_nasc= new Date(System.currentTimeMillis());
+                int id_endereco = 0;
+                Boolean achou = false;
+
+                if(result_pessoa.next()){
+                    achou = true;
+                    nome = result_pessoa.getString("nome");
+                    login = result_pessoa.getString("login");
+                    senha = result_pessoa.getString("senha");
+                    tipo = result_pessoa.getString("tipo");
+                    data_nasc = result_pessoa.getDate("data_nasc");
+                    id_endereco = result_pessoa.getInt("id_endereco");
+                }
+
+                if(achou){
+                    throw new NullPointerException();
+                }
+
+                Estagiario estagiario = new Estagiario(nome, login, senha, tipo, cpf, data_nasc.toLocalDate(), inicioEstagio.toLocalDate(), tempoEstagio, diaPagamento); 
+                arrayEstagiario.add(estagiario);
             }
-            return estagiario;
-        } catch (SQLException e) {
-            System.err.println("Erro no banco de dados:" +e);            
+
+            return arrayEstagiario;
+        } 
+        catch (SQLException SQLError) {
+            System.err.println("Erro no banco de dados:" +SQLError);            
             return null; 
-        } catch (Exception e){
-            System.err.println("Erro no código:" +e);            
+        } 
+        catch (Exception geralError){
+            System.err.println("Erro no código:" +geralError);            
             return null;
         }
     }

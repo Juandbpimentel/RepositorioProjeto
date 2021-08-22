@@ -19,6 +19,7 @@ public class DAOPessoa{
                 String nome, cpf, login, senha, tipo;
                 int endereco;
                 Date data;
+
                 nome = result.getString("nome");
                 data = result.getDate("data_nasc");
                 cpf = result.getString("cpf");
@@ -27,12 +28,15 @@ public class DAOPessoa{
                 tipo = result.getString("tipo");
                 endereco = result.getInt("id_endereco");
             }
+
             return pessoa;
-        } catch (SQLException e) {
-            System.err.println("Erro no banco de dados:" +e);            
+        } 
+        catch (SQLException SQLError) {
+            System.err.println("Erro no banco de dados:" +SQLError);            
             return null; 
-        } catch (Exception e){
-            System.err.println("Erro no código:" +e);            
+        }
+         catch (Exception geralError){
+            System.err.println("Erro no código:" +geralError);            
             return null;
         }
     }

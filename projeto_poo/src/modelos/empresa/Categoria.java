@@ -1,18 +1,16 @@
 package modelos.empresa;
 
 public class Categoria {
-    private int id, cargaHoraria;
-    private String nome,descricao, cnpj_empresa;
+    private int id,cargaHoraria;
+    private String nome,descricao;
     private Double salario;
 
-
-    public Categoria(int id, String cnpj_empresa, int cargaHoraria, String nome, String descricao, Double salario) {
+    public Categoria(int id, int cargaHoraria, String nome, String descricao, Double salario) {
         this.id = id;
         this.cargaHoraria = cargaHoraria;
         this.nome = nome;
         this.descricao = descricao;
         this.salario = salario;
-        this.cnpj_empresa = cnpj_empresa;
     }
 
     public int getId() {

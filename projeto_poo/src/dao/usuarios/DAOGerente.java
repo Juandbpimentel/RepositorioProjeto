@@ -12,57 +12,57 @@ public class DAOGerente {
     private Conexao conexao;
     public ArrayList<Gerente> readAll(){
         try {
-            ArrayList<Gerente> gerente = new ArrayList<Gerente>();
+            ArrayList<Gerente> arrayGerente= new ArrayList<Gerente>();
             conexao = new Conexao();
             conexao.conect();
 
-            String sql = "Select * from Gerente";
-            ResultSet result = conexao.executaQuery(sql);
+            String codBusca = "Select * from Gerente";
+            ResultSet result = conexao.executaQuery(codBusca);
 
             while(result.next()){
                 String cpf = "";
-                Double bon = 0.0;
+                Double bonificacao_gerente = 0.0;
 
                 cpf = result.getString("cpf");
-                bon = result.getDouble("bonificacao_gerente");
+                bonificacao_gerente = result.getDouble("bonificacao_gerente");
 
-                String sql2 = "Select * from Pessoa where cpf = "+cpf;
-                ResultSet result2 = conexao.executaQuery(sql2);
+                String codBusca_pessoa = "Select * from Pessoa where cpf = " +cpf;
+                ResultSet result_pessoa = conexao.executaQuery(codBusca_pessoa);
                 String nome,login,senha,tipo;
                 Date data_nasc;
                 int id_endereco;
 
-                nome = result2.getString("nome");
-                login = result2.getString("login");
-                senha = result2.getString("senha");
-                tipo = result2.getString("tipo");
-                data_nasc = result2.getDate("data_nasc");
-                id_endereco = result2.getInt("id_endereco");
+                nome = result_pessoa.getString("nome");
+                login = result_pessoa.getString("login");
+                senha = result_pessoa.getString("senha");
+                tipo = result_pessoa.getString("tipo");
+                data_nasc = result_pessoa.getDate("data_nasc");
+                id_endereco = result_pessoa.getInt("id_endereco");
 
-                String sql3 = "Select * from Funcionario where cpf = "+cpf;
-                ResultSet result3 = conexao.executaQuery(sql3);
-                Double boni = 0.0;
-                int idc = 0, serial = 0, pay = 0;
-                Date data;
+                String codBusca_funcionario = "Select * from Funcionario where cpf = " +cpf;
+                ResultSet result_funcionario = conexao.executaQuery(codBusca_funcionario);
+                Double bonificacao = 0.0;
+                int id_categoria = 0, id_setor = 0, dia_pag = 0;
+                Date data_inicio;
                 Boolean achou = false; 
 
-                if(result3.next()){
+                if(result_funcionario.next()){
                     achou = true;
-                    boni = result3.getDouble("bonificacao");
-                    idc = result.getInt("id_categoria");
-                    serial = result.getInt("id_setor");
-                    pay = result.getInt("dia_pagamento");
-                    data = result.getDate("data_inicio");
+                    bonificacao = result_funcionario.getDouble("bonificacaoficacao");
+                    id_categoria = result.getInt("id_categoria");
+                    id_setor = result.getInt("id_setor");
+                    dia_pag = result.getInt("dia_pagamento");
+                    data_inicio = result.getDate("data_inicio");
                 }
 
                 if(achou){
                     throw new NullPointerException();
                 }
 
-                Gerente gente = new Gerente (nome, login, senha, tipo, cpf, LocalDate.of(data_nasc.getYear(),data_nasc.getDay(),data_nasc.getMonth()), boni, bon);
-                gerente.add(gente);
+                Gerente gente = new Gerente (nome, login, senha, tipo, cpf, data_nasc.toLocalDate(), bonificacao, bonificacao);
+                arrayGerente.add(gente);
             }
-        return gerente;
+        return arrayGerente;
 
         } 
         catch (SQLException SQLError) {

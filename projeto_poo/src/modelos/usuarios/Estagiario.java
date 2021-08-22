@@ -14,7 +14,7 @@ public class Estagiario extends Pessoa implements EstagiarioGUI {
    private Categoria categoria;
 
 
-    public Estagiario(String nome, String login, String senha, String tipo, String cpf, LocalDate dataNasc,/* Endereco endereco, Conexao conexao,*/ LocalDate inicioEstagio, int tempoEstagio, int diaPagamento/*, Categoria categoria*/) {
+    public Estagiario(String nome, String login, String senha, String tipo, String cpf, LocalDate dataNasc, LocalDate inicioEstagio, int tempoEstagio, int diaPagamento) {
         super(nome, login, senha, tipo, cpf, dataNasc/*, endereco, conexao*/);
         this.inicioEstagio = inicioEstagio;
         this.tempoEstagio = tempoEstagio;
