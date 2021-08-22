@@ -1,9 +1,10 @@
+<div align="center"> 
+    <img src="imagens\logo_poo_texto.png" > 
+</div>
 
 # RepositorioProjeto
 
-    <div align="center"> 
-        <img src="imagens\logo_poo_texto.png" > 
-    </div>
+    
 
 ## Descrição
 
