@@ -8,7 +8,6 @@ public class Empresa {
     private String nome;
     private Double orcamento;
     private String cnpj;
-    private String cpf_dono;
     ArrayList<Setor> setores;
     ArrayList<Diretor> diretores;
 

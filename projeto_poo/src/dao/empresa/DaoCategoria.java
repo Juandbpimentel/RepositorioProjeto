@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import modelos.empresa.Categoria;
 
-public class DaoCategoria {
+public class DAOCategoria {
     private Conexao conexao;
 
     public ArrayList<Categoria> readAll(){
@@ -21,7 +21,7 @@ public class DaoCategoria {
             ResultSet busca = conexao.executaQuery(codigoBusca);
 
             while(busca.next()){
-
+                
             }
 
             return arrayCategoria; 
