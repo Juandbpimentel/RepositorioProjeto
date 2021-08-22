@@ -19,7 +19,14 @@ public class DAOEmpresa {
             ResultSet resultado = conexao.executaQuery(codBusca);
             
             while(resultado.next()){
-
+                Double orc;
+                String cnpj, nome, cpf;
+                orc = resultado.getDouble("orcamento");
+                cnpj = resultado.getString("cnpj");
+                nome = resultado.getString("nome");
+                cpf = resultado.getString("cpf_dono");
+                Empresa empresa = new Empresa(nome, orc, cnpj, cpf);
+                arrayEmpresa.add(empresa);
             }
 
             return arrayEmpresa;
