@@ -9,15 +9,7 @@ public class Diretor extends Pessoa implements DiretorGUI, DiretorAlterDB {
     private String cnpj_empresa;
     private int id_categoria;
     
-    public Diretor (String nome, 
-                    String login, 
-                    String senha, 
-                    String tipo, 
-                    String cpf, 
-                    LocalDate dataNasc, 
-                    String cnpj_empresa, 
-                    int id_categoria, 
-                    int id_endereco) {
+    public Diretor (String nome, String login, String senha, String tipo, String cpf, LocalDate dataNasc, String cnpj_empresa, int id_categoria, int id_endereco) {
         super(nome, login, senha, tipo, cpf, dataNasc, id_endereco);
         this.cnpj_empresa = cnpj_empresa;
         this.id_categoria = id_categoria;
@@ -27,7 +19,7 @@ public class Diretor extends Pessoa implements DiretorGUI, DiretorAlterDB {
         return cnpj_empresa;
     }
 
-    public void wa(String cnpj_empresa) {
+    public void setCnpj_empresa(String cnpj_empresa) {
         this.cnpj_empresa = cnpj_empresa;
     }
 
