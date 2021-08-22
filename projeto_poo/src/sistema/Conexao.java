@@ -1,4 +1,4 @@
-package modelos.sistema;
+package sistema;
 
 import java.sql.Statement;
 import java.sql.Connection;

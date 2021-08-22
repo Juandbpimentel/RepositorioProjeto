@@ -1,19 +1,15 @@
 package modelos.usuarios;
 
 import modelos.lugar.Endereco;
-import modelos.sistema.Conexao;
+import sistema.Conexao;
 import interfaces.alterDB.DiretorAlterDB;
 import interfaces.gui.DiretorGUI;
 
 import java.time.LocalDate;
 
 public class Diretor extends Pessoa implements DiretorGUI, DiretorAlterDB {
-    
-    public Diretor() {
-    }
-
-    public Diretor(String nome, String login, String senha, String tipo, String cpf, LocalDate dataNasc, Endereco endereco, Conexao conexao) {
-        super(nome, login, senha, tipo, cpf, dataNasc, endereco, conexao);
+    public Diretor(String nome, String login, String senha, String tipo, String cpf, LocalDate dataNasc/*, Endereco endereco, Conexao conexao*/) {
+        super(nome, login, senha, tipo, cpf, dataNasc/*, endereco, conexao*/);
     }
 
     /**
