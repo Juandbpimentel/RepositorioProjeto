@@ -22,6 +22,13 @@ public class Empresa {
         this.diretores = diretores;
         */
     }
+    
+    public String getCpf_dono() {
+        return cpf_dono;
+    }
+    public void setCpf_dono(String cpf_dono) {
+        this.cpf_dono = cpf_dono;
+    }
 
     public String getNome() {
         return nome;

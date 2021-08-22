@@ -1,8 +1,6 @@
 package dao.empresa;
 
 import sistema.Conexao;
-import java.sql.Date;
-import java.time.LocalDate;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,7 +11,7 @@ public class DAOEmpresa {
 
     public ArrayList<Empresa> readAll(){
         try {
-            ArrayList<Empresa> arrayFuncionario = new ArrayList<Empresa>();
+            ArrayList<Empresa> arrayEmpresa = new ArrayList<Empresa>();
             conexao = new Conexao();
             conexao.conect();
 

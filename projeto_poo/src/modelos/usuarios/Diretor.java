@@ -1,22 +1,45 @@
 package modelos.usuarios;
 
-import modelos.lugar.Endereco;
-import sistema.Conexao;
 import interfaces.alterDB.DiretorAlterDB;
 import interfaces.gui.DiretorGUI;
 
 import java.time.LocalDate;
 
 public class Diretor extends Pessoa implements DiretorGUI, DiretorAlterDB {
-    private String cnpj_empresa, id_categoria;
-    public Diretor(String nome, String login, String senha, String tipo, String cpf, LocalDate dataNasc, String cnpj_empresa, String id_categoria) {
-        super(nome, login, senha, tipo, cpf, dataNasc/*, endereco, conexao*/);
+    private String cnpj_empresa;
+    private int id_categoria;
+    
+    public Diretor (String nome, 
+                    String login, 
+                    String senha, 
+                    String tipo, 
+                    String cpf, 
+                    LocalDate dataNasc, 
+                    String cnpj_empresa, 
+                    int id_categoria, 
+                    int id_endereco) {
+        super(nome, login, senha, tipo, cpf, dataNasc, id_endereco);
         this.cnpj_empresa = cnpj_empresa;
         this.id_categoria = id_categoria;
     }
 
-    /**
- * GUI
+    public String getCnpj_empresa() {
+        return cnpj_empresa;
+    }
+
+    public void setCnpj_empresa(String cnpj_empresa) {
+        this.cnpj_empresa = cnpj_empresa;
+    }
+
+    public int getId_categoria() {
+        return id_categoria;
+    }
+
+    public void setId_categoria(int id_categoria) {
+        this.id_categoria = id_categoria;
+    }
+/*
+     GUI
  */
     @Override
     public void administrarFuncionarios() {
@@ -48,8 +71,8 @@ public class Diretor extends Pessoa implements DiretorGUI, DiretorAlterDB {
 
     }
 
-/**
- * Alteração banco de dados
+/*
+    Alteração banco de dados
  */
 
     @Override

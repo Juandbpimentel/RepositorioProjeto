@@ -1,8 +1,6 @@
 package dao.lugar;
 
 import sistema.Conexao;
-import java.sql.Date;
-import java.time.LocalDate;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,7 +11,7 @@ public class DAOCidade {
 
     public ArrayList<Cidade> readAll(){
         try {
-            ArrayList<Cidade> arrayFuncionario = new ArrayList<Cidade>();
+            ArrayList<Cidade> arrayCidade = new ArrayList<Cidade>();
             conexao = new Conexao();
             conexao.conect();
 

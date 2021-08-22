@@ -21,39 +21,44 @@ public class DAOFuncionario {
             ResultSet resultado = conexao.executaQuery(codBusca);
             
             while(resultado.next()){
-                int id_categoria, id_setor, dia_pag;
-                Double bonificacao;
-                String cpf;
-
+                int id_categoria=0, 
+                	id_setor=0, dia_pagamento=0;
+                Double bonificacao = 0.0;
+                Date data_inicio = null;
+                String cpf = "";
+                
                 id_categoria = resultado.getInt("id_categoria");
                 id_setor = resultado.getInt("id_setor");
-                dia_pag = resultado.getInt("dia_pag");
+                dia_pagamento = resultado.getInt("dia_pagamento");
                 bonificacao = resultado.getDouble("bonificacao");
                 cpf = resultado.getString("cpf");
-                
-                String busca_pessoa = "Select * from pessoa where cpf = " +cpf;
-                ResultSet result_pessoa = conexao.executaQuery(busca_pessoa);
-                
-                String nome = "", login = "", senha = "", tipo = "";
+                data_inicio = resultado.getDate("data_inicio");
+              
+                String sqlQueryPessoa = "Select * from pessoa where cpf = " +cpf;
+                ResultSet resultQueryPessoa = conexao.executaQuery(sqlQueryPessoa);
+                           
+                String nome = "", 
+                	   login = "", 
+                	   senha = "", tipo = "";
                 int id_endereco = 0;
                 Date data_nasc = new Date(System.currentTimeMillis());
-                Boolean achou = false;
-
-                if(result_pessoa.next()){
-                    achou = true;
-                    nome = result_pessoa.getString("nome");
-                    login = result_pessoa.getString("login");
-                    senha = result_pessoa.getString("senha");
-                    tipo = result_pessoa.getString("tipo");
-                    id_endereco = result_pessoa.getInt("id_endereco");
-                    data_nasc = result_pessoa.getDate("data_nasc");
+                
+                if(!resultQueryPessoa.next()){
+                	throw new NullPointerException();
+                }else {
+                	do {
+                		nome = resultQueryPessoa.getString("nome");
+                		login = resultQueryPessoa.getString("login");
+                		senha = resultQueryPessoa.getString("senha");
+                		tipo = resultQueryPessoa.getString("tipo");
+                		id_endereco = resultQueryPessoa.getInt("id_endereco");
+                		data_nasc = resultQueryPessoa.getDate("data_nasc");
+                		id_endereco = resultQueryPessoa.getInt(id_endereco);                		
+                	}while(resultQueryPessoa.next());
                 }
 
-                if(achou){
-                    throw new NullPointerException();
-                }
 
-                Funcionario funcionario = new Funcionario(nome, login, senha, tipo, cpf, LocalDate.of(data_nasc.getYear(), data_nasc.getDay(), data_nasc.getMonth()), bonificacao); 
+                Funcionario funcionario = new Funcionario(nome, login, senha, tipo, cpf, data_nasc.toLocalDate(), id_endereco, bonificacao,id_categoria,id_setor, dia_pagamento,data_inicio.toLocalDate());
                 arrayFuncionario.add(funcionario); 
             }
         

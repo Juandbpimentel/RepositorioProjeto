@@ -13,6 +13,14 @@ public class Endereco {
         this.id_bairro = id_bairro;
     }
 
+    public int getId_bairro() {
+        return id_bairro;
+    }
+    
+    public void setId_bairro(int id_bairro) {
+        this.id_bairro = id_bairro;
+    }
+
     public int getId() {
         return id;
     }

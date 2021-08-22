@@ -36,7 +36,6 @@ public class DAOCategoria {
 
                 Categoria categoria = new Categoria(id, carga_horaria, nome, descricao, salario, cnpj_empresa);
                 arrayCategoria.add(categoria);
-
                 
             }
 

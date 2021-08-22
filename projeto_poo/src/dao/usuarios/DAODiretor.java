@@ -5,7 +5,6 @@ import sistema.Conexao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.time.LocalDate;
 import java.sql.Date;
 
 public class DAODiretor {
@@ -21,19 +20,31 @@ public class DAODiretor {
             ResultSet resultado = conexao.executaQuery(codigoBusca);
 
             while (resultado.next()) {
-                String nome, login, senha, tipo, cpf, cnpjEmpresa, idCategoria;
-                Date dataNasc;
+                String cnpjEmpresa = "", cpf="";
+                int idCategoria = 0;
 
-                nome = resultado.getString("nome");
-                login = resultado.getString("login");
-                senha = resultado.getString("senha");
-                tipo = resultado.getString("tipo");
-                cpf = resultado.getString("cpf");
-                dataNasc = resultado.getDate("data_nasc");
-                cnpjEmpresa = resultado.getString("cnpj_empresa");
-                idCategoria = resultado.getString("id_categoria");
+                String sqlQueryPessoa = "Select * from pessoa where cpf = "+cpf;
+                ResultSet resultadoQueryPessoa = conexao.executaQuery(sqlQueryPessoa);
 
-                Diretor diretor = new Diretor(nome, login, senha, tipo, cpf, dataNasc.toLocalDate(), cnpjEmpresa, idCategoria);
+                String nome = "", login="", senha="", tipo="";
+                int id_endereco = 0;
+                Date dataNasc = new Date(System.currentTimeMillis());
+                boolean achou = false;
+
+                if(resultadoQueryPessoa.next()){
+                    nome = resultado.getString("nome");
+                    login = resultado.getString("login");
+                    senha = resultado.getString("senha");
+                    tipo = resultado.getString("tipo");
+                    dataNasc = resultado.getDate("data_nasc");
+                    id_endereco = resultado.getInt("id_endereco");
+                    achou = true;
+                }
+                if (!achou) {
+                    throw new NullPointerException("Não foi achada nenhuma pessoa com esse cpf");
+                }
+
+                Diretor diretor = new Diretor(nome, login, senha, tipo, cpf, dataNasc.toLocalDate(), cnpjEmpresa, idCategoria,id_endereco);
                 arrayDiretores.add(diretor);
 
             }

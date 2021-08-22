@@ -14,6 +14,23 @@ public class Categoria {
         this.cnpj_empresa = cnpjEmpresa;
     }
 
+    public String getCnpj_empresa() {
+        return cnpj_empresa;
+    }
+    
+    public void setCnpj_empresa(String cnpj_empresa) {
+        this.cnpj_empresa = cnpj_empresa;
+    }
+
+    
+    public void setCarga_horaria(int carga_horaria) {
+        this.carga_horaria = carga_horaria;
+    }
+
+    public int getCarga_horaria() {
+        return carga_horaria;
+    }
+
     public int getId() {
         return id;
     }

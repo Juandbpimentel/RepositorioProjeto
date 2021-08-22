@@ -1,8 +1,6 @@
 package dao.empresa;
 
 import sistema.Conexao;
-import java.sql.Date;
-import java.time.LocalDate;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,7 +11,7 @@ public class DAOSetor {
 
     public ArrayList<Setor> readAll(){
         try {
-            ArrayList<Setor> arrayFuncionario = new ArrayList<Setor>();
+            ArrayList<Setor> arraySetor = new ArrayList<Setor>();
             conexao = new Conexao();
             conexao.conect();
 

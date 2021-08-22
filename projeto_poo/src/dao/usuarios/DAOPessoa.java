@@ -11,25 +11,27 @@ public class DAOPessoa{
     private Conexao conexao;
     public ArrayList<Pessoa> ReadAll(){
         try {
-            ArrayList<Pessoa> pessoa = new ArrayList<Pessoa>();
+            ArrayList<Pessoa> arrayPessoas = new ArrayList<Pessoa>();
             conexao.conect();
             String sql = "SELECT * FROM Pessoa";
             ResultSet result = conexao.executaQuery(sql);
             while(result.next()){
                 String nome, cpf, login, senha, tipo;
-                int endereco;
-                Date data;
+                int id_endereco;
+                Date data_nasc;
 
                 nome = result.getString("nome");
-                data = result.getDate("data_nasc");
+                data_nasc = result.getDate("data_nasc");
                 cpf = result.getString("cpf");
                 login = result.getString("login");
                 senha = result.getString("senha");
                 tipo = result.getString("tipo");
-                endereco = result.getInt("id_endereco");
+                id_endereco = result.getInt("id_endereco");
+                Pessoa pessoa = new Pessoa(nome,login,senha,tipo,cpf,data_nasc.toLocalDate(),id_endereco);
+                arrayPessoas.add(pessoa);
             }
 
-            return pessoa;
+            return arrayPessoas;
         } 
         catch (SQLException SQLError) {
             System.err.println("Erro no banco de dados:" +SQLError);            

@@ -1,12 +1,9 @@
 
 # RepositorioProjeto
 
-     ____  __  __ ____   ______   __
-    | __ )|  \/  |  _ \ / ___\ \ / /
-    |  _ \| |\/| | | | |\___ \\ V /
-    | |_) | |  | | |_| | ___) || |
-    |____/|_|  |_|____(_)____/ |_|
-
+    <div align="center"> 
+        <img src="imagens\logo_poo_texto.png" > 
+    </div>
 
 ## Descrição
 

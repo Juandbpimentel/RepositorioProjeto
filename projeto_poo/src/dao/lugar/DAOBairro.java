@@ -13,7 +13,7 @@ public class DAOBairro {
 
     public ArrayList<Bairro> readAll(){
         try {
-            ArrayList<Bairro> arrayFuncionario = new ArrayList<Bairro>();
+            ArrayList<Bairro> arrayBairro = new ArrayList<Bairro>();
             conexao = new Conexao();
             conexao.conect();
 

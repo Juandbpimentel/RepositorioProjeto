@@ -26,7 +26,7 @@ public class Conexao {
         setBanco("BMDSY-Database");
         setUrl(getLocal(),getPorta(),getBanco());
         configUsuario("postgres", "postgres");
-        setDriverJDBC("org.postgres.Driver");
+        setDriverJDBC("org.postgresql.Driver");
     }
 
     //Método para gerar conexão com o banco de dados

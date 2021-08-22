@@ -15,6 +15,16 @@ public class Bairro {
         //this.enderecos = enderecos;
     }
 
+
+
+    public int getId_cidade() {
+        return id_cidade;
+    }
+
+    public void setId_cidade(int id_cidade) {
+        this.id_cidade = id_cidade;
+    }
+
     public ArrayList<Endereco> getEnderecos() {
         return enderecos;
     }

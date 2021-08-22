@@ -2,8 +2,7 @@ package modelos.usuarios;
 
 
 import modelos.empresa.Empresa;
-import modelos.lugar.Endereco;
-import sistema.Conexao;
+
 import interfaces.alterDB.DonoAlterDB;
 import interfaces.gui.DonoGUI;
 
@@ -14,13 +13,16 @@ import java.util.ArrayList;
 public class Dono extends Pessoa implements DonoGUI,DonoAlterDB {
     private ArrayList<Empresa> empresas;
 
-    //public Dono(ArrayList<Empresa> empresas) {
-    //    this.empresas = empresas;
-    //}
 
-    public Dono(String nome, String login, String senha, String tipo, String cpf, LocalDate dataNasc/*, Endereco endereco, Conexao conexao, ArrayList<Empresa> empresas*/) {
-        super(nome, login, senha, tipo, cpf, dataNasc/*, endereco, conexao*/);
-        //this.empresas = empresas;
+    public Dono( String nome, 
+                 String login, 
+                 String senha, 
+                 String tipo, 
+                 String cpf, 
+                 LocalDate dataNasc, 
+                 int id_endereco) {
+        super(nome, login, senha, tipo, cpf, dataNasc, id_endereco);
+
     }
 
 
@@ -32,8 +34,8 @@ public class Dono extends Pessoa implements DonoGUI,DonoAlterDB {
     public void setEmpresas(ArrayList<Empresa> empresas) {
         this.empresas = empresas;
     }
-/**
- * GUI
+/*
+    GUI
  */
     @Override
     public void administrarEmpresa() {
@@ -80,8 +82,8 @@ public class Dono extends Pessoa implements DonoGUI,DonoAlterDB {
 
     }
 
-/**
- * AlterDB
+/*
+    AlterDB
  */
     @Override
     public void admitirDiretor() {

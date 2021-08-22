@@ -1,10 +1,8 @@
 package modelos.usuarios;
 import modelos.empresa.Categoria;
-import modelos.lugar.Endereco;
-import sistema.Conexao;
+
 import interfaces.gui.EstagiarioGUI;
 
-import java.sql.Timestamp;
 import java.time.LocalDate;
 
 public class Estagiario extends Pessoa implements EstagiarioGUI {
@@ -12,8 +10,18 @@ public class Estagiario extends Pessoa implements EstagiarioGUI {
     private int tempo_estagio, dia_pagamento, id_categoria, id_setor;
     private Categoria categoria;
 
-    public Estagiario(String nome, String login, String senha, String tipo, String cpf, LocalDate dataNasc, LocalDate inicioEstagio, int tempoEstagio, int diaPagamento, int id_categoria, int id_setor) {
-        super(nome, login, senha, tipo, cpf, dataNasc/*, endereco, conexao*/);
+    public Estagiario(  String nome, 
+                        String login, 
+                        String senha, 
+                        String tipo, 
+                        String cpf, 
+                        LocalDate dataNasc, 
+                        LocalDate inicioEstagio, 
+                        int tempoEstagio, 
+                        int diaPagamento, 
+                        int id_categoria, 
+                        int id_setor, int id_endereco) {
+        super(nome, login, senha, tipo, cpf, dataNasc, id_endereco/*, endereco, conexao*/);
         this.inicio_estagio = inicioEstagio;
         this.tempo_estagio = tempoEstagio;
         this.dia_pagamento = diaPagamento;
@@ -22,49 +30,58 @@ public class Estagiario extends Pessoa implements EstagiarioGUI {
         //this.categoria = categoria;
     }
 
-    @Override
-    public void teste(){
-        printaDeuCerto();
+    public LocalDate getInicio_estagio() {
+        return inicio_estagio;
+    }
+    
+    public void setInicio_estagio(LocalDate inicio_estagio) {
+        this.inicio_estagio = inicio_estagio;
+    }
+    
+    public int getDia_pagamento() {
+        return dia_pagamento;
+    }
+    
+    public void setDia_pagamento(int dia_pagamento) {
+        this.dia_pagamento = dia_pagamento;
+    }
+    
+    public int getId_categoria() {
+        return id_categoria;
+    }
+    
+    public void setId_categoria(int id_categoria) {
+        this.id_categoria = id_categoria;
+    }
+    
+    public int getId_setor() {
+        return id_setor;
+    }
+    
+    public void setId_setor(int id_setor) {
+        this.id_setor = id_setor;
     }
 
-    private void printaDeuCerto(){
-       System.out.print("deu certo!");
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 
     protected void consultarDadosEstagios() {
 
     }
 
-/**
- * Getters e Setters
- */
-    public LocalDate getInicioEstagio() {
-        return inicio_estagio;
-    }
-
-    public void setInicioEstagio(LocalDate inicioEstagio) {
-        this.inicio_estagio = inicioEstagio;
-    }
-
-    public int getTempoEstagio() {
+    public int getTempo_estagio() {
         return tempo_estagio;
     }
 
-    public void setTempoEstagio(int tempoEstagio) {
+    public void setTempo_estagio(int tempoEstagio) {
         this.tempo_estagio = tempoEstagio;
     }
 
-    public int getDiaPagamento() {
-        return dia_pagamento;
-    }
-
-    public void setDiaPagamento(int diaPagamento) {
-        this.dia_pagamento = diaPagamento;
-    }
-
-/**
- * GUI
- */
     @Override
     public void consultaDadosEstagio() {
 

@@ -1,12 +1,10 @@
 package dao.usuarios;
 
-import modelos.usuarios.Diretor;
 import modelos.usuarios.Dono;
 import sistema.Conexao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.time.LocalDate;
 import java.sql.Date;
 
 public class DAODono {
@@ -22,18 +20,31 @@ public class DAODono {
             ResultSet resultado = conexao.executaQuery(codigoBusca);
 
             while (resultado.next()) {
-                String nome, login, senha, tipo, cpf;
-                Date dataNasc;
+                String cpf;
 
-                nome = resultado.getString("nome");
-                login = resultado.getString("login");
-                senha = resultado.getString("senha");
-                tipo = resultado.getString("tipo");
                 cpf = resultado.getString("cpf");
 
-                dataNasc = resultado.getDate("data_nasc");
+                String sqlQueryPessoa = "Select * from pessoa where cpf = "+cpf;
+                ResultSet resultadoQueryPessoa = conexao.executaQuery(sqlQueryPessoa);
 
-                Dono dono = new Dono(nome, login, senha, tipo, cpf, dataNasc.toLocalDate());
+                String nome = "", login="", senha="", tipo="";
+                int id_endereco = 0;
+                Date dataNasc = new Date(System.currentTimeMillis());
+                boolean achou = false;
+
+                if(resultadoQueryPessoa.next()){
+                    nome = resultado.getString("nome");
+                    login = resultado.getString("login");
+                    senha = resultado.getString("senha");
+                    tipo = resultado.getString("tipo");
+                    dataNasc = resultado.getDate("data_nasc");
+                    id_endereco = resultado.getInt("id_endereco");
+                    achou = true;
+                }
+                if (!achou) {
+                    throw new NullPointerException("Não foi achada nenhuma pessoa com esse cpf");
+                }
+                Dono dono = new Dono(nome, login, senha, tipo, cpf, dataNasc.toLocalDate(),id_endereco);
                 arrayDono.add(dono);
             }
             return arrayDono;

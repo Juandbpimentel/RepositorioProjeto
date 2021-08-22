@@ -15,7 +15,11 @@ public class Pessoa implements PessoaGUI, PessoaAlterDB {
     private int id_endereco;
     private Conexao conexao;
 
-    public Pessoa(String nome, String login, String senha, String tipo, String cpf, LocalDate data_nasc, int id_endereco) {
+    public Pessoa(String nome, 
+    			  String login, 
+    			  String senha, 
+    			  String tipo, 
+    			  String cpf, LocalDate data_nasc, int id_endereco) {
         this.nome = nome;
         this.login = login;
         this.senha = senha;
@@ -23,14 +27,30 @@ public class Pessoa implements PessoaGUI, PessoaAlterDB {
         this.cpf = cpf;
         this.data_nasc = data_nasc;
         this.id_endereco = id_endereco;
-        //this.endereco = endereco;
-        //this.conexao = conexao;
     }
 
-    public String toString() {
-        String saida = "";
-        saida = "( nome: "+nome+" )";
-        return saida;
+    public LocalDate getData_nasc() {
+        return data_nasc;
+    }
+
+    public void setData_nasc(LocalDate data_nasc) {
+        this.data_nasc = data_nasc;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+    public void setId_endereco(int id_endereco) {
+        this.id_endereco = id_endereco;
+    }
+    
+    public int getId_endereco() {
+        return id_endereco;
     }
 
     public void setNome(String nome) {
@@ -73,13 +93,6 @@ public class Pessoa implements PessoaGUI, PessoaAlterDB {
 		this.cpf = cpf;
 	}
 
-	public LocalDate getDataNasc() {
-		return data_nasc;
-	}
-
-	public void setDataNasc(LocalDate dataNasc) {
-		this.data_nasc = dataNasc;
-	}
 
 	public Conexao getConexao() {
 		return conexao;
@@ -89,21 +102,10 @@ public class Pessoa implements PessoaGUI, PessoaAlterDB {
 		this.conexao = conexao;
 	}
 
-	public Endereco getEndereco() {
-		return endereco;
-	}
 
-	public void setIdEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
-
-	public void teste(){
-        System.out.println("Deu errado ;-;");
-    }
-
-/**
- * GUI
- */
+/*
+  GUI
+*/
     @Override
     public void consultarDadosPessoais() {
 
@@ -119,9 +121,9 @@ public class Pessoa implements PessoaGUI, PessoaAlterDB {
 
     }
 
-/**
- * AlterDB
- */
+/*
+  AlterDB
+*/
     @Override
     public void alterarDadosPessoais() {
 

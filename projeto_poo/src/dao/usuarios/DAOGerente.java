@@ -26,41 +26,58 @@ public class DAOGerente {
                 cpf = result.getString("cpf");
                 bonificacao_gerente = result.getDouble("bonificacao_gerente");
 
-                String codBusca_pessoa = "Select * from Pessoa where cpf = " +cpf;
-                ResultSet result_pessoa = conexao.executaQuery(codBusca_pessoa);
-                String nome,login,senha,tipo;
-                Date data_nasc;
-                int id_endereco;
+                String sqlQueryPessoa = "Select * from Pessoa where cpf = "+cpf;
+                ResultSet resultQueryPessoa = conexao.executaQuery(sqlQueryPessoa);
 
-                nome = result_pessoa.getString("nome");
-                login = result_pessoa.getString("login");
-                senha = result_pessoa.getString("senha");
-                tipo = result_pessoa.getString("tipo");
-                data_nasc = result_pessoa.getDate("data_nasc");
-                id_endereco = result_pessoa.getInt("id_endereco");
+                String nome ="", 
+                       login = "", 
+                       senha = "", 
+                       tipo = "";
 
-                String codBusca_funcionario = "Select * from Funcionario where cpf = " +cpf;
-                ResultSet result_funcionario = conexao.executaQuery(codBusca_funcionario);
+                Date data_nasc= new Date(System.currentTimeMillis());
+                
+                int id_endereco = 0;
+
+
+                if(!resultQueryPessoa.next()){
+                    throw new Exception("Não foi achada nenhuma pessoa com o cpf especificado");
+                }else{
+                    do {
+                        nome = resultQueryPessoa.getString("nome");
+                        login = resultQueryPessoa.getString("login");
+                        senha = resultQueryPessoa.getString("senha");
+                        tipo = resultQueryPessoa.getString("tipo");
+                        data_nasc = resultQueryPessoa.getDate("data_nasc");
+                        id_endereco = resultQueryPessoa.getInt("id_endereco");
+                        
+                    } while (resultQueryPessoa.next());
+                }
+
+                String sqlQueryFuncionario = "Select * from Funcionario where cpf = " +cpf;
+                ResultSet resultQueryFuncionario = conexao.executaQuery(sqlQueryFuncionario);
+
                 Double bonificacao = 0.0;
-                int id_categoria = 0, id_setor = 0, dia_pag = 0;
+                int id_categoria = 0, 
+                    id_setor = 0, 
+                    dia_pagamento = 0;
+                    
                 Date data_inicio;
                 Boolean achou = false; 
-
-                if(result_funcionario.next()){
-                    achou = true;
-                    bonificacao = result_funcionario.getDouble("bonificacaoficacao");
-                    id_categoria = result.getInt("id_categoria");
-                    id_setor = result.getInt("id_setor");
-                    dia_pag = result.getInt("dia_pagamento");
-                    data_inicio = result.getDate("data_inicio");
+                
+                if(!resultQueryFuncionario.next()){
+                    throw new Exception("Não foi achado nenhum funcionario com o cpf especificado");
+                }else{
+                    do {
+                        bonificacao = resultQueryFuncionario.getDouble("bonificacaoficacao");
+                        id_categoria = resultQueryFuncionario.getInt("id_categoria");
+                        id_setor = resultQueryFuncionario.getInt("id_setor");
+                        dia_pagamento = resultQueryFuncionario.getInt("dia_pagamento");
+                        data_inicio = resultQueryFuncionario.getDate("data_inicio");
+                    } while (resultQueryFuncionario.next());
                 }
 
-                if(achou){
-                    throw new NullPointerException();
-                }
-
-                Gerente gente = new Gerente (nome, login, senha, tipo, cpf, data_nasc.toLocalDate(), bonificacao, bonificacao);
-                arrayGerente.add(gente);
+                Gerente gerente = new Gerente (nome, login, senha, tipo, cpf, data_nasc.toLocalDate(),id_categoria,id_setor,dia_pagamento,bonificacao, data_inicio.toLocalDate(), bonificacao_gerente, id_endereco);
+                arrayGerente.add(gerente);
             }
         return arrayGerente;
 

@@ -4,15 +4,25 @@ import java.util.ArrayList;
 
 public class Cidade {
     private int id;
-    private String nome;
-    private int id_estado;
+    private String nome, 
+                   id_estado;
     ArrayList<Bairro> bairros;
 
-    public Cidade(int id, String nome, int id_estado) {
+    public Cidade(int id, String nome, String id_estado) {
         this.id = id;
         this.nome = nome;
         this.id_estado = id_estado;
         //this.bairros = bairros;
+    }
+
+
+
+    public String getId_estado() {
+        return id_estado;
+    }
+    
+    public void setId_estado(String id_estado) {
+        this.id_estado = id_estado;
     }
 
     public ArrayList<Bairro> getBairros() {

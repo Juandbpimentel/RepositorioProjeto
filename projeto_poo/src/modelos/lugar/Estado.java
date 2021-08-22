@@ -3,11 +3,11 @@ package modelos.lugar;
 import java.util.ArrayList;
 
 public class Estado {
-    private int id;
+    private String id;
     private String nome;
     ArrayList<Cidade> cidades;
 
-    public Estado(int id, String nome) {
+    public Estado(String id, String nome) {
         this.id = id;
         this.nome = nome;
         //this.cidades = cidades;
@@ -21,11 +21,11 @@ public class Estado {
         this.cidades = cidades;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

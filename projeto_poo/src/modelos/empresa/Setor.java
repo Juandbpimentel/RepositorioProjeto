@@ -27,6 +27,16 @@ public class Setor {
         */
     }
 
+
+
+    public String getCnpj_empresa() {
+        return cnpj_empresa;
+    }
+
+    public void setCnpj_empresa(String cnpj_empresa) {
+        this.cnpj_empresa = cnpj_empresa;
+    }
+
     public Double getOrcamento() {
         return orcamento;
     }
