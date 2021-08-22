@@ -37,4 +37,21 @@ public class DAOEstado {
             return null;
         }
     }
+
+    public boolean insertEstado(Estado estado){
+        try {
+            conexao = new Conexao();
+            conexao.conect();
+            String sqlInsertion = "Insert into public Estado(uf,nome)"+
+                              "Values "+"("+estado+")";
+            int resultado = conexao.executaSql(sqlInsertion); 
+        } catch(SQLException SQLError){
+            System.err.println("Ocorreu um erro com Inserção no Banco de Dados: " + SQLError);
+            return false;
+        }
+        catch(Exception geralError){
+            System.err.println("Ocorreu um erro geral: " + geralError);
+            return false;
+        }
+    }
 }
