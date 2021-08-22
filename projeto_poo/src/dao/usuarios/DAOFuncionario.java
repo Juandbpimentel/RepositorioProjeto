@@ -44,7 +44,8 @@ public class DAOFuncionario {
                 
                 if(!resultQueryPessoa.next()){
                 	throw new NullPointerException();
-                }else {
+                }
+                else {
                 	do {
                 		nome = resultQueryPessoa.getString("nome");
                 		login = resultQueryPessoa.getString("login");
@@ -53,7 +54,8 @@ public class DAOFuncionario {
                 		id_endereco = resultQueryPessoa.getInt("id_endereco");
                 		data_nasc = resultQueryPessoa.getDate("data_nasc");
                 		id_endereco = resultQueryPessoa.getInt(id_endereco);                		
-                	}while(resultQueryPessoa.next());
+                	}
+                    while(resultQueryPessoa.next());
                 }
 
 
