@@ -5,11 +5,13 @@ import java.util.ArrayList;
 public class Bairro {
     private int id;
     private String nome;
+    private int id_cidade;
     ArrayList<Endereco> enderecos;
 
-    public Bairro(int id, String nome/*, ArrayList<Endereco> enderecos*/) {
+    public Bairro(int id, String nome, int id_cidade) {
         this.id = id;
         this.nome = nome;
+        this.id_cidade = id_cidade;
         //this.enderecos = enderecos;
     }
 

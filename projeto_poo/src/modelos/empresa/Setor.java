@@ -10,14 +10,16 @@ public class Setor {
     private Double orcamento;
     private String nome;
     private int id;
+    private String cnpj_empresa;
     private ArrayList<Funcionario> funcionarios;
     private ArrayList<Estagiario> estagiario;
     private Gerente gerente;
 
-    public Setor(Double orcamento, String nome, int id/*, ArrayList<Funcionario> funcionarios, ArrayList<Estagiario> estagiario, Gerente gerente*/) {
+    public Setor(Double orcamento, String nome, int id, String cnpj_empresa) {
         this.orcamento = orcamento;
         this.nome = nome;
         this.id = id;
+        this.cnpj_empresa = cnpj_empresa;
         /*
         this.funcionarios = funcionarios;
         this.estagiario = estagiario;

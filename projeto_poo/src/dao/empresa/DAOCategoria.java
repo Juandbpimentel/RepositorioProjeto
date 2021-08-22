@@ -34,7 +34,7 @@ public class DAOCategoria {
 
                 salario = busca.getDouble("salario");
 
-                Categoria categoria = new Categoria(id, cnpj_empresa, carga_horaria, nome, descricao, salario);
+                Categoria categoria = new Categoria(id, carga_horaria, nome, descricao, salario, cnpj_empresa);
                 arrayCategoria.add(categoria);
 
                 

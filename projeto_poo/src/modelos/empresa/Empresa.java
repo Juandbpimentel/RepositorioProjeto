@@ -8,13 +8,15 @@ public class Empresa {
     private String nome;
     private Double orcamento;
     private String cnpj;
+    private String cpf_dono;
     ArrayList<Setor> setores;
     ArrayList<Diretor> diretores;
 
-    public Empresa(String nome, Double orcamento, String cnpj/*, ArrayList<Setor> setores, ArrayList<Diretor> diretores*/) {
+    public Empresa(String nome, Double orcamento, String cnpj, String cpf_dono/*, ArrayList<Setor> setores, ArrayList<Diretor> diretores*/) {
         this.nome = nome;
         this.orcamento = orcamento;
         this.cnpj = cnpj;
+        this.cpf_dono = cpf_dono;
         /*
         this.setores = setores;
         this.diretores = diretores;

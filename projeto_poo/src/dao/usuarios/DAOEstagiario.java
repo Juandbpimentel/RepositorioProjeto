@@ -34,7 +34,7 @@ public class DAOEstagiario{
                 ResultSet result_pessoa = conexao.executaQuery(codBusca_pessoa);
                 String nome ="", login = "", senha = "", tipo = "";
                 Date data_nasc= new Date(System.currentTimeMillis());
-                int id_endereco = 0;
+                int id_endereco = 0, id_categoria = 0, id_setor = 0;
                 Boolean achou = false;
 
                 if(result_pessoa.next()){
@@ -45,13 +45,15 @@ public class DAOEstagiario{
                     tipo = result_pessoa.getString("tipo");
                     data_nasc = result_pessoa.getDate("data_nasc");
                     id_endereco = result_pessoa.getInt("id_endereco");
+                    id_categoria = result_pessoa.getInt("id_categoria");
+                    id_setor = result_pessoa.getInt("id_setor");
                 }
 
-                if(achou){
+                if(!achou){
                     throw new NullPointerException();
                 }
 
-                Estagiario estagiario = new Estagiario(nome, login, senha, tipo, cpf, data_nasc.toLocalDate(), inicioEstagio.toLocalDate(), tempoEstagio, diaPagamento); 
+                Estagiario estagiario = new Estagiario(nome, login, senha, tipo, cpf, data_nasc.toLocalDate(), inicioEstagio.toLocalDate(), tempoEstagio, diaPagamento, id_categoria, id_setor);
                 arrayEstagiario.add(estagiario);
             }
 

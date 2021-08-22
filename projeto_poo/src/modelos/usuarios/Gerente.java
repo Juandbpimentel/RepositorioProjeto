@@ -10,12 +10,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Gerente extends Funcionario implements GerenteGUI,GerenteAlterDB {
-    private double bonificacaoGerente;
+    private double bonificacao_gerente;
 
 
     public Gerente(String nome, String login, String senha, String tipo, String cpf, LocalDate dataNasc, double bonificacao, double bonificacaoGerente) {
         super(nome, login, senha, tipo, cpf, dataNasc, bonificacao);
-        this.bonificacaoGerente = bonificacaoGerente;
+        this.bonificacao_gerente = bonificacaoGerente;
     }
 
     /**
@@ -77,11 +77,11 @@ public class Gerente extends Funcionario implements GerenteGUI,GerenteAlterDB {
     //Getters e Setters
 
     public double getBonificacaoGerente() {
-        return bonificacaoGerente;
+        return bonificacao_gerente;
     }
 
     public void setBonificacaoGerente(double bonificacaoGerente) {
-        this.bonificacaoGerente = bonificacaoGerente;
+        this.bonificacao_gerente = bonificacaoGerente;
     }
 
 

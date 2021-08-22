@@ -12,16 +12,17 @@ public class Pessoa implements PessoaGUI, PessoaAlterDB {
     private String nome, login,senha,tipo,cpf;
     private LocalDate data_nasc;
     private Endereco endereco;
+    private int id_endereco;
     private Conexao conexao;
 
-    public Pessoa(String nome, String login, String senha, String tipo, String cpf, LocalDate data_nasc) {
+    public Pessoa(String nome, String login, String senha, String tipo, String cpf, LocalDate data_nasc, int id_endereco) {
         this.nome = nome;
         this.login = login;
         this.senha = senha;
         this.tipo = tipo;
         this.cpf = cpf;
-
         this.data_nasc = data_nasc;
+        this.id_endereco = id_endereco;
         //this.endereco = endereco;
         //this.conexao = conexao;
     }

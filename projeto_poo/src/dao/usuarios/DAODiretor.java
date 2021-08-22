@@ -21,7 +21,7 @@ public class DAODiretor {
             ResultSet resultado = conexao.executaQuery(codigoBusca);
 
             while (resultado.next()) {
-                String nome, login, senha, tipo, cpf;
+                String nome, login, senha, tipo, cpf, cnpjEmpresa, idCategoria;
                 Date dataNasc;
 
                 nome = resultado.getString("nome");
@@ -29,10 +29,11 @@ public class DAODiretor {
                 senha = resultado.getString("senha");
                 tipo = resultado.getString("tipo");
                 cpf = resultado.getString("cpf");
-
                 dataNasc = resultado.getDate("data_nasc");
+                cnpjEmpresa = resultado.getString("cnpj_empresa");
+                idCategoria = resultado.getString("id_categoria");
 
-                Diretor diretor = new Diretor(nome, login, senha, tipo, cpf, dataNasc.toLocalDate());
+                Diretor diretor = new Diretor(nome, login, senha, tipo, cpf, dataNasc.toLocalDate(), cnpjEmpresa, idCategoria);
                 arrayDiretores.add(diretor);
 
             }

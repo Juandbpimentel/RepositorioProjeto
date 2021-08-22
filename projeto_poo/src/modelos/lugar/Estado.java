@@ -7,7 +7,7 @@ public class Estado {
     private String nome;
     ArrayList<Cidade> cidades;
 
-    public Estado(int id, String nome/*, ArrayList<Cidade> cidades*/) {
+    public Estado(int id, String nome) {
         this.id = id;
         this.nome = nome;
         //this.cidades = cidades;

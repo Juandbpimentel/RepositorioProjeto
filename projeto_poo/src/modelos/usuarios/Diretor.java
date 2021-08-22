@@ -8,8 +8,11 @@ import interfaces.gui.DiretorGUI;
 import java.time.LocalDate;
 
 public class Diretor extends Pessoa implements DiretorGUI, DiretorAlterDB {
-    public Diretor(String nome, String login, String senha, String tipo, String cpf, LocalDate dataNasc/*, Endereco endereco, Conexao conexao*/) {
+    private String cnpj_empresa, id_categoria;
+    public Diretor(String nome, String login, String senha, String tipo, String cpf, LocalDate dataNasc, String cnpj_empresa, String id_categoria) {
         super(nome, login, senha, tipo, cpf, dataNasc/*, endereco, conexao*/);
+        this.cnpj_empresa = cnpj_empresa;
+        this.id_categoria = id_categoria;
     }
 
     /**

@@ -8,17 +8,17 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 
 public class Estagiario extends Pessoa implements EstagiarioGUI {
-   public LocalDate inicioEstagio;
-   private int tempoEstagio;
-   private int diaPagamento;
-   private Categoria categoria;
+    public LocalDate inicio_estagio;
+    private int tempo_estagio, dia_pagamento, id_categoria, id_setor;
+    private Categoria categoria;
 
-
-    public Estagiario(String nome, String login, String senha, String tipo, String cpf, LocalDate dataNasc, LocalDate inicioEstagio, int tempoEstagio, int diaPagamento) {
+    public Estagiario(String nome, String login, String senha, String tipo, String cpf, LocalDate dataNasc, LocalDate inicioEstagio, int tempoEstagio, int diaPagamento, int id_categoria, int id_setor) {
         super(nome, login, senha, tipo, cpf, dataNasc/*, endereco, conexao*/);
-        this.inicioEstagio = inicioEstagio;
-        this.tempoEstagio = tempoEstagio;
-        this.diaPagamento = diaPagamento;
+        this.inicio_estagio = inicioEstagio;
+        this.tempo_estagio = tempoEstagio;
+        this.dia_pagamento = diaPagamento;
+        this.id_categoria = id_categoria;
+        this.id_setor = id_setor;
         //this.categoria = categoria;
     }
 
@@ -39,27 +39,27 @@ public class Estagiario extends Pessoa implements EstagiarioGUI {
  * Getters e Setters
  */
     public LocalDate getInicioEstagio() {
-        return inicioEstagio;
+        return inicio_estagio;
     }
 
     public void setInicioEstagio(LocalDate inicioEstagio) {
-        this.inicioEstagio = inicioEstagio;
+        this.inicio_estagio = inicioEstagio;
     }
 
     public int getTempoEstagio() {
-        return tempoEstagio;
+        return tempo_estagio;
     }
 
     public void setTempoEstagio(int tempoEstagio) {
-        this.tempoEstagio = tempoEstagio;
+        this.tempo_estagio = tempoEstagio;
     }
 
     public int getDiaPagamento() {
-        return diaPagamento;
+        return dia_pagamento;
     }
 
     public void setDiaPagamento(int diaPagamento) {
-        this.diaPagamento = diaPagamento;
+        this.dia_pagamento = diaPagamento;
     }
 
 /**
