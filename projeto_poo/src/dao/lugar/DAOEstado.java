@@ -15,13 +15,17 @@ public class DAOEstado {
             conexao = new Conexao();
             conexao.conect();
 
-            String codBusca = "Select * from funcionario";
+            String codBusca = "Select * from estado";
             ResultSet resultado = conexao.executaQuery(codBusca);
             
             while(resultado.next()){
-
+                int id;
+                String nome;
+                id = resultado.getInt("id");
+                nome = resultado.getString("nome");
+                Estado estado = new Estado(id, nome);
+                arrayEstado.add(estado);
             }
-
             return arrayEstado;
         } 
         catch(SQLException SQLError){

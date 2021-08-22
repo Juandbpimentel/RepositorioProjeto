@@ -24,6 +24,8 @@ public class DAOCidade {
                 id = resultado.getInt("id");
                 est = resultado.getString("id_estado");
                 nome = resultado.getString("nome");
+                Cidade cidade = new Cidade(id, nome, est);
+                arrayCidade.add(cidade);
             }
 
             return arrayCidade;

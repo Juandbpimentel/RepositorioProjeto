@@ -26,6 +26,8 @@ public class DAOBairro {
                 id = resultado.getInt("id");
                 cid = resultado.getInt("id_cidade");
                 nome = resultado.getString("nome");
+                Bairro bairro = new Bairro(id, nome, cid);
+                arrayBairro.add(bairro);
             }
             return arrayBairro;
         } 
