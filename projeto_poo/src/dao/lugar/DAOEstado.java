@@ -43,7 +43,6 @@ public class DAOEstado {
         try {
             conexao = new Conexao();
             conexao.conect();
-            Timestamp tipo = ;
             String sqlInsertion = "Insert into public Estado(uf,nome)"+
                                   "Values "+"("+estado+")";
             int resultado = conexao.executaSql(sqlInsertion);
