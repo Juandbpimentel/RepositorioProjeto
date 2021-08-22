@@ -19,11 +19,10 @@ public class DAOEstado {
             ResultSet resultado = conexao.executaQuery(codBusca);
             
             while(resultado.next()){
-                int id;
-                String nome;
-                id = resultado.getInt("id");
+                String nome, uf;
+                uf = resultado.getString("uf");
                 nome = resultado.getString("nome");
-                Estado estado = new Estado(id, nome);
+                Estado estado = new Estado(uf, nome);
                 arrayEstado.add(estado);
             }
             return arrayEstado;
@@ -43,8 +42,12 @@ public class DAOEstado {
             conexao = new Conexao();
             conexao.conect();
             String sqlInsertion = "Insert into public Estado(uf,nome)"+
-                              "Values "+"("+estado+")";
-            int resultado = conexao.executaSql(sqlInsertion); 
+                                  "Values "+"("+estado+")";
+            int resultado = conexao.executaSql(sqlInsertion);
+            if(resultado != 0){
+                return false; 
+            }
+            return true;
         } catch(SQLException SQLError){
             System.err.println("Ocorreu um erro com Inserção no Banco de Dados: " + SQLError);
             return false;

@@ -13,6 +13,7 @@ public class MenuLogin{
         conexao.startDatabase();
         sleep(200);
         conexao.createTables();
+        //conexao.executaSql("insert into pessoa");
     }
 
     /*  public static void main(String[] args) {

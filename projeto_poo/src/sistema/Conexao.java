@@ -62,7 +62,7 @@ public class Conexao {
             System.out.println("\n<<<  Comando executado com sucesso  >>>\n");
             return resultado;
         } catch(SQLException SQLError){
-            System.err.println("Ocorreu um erro durante a alteração no Banco de Dados: " + SQLError);
+            System.out.println("Ocorreu um erro durante a tentativa de fazer uma alteração no banco de dados: "+SQLError);
             throw SQLError;
         }
     }
@@ -177,18 +177,14 @@ public class Conexao {
             codigoSql = sb.toString();
             conexao.executaSql(codigoSql);
             conexao.disconect();
-
-            sleep(5000);
-            
             leitorArquivoBanco.close();
         } catch (FileNotFoundException e){
-            e.printStackTrace();
+            System.out.println("Ocorreu um erro, o arquivo para criação das tabelas não foi encontrado: "+e);
         }catch (IOException e){
-            e.printStackTrace();
-        }catch(SQLException){
-            e.printStackTrace();
+            System.out.println("Ocorreu um erro, o stream de dados foi interrompido e causou a exceção: "+e);
+        }catch(SQLException e){
+            System.out.println("Ocorreu um erro durante a tentativa de fazer a alteração no banco de dados: "+e);
         }
-        
     }
 
     public void createTables(){
@@ -213,9 +209,11 @@ public class Conexao {
             conexao2.executaSql(codigoSql);
             leitorArquivoTabelas.close();
         } catch (FileNotFoundException e){
-            e.printStackTrace();
+            System.out.println("Ocorreu um erro, o arquivo para criação das tabelas não foi encontrado: "+e);
         }catch (IOException e){
-            e.printStackTrace();
+            System.out.println("Ocorreu um erro, o stream de dados foi interrompido e causou a exceção: "+e);
+        }catch(SQLException e){
+            System.out.println("Ocorreu um erro durante a tentativa de fazer a alteração no banco de dados: "+e);
         }
     }
 
