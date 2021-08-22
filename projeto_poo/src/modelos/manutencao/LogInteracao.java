@@ -7,11 +7,11 @@ public class LogInteracao {
     private String tipo,codigo,mensagem,login_pessoa;
     private int id;
 
-    public LogInteracao(Timestamp data, String tipo, String codigo, String mensagem, int id, String login_pessoa) {
+    public LogInteracao(Timestamp data, String tipo, String cod, String mensa, int id, String login_pessoa) {
         this.data = data;
         this.tipo = tipo;
-        this.codigo = codigo;
-        this.mensagem = mensagem;
+        this.codigo = cod;
+        this.mensagem = mensa;
         this.id = id;
         this.login_pessoa = login_pessoa;
     }

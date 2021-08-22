@@ -5,13 +5,16 @@ public class Categoria {
     private String nome,descricao, cnpj_empresa;
     private Double salario;
 
-    public Categoria(int id, int cargaHoraria, String nome, String descricao, Double salario, String cnpjEmpresa) {
+    public Categoria(int id, int carga, String nome, String descricao2, double salario2, String cnpj) {
         this.id = id;
-        this.carga_horaria = cargaHoraria;
+        this.carga_horaria = carga;
         this.nome = nome;
-        this.descricao = descricao;
-        this.salario = salario;
-        this.cnpj_empresa = cnpjEmpresa;
+        this.descricao = descricao2;
+        this.salario = salario2;
+        this.cnpj_empresa = cnpj;
+    }
+
+    public Categoria(int salario2, int carga2, String nome2, String cnpj, int carga, String descricao2) {
     }
 
     public String getCnpj_empresa() {
