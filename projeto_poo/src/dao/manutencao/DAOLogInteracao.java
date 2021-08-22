@@ -33,17 +33,36 @@ public class DAOLogInteracao {
                 id = resultado.getInt("id");
                 LogInteracao loginteracao = new LogInteracao(data, tipo, cod, mensa, id, login);
                 arrayLogInteracao.add(loginteracao);
-
             }
             return arrayLogInteracao;
-        }
-        catch(SQLException SQLError){
+        }catch(SQLException SQLError){
             System.err.println("Ocorreu um erro na leitura do Banco de Dados: " + SQLError);
             return null;
-        }
-        catch(Exception geralError){
+        }catch(Exception geralError){
             System.err.println("Ocorreu um erro geral: " + geralError);
             return null;
         }
     }
+public LogInteracao readOneLogInteracao(int id){
+    try {
+        conexao = new Conexao();
+        LogInteracao loginteracao;
+        String queryLogInteracao = "Select * from Log_Interacao where id =" +id;
+        ResultSet resultadoQuery = conexao.executaQuery(queryLogInteracao);
+        if(!resultadoQuery.next()){
+            throw new NullPointerException("Não foi possível realizar login");
+        } else{
+            String tipo = resultadoQuery.getString("tipo"), codigo = resultadoQuery.getString("codigo"), mensagem = resultadoQuery.getString("mensagem"), login = resultadoQuery.getString("login_pessoa");
+            Timestamp data = resultadoQuery.getTimestamp("data");
+            loginteracao = new LogInteracao(data, tipo, codigo, mensagem, id, login);
+        }
+        return loginteracao;
+    } catch(SQLException SQLError){
+        System.err.println("Ocorreu um erro na leitura do Banco de Dados: " + SQLError);
+        return null;
+    } catch(Exception geralError){
+        System.err.println("Ocorreu um erro geral: " + geralError);
+        return null;
+    }
+} 
 }

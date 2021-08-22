@@ -45,7 +45,6 @@ public class DAOCategoria {
             return null;
         }
     }
-}
 public Categoria readOneCategoria(int id){
     try {
         conexao = new Conexao();
@@ -57,7 +56,7 @@ public Categoria readOneCategoria(int id){
         } else{
             String nome = resultadoQuery.getString("nome"), descricao = resultadoQuery.getString("descricao"), cnpj = resultadoQuery.getString("cpnj_empresa");
             int salario = resultadoQuery.getInt("salario"), carga = resultadoQuery.getInt("carga_horaria");
-            categoria = new Categoria(salario, nome, cnpj, carga, descricao);
+            categoria = new Categoria(id, carga, nome, descricao, salario, cnpj);
         }
         return categoria;
     } catch(SQLException SQLError){
