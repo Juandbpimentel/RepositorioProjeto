@@ -16,6 +16,13 @@ public class LogInteracao {
         this.login_pessoa = login_pessoa;
     }
 
+    public String getLogin_pessoa() {
+        return login_pessoa;
+    }
+    public void setLogin_pessoa(String login_pessoa) {
+        this.login_pessoa = login_pessoa;
+    }
+
     public Timestamp getData() {
         return data;
     }
