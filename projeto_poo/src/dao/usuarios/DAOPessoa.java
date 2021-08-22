@@ -42,4 +42,26 @@ public class DAOPessoa{
             return null;
         }
     }
+    public boolean deletePessoa(String cpf){
+        try{
+            Conexao conexao = new Conexao();
+            conexao.conect();
+            String codigoDelete = "delete from pessoa where cpf = "+ cpf;
+            int resultado = conexao.executaSql(codigoDelete);
+            if(resultado != 1){
+                System.out.println("Você teve sucesso em deletar o pessoa");
+                return true;
+            }
+
+
+
+        }catch(SQLException e){
+            System.err.println("Houve um erro durante a exclusão do Banco de Dados: "+e);
+            return false;
+        }catch (Exception e){
+            System.err.println("Houve um erro geral: "+e);
+            return false;
+        }
+        return false;
+    }
 }

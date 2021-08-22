@@ -39,4 +39,28 @@ public class DAOEmpresa {
             return null;
         }
     }
+    public boolean deleteEmpresa(String cnpj){
+        try{
+            Conexao conexao = new Conexao();
+            conexao.conect();
+            String codigoDelete = "delete from empresa where cnpj = "+ cnpj;
+            int resultado = conexao.executaSql(codigoDelete);
+            if(resultado != 1){
+                System.out.println("Você teve sucesso em deletar a Empresa");
+                return true;
+            }
+
+
+
+        }catch(SQLException e){
+            System.err.println("Houve um erro durante a exclusão do Banco de Dados: "+e);
+            return false;
+        }catch (Exception e){
+            System.err.println("Houve um erro geral: "+e);
+            return false;
+        }
+        return false;
+    }
 }
+
+

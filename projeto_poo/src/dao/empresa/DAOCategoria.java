@@ -50,5 +50,26 @@ public class DAOCategoria {
             return null;
         }
     }
+    public boolean deleteCategoria(int id){
+        try{
+            Conexao conexao = new Conexao();
+            conexao.conect();
+            String codigoDelete = "delete from categoria where id = "+ id;
+            int resultado = conexao.executaSql(codigoDelete);
+            if(resultado != 1){
+                System.out.println("Você teve sucesso em deletar a Categoria");
+                return true;
+            }
 
+
+
+        }catch(SQLException e){
+            System.err.println("Houve um erro durante a exclusão do Banco de Dados: "+e);
+            return false;
+        }catch (Exception e){
+            System.err.println("Houve um erro geral: "+e);
+            return false;
+        }
+        return false;
+    }
 }

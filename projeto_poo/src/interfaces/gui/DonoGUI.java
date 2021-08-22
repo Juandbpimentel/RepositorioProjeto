@@ -10,4 +10,5 @@ public interface DonoGUI {
     public abstract void consultarFuncionarios();
     public abstract void administrarSetores();
     public abstract void consultarSetores();
+    public abstract void alterarDadosSetor();
 }
