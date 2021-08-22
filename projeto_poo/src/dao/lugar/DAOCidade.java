@@ -19,7 +19,11 @@ public class DAOCidade {
             ResultSet resultado = conexao.executaQuery(codBusca);
             
             while(resultado.next()){
-
+                int id;
+                String est, nome;
+                id = resultado.getInt("id");
+                est = resultado.getString("id_estado");
+                nome = resultado.getString("nome");
             }
 
             return arrayCidade;
