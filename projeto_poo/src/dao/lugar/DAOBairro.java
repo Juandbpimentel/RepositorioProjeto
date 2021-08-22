@@ -46,14 +46,13 @@ public class DAOBairro {
             String queryBairro = "Select * from Estado where id = " +id;
             ResultSet resultadoQuery = conexao.executaQuery(queryBairro);
             if(!resultadoQuery.next()){
-                throw new NullPointerException("Não foi possível achar nenhum bairro");     
+                throw new NullPointerException("Não foi possível achar nenhum bairro");
             } else{
                 String nome = resultadoQuery.getString("nome");
                 int id_cidade = resultadoQuery.getInt("id_cidade");
                 bairro = new Bairro(id, nome, id_cidade);
-                
-
             }
+            return bairro;
         }catch(SQLException bancoError){
                System.err.println("Ocorreu um erroao buscar no banco de dados: " +bancoError);
                return null;
