@@ -150,4 +150,12 @@ public class Dono extends Pessoa implements DonoGUI,DonoAlterDB {
 
     }
 
+
+
+    @Override
+    public void alterarDadosSetor() {
+        // TODO Auto-generated method stub
+        
+    }
+
 }
