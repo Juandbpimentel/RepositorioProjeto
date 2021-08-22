@@ -1,5 +1,5 @@
 <div align="center"> 
-    <img src="imagens\logo_poo_texto.png" > 
+    <img src="projeto_poo\src\resources\imagens\logo_poo_texto.png" > 
 </div>
 <br/>
 <br/>
