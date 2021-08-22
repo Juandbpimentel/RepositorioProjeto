@@ -14,7 +14,7 @@ public class Funcionario extends Pessoa implements FuncionarioGUI {
     protected Categoria categoria;
     ArrayList<Estagiario> estagiarios;
 
-    public Funcionario(String nome, String login, String senha, String tipo, String cpf, LocalDate dataNasc,/* Endereco endereco, Conexao conexao,*/ double bonificacao/*, Categoria categoria, ArrayList<Estagiario> estagiarios*/) {
+    public Funcionario(String nome, String login, String senha, String tipo, String cpf, LocalDate dataNasc, double bonificacao) {
         super(nome, login, senha, tipo, cpf, dataNasc/*, endereco, conexao*/);
         this.bonificacao = bonificacao;
         //this.categoria = categoria;

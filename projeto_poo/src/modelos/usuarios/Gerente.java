@@ -13,7 +13,7 @@ public class Gerente extends Funcionario implements GerenteGUI,GerenteAlterDB {
     private double bonificacaoGerente;
 
 
-    public Gerente(String nome, String login, String senha, String tipo, String cpf, LocalDate dataNasc/*, Endereco endereco, Conexao conexao*/, double bonificacao,/* Categoria categoria, ArrayList<Estagiario> estagiarios,*/ double bonificacaoGerente) {
+    public Gerente(String nome, String login, String senha, String tipo, String cpf, LocalDate dataNasc, double bonificacao, double bonificacaoGerente) {
         super(nome, login, senha, tipo, cpf, dataNasc, bonificacao);
         this.bonificacaoGerente = bonificacaoGerente;
     }
