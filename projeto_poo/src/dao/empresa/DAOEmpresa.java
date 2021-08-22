@@ -39,4 +39,26 @@ public class DAOEmpresa {
             return null;
         }
     }
+public Empresa readOneEmpresa(String cnpj){
+    try {
+        conexao = new Conexao();
+        Empresa empresa;
+        String queryEmpresa = "Select * from Empresa where cnpj =" +cnpj;
+        ResultSet resultadoQuery = conexao.executaQuery(queryEmpresa);
+        if(!resultadoQuery.next()){
+            throw new NullPointerException("Não foi possível achar nenhum setor");
+        } else{
+            String nome = resultadoQuery.getString("nome"), cpf = resultadoQuery.getString("cpf_dono");
+            Double orcamento = resultadoQuery.getDouble("orcamento");
+            empresa = new Empresa(cpf, orcamento, nome, cnpj);
+        }
+        return empresa;
+    } catch(SQLException SQLError){
+        System.err.println("Ocorreu um erro na leitura do Banco de Dados: " + SQLError);
+        return null;
+    } catch(Exception geralError){
+        System.err.println("Ocorreu um erro geral: " + geralError);
+        return null;
+    }
+} 
 }

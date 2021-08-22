@@ -39,7 +39,6 @@ public class DAOSetor {
             return null;
         }
     }
-}
 public Setor readOneSetor(int id){
     try{
         conexao = new Conexao();
@@ -62,4 +61,5 @@ public Setor readOneSetor(int id){
         System.err.println("Ocorreu um erro geral: " + geralError);
         return null;
     }
+}
 }
