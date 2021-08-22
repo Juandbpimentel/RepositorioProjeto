@@ -7,7 +7,7 @@ import sistema.Conexao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class DaoEndereco {
+public class DAOEndereco {
     private Conexao conexao;
 
     public ArrayList<Endereco> readAll(){
@@ -29,7 +29,6 @@ public class DaoEndereco {
             System.err.println("Erro Geral: " + e);
             return null;
         }
-        return  null;
     }
     
 }

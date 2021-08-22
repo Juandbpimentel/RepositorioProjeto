@@ -2,7 +2,7 @@ package dao.usuarios;
 
 import modelos.usuarios.Diretor;
 import modelos.usuarios.Dono;
-import modelos.sistema.Conexao;
+import sistema.Conexao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
