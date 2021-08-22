@@ -19,9 +19,16 @@ public class DAOSetor {
             ResultSet resultado = conexao.executaQuery(codBusca);
             
             while(resultado.next()){
-
+                int id;
+                String nome, cnpj;
+                Double orc;
+                id = resultado.getInt("id");
+                nome = resultado.getString("nome");
+                cnpj = resultado.getString("cnpj_empresa");
+                orc = resultado.getDouble("orcamento");
+                Setor setor = new Setor (orc, nome, id, cnpj);
+                arraySetor.add(setor);
             }
-
             return arraySetor;
         } 
         catch(SQLException SQLError){

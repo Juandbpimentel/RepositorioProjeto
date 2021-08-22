@@ -28,7 +28,6 @@ public class DAOEmpresa {
                 Empresa empresa = new Empresa(nome, orc, cnpj, cpf);
                 arrayEmpresa.add(empresa);
             }
-
             return arrayEmpresa;
         } 
         catch(SQLException SQLError){
