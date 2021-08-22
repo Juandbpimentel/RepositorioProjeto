@@ -10,14 +10,14 @@ import java.sql.SQLException;
 public class DAOEndereco {
     private Conexao conexao;
 
-    public ArrayList<Endereco> readAll(){
+    public ArrayList<Endereco> readAll() {
         try {
             ArrayList<Endereco> arrayEnderecos = new ArrayList<Endereco>();
             conexao = new Conexao();
             conexao.conect();
 
             ResultSet resultado = conexao.executaQuery("select * from Endereco");
-            
+
             while (resultado.next()) {
                 String cep, rua, complemento;
                 int id, id_bairro, numero;
@@ -30,12 +30,12 @@ public class DAOEndereco {
                 id_bairro = resultado.getInt("id_bairro");
                 numero = resultado.getInt("numero");
 
-                Endereco endereco = new Endereco(id, numero, cep, rua, complemento);
+                Endereco endereco = new Endereco(id, numero, cep, rua, complemento, id_bairro);
                 arrayEnderecos.add(endereco);
 
             }
             return arrayEnderecos;
-        } catch(SQLException e){
+        } catch (SQLException e) {
             System.err.println("Erro ao recuperar do banco de dados" + e);
             return null;
         } catch (Exception e) {
@@ -43,5 +43,5 @@ public class DAOEndereco {
             return null;
         }
     }
-    
+
 }
