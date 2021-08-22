@@ -10,7 +10,7 @@ public class MenuLogin{
     public static void main(String[] args) {
         System.out.println("Deu certo main");
         Conexao conexao = new Conexao();
-        conexao.conect();
+        conexao.startDatabase();
     }
 
     /*  public static void main(String[] args) {

@@ -1,7 +1,6 @@
 package dao.empresa;
 
 import sistema.Conexao;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;

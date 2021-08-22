@@ -1,9 +1,14 @@
 package sistema;
 
 import java.sql.Statement;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Conexao {
     private String local,porta,banco,usuario,senha,url,driverJDBC = "org.postgresql.Driver";
@@ -159,6 +164,65 @@ public class Conexao {
     }
     public Statement getStatement() {
         return statement;
+    }
+
+
+
+    public boolean startDatabase(){
+        try{
+            Conexao conexao = new Conexao("localhost", "5432", "postgres", "postgres", "postgres", "org.postgresql.Driver");
+            conexao.conect();
+            String codigoSql = "";
+            BufferedReader leitorArquivoBanco = new BufferedReader(
+                                            new FileReader("src/resources/textos/codigoSqlStartDB.txt")
+                                                                );
+            StringBuilder sb = new StringBuilder();
+            String linha;
+            while ((linha = leitorArquivoBanco.readLine()) != null){
+                sb.append(linha).append("\n");
+            }
+            codigoSql = sb.toString();
+            conexao.executaSql(codigoSql);
+            sleep(5000);
+            conexao.disconect();
+            conexao = new Conexao();
+            conexao.conect(); 
+            
+            sb = new StringBuilder();
+            linha = "";
+            codigoSql = "";
+            
+            BufferedReader leitorArquivoTabelas = new BufferedReader(
+                                            new FileReader("src/resources/textos/codigoSqlCreateTables.txt")
+                                            );
+
+            while ((linha = leitorArquivoBanco.readLine()) != null){
+                sb.append(linha).append("\n");
+            }
+
+            codigoSql = sb.toString();
+            conexao.executaSql(codigoSql);
+            leitorArquivoBanco.close();
+            leitorArquivoTabelas.close();
+            return true;
+        } catch (FileNotFoundException e){
+            e.printStackTrace();
+        }catch (IOException e){
+            e.printStackTrace();
+        }finally{
+            return false;
+        }
+        
+    }
+
+
+    @SuppressWarnings("unused")
+	private static void sleep(long ms){
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException e) {
+            System.err.format("IOException: %s%n", e);
+        }
     }
 
 
