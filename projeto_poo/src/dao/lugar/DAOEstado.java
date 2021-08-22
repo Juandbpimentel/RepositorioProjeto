@@ -51,7 +51,8 @@ public class DAOEstado {
                 return false; 
             }
             return true;
-        } catch(SQLException SQLError){
+        } 
+        catch(SQLException SQLError){
             System.err.println("Ocorreu um erro com Inserção no Banco de Dados: " + SQLError);
             return false;
         }

@@ -40,10 +40,12 @@ public class DAOCategoria {
 
             return arrayCategoria;
 
-        } catch (SQLException sqlError) {
+        } 
+        catch (SQLException sqlError) {
             System.err.println("Houve um erro na leitura do Banco de Dados: " + sqlError);
             return null;
-        } catch (Exception error) {
+        } 
+        catch (Exception error) {
             System.err.println("Houve um erro geral: " + error);
             return null;
         }
