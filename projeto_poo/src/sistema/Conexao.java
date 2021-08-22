@@ -219,7 +219,7 @@ public class Conexao {
 
 
     @SuppressWarnings("unused")
-	private static void sleep(long ms){
+	private void sleep(long ms){
         try {
             Thread.sleep(ms);
         } catch (InterruptedException e) {
