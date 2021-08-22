@@ -3,14 +3,18 @@ package modelos.lugar;
 import java.util.ArrayList;
 
 public class Estado {
-    private String id;
+    private String uf;
     private String nome;
     ArrayList<Cidade> cidades;
 
-    public Estado(String id, String nome) {
-        this.id = id;
+    public Estado(String uf, String nome) {
+        this.uf = uf;
         this.nome = nome;
         //this.cidades = cidades;
+    }
+
+    public String toString(){
+        return " "+uf+" , "+nome+" ";
     }
 
     public ArrayList<Cidade> getCidades() {
@@ -21,12 +25,12 @@ public class Estado {
         this.cidades = cidades;
     }
 
-    public String getId() {
-        return id;
+    public String getUf() {
+        return uf;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setUf(String uf) {
+        this.uf = uf;
     }
 
     public String getNome() {

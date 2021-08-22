@@ -11,6 +11,9 @@ public class MenuLogin{
         System.out.println("Deu certo main");
         Conexao conexao = new Conexao();
         conexao.startDatabase();
+        sleep(200);
+        conexao.createTables();
+        //conexao.executaSql("insert into pessoa");
     }
 
     /*  public static void main(String[] args) {

@@ -12,6 +12,7 @@ public class Endereco {
         this.complemento = complemento;
         this.id_bairro = id_bairro;
     }
+    
 
     public int getId_bairro() {
         return id_bairro;
