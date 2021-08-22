@@ -24,3 +24,4 @@ projeto_poo/bin/modelos/manutencao/LogInteracao.class
 projeto_poo/bin/modelos/usuarios/Diretor.class
 projeto_poo/bin/modelos/usuarios/Dono.class
 projeto_poo/bin/projeto_poo/menuPrincipal.class
+*.class
