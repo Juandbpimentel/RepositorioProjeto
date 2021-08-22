@@ -21,6 +21,12 @@ public class DAOBairro {
             ResultSet resultado = conexao.executaQuery(codBusca);
             
             while(resultado.next()){
+                int id, cid;
+                String nome;
+                id = resultado.getInt("id");
+                cid = resultado.getInt("id_cidade");
+                nome = resultado.getString("nome");
+                
 
             }
 
