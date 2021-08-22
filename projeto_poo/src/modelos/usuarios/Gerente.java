@@ -14,7 +14,7 @@ public class Gerente extends Funcionario implements GerenteGUI,GerenteAlterDB {
 
 
     public Gerente(String nome, String login, String senha, String tipo, String cpf, LocalDate dataNasc/*, Endereco endereco, Conexao conexao*/, double bonificacao,/* Categoria categoria, ArrayList<Estagiario> estagiarios,*/ double bonificacaoGerente) {
-        super(nome, login, senha, tipo, cpf, dataNasc,/* endereco, conexao,*/ bonificacao/*, categoria, estagiarios*/);
+        super(nome, login, senha, tipo, cpf, dataNasc, bonificacao);
         this.bonificacaoGerente = bonificacaoGerente;
     }
 
