@@ -26,10 +26,7 @@ public class DAOBairro {
                 id = resultado.getInt("id");
                 cid = resultado.getInt("id_cidade");
                 nome = resultado.getString("nome");
-                
-
             }
-
             return arrayBairro;
         } 
         catch(SQLException SQLError){
