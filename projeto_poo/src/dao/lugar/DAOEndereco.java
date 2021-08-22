@@ -42,27 +42,5 @@ public class DAOEndereco {
             return null;
         }
     }
-    public boolean deleteEndereco(int id){
-        try{
-            Conexao conexao = new Conexao();
-            conexao.conect();
-            String codigoDelete = "delete from endereco where id = "+ id;
-            int resultado = conexao.executaSql(codigoDelete);
-            if(resultado != 1){
-                System.out.println("Você teve sucesso em deletar o Endereco");
-                return true;
-            }
-
-
-
-        }catch(SQLException e){
-            System.err.println("Houve um erro durante a exclusão do Banco de Dados: "+e);
-            return false;
-        }catch (Exception e){
-            System.err.println("Houve um erro geral: "+e);
-            return false;
-        }
-        return false;
-    }
 
 }
