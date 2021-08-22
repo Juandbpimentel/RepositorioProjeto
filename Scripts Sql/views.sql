@@ -78,7 +78,7 @@ inner join setor as s on s.id = g1.id_setor;
 create view pessoa_log as
 select log.id as id_log, log.login_pessoa, p.nome, log.data,log.tipo, log.codigo, log.mensagem
 	from pessoa as p
-	inner join log_alteracao as log on p.login = log.login_pessoa
+	inner join log_interacao as log on p.login = log.login_pessoa;
 
 --Junção dos dados da tabela pessoa com a tabela endereco
 
@@ -89,7 +89,7 @@ as select p.nome, p.cpf, p.id_endereco, e.numero, e.rua, e.complemento,
     inner join endereco e on p.id_endereco = e.id
     inner join bairro b on e.id_bairro = b.id
     inner join cidade c on b.id_cidade = c.id
-    inner join estado est on c.id_estado = est.id;
+    inner join estado est on c.uf = est.uf;
 
 --Junção dos dados da tabela Estagiário com a tabela Setor
 create view estagiario_estagia_setor as

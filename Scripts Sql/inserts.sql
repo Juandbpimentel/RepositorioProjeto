@@ -1,10 +1,10 @@
 --TABELA ESTADO
-insert into estado (nome)
-svalues ('RJ'), ('CE'), ('PA'), ('PI'), ('AC');
+insert into estado (uf,nome)
+values ('RJ','Rio de Janeiro'), ('CE','Ceará'), ('PA', 'Pará'), ('PI', 'Piauí'), ('AC', 'Acre');
 
 --TABELA CIDADE
-insert into cidade (nome, id_estado)
-values ('Rio de Janeiro', 1), ('Fortaleza', 2), ('Belem', 3), ('Teresina', 4), ('Rio Branco', 5);
+insert into cidade (nome,uf)
+values ('Rio de Janeiro','RJ'), ('Fortaleza','CE'), ('Belem','PA'), ('Teresina','PI'), ('Rio Branco','AC');
 
 --TABELA BAIRRO
 insert into bairro (nome, id_cidade)
@@ -27,7 +27,7 @@ values('Juan Pimentel', '2001-11-13', '111111111-11', 'juanpimentel', '12345', '
         ('Yara Paula', '2002-06-09', '55555555-55', 'yarapaula', '555555', 'EST', 5);
 
 --TABELA LOG INTERACAO
-insert into log_alteracao (data, tipo, codigo, mensagem, login_pessoa)
+insert into log_interacao (data, tipo, codigo, mensagem, login_pessoa)
 values ('2021-08-17', 'INS', 'abcD12e', 'Bem-vindo', 'juanpimentel');
 
 --TABELA DONO
