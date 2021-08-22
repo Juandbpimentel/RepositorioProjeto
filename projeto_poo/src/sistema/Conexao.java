@@ -159,8 +159,6 @@ public class Conexao {
         return statement;
     }
 
-
-
     public void startDatabase(){
         try{
             Conexao conexao = new Conexao("localhost", "5432", "postgres", "postgres", "postgres", "org.postgresql.Driver");

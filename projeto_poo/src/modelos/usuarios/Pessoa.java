@@ -93,7 +93,6 @@ public class Pessoa implements PessoaGUI, PessoaAlterDB {
 		this.cpf = cpf;
 	}
 
-
 	public Conexao getConexao() {
 		return conexao;
 	}
@@ -125,7 +124,7 @@ public class Pessoa implements PessoaGUI, PessoaAlterDB {
   AlterDB
 */
     @Override
-    public void alterarDadosPessoais() {
-
+    public boolean alterarDadosPessoais() {
+        return true;
     }
 }
