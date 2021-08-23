@@ -62,7 +62,7 @@ public class DAOCategoria {
             conexao.conect();
 
             String codigoDelete = "delete from categoria where id = "+ id;
-            int conexao.executaSql(codigoDelete);
+            int resultado = conexao.executaSql(codigoDelete);
             if(resultado != 1){
                 System.out.println("Você teve sucesso em deletar a Categoria");
                 conexao.disconect();
@@ -115,9 +115,9 @@ public class DAOCategoria {
         try{
             conexao.conect();
 
-            String sqlInsertion = "Insert into public Categoria(id, carga_horaria, nome, descricao, salario, cnpj_empresa)"
+            String sqlInsertion = "Insert into public Categoria(carga_horaria, nome, descricao, salario, cnpj_empresa)"
                                 + " values " + categoria;
-            int conexao.executaSql(sqlInsertion);
+            int resultado = conexao.executaSql(sqlInsertion);
             
             if(resultado != 0){
                 conexao.disconect();
@@ -179,7 +179,7 @@ public class DAOCategoria {
                     throw new Exception("Valor não encontrado");
             }
             conexao.disconect();
-            return (resultado != 0)?true:false;
+            return true;
         } catch (SQLException SQLError) {
             System.err.println("Ocorreu um erro durante a atualização do Banco de Dados: " + SQLError);
             conexao.disconect();
