@@ -118,4 +118,22 @@ public class DAODono {
         }
         return false;
     }
+    public boolean insertDono(Dono dono){
+        try{
+
+            conexao.conect();
+            String sqlInsertDono = "insert into public.Dono(cpf)\n"
+                                 + "values (\'"+dono.getCpf()+"\')";
+            int resultado = conexao.executaSql(sqlInsertDono);
+            return (resultado != 0);
+        } catch(SQLException e){
+            System.err.println("Houve um erro durante a inserção no banco de dados: "+e);
+            return false;
+        }catch(Exception e){
+            System.err.println("Houve um erro geral: "+e);
+            return false;
+
+        }
+    }
+
 }

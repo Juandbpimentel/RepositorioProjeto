@@ -84,8 +84,8 @@ public class DAOCidade {
         try{
             conexao = new Conexao();
             conexao.conect();
-            String sqlInsertion = "Insert into public Cidade(id, nome, uf)"
-                                + "values " + "(" + cidade + ")";
+            String sqlInsertion = "Insert into public Cidade(nome, uf)"
+                                + "values "+ cidade;
             int resultado = conexao.executaSql(sqlInsertion);
             
             if(resultado != 0){

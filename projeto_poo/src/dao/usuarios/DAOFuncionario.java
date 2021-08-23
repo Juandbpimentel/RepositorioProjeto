@@ -101,7 +101,6 @@ public class DAOFuncionario {
         }
         return false;
     }
-
     public Funcionario readOneFuncionario(String cpf){
         try {
             conexao.conect();

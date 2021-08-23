@@ -102,7 +102,6 @@ public class DAOEstagiario{
                 }else{
                     String nome = resultadoQueryPessoa.getString("nome");
                     Date data_nasc = resultadoQueryPessoa.getDate("data_nasc");
-                    String cpf = resultadoQueryPessoa.getString("cpf");
                     String login = resultadoQueryPessoa.getString("login");
                     String senha = resultadoQueryPessoa.getString("senha");
                     String tipo = resultadoQueryPessoa.getString("tipo");
@@ -120,6 +119,27 @@ public class DAOEstagiario{
         catch (Exception geralError){
             System.err.println("Ocorreu um erro geral:" +geralError);            
             return null;
+        }
+    }
+
+    public boolean insertEstagiario(Estagiario estagiario){
+        try{
+            conexao = new Conexao();
+            conexao.conect();
+            String sqlInsertion = "Insert into public.Estagiario(cpf, inicio_estagio, tempo_estagio, dia_pagamento, id_categoria, id_setor, id_endereco)\n"
+                                +"values (\'"+estagiario.getCpf()+"\', "+estagiario.getInicio_estagio()+", \'"+estagiario.getTempo_estagio()+", "+estagiario.getDia_pagamento()+", "+estagiario.getId_categoria()+", "+estagiario.getId_setor()+", "+estagiario.getId_endereco()+")";
+            int resultado = conexao.executaSql(sqlInsertion);
+
+            if(resultado != 0){
+                return false;
+            }
+            
+            catch(SQLException e){
+
+            }
+            catch(Exception e){
+
+            }
         }
     }
     
