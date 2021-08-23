@@ -9,10 +9,14 @@ import interfaces.alterDB.PessoaAlterDB;
 import interfaces.gui.PessoaGUI;
 
 public class Pessoa implements PessoaGUI, PessoaAlterDB {
-    private String nome, login,senha,tipo,cpf;
-    private LocalDate data_nasc;
-    private int id_endereco;
-    private Endereco endereco;
+    protected String nome;
+    protected String login;
+    protected String senha;
+    protected String tipo;
+    protected String cpf;
+    protected LocalDate data_nasc;
+    protected int id_endereco;
+    protected Endereco endereco;
 
     public Pessoa(String nome, 
     			  String login, 
@@ -90,14 +94,6 @@ public class Pessoa implements PessoaGUI, PessoaAlterDB {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
-	}
-
-	public Conexao getConexao() {
-		return conexao;
-	}
-
-	public void setConexao(Conexao conexao) {
-		this.conexao = conexao;
 	}
 
 

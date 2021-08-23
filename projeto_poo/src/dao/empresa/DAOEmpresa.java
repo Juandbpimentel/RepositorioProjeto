@@ -44,7 +44,7 @@ public class DAOEmpresa {
             Conexao conexao = new Conexao();
             conexao.conect();
             String codigoDelete = "delete from empresa where cnpj = "+ cnpj;
-            int resultado = conexao.executaSql(codigoDelete);
+            int conexao.executaSql(codigoDelete);
             if(resultado != 1){
                 System.out.println("Você teve sucesso em deletar a Empresa");
                 return true;
@@ -68,7 +68,7 @@ public class DAOEmpresa {
             conexao.conect();
             String sqlInsertion = "Insert into public Empresa(nome, orcamento, cnpj, cpf_dono)"
                                 + "values " + "(" + empresa + ")";
-            int resultado = conexao.executaSql(sqlInsertion);
+            int conexao.executaSql(sqlInsertion);
             
             if(resultado != 0){
                 return false;
@@ -115,7 +115,7 @@ public class DAOEmpresa {
                                "nome = "+empresa.getNome()+" , "+
                                "cpf_dono = "+empresa.getCpf_dono()+" \n"+
                                "where cnpj = " +empresa.getCnpj();
-            int resultado = conexao.executaSql(sqlUpdate);
+            int conexao.executaSql(sqlUpdate);
             
             return (resultado != 0)?true:false;
         } catch (SQLException SQLError) {

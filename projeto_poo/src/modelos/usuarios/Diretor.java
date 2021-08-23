@@ -27,7 +27,7 @@ public class Diretor extends Pessoa implements DiretorGUI, DiretorAlterDB {
         return cnpj_empresa;
     }
 
-    public void wa(String cnpj_empresa) {
+    public void setCnpj_empresa(String cnpj_empresa) {
         this.cnpj_empresa = cnpj_empresa;
     }
 

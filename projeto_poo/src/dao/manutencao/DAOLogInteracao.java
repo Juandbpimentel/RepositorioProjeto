@@ -109,24 +109,46 @@ public class DAOLogInteracao {
     }
 
     public boolean updateLogInteracao(int id, LogInteracao logInteracao){
-        try {
-            conexao = new Conexao();
-            String sqlUpdate = "Update Log_interacao \n"+
-                               "set data = "+logInteracao.getData()+" , "+
-                               "tipo = "+logInteracao.getTipo()+" , "+
-                               "codigo = "+logInteracao.getCodigo()+" , "+
-                               "mensagem = "+logInteracao.getMensagem()+" , "+
-                               "login_pessoa = "+logInteracao.getLogin_pessoa()+" \n"+
-                               "where id = " +logInteracao.getId();
-            int resultado = conexao.executaSql(sqlUpdate);
-            
-            return (resultado != 0)?true:false;
-        } catch (SQLException SQLError) {
-            System.err.println("Ocorreu um erro durante a atualização do Banco de Dados: " + SQLError);
-            return false;
-        } catch (Exception geralError) {
-            System.err.println("Ocorreu um erro geral: " + geralError);
-            return false;
-        }
+        public boolean updateEndereco(String opt, int cpf ,String dado){
+            try {
+                // 
+                //
+                conexao = new Conexao();
+                String sqlUpdate;
+    
+                switch (opt) {
+                    
+                    case "data":
+                    sqlUpdate = "Update Estado set data = \'" + dado + "\' where cpf = \'" + cpf+"\';";
+                    conexao.executaSql(sqlUpdate);
+                    break;
+    
+                    case "tipo":
+                    sqlUpdate = "Update Estado set tipo = \'" + dado + "\' where cpf = \'" + cpf+"\';";
+                    conexao.executaSql(sqlUpdate);
+                    break;
+
+                    case "codigo":
+                    sqlUpdate = "Update Estado set codigo = \'" + dado + "\' where cpf = \'" + cpf+"\';";
+                    conexao.executaSql(sqlUpdate);
+                    break;
+
+                    default:
+                        throw new Exception("Valor não encontrado");
+                }
+    
+                conexao.disconect();
+                return true;
+            } catch (SQLException SQLError) {
+                System.err.println("Ocorreu um erro durante a atualização do Banco de Dados: " + SQLError);
+                conexao.disconect();
+                return false;
+            } catch (Exception geralError) {
+                System.err.println("Ocorreu um erro geral: " + geralError);
+                conexao.disconect();
+                return false;
+            }
+        }    
     }
+
 }
