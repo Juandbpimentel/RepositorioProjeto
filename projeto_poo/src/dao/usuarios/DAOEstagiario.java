@@ -154,63 +154,63 @@ public class DAOEstagiario{
                 case "nome":
                 sqlUpdate = "Update Pessoa set nome = \'" + dado + "\' where cpf = \'" + cpf+"\';";
 
-                    resultado = conexao.executaSql(sqlUpdate);
+                    conexao.executaSql(sqlUpdate);
                     break;
 
                 case "login":
                     sqlUpdate = "Update Pessoa set login = \'" + dado + "\' where cpf = \'" + cpf+"\';";
-                    resultado = conexao.executaSql(sqlUpdate);
+                    conexao.executaSql(sqlUpdate);
                     break;
 
                 case "senha":
                     sqlUpdate = "Update Pessoa set senha = \'" + dado + "\' where cpf = \'" + cpf+"\';";
-                    resultado = conexao.executaSql(sqlUpdate);
+                    conexao.executaSql(sqlUpdate);
                     break;
 
                 case "tipo":
                     sqlUpdate = "Update Pessoa set tipo = \'" + dado + "\' where cpf = \'" + cpf+"\';";
-                    resultado = conexao.executaSql(sqlUpdate);
+                    conexao.executaSql(sqlUpdate);
                     break;
 
                 case "cpf":
                     sqlUpdate = "Update Pessoa set cpf = \'" + dado + "\' where cpf = \'" + cpf+"\';";
-                    resultado = conexao.executaSql(sqlUpdate);
+                    conexao.executaSql(sqlUpdate);
                     break;
 
                 case "data_nasc":
                     sqlUpdate = "Update Pessoa set data_nasc = \'" + dado + "\' where cpf = \'" + cpf+"\';";
-                    resultado = conexao.executaSql(sqlUpdate);
+                    conexao.executaSql(sqlUpdate);
                     break;
 
                 case "id_endereco":
                     sqlUpdate = "Update Pessoa set id_endereco = " + dado + " where cpf = \'" + cpf+"\'";
-                    resultado = conexao.executaSql(sqlUpdate);
+                    conexao.executaSql(sqlUpdate);
                     break;
 
                 //Estagiario
                 case "inicio_estagio":
                     sqlUpdate = "Update Pessoa set inicio_estagio = \'" + dado + "\' where cpf = \'" + cpf+"\'";
-                    resultado = conexao.executaSql(sqlUpdate);
+                    conexao.executaSql(sqlUpdate);
                     break;
                 
                 case "tempo_estagio":
                     sqlUpdate = "Update Pessoa set tempo_estagio = " + dado + " where cpf = \'" + cpf+"\'";
-                    resultado = conexao.executaSql(sqlUpdate);
+                    conexao.executaSql(sqlUpdate);
                     break;
                 
                 case "dia_pagamento":
                     sqlUpdate = "Update Pessoa set dia_pagamento = " + dado + " where cpf = \'" + cpf+"\'";
-                    resultado = conexao.executaSql(sqlUpdate);
+                    conexao.executaSql(sqlUpdate);
                     break;
 
                 case "id_categoria":
                     sqlUpdate = "Update Pessoa set id_categoria = " + dado + " where cpf = \'" + cpf+"\'";
-                    resultado = conexao.executaSql(sqlUpdate);
+                    conexao.executaSql(sqlUpdate);
                     break;
 
                 case "id_setor":
                     sqlUpdate = "Update Pessoa set id_setor = " + dado + " where cpf = \'" + cpf+"\'";
-                    resultado = conexao.executaSql(sqlUpdate);
+                    conexao.executaSql(sqlUpdate);
                     break;
 
                 default:
@@ -252,28 +252,28 @@ public class DAOEstagiario{
     }
 }
 
-public boolean updateLogInteracao(int id, LogInteracao logInteracao){
-    try {
-        conexao = new Conexao();
-        String sqlUpdate = "Update Log_interacao \n"+
-                           "set data = "+logInteracao.getData()+" , "+
-                           "tipo = "+logInteracao.getTipo()+" , "+
-                           "codigo = "+logInteracao.getCodigo()+" , "+
-                           "mensagem = "+logInteracao.getMensagem()+" , "+
-                           "login_pessoa = "+logInteracao.getLogin_pessoa()+" \n"+
-                           "where id = " +logInteracao.getId();
-        int resultado = conexao.executaSql(sqlUpdate);
-        
-        return (resultado != 0)?true:false;
-    } catch (SQLException SQLError) {
-        System.err.println("Ocorreu um erro durante a atualização do Banco de Dados: " + SQLError);
-        return false;
-    } catch (Exception geralError) {
-        System.err.println("Ocorreu um erro geral: " + geralError);
-        return false;
+    public boolean updateLogInteracao(int id, LogInteracao logInteracao){
+        try {
+            conexao = new Conexao();
+            String sqlUpdate = "Update Log_interacao \n"+
+                            "set data = "+logInteracao.getData()+" , "+
+                            "tipo = "+logInteracao.getTipo()+" , "+
+                            "codigo = "+logInteracao.getCodigo()+" , "+
+                            "mensagem = "+logInteracao.getMensagem()+" , "+
+                            "login_pessoa = "+logInteracao.getLogin_pessoa()+" \n"+
+                            "where id = " +logInteracao.getId();
+            int resultado = conexao.executaSql(sqlUpdate);
+            
+            return (resultado != 0)?true:false;
+        } catch (SQLException SQLError) {
+            System.err.println("Ocorreu um erro durante a atualização do Banco de Dados: " + SQLError);
+            return false;
+        } catch (Exception geralError) {
+            System.err.println("Ocorreu um erro geral: " + geralError);
+            return false;
+        }
     }
-}
-}
+
 }
 
 /*

@@ -62,7 +62,7 @@ public class DAOCategoria {
             conexao.conect();
 
             String codigoDelete = "delete from categoria where id = "+ id;
-            int resultado = conexao.executaSql(codigoDelete);
+            int conexao.executaSql(codigoDelete);
             if(resultado != 1){
                 System.out.println("Você teve sucesso em deletar a Categoria");
                 conexao.disconect();
@@ -117,7 +117,7 @@ public class DAOCategoria {
 
             String sqlInsertion = "Insert into public Categoria(carga_horaria, nome, descricao, salario, cnpj_empresa)"
                                 + " values " + categoria;
-            int resultado = conexao.executaSql(sqlInsertion);
+            int conexao.executaSql(sqlInsertion);
             
             if(resultado != 0){
                 conexao.disconect();
@@ -147,32 +147,32 @@ public class DAOCategoria {
             switch (opt) {
                 case "id":
                     sqlUpdate = "Update Categoria set id = "+Integer.parseInt(dado)+" where id = " + id;
-                    resultado = conexao.executaSql(sqlUpdate);
+                    conexao.executaSql(sqlUpdate);
                     break;
     
                 case "nome":
                     sqlUpdate = "Update Categoria set nome = \'"+dado+"\' where id = " + id;
-                    resultado = conexao.executaSql(sqlUpdate);
+                    conexao.executaSql(sqlUpdate);
                     break;
 
                 case "carga_horaria":
                     sqlUpdate = "Update Categoria set carga_horaria = "+Integer.parseInt(dado)+" where id = " + id;
-                    resultado = conexao.executaSql(sqlUpdate);
+                    conexao.executaSql(sqlUpdate);
                     break;
                 
                 case "descricao":
                     sqlUpdate = "Update Categoria set descricao = \'"+dado+"\' where id = " + id;
-                    resultado = conexao.executaSql(sqlUpdate);
+                    conexao.executaSql(sqlUpdate);
                     break;
 
                 case "salario":
                     sqlUpdate = "Update Categoria set salario = "+Double.parseDouble(dado)+" where id = " + id;
-                    resultado = conexao.executaSql(sqlUpdate);
+                    conexao.executaSql(sqlUpdate);
                     break;
 
                 case "cnpj_empresa":
                     sqlUpdate = "Update Categoria set cnpj_empresa = \'"+dado+"\' where id = " + id;
-                    resultado = conexao.executaSql(sqlUpdate);
+                    conexao.executaSql(sqlUpdate);
                     break;
 
                 default:
