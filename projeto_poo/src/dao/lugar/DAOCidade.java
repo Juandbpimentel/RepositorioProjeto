@@ -38,7 +38,7 @@ public class DAOCidade {
         }
     }
 
-    public Cidade readOnEstado(int id) {
+    public Cidade readOnCidade(int id) {
         try {
             conexao = new Conexao();
             Cidade cidade;
