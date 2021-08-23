@@ -11,8 +11,8 @@ import interfaces.gui.PessoaGUI;
 public class Pessoa implements PessoaGUI, PessoaAlterDB {
     private String nome, login,senha,tipo,cpf;
     private LocalDate data_nasc;
-    private Endereco endereco;
     private int id_endereco;
+    private Endereco endereco;
     private Conexao conexao;
 
     public Pessoa(String nome, 
