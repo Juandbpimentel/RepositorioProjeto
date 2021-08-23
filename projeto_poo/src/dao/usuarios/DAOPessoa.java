@@ -64,4 +64,48 @@ public class DAOPessoa{
         }
         return false;
     }
+
+    public boolean updatePessoa(String opt, int cpf ,String dado){
+        try {
+            // 
+            //
+            conexao = new Conexao();
+            int resultado;
+            String sqlUpdate;
+
+            switch (opt) {
+                case "nome":
+                    sqlUpdate = "Update Categoria set nome = " + dado + " where cpf = " + cpf;
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+    
+                case "login":
+                    sqlUpdate = "Update Categoria set login = " + dado + " where cpf = " + cpf;
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+                case "senha":
+                    sqlUpdate = "Update Categoria set senha = " + dado + " where cpf = " + cpf;
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+                case "tipo":
+                case "cpf":
+                case "data_nasc":
+                case "endereco":
+                case "id_endereco":
+
+                default:
+                    throw new Exception("Valor não encontrado");
+            }
+            conexao.disconect();
+            return (resultado != 0)?true:false;
+        } catch (SQLException SQLError) {
+            System.err.println("Ocorreu um erro durante a atualização do Banco de Dados: " + SQLError);
+            conexao.disconect();
+            return false;
+        } catch (Exception geralError) {
+            System.err.println("Ocorreu um erro geral: " + geralError);
+            conexao.disconect();
+            return false;
+        }
+    }
 }
