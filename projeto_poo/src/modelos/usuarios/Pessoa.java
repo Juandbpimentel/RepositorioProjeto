@@ -13,7 +13,6 @@ public class Pessoa implements PessoaGUI, PessoaAlterDB {
     private LocalDate data_nasc;
     private int id_endereco;
     private Endereco endereco;
-    private Conexao conexao;
 
     public Pessoa(String nome, 
     			  String login, 
