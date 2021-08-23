@@ -102,7 +102,7 @@ public class DAOCategoria {
             conexao = new Conexao();
             conexao.conect();
             String sqlInsertion = "Insert into public Categoria(id, carga_horaria, nome, descricao, salario, cnpj_empresa)"
-                                + "values " + "(" + categoria + ")";
+                                + " values " + categoria;
             int resultado = conexao.executaSql(sqlInsertion);
             
             if(resultado != 0){
