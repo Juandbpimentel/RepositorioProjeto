@@ -129,18 +129,17 @@ public class DAOEstagiario{
             String sqlInsertion = "Insert into public.Estagiario(cpf, inicio_estagio, tempo_estagio, dia_pagamento, id_categoria, id_setor, id_endereco)\n"
                                 +"values (\'"+estagiario.getCpf()+"\', "+estagiario.getInicio_estagio()+", \'"+estagiario.getTempo_estagio()+", "+estagiario.getDia_pagamento()+", "+estagiario.getId_categoria()+", "+estagiario.getId_setor()+", "+estagiario.getId_endereco()+")";
             int resultado = conexao.executaSql(sqlInsertion);
-
-            if(resultado != 0){
-                return false;
-            }
-            
+            return (resultado != 0);
+        }
             catch(SQLException e){
-
+            System.err.println("Houve um erro durante a inserção no banco de dados: "+e);
+            return false;
             }
             catch(Exception e){
-
+            System.err.println("Houve um erro geral: "+e);
+            return false;
             }
-        }
+        
     }
     
     public boolean deleteEstagiario(String cpf){
