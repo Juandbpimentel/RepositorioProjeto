@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import modelos.usuarios.Funcionario;
 
 public class DAOFuncionario {
+    
     private Conexao conexao;
+    
     public DAOFuncionario(){
         this.conexao = new Conexao();
     }
@@ -77,6 +79,7 @@ public class DAOFuncionario {
             return null;
         }
     }
+
     public boolean deleteFuncionario(String cpf){
         try{
             conexao.conect();
@@ -98,32 +101,38 @@ public class DAOFuncionario {
         }
         return false;
     }
-public Funcionario readOneFuncionario(String cpf){
-    try {
-        conexao.conect();
-        String sqlQueryFuncionario = "Select * From Funcionario Where cpf = \'"+cpf+"\'";
-        ResultSet resultadoQueryFuncionario = conexao.executaQuery(sqlQueryFuncionario);
-        if(!resultadoQueryFuncionario.next()){
-            throw new NullPointerException("Não foi possível encontrar o funcionário com este cpf");            
-        } else{
-            int idsetor = resultadoQueryFuncionario.getInt("id_setor"), diapagamento = resultadoQueryFuncionario.getInt("dia_pagamento"), idcat = resultadoQueryFuncionario.getInt("id_categoria");
-            double bonificacao = resultadoQueryFuncionario.getDouble("bonificacao");
-            Date inicio = resultadoQueryFuncionario.getDate("data_inicio");
-            String sqlQueryPessoa = "Select * from pessoa where cpf = \'"+cpf+"\'";
-            ResultSet resultadoQueryPessoa = conexao.executaQuery(sqlQueryPessoa);
-            if(!resultadoQueryPessoa.next()){
-                throw new NullPointerException("Não foi possível encontrar o funcionário com este cpf");
-            }else{
-                String nome = resultadoQueryPessoa.getString("nome"), login = resultadoQueryPessoa.getString("login"), senha = resultadoQueryPessoa.getString("senha"), tipo = resultadoQueryPessoa.getString("tipo");
-                int idendereco = resultadoQueryPessoa.getInt("id_endereco");
-                Date data = resultadoQueryPessoa.getDate("data_nasc");
-                Funcionario funcionario = new Funcionario(nome, login, senha, tipo, cpf, data.toLocalDate(), idendereco, bonificacao,idcat, idsetor, diapagamento, inicio.toLocalDate());
-                return funcionario;
+
+    public Funcionario readOneFuncionario(String cpf){
+        try {
+            conexao.conect();
+            String sqlQueryFuncionario = "Select * From Funcionario Where cpf = \'"+cpf+"\'";
+            ResultSet resultadoQueryFuncionario = conexao.executaQuery(sqlQueryFuncionario);
+            
+            if(!resultadoQueryFuncionario.next()){
+                throw new NullPointerException("Não foi possível encontrar o funcionário com este cpf");            
+            } else{
+                int idsetor = resultadoQueryFuncionario.getInt("id_setor"), diapagamento = resultadoQueryFuncionario.getInt("dia_pagamento"), idcat = resultadoQueryFuncionario.getInt("id_categoria");
+                double bonificacao = resultadoQueryFuncionario.getDouble("bonificacao");
+                Date inicio = resultadoQueryFuncionario.getDate("data_inicio");
+                String sqlQueryPessoa = "Select * from pessoa where cpf = \'"+cpf+"\'";
+                ResultSet resultadoQueryPessoa = conexao.executaQuery(sqlQueryPessoa);
+                
+                if(!resultadoQueryPessoa.next()){
+                    throw new NullPointerException("Não foi possível encontrar o funcionário com este cpf");
+                }else{
+                    String nome = resultadoQueryPessoa.getString("nome"), login = resultadoQueryPessoa.getString("login"), senha = resultadoQueryPessoa.getString("senha"), tipo = resultadoQueryPessoa.getString("tipo");
+                    int idendereco = resultadoQueryPessoa.getInt("id_endereco");
+                    Date data = resultadoQueryPessoa.getDate("data_nasc");
+                    Funcionario funcionario = new Funcionario(nome, login, senha, tipo, cpf, data.toLocalDate(), idendereco, bonificacao,idcat, idsetor, diapagamento, inicio.toLocalDate());
+                    return funcionario;
+                }
             }
+        } catch(SQLException e){
+            System.err.println("Houve um erro durante a exclusão do Banco de Dados: "+e);
+            return null;
+        }catch (Exception e){
+            System.err.println("Houve um erro geral: "+e);
+            return null;
         }
-    } catch(SQLException e){
-        System.err.println("Houve um erro durante a exclusão do Banco de Dados: "+e);
-    }catch (Exception e){
-        System.err.println("Houve um erro geral: "+e);
     }
 }

@@ -29,7 +29,7 @@ public class DAOGerente {
                 cpf = result.getString("cpf");
                 bonificacao_gerente = result.getDouble("bonificacao_gerente");
 
-                String sqlQueryPessoa = "Select * from Pessoa where cpf = "+cpf;
+                String sqlQueryPessoa = "Select * from pessoa where cpf = \'"+cpf+"\'";
                 ResultSet resultQueryPessoa = conexao.executaQuery(sqlQueryPessoa);
 
                 String nome ="", 

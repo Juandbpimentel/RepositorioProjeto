@@ -36,7 +36,7 @@ public class DAOEstagiario{
                 id_categoria = resultQueryEstagiario.getInt("id_categoria");
                 id_setor = resultQueryEstagiario.getInt("id_setor");
 
-                String sqlQueryPessoa = "Select * from Pessoa where cpf = "+cpf;
+                String sqlQueryPessoa = "Select * from pessoa where cpf = \'"+cpf+"\'";
                 ResultSet resultQueryPessoa = conexao.executaQuery(sqlQueryPessoa);
 
                 String nome ="", 

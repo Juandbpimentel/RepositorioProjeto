@@ -23,7 +23,7 @@ public class DAODiretor {
                 String cnpjEmpresa = "", cpf="";
                 int idCategoria = 0;
 
-                String sqlQueryPessoa = "Select * from pessoa where cpf = "+cpf;
+                String sqlQueryPessoa = "Select * from pessoa where cpf = \'"+cpf+"\'";
                 ResultSet resultadoQueryPessoa = conexao.executaQuery(sqlQueryPessoa);
 
                 String nome = "", login="", senha="", tipo="";
@@ -61,7 +61,8 @@ public class DAODiretor {
         try{
             Conexao conexao = new Conexao();
             conexao.conect();
-            String codigoDelete = "delete from Diretor where cpf = "+ cpf;
+            
+            String codigoDelete = "delete from Diretor where cpf = \'"+ cpf +"\'";
             int resultado = conexao.executaSql(codigoDelete);
             if(resultado != 1){
                 System.out.println("Você teve sucesso em deletar o diretor");
@@ -76,5 +77,23 @@ public class DAODiretor {
             return false;
         }
         return false;
+    }
+
+    public boolean insertDiretor(Diretor diretor){
+        try {
+
+            conexao.conect();
+            String sqlInsertDiretor = "insert into public.Diretor(cpf,cnpj_empresa,id_categoria)\n"
+                                     +"values (\'"+diretor.getCpf()+"\' , \'"+diretor.getCnpj_empresa()+"\' , "+diretor.getId_categoria()+")";
+            int resultado = conexao.executaSql(sqlInsertDiretor);
+            
+            return (resultado != 0);
+        } catch (SQLException e) {
+            System.err.println("Houve um erro durante a inserção no banco de dados: "+e);
+            return false;
+        }catch(Exception e){
+            System.err.println("Houve um erro geral: "+e);
+            return false;
+        }
     }
 }

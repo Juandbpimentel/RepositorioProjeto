@@ -26,7 +26,7 @@ public class DAODono {
 
                 cpf = resultado.getString("cpf");
 
-                String sqlQueryPessoa = "Select * from pessoa where cpf = "+cpf;
+                String sqlQueryPessoa = "Select * from pessoa where cpf = \'"+cpf+"\'";
                 ResultSet resultadoQueryPessoa = conexao.executaQuery(sqlQueryPessoa);
 
                 String nome = "", login="", senha="", tipo="";
