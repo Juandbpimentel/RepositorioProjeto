@@ -62,7 +62,7 @@ public class DAOCategoria {
             conexao.conect();
 
             String codigoDelete = "delete from categoria where id = "+ id;
-            int conexao.executaSql(codigoDelete);
+            int resultado = conexao.executaSql(codigoDelete);
             if(resultado != 1){
                 System.out.println("Você teve sucesso em deletar a Categoria");
                 conexao.disconect();
@@ -117,7 +117,7 @@ public class DAOCategoria {
 
             String sqlInsertion = "Insert into public Categoria(carga_horaria, nome, descricao, salario, cnpj_empresa)"
                                 + " values " + categoria;
-            int conexao.executaSql(sqlInsertion);
+            int resultado = conexao.executaSql(sqlInsertion);
             
             if(resultado != 0){
                 conexao.disconect();
