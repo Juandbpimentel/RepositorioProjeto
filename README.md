@@ -33,7 +33,6 @@
 * VIEWS SQL; 
 - TRIGGERS.
 
-
 <hr>
 
 *FALTA TERMINAR O SLIDE* 
