@@ -68,8 +68,6 @@ public class DAODiretor {
                 return true;
             }
 
-
-
         }catch(SQLException e){
             System.err.println("Houve um erro durante a exclusão do Banco de Dados: "+e);
             return false;

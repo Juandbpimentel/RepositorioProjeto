@@ -83,6 +83,7 @@ public class DAOEstado {
             return null;
         }
     }
+    
     public boolean deleteEstado(int id){
         try{
             conexao.conect();
@@ -101,5 +102,23 @@ public class DAOEstado {
             return false;
         }
         return false;
+    }
+
+    public boolean updateEstado(String uf, Estado estado){
+        try {
+            conexao = new Conexao();
+            String sqlUpdate = "Update Estado \n"+
+                               "set nome = "+estado.getNome()+" \n"+
+                               "where id = " +estado.getUf();
+            int resultado = conexao.executaSql(sqlUpdate);
+            
+            return (resultado != 0)?true:false;
+        } catch (SQLException SQLError) {
+            System.err.println("Ocorreu um erro durante a atualização do Banco de Dados: " + SQLError);
+            return false;
+        } catch (Exception geralError) {
+            System.err.println("Ocorreu um erro geral: " + geralError);
+            return false;
+        }
     }
 }

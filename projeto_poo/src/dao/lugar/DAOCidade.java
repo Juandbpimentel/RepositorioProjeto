@@ -47,8 +47,8 @@ public class DAOCidade {
             if (!resultadoQuery.next()) {
                 throw new NullPointerException("Não foi possível achar nenhuma cidade");
             } else {
-                String nome = resultadoQuery.getString("nome"), idestado = resultadoQuery.getString("id_estado");
-                cidade = new Cidade(id, nome, idestado);
+                String nome = resultadoQuery.getString("nome"), uf = resultadoQuery.getString("uf");
+                cidade = new Cidade(id, nome, uf);
             }
             return cidade;
         } catch (SQLException SQLError) {
@@ -97,6 +97,25 @@ public class DAOCidade {
             System.err.println("Ocorreu um erro com Inserção no Banco de Dados: " + SQLError);
             return false;
         } catch(Exception geralError){
+            System.err.println("Ocorreu um erro geral: " + geralError);
+            return false;
+        }
+    }
+
+    public boolean updateCidade(int id, Cidade cidade){
+        try {
+            conexao = new Conexao();
+            String sqlUpdate = "Update Cidade \n"+
+                               "set nome = "+cidade.getNome()+" , "+
+                               "uf = "+cidade.getUf()+" \n"+
+                               "where id = " +cidade.getId();
+            int resultado = conexao.executaSql(sqlUpdate);
+            
+            return (resultado != 0)?true:false;
+        } catch (SQLException SQLError) {
+            System.err.println("Ocorreu um erro durante a atualização do Banco de Dados: " + SQLError);
+            return false;
+        } catch (Exception geralError) {
             System.err.println("Ocorreu um erro geral: " + geralError);
             return false;
         }
