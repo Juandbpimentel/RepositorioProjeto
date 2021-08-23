@@ -104,20 +104,48 @@ public class DAOEstado {
         return false;
     }
 
-    public boolean updateEstado(String uf, Estado estado){
+    public boolean updateEndereco(String opt, int cpf ,String dado){
         try {
+            // 
+            //
             conexao = new Conexao();
-            String sqlUpdate = "Update Estado \n"+
-                               "set nome = "+estado.getNome()+" \n"+
-                               "where id = " +estado.getUf();
-            int resultado = conexao.executaSql(sqlUpdate);
-            
-            return (resultado != 0)?true:false;
+            String sqlUpdate;
+
+            switch (opt) {
+                
+                case "nome":
+                sqlUpdate = "Update Estado set nome = \'" + dado + "\' where cpf = \'" + cpf+"\';";
+                conexao.executaSql(sqlUpdate);
+                break;
+
+                case "uf":
+                sqlUpdate = "Update Estado set uf = \'" + dado + "\' where cpf = \'" + cpf+"\';";
+                conexao.executaSql(sqlUpdate);
+                break;
+
+                case "nome":
+                sqlUpdate = "Update Estado set nome = \'" + dado + "\' where cpf = \'" + cpf+"\';";
+                conexao.executaSql(sqlUpdate);
+                break;
+
+                case "uf":
+                sqlUpdate = "Update Estado set uf = \'" + dado + "\' where cpf = \'" + cpf+"\';";
+                conexao.executaSql(sqlUpdate);
+                break;
+
+                default:
+                    throw new Exception("Valor não encontrado");
+            }
+
+            conexao.disconect();
+            return true;
         } catch (SQLException SQLError) {
             System.err.println("Ocorreu um erro durante a atualização do Banco de Dados: " + SQLError);
+            conexao.disconect();
             return false;
         } catch (Exception geralError) {
             System.err.println("Ocorreu um erro geral: " + geralError);
+            conexao.disconect();
             return false;
         }
     }
