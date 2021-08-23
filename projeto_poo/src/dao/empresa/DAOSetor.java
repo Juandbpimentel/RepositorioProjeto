@@ -60,4 +60,26 @@ public class DAOSetor {
         }
         return false;
     }
+
+    public boolean insertSetor(Setor setor){
+        try{
+            conexao = new Conexao();
+            conexao.conect();
+            String sqlInsertion = "Insert into public Setor(orcamento, nome, id, cnpj_empresa)"
+                                + "values " + "(" + setor + ")";
+            int resultado = conexao.executaSql(sqlInsertion);
+            
+            if(resultado != 0){
+                return false;
+            }
+            return true;
+
+        } catch(SQLException SQLError){
+            System.err.println("Ocorreu um erro com Inserção no Banco de Dados: " + SQLError);
+            return false;
+        } catch(Exception geralError){
+            System.err.println("Ocorreu um erro geral: " + geralError);
+            return false;
+        }
+    }
 }

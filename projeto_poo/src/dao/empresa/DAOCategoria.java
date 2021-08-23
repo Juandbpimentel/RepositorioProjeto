@@ -95,8 +95,28 @@ public class DAOCategoria {
             System.err.println("Houve um erro geral: " + error);
             return null;
         }
-        //public readCategoria(){
-        //    
-        //}
     }
+
+    public boolean insertCategoria(Categoria categoria){
+        try{
+            conexao = new Conexao();
+            conexao.conect();
+            String sqlInsertion = "Insert into public Categoria(id, carga_horaria, nome, descricao, salario, cnpj_empresa)"
+                                + "values " + "(" + categoria + ")";
+            int resultado = conexao.executaSql(sqlInsertion);
+            
+            if(resultado != 0){
+                return false;
+            }
+            return true;
+
+        } catch(SQLException SQLError){
+            System.err.println("Ocorreu um erro com Inserção no Banco de Dados: " + SQLError);
+            return false;
+        } catch(Exception geralError){
+            System.err.println("Ocorreu um erro geral: " + geralError);
+            return false;
+        }
+    }
+
 }

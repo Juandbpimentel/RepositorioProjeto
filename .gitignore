@@ -25,3 +25,9 @@ projeto_poo/bin/modelos/usuarios/Diretor.class
 projeto_poo/bin/modelos/usuarios/Dono.class
 projeto_poo/bin/projeto_poo/menuPrincipal.class
 *.class
+projeto_poo/bin/dao/lugar/DAOEndereco.class
+projeto_poo/bin/dao/lugar/DAOCidade.class
+projeto_poo/bin/dao/lugar/DAOBairro.class
+projeto_poo/bin/dao/empresa/DAOSetor.class
+projeto_poo/bin/dao/empresa/DAOEmpresa.class
+projeto_poo/bin/dao/empresa/DAOCategoria.class
