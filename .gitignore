@@ -31,3 +31,5 @@ projeto_poo/bin/dao/lugar/DAOBairro.class
 projeto_poo/bin/dao/empresa/DAOSetor.class
 projeto_poo/bin/dao/empresa/DAOEmpresa.class
 projeto_poo/bin/dao/empresa/DAOCategoria.class
+projeto_poo/bin/dao/lugar/DAOCidade.class
+projeto_poo/bin/dao/lugar/DAOEndereco.class
