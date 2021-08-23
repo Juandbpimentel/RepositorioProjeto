@@ -91,15 +91,6 @@ public class Gerente extends Funcionario implements GerenteGUI,GerenteAlterDB {
 
     }
 
-    //Getters e Setters
-
-    public double getBonificacaoGerente() {
-        return bonificacao_gerente;
-    }
-
-    public void setBonificacaoGerente(double bonificacaoGerente) {
-        this.bonificacao_gerente = bonificacaoGerente;
-    }
 
 
 }

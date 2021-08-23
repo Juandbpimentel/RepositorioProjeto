@@ -166,8 +166,8 @@ public class viewMenuRegistro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loginTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginTextFieldActionPerformed
-        // TODO add your handling code here:
+    private void loginTextFieldActionPerformed(java.awt.event.ActionEvent evt) {
+        
     }//GEN-LAST:event_loginTextFieldActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed

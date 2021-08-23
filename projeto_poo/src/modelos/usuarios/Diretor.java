@@ -122,7 +122,6 @@ public class Diretor extends Pessoa implements DiretorGUI, DiretorAlterDB {
 
     @Override
     public void alterarDadosSetor() {
-        // TODO Auto-generated method stub
         
     }
 }

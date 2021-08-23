@@ -14,9 +14,6 @@ public class Categoria {
         this.cnpj_empresa = cnpj;
     }
 
-    public Categoria(int salario2, int carga2, String nome2, String cnpj, int carga, String descricao2) {
-    }
-
     public String getCnpj_empresa() {
         return cnpj_empresa;
     }
