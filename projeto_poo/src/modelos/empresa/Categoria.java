@@ -5,12 +5,12 @@ public class Categoria {
     private String nome,descricao, cnpj_empresa;
     private Double salario;
 
-    public Categoria(int id, int carga, String nome, String descricao2, double salario2, String cnpj) {
+    public Categoria(int id, int carga, String nome, String descricao, double salario, String cnpj) {
         this.id = id;
         this.carga_horaria = carga;
         this.nome = nome;
-        this.descricao = descricao2;
-        this.salario = salario2;
+        this.descricao = descricao;
+        this.salario = salario;
         this.cnpj_empresa = cnpj;
     }
 

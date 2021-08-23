@@ -119,25 +119,55 @@ public class DAOCategoria {
         }
     }
 
-    public boolean updateCategoria(int id, Categoria categoria){
+    public boolean updateCategoria(String opt, int id, Categoria categoria){
         try {
             conexao = new Conexao();
-            String sqlUpdate = "Update Categoria \n"+
-                               "set id = "+categoria.getId()+" , "+
-                               "nome = "+categoria.getNome()+" , "+
-                               "carga_horaria = "+categoria.getCarga_horaria()+" , "+
-                               "descricao = "+categoria.getDescricao()+" , "+
-                               "salario = "+categoria.getSalario()+" , "+
-                               "cnpj_empresa = "+categoria.getCnpj_empresa()+" \n"+
-                               "where id = " + categoria.getId();
-            int resultado = conexao.executaSql(sqlUpdate);
-            
+            int resultado;
+            String sqlUpdate;
+
+            switch (opt) {
+                case "id":
+                    sqlUpdate = "Update Categoria set id = "+categoria.getId()+" where id = " + categoria.getId();
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+    
+                case "nome":
+                    sqlUpdate = "Update Categoria set nome = \'"+categoria.getNome()+"\' where id = " + categoria.getId();
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "carga_horaria":
+                    sqlUpdate = "Update Categoria set carga_horaria = "+categoria.getCarga_horaria()+" where id = " + categoria.getId();
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+                
+                case "descricao":
+                    sqlUpdate = "Update Categoria set descricao = \'"+categoria.getDescricao()+"\' where id = " + categoria.getId();
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "salario":
+                    sqlUpdate = "Update Categoria set salario = "+categoria.getSalario()+" where id = " + categoria.getId();
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "cnpj_empresa":
+                    sqlUpdate = "Update Categoria set cnpj_empresa = \'"+categoria.getCnpj_empresa()+"\' where id = " + categoria.getId();
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+
+                default:
+                    throw new Exception("Valor não encontrado");
+            }
+            conexao.disconect();
             return (resultado != 0)?true:false;
         } catch (SQLException SQLError) {
             System.err.println("Ocorreu um erro durante a atualização do Banco de Dados: " + SQLError);
+            conexao.disconect();
             return false;
         } catch (Exception geralError) {
             System.err.println("Ocorreu um erro geral: " + geralError);
+            conexao.disconect();
             return false;
         }
     }
