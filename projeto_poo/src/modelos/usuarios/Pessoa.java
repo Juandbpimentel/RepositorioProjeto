@@ -9,11 +9,11 @@ import interfaces.alterDB.PessoaAlterDB;
 import interfaces.gui.PessoaGUI;
 
 public class Pessoa implements PessoaGUI, PessoaAlterDB {
-    private String nome, login,senha,tipo,cpf;
-    private LocalDate data_nasc;
-    private Endereco endereco;
-    private int id_endereco;
-    private Conexao conexao;
+    protected String nome, login,senha,tipo,cpf;
+    protected LocalDate data_nasc;
+    protected Endereco endereco;
+    protected int id_endereco;
+    protected Conexao conexao;
 
     public Pessoa(String nome, 
     			  String login, 
