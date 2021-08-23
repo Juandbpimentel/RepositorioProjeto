@@ -21,7 +21,7 @@
 
 <hr>
 
-  *CHECKLIST PROJETO FBD*
+#**CHECKLIST PROJETO FBD**
 
     JÁ FEZ --> *
     NÃO FEZ --> - 
@@ -31,7 +31,7 @@
 * TABELAS SQL;
 * INSERTS SQL;
 * VIEWS SQL; 
-- TRIGGERS.
+- TRIGGERS;
 
 <hr>
 
