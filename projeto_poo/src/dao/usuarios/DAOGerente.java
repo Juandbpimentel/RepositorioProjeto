@@ -156,8 +156,6 @@ public class DAOGerente {
                 return true;
             }
 
-
-
         }catch(SQLException e){
             System.err.println("Houve um erro durante a exclusão do Banco de Dados: "+e);
             return false;
@@ -166,5 +164,20 @@ public class DAOGerente {
             return false;
         }
         return false;
+    }
+    public boolean insertGerente(Gerente gerente){
+        try {
+            conexao.conect();
+            String sqlInsertGerente = "insert into public.Gerente(bonificacao_gerente, cpf)\n"
+            +"values("+gerente.getBonificacao_gerente()+" , \'"+gerente.getCpf()+"\')";
+            int resultado = conexao.executaSql(sqlInsertGerente);
+            return (resultado != 0);
+        } catch (SQLException e) {
+            System.err.println("Houve um erro durante a inserção no banco de dados: "+e);
+            return false;
+        }catch(Exception e){
+            System.err.println("Houve um erro geral: "+e);
+            return false;
+        }
     }
 }
