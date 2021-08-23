@@ -156,17 +156,14 @@ public class DAOFuncionario {
 
     public boolean updatePessoa(String opt, int cpf ,String dado){
         try {
-            // 
-            //
             conexao = new Conexao();
             int resultado;
             String sqlUpdate;
 
             switch (opt) {
-                
-                case "nome":
-                sqlUpdate = "Update Pessoa set nome = \'" + dado + "\' where cpf = \'" + cpf+"\';";
 
+                case "nome":
+                    sqlUpdate = "Update Pessoa set nome = \'" + dado + "\' where cpf = \'" + cpf+"\';";
                     resultado = conexao.executaSql(sqlUpdate);
                     break;
 
@@ -200,6 +197,31 @@ public class DAOFuncionario {
                     resultado = conexao.executaSql(sqlUpdate);
                     break;
 
+                case "bonificacao":
+                    sqlUpdate = "Update Pessoa set bonificacao = " + Double.parseDouble(dado) + " where cpf = \'" + cpf+"\'";
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "id_categoria":
+                    sqlUpdate = "Update Pessoa set id_categoria = " + Integer.parseInt(dado) + " where cpf = \'" + cpf+"\'";
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "id_setor":
+                    sqlUpdate = "Update Pessoa set id_setor = " + Integer.parseInt(dado) + " where cpf = \'" + cpf+"\'";
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "dia_pagamento":
+                    sqlUpdate = "Update Pessoa set dia_pagamento = " + Integer.parseInt(dado) + " where cpf = \'" + cpf+"\'";
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "data_inicio":
+                    sqlUpdate = "Update Pessoa set data_inicio = \'" + dado + "\' where cpf = \'" + cpf+"\'";
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+
                 default:
                     throw new Exception("Valor não encontrado");
             }
@@ -216,4 +238,6 @@ public class DAOFuncionario {
             return false;
         }
     }
+
+
 }
