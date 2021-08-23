@@ -73,45 +73,47 @@ public class DAOPessoa{
 
             switch (opt) {
                 case "nome":
-                    sqlUpdate = "Update Pessoa set nome = " + dado + " where cpf = " + cpf;
+                sqlUpdate = "Update Pessoa set nome = \'" + dado + "\' where cpf = \'" + cpf+"\';";
+
                     resultado = conexao.executaSql(sqlUpdate);
                     break;
-    
+
                 case "login":
-                    sqlUpdate = "Update Pessoa set login = " + dado + " where cpf = " + cpf;
+                    sqlUpdate = "Update Pessoa set login = \'" + dado + "\' where cpf = \'" + cpf+"\';";
                     resultado = conexao.executaSql(sqlUpdate);
                     break;
+
                 case "senha":
-                    sqlUpdate = "Update Pessoa set senha = " + dado + " where cpf = " + cpf;
+                    sqlUpdate = "Update Pessoa set senha = \'" + dado + "\' where cpf = \'" + cpf+"\';";
                     resultado = conexao.executaSql(sqlUpdate);
                     break;
+
                 case "tipo":
-                    sqlUpdate = "Update Pessoa set tipo = " + dado + " where cpf = " + cpf;
+                    sqlUpdate = "Update Pessoa set tipo = \'" + dado + "\' where cpf = \'" + cpf+"\';";
                     resultado = conexao.executaSql(sqlUpdate);
                     break;
+
                 case "cpf":
-                    sqlUpdate = "Update Pessoa set cpf = " + dado + " where cpf = " + cpf;
+                    sqlUpdate = "Update Pessoa set cpf = \'" + dado + "\' where cpf = \'" + cpf+"\';";
                     resultado = conexao.executaSql(sqlUpdate);
                     break;
+
                 case "data_nasc":
-                    sqlUpdate = "Update Pessoa set data_nasc = " + dado + " where cpf = " + cpf;
+                    sqlUpdate = "Update Pessoa set data_nasc = \'" + dado + "\' where cpf = \'" + cpf+"\';";
                     resultado = conexao.executaSql(sqlUpdate);
                     break;
-                case "endereco":
-                    sqlUpdate = "Update Pessoa set endereco = " + dado + " where cpf = " + cpf;
-                    resultado = conexao.executaSql(sqlUpdate);
-                    break;
+
                 case "id_endereco":
-                    sqlUpdate = "Update Pessoa set id_endereco = " + dado + " where cpf = " + cpf;
+                    sqlUpdate = "Update Pessoa set id_endereco = " + Integer.parseInt(dado) + " where cpf = \'" + cpf+"\'";
                     resultado = conexao.executaSql(sqlUpdate);
                     break;
+
                 default:
                     throw new Exception("Valor não encontrado");
             }
 
             conexao.disconect();
-            return (resultado != 0)?true:false;
-
+            return (resultado != 0);
         } catch (SQLException SQLError) {
             System.err.println("Ocorreu um erro durante a atualização do Banco de Dados: " + SQLError);
             conexao.disconect();
@@ -122,6 +124,8 @@ public class DAOPessoa{
             return false;
         }
     }
+
+
     public Pessoa readOnePessoa(String cpf){
         try {
             conexao.conect();
