@@ -9,10 +9,14 @@ import modelos.usuarios.Gerente;
 
 public class DAOGerente {
     private Conexao conexao;
+
+    public DAOGerente(){
+        this.conexao = new Conexao();
+    }
+
     public ArrayList<Gerente> readAll(){
         try {
             ArrayList<Gerente> arrayGerente= new ArrayList<Gerente>();
-            conexao = new Conexao();
             conexao.conect();
 
             String codBusca = "Select * from Gerente";
@@ -89,9 +93,61 @@ public class DAOGerente {
             return null;
         }
     }
+
+    public Gerente readOneGerente(String cpf){
+        try {
+            conexao.conect();
+            // select * from gerente where cpf = '162.947.147-02'
+            String sqlQueryGerente = "SELECT * FROM GERENTE WHERE cpf = \'"+cpf+"\'";
+            ResultSet resultadoQueryGerente = conexao.executaQuery(sqlQueryGerente);
+            if (!resultadoQueryGerente.next()) {
+                throw new NullPointerException("O Gerente que você está procurando não foi encontrado, retornou nulo");
+            }else{
+                Double bonificacao_gerente = resultadoQueryGerente.getDouble("bonificacao_gerente");
+                
+                String sqlQueryFuncionario = "select * from funcionario where cpf = \'"+cpf+"\'";
+                ResultSet resultadoQueryFuncionario = conexao.executaQuery(sqlQueryFuncionario);
+                if (!resultadoQueryFuncionario.next()) {
+                    throw new NullPointerException("O Gerente que você está procurando não foi encontrado, retornou nulo");
+                }else{
+                    Double bonificacao = resultadoQueryFuncionario.getDouble("bonificacao");
+                    
+                    int id_categoria = resultadoQueryFuncionario.getInt("id_categoria"),
+                        id_setor = resultadoQueryFuncionario.getInt("id_setor"),
+                        dia_pagamento = resultadoQueryFuncionario.getInt("dia_pagamento");
+
+                    Date data_inicio = resultadoQueryFuncionario.getDate("data_inicio");
+                        
+                    String sqlQueryPessoa = "select * from pessoa where cpf = \'"+cpf+"\'";
+
+                    ResultSet resultadoQueryPessoa = conexao.executaQuery(sqlQueryPessoa);
+                    if (!resultadoQueryPessoa.next()) {
+                        throw new NullPointerException("O Gerente que você está procurando não foi encontrado, retornou nulo");
+                    }else{
+                        String nome = resultadoQueryPessoa.getString("nome"),
+                               login = resultadoQueryPessoa.getString("login"),
+                               senha = resultadoQueryPessoa.getString("seha"),
+                               tipo = resultadoQueryPessoa.getString("tipo");
+                        
+                        int id_endereco = resultadoQueryPessoa.getInt("id_endereco");
+                        Date data_nasc = resultadoQueryPessoa.getDate("data_nasc");
+                        
+                        Gerente gerente = new Gerente(nome, login, senha, tipo, cpf, data_nasc.toLocalDate(), id_categoria, id_setor, dia_pagamento, bonificacao, data_inicio.toLocalDate(), bonificacao_gerente, id_endereco);
+                        return gerente;
+                    }
+                }
+            }
+        } catch (SQLException SQLError) {
+            System.err.println("Ocorreu um erro durante a busca no Banco de Dados: " + SQLError);
+            return null;
+        } catch (Exception geralError) {
+            System.err.println("Ocorreu um erro geral: " + geralError);
+            return null;
+        }
+    }
+
     public boolean deleteGerente(String cpf){
         try{
-            Conexao conexao = new Conexao();
             conexao.conect();
             String codigoDelete = "delete from Gerente where cpf = "+ cpf;
             int resultado = conexao.executaSql(codigoDelete);
