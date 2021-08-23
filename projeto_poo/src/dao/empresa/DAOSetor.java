@@ -75,7 +75,7 @@ public class DAOSetor {
         try{
             conexao.conect();
 
-            String sqlInsertion = "Insert into public Setor(orcamento, nome, id, cnpj_empresa)"
+            String sqlInsertion = "Insert into public Setor(orcamento, nome, cnpj_empresa)"
                                 + "values " + "(" + setor + ")";
             int resultado = conexao.executaSql(sqlInsertion);
             
