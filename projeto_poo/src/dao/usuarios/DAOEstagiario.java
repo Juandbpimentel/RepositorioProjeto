@@ -154,15 +154,38 @@ public class DAOEstagiario{
 
 
 
-        }catch(SQLException e){
-            System.err.println("Houve um erro durante a exclusão do Banco de Dados: "+e);
+        }catch(SQLException SQLError){
+            System.err.println("Houve um erro durante a exclusão do Banco de Dados: "+SQLError);
             return false;
-        }catch (Exception e){
-            System.err.println("Houve um erro geral: "+e);
+            System.err.println("Houve um erro geral: "+geralError);
             return false;
         }
         return false;
     }
+}
+
+public boolean updateLogInteracao(int id, LogInteracao logInteracao){
+    try {
+        conexao = new Conexao();
+        String sqlUpdate = "Update Log_interacao \n"+
+                           "set data = "+logInteracao.getData()+" , "+
+                           "tipo = "+logInteracao.getTipo()+" , "+
+                           "codigo = "+logInteracao.getCodigo()+" , "+
+                           "mensagem = "+logInteracao.getMensagem()+" , "+
+                           "login_pessoa = "+logInteracao.getLogin_pessoa()+" \n"+
+                           "where id = " +logInteracao.getId();
+        int resultado = conexao.executaSql(sqlUpdate);
+        
+        return (resultado != 0)?true:false;
+    } catch (SQLException SQLError) {
+        System.err.println("Ocorreu um erro durante a atualização do Banco de Dados: " + SQLError);
+        return false;
+    } catch (Exception geralError) {
+        System.err.println("Ocorreu um erro geral: " + geralError);
+        return false;
+    }
+}
+}
 }
 
 /*
