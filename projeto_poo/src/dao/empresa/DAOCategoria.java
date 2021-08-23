@@ -179,7 +179,7 @@ public class DAOCategoria {
                     throw new Exception("Valor não encontrado");
             }
             conexao.disconect();
-            return (resultado != 0)?true:false;
+            return true;
         } catch (SQLException SQLError) {
             System.err.println("Ocorreu um erro durante a atualização do Banco de Dados: " + SQLError);
             conexao.disconect();

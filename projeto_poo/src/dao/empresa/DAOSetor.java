@@ -9,10 +9,13 @@ import modelos.empresa.Setor;
 public class DAOSetor {
     private Conexao conexao;
 
+    public DAOSetor() {
+        conexao = new Conexao();
+    }
+
     public ArrayList<Setor> readAll(){
         try {
             ArrayList<Setor> arraySetor = new ArrayList<Setor>();
-            conexao = new Conexao();
             conexao.conect();
 
             String codBusca = "Select * from funcionario";
@@ -29,64 +32,77 @@ public class DAOSetor {
                 Setor setor = new Setor (orc, nome, id, cnpj);
                 arraySetor.add(setor);
             }
+            conexao.disconect();
             return arraySetor;
         } 
         catch(SQLException SQLError){
             System.err.println("Ocorreu um erro na leitura do Banco de Dados: " + SQLError);
+            conexao.disconect();
             return null;
         }
         catch(Exception geralError){
             System.err.println("Ocorreu um erro geral: " + geralError);
+            conexao.disconect();
             return null;
         }
     }
     public boolean deleteSetor(int id){
         try{
-            Conexao conexao = new Conexao();
             conexao.conect();
+
             String codigoDelete = "delete from setor where id = "+ id;
             int resultado = conexao.executaSql(codigoDelete);
             if(resultado != 1){
                 System.out.println("Você teve sucesso em deletar o Setor");
+                conexao.disconect();
                 return true;
             }
 
         }catch(SQLException e){
             System.err.println("Houve um erro durante a exclusão do Banco de Dados: "+e);
+            conexao.disconect();
             return false;
         }catch (Exception e){
             System.err.println("Houve um erro geral: "+e);
+            conexao.disconect();
             return false;
         }
+        conexao.disconect();
         return false;
     }
 
     public boolean insertSetor(Setor setor){
         try{
-            conexao = new Conexao();
             conexao.conect();
+
             String sqlInsertion = "Insert into public Setor(orcamento, nome, id, cnpj_empresa)"
                                 + "values " + "(" + setor + ")";
             int resultado = conexao.executaSql(sqlInsertion);
             
             if(resultado != 0){
+                conexao.disconect();
                 return false;
             }
+            conexao.disconect();
             return true;
 
         } catch(SQLException SQLError){
             System.err.println("Ocorreu um erro com Inserção no Banco de Dados: " + SQLError);
+            conexao.disconect();
             return false;
         } catch(Exception geralError){
             System.err.println("Ocorreu um erro geral: " + geralError);
+            conexao.disconect();
             return false;
         }
     }
 
     public Setor readOnSetor(int id) {
         try {
-            conexao = new Conexao();
             Setor setor;
+
+            conexao.conect();
+
             String querySetor = "SELECT * FROM Setor WHERE id = " + id;
             ResultSet resultadoQuery = conexao.executaQuery(querySetor);
             if (!resultadoQuery.next()) {
@@ -96,32 +112,59 @@ public class DAOSetor {
                 Double orcamento = resultadoQuery.getDouble("orcamento");
                 setor = new Setor(orcamento, nome, id, cnpj_empresa);
             }
+            conexao.disconect();
             return setor;
         } catch (SQLException SQLError) {
             System.err.println("Ocorreu um erro na leitura do Banco de Dados: " + SQLError);
+            conexao.disconect();
             return null;
         } catch (Exception geralError) {
             System.err.println("Ocorreu um erro geral: " + geralError);
+            conexao.disconect();
             return null;
         }
     }
 
-    public boolean updateSetor(int id, Setor setor){
+    public boolean updateSetor(String opt, int id, String dado){
         try {
-            conexao = new Conexao();
-            String sqlUpdate = "Update Setor \n"+
-                               "set orcamento = "+setor.getOrcamento()+" , "+
-                               "nome = "+setor.getNome()+" , "+
-                               "cnpj_empresa = "+setor.getCnpj_empresa()+" \n"+
-                               "where id = " +setor.getId();
-            int resultado = conexao.executaSql(sqlUpdate);
+            conexao.conect();
             
-            return (resultado != 0)?true:false;
+            int resultado;
+            String sqlUpdate;
+
+            switch (opt) {
+                case "id":
+                    sqlUpdate = "Update Setor set id = "+dado+" where id = "+id;
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+    
+                case "nome":
+                    sqlUpdate = "Update Setor set nome = \'"+dado+"\' where id = "+id;
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "orcamento":
+                    sqlUpdate = "Update Setor set orcamento = "+dado+" where id = "+id;
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+                
+                case "cnpj_empresa":
+                    sqlUpdate = "Update Setor set cnpj_empresa = \'"+dado+"\' where id = "+id;
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+
+                default:
+                    throw new Exception("Valor não encontrado");
+            }
+            conexao.disconect();
+            return true;
         } catch (SQLException SQLError) {
             System.err.println("Ocorreu um erro durante a atualização do Banco de Dados: " + SQLError);
+            conexao.disconect();
             return false;
         } catch (Exception geralError) {
             System.err.println("Ocorreu um erro geral: " + geralError);
+            conexao.disconect();
             return false;
         }
     }
