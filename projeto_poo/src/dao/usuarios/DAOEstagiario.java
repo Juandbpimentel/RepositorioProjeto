@@ -9,6 +9,11 @@ import sistema.Conexao;
 
 public class DAOEstagiario{
     private Conexao conexao;
+
+    public DAOEstagiario(){
+        this.conexao = new Conexao();
+    }
+
     public ArrayList<Estagiario> ReadAll(){
         try {
             ArrayList<Estagiario> arrayEstagiario = new ArrayList<Estagiario>();
@@ -66,17 +71,60 @@ public class DAOEstagiario{
             return arrayEstagiario;
         } 
         catch (SQLException sqlError) {
-            System.err.println("Erro no banco de dados:" +sqlError);            
+            System.err.println("Ocorreu um erro durante a busca no banco de dados:" +sqlError);            
             return null; 
         } 
         catch (Exception geralError){
-            System.err.println("Erro no código:" +geralError);            
+            System.err.println("Ocorreu um erro geral:" +geralError);            
             return null;
         }
     }
+
+    public Estagiario readOneEstagiario(String cpf){
+        try{
+            conexao.conect();
+            String sqlQueryEstagiario = "Select * from Estagiario where cpf: \'"+cpf+"\'" ;
+            ResultSet resultadoQueryEstagiario = conexao.executaQuery(sqlQueryEstagiario);
+            if(!resultadoQueryEstagiario.next()){
+                throw new NullPointerException("Não foi possível encontrar o Estagiário com este CPF");
+            }else{
+                int id_categoria = resultadoQueryEstagiario.getInt("id_categoria");
+                int id_setor = resultadoQueryEstagiario.getInt("id_setor");
+                int dia_pagamento = resultadoQueryEstagiario.getInt("dia_pagamento");
+                int tempo_estagio = resultadoQueryEstagiario.getInt("tempo_estagio");
+                Date inicio_estagio = resultadoQueryEstagiario.getDate("incio_estagio");
+                
+                String sqlQueryPessoa = "Select * from Pessoa where cpf = \'"+cpf+"\'";
+                ResultSet resultadoQueryPessoa = conexao.executaQuery(sqlQueryPessoa);
+                if(!resultadoQueryPessoa.next()){
+                    throw new NullPointerException("Não foi possível encontrar o Estagiário com este CPF");
+                    
+                }else{
+                    String nome = resultadoQueryPessoa.getString("nome");
+                    Date data_nasc = resultadoQueryPessoa.getDate("data_nasc");
+                    String cpf = resultadoQueryPessoa.getString("cpf");
+                    String login = resultadoQueryPessoa.getString("login");
+                    String senha = resultadoQueryPessoa.getString("senha");
+                    String tipo = resultadoQueryPessoa.getString("tipo");
+                    int id_endereco = resultadoQueryPessoa.getInt("id_endereco");
+
+                    Estagiario estagiario = new Estagiario(nome, login, senha, tipo, cpf, data_nasc.toLocalDate(), inicio_estagio.toLocalDate(), tempo_estagio, dia_pagamento, id_categoria, id_setor, id_endereco);
+                    return estagiario;
+                }
+            }
+
+        }catch (SQLException sqlError) {
+            System.err.println("Ocorreu um erro durante a busca no banco de dados:" +sqlError);            
+            return null; 
+        } 
+        catch (Exception geralError){
+            System.err.println("Ocorreu um erro geral:" +geralError);            
+            return null;
+        }
+    }
+    
     public boolean deleteEstagiario(String cpf){
         try{
-            Conexao conexao = new Conexao();
             conexao.conect();
             String codigoDelete = "delete from estagiario where cpf = "+ cpf;
             int resultado = conexao.executaSql(codigoDelete);

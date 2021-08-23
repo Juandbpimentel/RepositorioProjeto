@@ -21,7 +21,7 @@ public class Estado {
     }
 
     public String toString(){
-        return " "+uf+" , "+nome+" ";
+        return " ("+uf+" , "+nome+") ";
     }
 
     public ArrayList<Cidade> getCidades() {
