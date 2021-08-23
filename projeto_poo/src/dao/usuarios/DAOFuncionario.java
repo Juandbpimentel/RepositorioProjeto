@@ -134,4 +134,19 @@ public class DAOFuncionario {
             return null;
         }
     }
+    public boolean insertFuncionario(Funcionario funcionario){
+        try {
+            conexao.conect();
+            String sqlInsertFuncionario = "insert into public.Funcionario(bonificacao, cpf, id_categoria, id_setor, dia_pagamento, data_inicio)\n"
+            +"values ("+funcionario.getBonificacao()+" , \'"+funcionario.getCpf()+" , "+funcionario.getId_categoria()+" , "+funcionario.getId_setor()+" , "+funcionario.getDia_pagamento()+" , \'"+funcionario.getData_inicio()+"\')";
+            int resultado = conexao.executaSql(sqlInsertFuncionario);
+            return (resultado != 0);
+        } catch (SQLException e) {
+            System.err.println("Houve um erro durante a inserção no banco de dados: "+e);
+            return false;
+        }catch(Exception e){
+            System.err.println("Houve um erro geral: "+e);
+            return false;
+        }
+    }
 }
