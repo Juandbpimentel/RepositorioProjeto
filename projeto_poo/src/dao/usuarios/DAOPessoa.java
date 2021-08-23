@@ -53,8 +53,6 @@ public class DAOPessoa{
                 return true;
             }
 
-
-
         }catch(SQLException e){
             System.err.println("Houve um erro durante a exclusão do Banco de Dados: "+e);
             return false;
@@ -63,5 +61,42 @@ public class DAOPessoa{
             return false;
         }
         return false;
+    }
+    public Pessoa readOnePessoa(String cpf){
+        try {
+            conexao.conect();
+            String sqlQueryPessoa = "SELECT * FROM PESSOA WHERE cpf = \'"+cpf+"\'";
+            ResultSet resultadoQueryPessoa = conexao.executaQuery(sqlQueryPessoa);
+            if (!resultadoQueryPessoa.next()) {
+                throw new NullPointerException("A pessoa que você está procurando não foi encontrado, retornou nulo");
+            }else{
+                String nome = resultadoQueryPessoa.getString("nome"), login = resultadoQueryPessoa.getString("login"), senha = resultadoQueryPessoa.getString("senha"), tipo = resultadoQueryPessoa.getString("tipo");
+                int idendereco = resultadoQueryPessoa.getInt("id_endereco");
+                Date data = resultadoQueryPessoa.getDate("data_nasc");
+                Pessoa pessoa = new Pessoa(nome,login,senha,tipo,cpf,data.toLocalDate(),idendereco);
+                return pessoa;
+            }
+        } catch (SQLException SQLError) {
+            System.err.println("Ocorreu um erro durante a busca no Banco de Dados: " + SQLError);
+            return null;
+        } catch (Exception geralError) {
+            System.err.println("Ocorreu um erro geral: " + geralError);
+            return null;
+        }
+    }
+    public boolean insertPessoa(Pessoa pessoa){
+        try{
+            conexao.conect();
+            String sqlInsertPessoa = "insert into public.Pessoa(nome, data_nasc, cpf, login, senha, tipo, id_endereco)\n"
+            +"values (\'"+pessoa.getNome()+"\' , \'"+pessoa.getData_nasc()+"\' , \'"+pessoa.getCpf()+"\' , \'"+pessoa.getLogin()+"\' , \'"+pessoa.getSenha()+"\' , \'"+pessoa.getTipo()+"\' , "+pessoa.getId_endereco()+")";
+            int resultado = conexao.executaSql(sqlInsertPessoa);
+            return (resultado != 0);
+        }catch (SQLException e) {
+            System.err.println("Houve um erro durante a inserção no banco de dados: "+e);
+            return false;
+        }catch(Exception e){
+            System.err.println("Houve um erro geral: "+e);
+            return false;
+        }
     }
 }
