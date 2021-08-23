@@ -108,25 +108,31 @@ public class DAOEndereco {
         }
     }
 
-    public boolean updateEndereco(int id, Endereco endereco){
+    public boolean updatePessoa(String opt, int cpf ,String dado){
         try {
-            conexao = new Conexao();
-            String sqlUpdate = "Update Endereco \n"+
-                               "set id = "+endereco.getId()+" , "+
-                               "numero = "+endereco.getNumero()+" , "+
-                               "cep = "+endereco.getCep()+" , "+
-                               "rua = "+endereco.getRua()+" , "+
-                               "complemento = "+endereco.getComplemento()+" , "+
-                               "id_bairro = "+endereco.getId_bairro()+" \n"+
-                               "where id = " + endereco.getId();
-            int resultado = conexao.executaSql(sqlUpdate);
-            
-            return (resultado != 0)?true:false;
+            // 
+            //
+            conexao.conect();
+            int resultado;
+            String sqlUpdate;
+
+            switch (opt) {
+                case "nome":
+                    sqlUpdate = "Update Pessoa set nome = \'" + dado + "\' where cpf = \'" + cpf+"\';";
+                    break;
+
+                default:
+                    throw new Exception("Valor não encontrado");
+            }
+            conexao.disconect();
+            return true;
         } catch (SQLException SQLError) {
             System.err.println("Ocorreu um erro durante a atualização do Banco de Dados: " + SQLError);
+            conexao.disconect();
             return false;
         } catch (Exception geralError) {
             System.err.println("Ocorreu um erro geral: " + geralError);
+            conexao.disconect();
             return false;
         }
     }

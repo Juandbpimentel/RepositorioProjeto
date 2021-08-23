@@ -104,7 +104,7 @@ public class DAOPessoa{
                     break;
 
                 case "id_endereco":
-                    sqlUpdate = "Update Pessoa set id_endereco = " + Integer.parseInt(dado) + " where cpf = \'" + cpf+"\'";
+                    sqlUpdate = "Update Pessoa set id_endereco = " + dado + " where cpf = \'" + cpf+"\'";
                     resultado = conexao.executaSql(sqlUpdate);
                     break;
 
@@ -113,7 +113,7 @@ public class DAOPessoa{
             }
 
             conexao.disconect();
-            return (resultado != 0);
+            return true;
         } catch (SQLException SQLError) {
             System.err.println("Ocorreu um erro durante a atualização do Banco de Dados: " + SQLError);
             conexao.disconect();
