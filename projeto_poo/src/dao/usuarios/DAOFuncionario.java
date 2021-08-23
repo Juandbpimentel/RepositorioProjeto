@@ -163,7 +163,8 @@ public class DAOFuncionario {
             switch (opt) {
 
                 case "nome":
-                    sqlUpdate = "Update Pessoa set nome = \'" + dado + "\' where cpf = \'" + cpf+"\';";
+                sqlUpdate = "Update Pessoa set nome = \'" + dado + "\' where cpf = \'" + cpf+"\';";
+
                     resultado = conexao.executaSql(sqlUpdate);
                     break;
 
@@ -193,27 +194,27 @@ public class DAOFuncionario {
                     break;
 
                 case "id_endereco":
-                    sqlUpdate = "Update Pessoa set id_endereco = " + Integer.parseInt(dado) + " where cpf = \'" + cpf+"\'";
+                    sqlUpdate = "Update Pessoa set id_endereco = " + dado + " where cpf = \'" + cpf+"\'";
                     resultado = conexao.executaSql(sqlUpdate);
                     break;
 
                 case "bonificacao":
-                    sqlUpdate = "Update Pessoa set bonificacao = " + Double.parseDouble(dado) + " where cpf = \'" + cpf+"\'";
+                    sqlUpdate = "Update Pessoa set bonificacao = " + dado + " where cpf = \'" + cpf+"\'";
                     resultado = conexao.executaSql(sqlUpdate);
                     break;
 
                 case "id_categoria":
-                    sqlUpdate = "Update Pessoa set id_categoria = " + Integer.parseInt(dado) + " where cpf = \'" + cpf+"\'";
+                    sqlUpdate = "Update Pessoa set id_categoria = " + dado + " where cpf = \'" + cpf+"\'";
                     resultado = conexao.executaSql(sqlUpdate);
                     break;
 
                 case "id_setor":
-                    sqlUpdate = "Update Pessoa set id_setor = " + Integer.parseInt(dado) + " where cpf = \'" + cpf+"\'";
+                    sqlUpdate = "Update Pessoa set id_setor = " + dado + " where cpf = \'" + cpf+"\'";
                     resultado = conexao.executaSql(sqlUpdate);
                     break;
 
                 case "dia_pagamento":
-                    sqlUpdate = "Update Pessoa set dia_pagamento = " + Integer.parseInt(dado) + " where cpf = \'" + cpf+"\'";
+                    sqlUpdate = "Update Pessoa set dia_pagamento = " + dado + " where cpf = \'" + cpf+"\'";
                     resultado = conexao.executaSql(sqlUpdate);
                     break;
 
@@ -227,7 +228,7 @@ public class DAOFuncionario {
             }
 
             conexao.disconect();
-            return (resultado != 0);
+            return true;
         } catch (SQLException SQLError) {
             System.err.println("Ocorreu um erro durante a atualização do Banco de Dados: " + SQLError);
             conexao.disconect();
