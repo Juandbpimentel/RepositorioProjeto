@@ -84,26 +84,27 @@ public class DAOEndereco {
             return false;
         }
     }
-}
-public Endereco readOnEndereco(int id) {
-    try {
-        conexao = new Conexao();
-        Endereco endereco;
-        String queryEndereco = "SELECT * FROM endereco WHERE ID = " + id;
-        ResultSet resultadoQuery = conexao.executaQuery(queryEndereco);
-        if (!resultadoQuery.next()) {
-            throw new NullPointerException("Não foi possível achar o endereco");
-        } else {
-            String cep = resultadoQuery.getString("cep"), rua = resultadoQuery.getString("rua"), complemento = resultadoQuery.getString("complemento");
-            int numero = resultadoQuery.getInt("numero"), idbairro = resultadoQuery.getInt("id_bairro");
-            endereco = new Endereco(id, numero, cep, rua, complemento, idbairro);
+    
+    public Endereco readOnEndereco(int id) {
+        try {
+            conexao = new Conexao();
+            Endereco endereco;
+            String queryEndereco = "SELECT * FROM endereco WHERE ID = " + id;
+            ResultSet resultadoQuery = conexao.executaQuery(queryEndereco);
+            if (!resultadoQuery.next()) {
+                throw new NullPointerException("Não foi possível achar o endereco");
+            } else {
+                String cep = resultadoQuery.getString("cep"), rua = resultadoQuery.getString("rua"), complemento = resultadoQuery.getString("complemento");
+                int numero = resultadoQuery.getInt("numero"), idbairro = resultadoQuery.getInt("id_bairro");
+                endereco = new Endereco(id, numero, cep, rua, complemento, idbairro);
+            }
+            return endereco;
+        } catch (SQLException SQLError) {
+            System.err.println("Ocorreu um erro na leitura do Banco de Dados: " + SQLError);
+            return null;
+        } catch (Exception geralError) {
+            System.err.println("Ocorreu um erro geral: " + geralError);
+            return null;
         }
-        return endereco;
-    } catch (SQLException SQLError) {
-        System.err.println("Ocorreu um erro na leitura do Banco de Dados: " + SQLError);
-        return null;
-    } catch (Exception geralError) {
-        System.err.println("Ocorreu um erro geral: " + geralError);
-        return null;
     }
 }
