@@ -5,6 +5,8 @@
  */
 package projeto_poo;
 
+import java.util.ArrayList;
+
 import dao.lugar.DAOEstado;
 import modelos.lugar.Estado;
 import sistema.Conexao;
@@ -20,13 +22,11 @@ public class menuPrincipal {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("projeto_poo.menuPrincipal.main()");
-        viewMenuLogin.main(args);
-
         DAOEstado daoEstado = new DAOEstado();
 
-        Estado estado = daoEstado.readOnEstado("RJ");
-        System.out.println(estado);
+        ArrayList<Estado> estados = daoEstado.readAll();
+        
+        System.out.println(estados);
     }
 
 }

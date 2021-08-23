@@ -12,13 +12,12 @@ public class DAOEstado {
     private Conexao conexao;
 
     public DAOEstado(){
-        conexao = new Conexao();
+        this.conexao = new Conexao();
     }
 
     public ArrayList<Estado> readAll(){
         try {
             ArrayList<Estado> arrayEstado = new ArrayList<Estado>();
-            conexao = new Conexao();
             conexao.conect();
 
             String codBusca = "Select * from estado";
@@ -45,7 +44,6 @@ public class DAOEstado {
 
     public boolean insertEstado(Estado estado){
         try {
-            conexao = new Conexao();
             conexao.conect();
             String sqlInsertion = "Insert into public Estado(uf,nome)"+
                                   "Values "+"("+estado+")";
@@ -65,11 +63,9 @@ public class DAOEstado {
 
     public Estado readOnEstado(String uf){
         try {
-
-            Conexao conexao = new Conexao();
-
+            conexao.conect();
             Estado estado;
-            String queryEstado = "SELECT * FROM ESTADO WHERE UF = "+uf;
+            String queryEstado = "SELECT * FROM ESTADO WHERE UF = \'"+uf+"\'";
             ResultSet resultadoQuery = conexao.executaQuery(queryEstado);
             if (!resultadoQuery.next()) {
                 throw new NullPointerException("Não foi possível achar nenhum estado");
@@ -89,7 +85,6 @@ public class DAOEstado {
     }
     public boolean deleteEstado(int id){
         try{
-            Conexao conexao = new Conexao();
             conexao.conect();
             String codigoDelete = "delete from estado where id = "+ id;
             int resultado = conexao.executaSql(codigoDelete);
