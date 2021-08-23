@@ -23,7 +23,7 @@ public class DAODiretor {
                 String cnpjEmpresa = "", cpf="";
                 int idCategoria = 0;
 
-                String sqlQueryPessoa = "Select * from pessoa where cpf = "+cpf;
+                String sqlQueryPessoa = "Select * from pessoa where cpf = \'"+cpf+"\'";
                 ResultSet resultadoQueryPessoa = conexao.executaQuery(sqlQueryPessoa);
 
                 String nome = "", login="", senha="", tipo="";
@@ -104,7 +104,8 @@ public class DAODiretor {
         try{
             Conexao conexao = new Conexao();
             conexao.conect();
-            String codigoDelete = "delete from Diretor where cpf = "+ cpf;
+            
+            String codigoDelete = "delete from Diretor where cpf = \'"+ cpf +"\'";
             int resultado = conexao.executaSql(codigoDelete);
             if(resultado != 1){
                 System.out.println("Você teve sucesso em deletar o diretor");

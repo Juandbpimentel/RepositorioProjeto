@@ -89,7 +89,7 @@ public class Estagiario extends Pessoa implements EstagiarioGUI {
     }
 
     public String toString(){
-        return "(\'"+nome"\', \'"+login"\', \'"+senha"\', \'"+tipo"\', \'"+cpf"\', \'"+data_nasc"\', \'"+inicio_estagio"\', \'"+tempo_estagio"\', \'"+dia_pagamento"\', \'"+id_categoria"\', \'"+id_setor"\', \'"+id_endereco"\')";
+        return "(\'"+nome+"\', \'"+login+"\', \'"+senha+"\', \'"+tipo+"\', \'"+cpf+"\', \'"+data_nasc+"\', \'"+inicio_estagio+"\', \'"+tempo_estagio+"\', \'"+dia_pagamento+"\', \'"+id_categoria+"\', \'"+id_setor+"\', \'"+id_endereco+"\')";
     }
 }
 

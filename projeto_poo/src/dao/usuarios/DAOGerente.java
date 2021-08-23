@@ -29,7 +29,7 @@ public class DAOGerente {
                 cpf = result.getString("cpf");
                 bonificacao_gerente = result.getDouble("bonificacao_gerente");
 
-                String sqlQueryPessoa = "Select * from Pessoa where cpf = "+cpf;
+                String sqlQueryPessoa = "Select * from pessoa where cpf = \'"+cpf+"\'";
                 ResultSet resultQueryPessoa = conexao.executaQuery(sqlQueryPessoa);
 
                 String nome ="", 
@@ -156,8 +156,6 @@ public class DAOGerente {
                 return true;
             }
 
-
-
         }catch(SQLException e){
             System.err.println("Houve um erro durante a exclusão do Banco de Dados: "+e);
             return false;
@@ -166,5 +164,86 @@ public class DAOGerente {
             return false;
         }
         return false;
+    }
+    public boolean insertGerente(Gerente gerente){
+        try {
+            conexao.conect();
+            String sqlInsertGerente = "insert into public.Gerente(bonificacao_gerente, cpf)\n"
+            +"values("+gerente.getBonificacao_gerente()+" , \'"+gerente.getCpf()+"\')";
+            int resultado = conexao.executaSql(sqlInsertGerente);
+            return (resultado != 0);
+        } catch (SQLException e) {
+            System.err.println("Houve um erro durante a inserção no banco de dados: "+e);
+            return false;
+        }catch(Exception e){
+            System.err.println("Houve um erro geral: "+e);
+            return false;
+        }
+    }
+
+    public boolean updatePessoa(String opt, int cpf ,String dado){
+        try {
+            // 
+            //
+            conexao = new Conexao();
+            int resultado;
+            String sqlUpdate;
+
+            switch (opt) {
+                case "nome":
+                sqlUpdate = "Update Pessoa set nome = \'" + dado + "\' where cpf = \'" + cpf+"\';";
+
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "login":
+                    sqlUpdate = "Update Pessoa set login = \'" + dado + "\' where cpf = \'" + cpf+"\';";
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "senha":
+                    sqlUpdate = "Update Pessoa set senha = \'" + dado + "\' where cpf = \'" + cpf+"\';";
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "tipo":
+                    sqlUpdate = "Update Pessoa set tipo = \'" + dado + "\' where cpf = \'" + cpf+"\';";
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "cpf":
+                    sqlUpdate = "Update Pessoa set cpf = \'" + dado + "\' where cpf = \'" + cpf+"\';";
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "data_nasc":
+                    sqlUpdate = "Update Pessoa set data_nasc = \'" + dado + "\' where cpf = \'" + cpf+"\';";
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "id_endereco":
+                    sqlUpdate = "Update Pessoa set id_endereco = " + dado + " where cpf = \'" + cpf+"\'";
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+                    
+                case "bonificacao_gerente":
+                    sqlUpdate = "Update Gerente set bonificacao_gerente = " + dado + " where cpf = " + cpf;
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+                default:
+                    throw new Exception("Valor não encontrado");
+            }
+
+            conexao.disconect();
+            return true;
+        } catch (SQLException SQLError) {
+            System.err.println("Ocorreu um erro durante a atualização do Banco de Dados: " + SQLError);
+            conexao.disconect();
+            return false;
+        } catch (Exception geralError) {
+            System.err.println("Ocorreu um erro geral: " + geralError);
+            conexao.disconect();
+            return false;
+        }
     }
 }

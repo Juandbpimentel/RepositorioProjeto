@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import modelos.usuarios.Funcionario;
 
 public class DAOFuncionario {
+    
     private Conexao conexao;
+    
     public DAOFuncionario(){
         this.conexao = new Conexao();
     }
@@ -77,6 +79,7 @@ public class DAOFuncionario {
             return null;
         }
     }
+
     public boolean deleteFuncionario(String cpf){
         try{
             conexao.conect();
@@ -98,11 +101,14 @@ public class DAOFuncionario {
         }
         return false;
     }
+    
+    
     public Funcionario readOneFuncionario(String cpf){
         try {
             conexao.conect();
             String sqlQueryFuncionario = "Select * From Funcionario Where cpf = \'"+cpf+"\'";
             ResultSet resultadoQueryFuncionario = conexao.executaQuery(sqlQueryFuncionario);
+            
             if(!resultadoQueryFuncionario.next()){
                 throw new NullPointerException("Não foi possível encontrar o funcionário com este cpf");            
             } else{
@@ -111,6 +117,7 @@ public class DAOFuncionario {
                 Date inicio = resultadoQueryFuncionario.getDate("data_inicio");
                 String sqlQueryPessoa = "Select * from pessoa where cpf = \'"+cpf+"\'";
                 ResultSet resultadoQueryPessoa = conexao.executaQuery(sqlQueryPessoa);
+                
                 if(!resultadoQueryPessoa.next()){
                     throw new NullPointerException("Não foi possível encontrar o funcionário com este cpf");
                 }else{
@@ -123,8 +130,115 @@ public class DAOFuncionario {
             }
         } catch(SQLException e){
             System.err.println("Houve um erro durante a exclusão do Banco de Dados: "+e);
+            return null;
         }catch (Exception e){
             System.err.println("Houve um erro geral: "+e);
+            return null;
         }
     }
+    
+    
+    public boolean insertFuncionario(Funcionario funcionario){
+        try {
+            conexao.conect();
+            String sqlInsertFuncionario = "insert into public.Funcionario(bonificacao, cpf, id_categoria, id_setor, dia_pagamento, data_inicio)\n"
+            +"values ("+funcionario.getBonificacao()+" , \'"+funcionario.getCpf()+" , "+funcionario.getId_categoria()+" , "+funcionario.getId_setor()+" , "+funcionario.getDia_pagamento()+" , \'"+funcionario.getData_inicio()+"\')";
+            int resultado = conexao.executaSql(sqlInsertFuncionario);
+            return (resultado != 0);
+        } catch (SQLException e) {
+            System.err.println("Houve um erro durante a inserção no banco de dados: "+e);
+            return false;
+        }catch(Exception e){
+            System.err.println("Houve um erro geral: "+e);
+            return false;
+        }
+    }
+
+    public boolean updatePessoa(String opt, int cpf ,String dado){
+        try {
+            conexao = new Conexao();
+            int resultado;
+            String sqlUpdate;
+
+            switch (opt) {
+
+                case "nome":
+                sqlUpdate = "Update Pessoa set nome = \'" + dado + "\' where cpf = \'" + cpf+"\';";
+
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "login":
+                    sqlUpdate = "Update Pessoa set login = \'" + dado + "\' where cpf = \'" + cpf+"\';";
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "senha":
+                    sqlUpdate = "Update Pessoa set senha = \'" + dado + "\' where cpf = \'" + cpf+"\';";
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "tipo":
+                    sqlUpdate = "Update Pessoa set tipo = \'" + dado + "\' where cpf = \'" + cpf+"\';";
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "cpf":
+                    sqlUpdate = "Update Pessoa set cpf = \'" + dado + "\' where cpf = \'" + cpf+"\';";
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "data_nasc":
+                    sqlUpdate = "Update Pessoa set data_nasc = \'" + dado + "\' where cpf = \'" + cpf+"\';";
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "id_endereco":
+                    sqlUpdate = "Update Pessoa set id_endereco = " + dado + " where cpf = \'" + cpf+"\'";
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "bonificacao":
+                    sqlUpdate = "Update Pessoa set bonificacao = " + dado + " where cpf = \'" + cpf+"\'";
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "id_categoria":
+                    sqlUpdate = "Update Pessoa set id_categoria = " + dado + " where cpf = \'" + cpf+"\'";
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "id_setor":
+                    sqlUpdate = "Update Pessoa set id_setor = " + dado + " where cpf = \'" + cpf+"\'";
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "dia_pagamento":
+                    sqlUpdate = "Update Pessoa set dia_pagamento = " + dado + " where cpf = \'" + cpf+"\'";
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "data_inicio":
+                    sqlUpdate = "Update Pessoa set data_inicio = \'" + dado + "\' where cpf = \'" + cpf+"\'";
+                    resultado = conexao.executaSql(sqlUpdate);
+                    break;
+
+                default:
+                    throw new Exception("Valor não encontrado");
+            }
+
+            conexao.disconect();
+            return true;
+        } catch (SQLException SQLError) {
+            System.err.println("Ocorreu um erro durante a atualização do Banco de Dados: " + SQLError);
+            conexao.disconect();
+            return false;
+        } catch (Exception geralError) {
+            System.err.println("Ocorreu um erro geral: " + geralError);
+            conexao.disconect();
+            return false;
+        }
+    }
+
+
 }
