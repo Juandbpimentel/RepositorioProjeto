@@ -63,26 +63,70 @@ public class DAOLogInteracao {
         }
         return false;
     }
-public LogInteracao readOneLogInteracao(int id){
-    try {
-        conexao = new Conexao();
-        LogInteracao loginteracao;
-        String queryLogInteracao = "Select * from Log_Interacao where id =" +id;
-        ResultSet resultadoQuery = conexao.executaQuery(queryLogInteracao);
-        if(!resultadoQuery.next()){
-            throw new NullPointerException("Não foi possível realizar login");
-        } else{
-            String tipo = resultadoQuery.getString("tipo"), codigo = resultadoQuery.getString("codigo"), mensagem = resultadoQuery.getString("mensagem"), login = resultadoQuery.getString("login_pessoa");
-            Timestamp data = resultadoQuery.getTimestamp("data");
-            loginteracao = new LogInteracao(data, tipo, codigo, mensagem, id, login);
+    public LogInteracao readOneLogInteracao(int id){
+        try {
+            conexao = new Conexao();
+            LogInteracao loginteracao;
+            String queryLogInteracao = "Select * from Log_Interacao where id =" +id;
+            ResultSet resultadoQuery = conexao.executaQuery(queryLogInteracao);
+            if(!resultadoQuery.next()){
+                throw new NullPointerException("Não foi possível realizar login");
+            } else{
+                String tipo = resultadoQuery.getString("tipo"), codigo = resultadoQuery.getString("codigo"), mensagem = resultadoQuery.getString("mensagem"), login = resultadoQuery.getString("login_pessoa");
+                Timestamp data = resultadoQuery.getTimestamp("data");
+                loginteracao = new LogInteracao(data, tipo, codigo, mensagem, id, login);
+            }
+            return loginteracao;
+        } catch(SQLException SQLError){
+            System.err.println("Ocorreu um erro na leitura do Banco de Dados: " + SQLError);
+            return null;
+        } catch(Exception geralError){
+            System.err.println("Ocorreu um erro geral: " + geralError);
+            return null;
         }
-        return loginteracao;
-    } catch(SQLException SQLError){
-        System.err.println("Ocorreu um erro na leitura do Banco de Dados: " + SQLError);
-        return null;
-    } catch(Exception geralError){
-        System.err.println("Ocorreu um erro geral: " + geralError);
-        return null;
     }
-} 
+
+    public boolean insertLogInteracao(LogInteracao logInteracao){
+        try{
+            conexao = new Conexao();
+            conexao.conect();
+            String sqlInsertion = "Insert into public log_interacao(data, tipo, codigo, mensagem, id, login_pessoa)"
+                                + "values " + "(" + logInteracao + ")";
+            int resultado = conexao.executaSql(sqlInsertion);
+            
+            if(resultado != 0){
+                return false;
+            }
+            return true;
+
+        } catch(SQLException SQLError){
+            System.err.println("Ocorreu um erro com Inserção no Banco de Dados: " + SQLError);
+            return false;
+        } catch(Exception geralError){
+            System.err.println("Ocorreu um erro geral: " + geralError);
+            return false;
+        }
+    }
+
+    public boolean updateLogInteracao(int id, LogInteracao logInteracao){
+        try {
+            conexao = new Conexao();
+            String sqlUpdate = "Update Log_interacao \n"+
+                               "set data = "+logInteracao.getData()+" , "+
+                               "tipo = "+logInteracao.getTipo()+" , "+
+                               "codigo = "+logInteracao.getCodigo()+" , "+
+                               "mensagem = "+logInteracao.getMensagem()+" , "+
+                               "login_pessoa = "+logInteracao.getLogin_pessoa()+" \n"+
+                               "where id = " +logInteracao.getId();
+            int resultado = conexao.executaSql(sqlUpdate);
+            
+            return (resultado != 0)?true:false;
+        } catch (SQLException SQLError) {
+            System.err.println("Ocorreu um erro durante a atualização do Banco de Dados: " + SQLError);
+            return false;
+        } catch (Exception geralError) {
+            System.err.println("Ocorreu um erro geral: " + geralError);
+            return false;
+        }
+    }
 }

@@ -119,4 +119,26 @@ public class DAOCategoria {
         }
     }
 
+    public boolean updateCategoria(int id, Categoria categoria){
+        try {
+            conexao = new Conexao();
+            String sqlUpdate = "Update Categoria \n"+
+                               "set id = "+categoria.getId()+" , "+
+                               "nome = "+categoria.getNome()+" , "+
+                               "carga_horaria = "+categoria.getCarga_horaria()+" , "+
+                               "descricao = "+categoria.getDescricao()+" , "+
+                               "salario = "+categoria.getSalario()+" , "+
+                               "cnpj_empresa = "+categoria.getCnpj_empresa()+" \n"+
+                               "where id = " + categoria.getId();
+            int resultado = conexao.executaSql(sqlUpdate);
+            
+            return (resultado != 0)?true:false;
+        } catch (SQLException SQLError) {
+            System.err.println("Ocorreu um erro durante a atualização do Banco de Dados: " + SQLError);
+            return false;
+        } catch (Exception geralError) {
+            System.err.println("Ocorreu um erro geral: " + geralError);
+            return false;
+        }
+    }
 }

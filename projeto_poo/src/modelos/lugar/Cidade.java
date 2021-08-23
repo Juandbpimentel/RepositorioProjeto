@@ -4,25 +4,24 @@ import java.util.ArrayList;
 
 public class Cidade {
     private int id;
-    private String nome, 
-                   id_estado;
+    private String nome, uf;
     ArrayList<Bairro> bairros;
 
-    public Cidade(int id, String nome, String id_estado) {
+    public Cidade(int id, String nome, String uf) {
         this.id = id;
         this.nome = nome;
-        this.id_estado = id_estado;
+        this.uf = uf;
         //this.bairros = bairros;
     }
 
 
 
-    public String getId_estado() {
-        return id_estado;
+    public String getUf() {
+        return uf;
     }
     
-    public void setId_estado(String id_estado) {
-        this.id_estado = id_estado;
+    public void setUf(String uf) {
+        this.uf = uf;
     }
 
     public ArrayList<Bairro> getBairros() {

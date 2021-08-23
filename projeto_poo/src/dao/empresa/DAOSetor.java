@@ -82,4 +82,47 @@ public class DAOSetor {
             return false;
         }
     }
+
+    public Setor readOnSetor(int id) {
+        try {
+            conexao = new Conexao();
+            Setor setor;
+            String querySetor = "SELECT * FROM Setor WHERE id = " + id;
+            ResultSet resultadoQuery = conexao.executaQuery(querySetor);
+            if (!resultadoQuery.next()) {
+                throw new NullPointerException("Não foi possível achar o setor");
+            } else {
+                String nome = resultadoQuery.getString("nome"), cnpj_empresa = resultadoQuery.getString("cnpj_empresa");
+                Double orcamento = resultadoQuery.getDouble("orcamento");
+                setor = new Setor(orcamento, nome, id, cnpj_empresa);
+            }
+            return setor;
+        } catch (SQLException SQLError) {
+            System.err.println("Ocorreu um erro na leitura do Banco de Dados: " + SQLError);
+            return null;
+        } catch (Exception geralError) {
+            System.err.println("Ocorreu um erro geral: " + geralError);
+            return null;
+        }
+    }
+
+    public boolean updateSetor(int id, Setor setor){
+        try {
+            conexao = new Conexao();
+            String sqlUpdate = "Update Setor \n"+
+                               "set orcamento = "+setor.getOrcamento()+" , "+
+                               "nome = "+setor.getNome()+" , "+
+                               "cnpj_empresa = "+setor.getCnpj_empresa()+" \n"+
+                               "where id = " +setor.getId();
+            int resultado = conexao.executaSql(sqlUpdate);
+            
+            return (resultado != 0)?true:false;
+        } catch (SQLException SQLError) {
+            System.err.println("Ocorreu um erro durante a atualização do Banco de Dados: " + SQLError);
+            return false;
+        } catch (Exception geralError) {
+            System.err.println("Ocorreu um erro geral: " + geralError);
+            return false;
+        }
+    }
 }

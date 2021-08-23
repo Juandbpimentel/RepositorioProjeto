@@ -67,3 +67,4 @@ projeto_poo/bin/projeto_poo/menuPrincipal.class
 projeto_poo/bin/modelos/lugar/Estado.class
 projeto_poo/bin/dao/lugar/DAOEstado.class
 projeto_poo/bin/dao/lugar/DAOEndereco.class
+*.class
