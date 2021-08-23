@@ -11,6 +11,10 @@ import java.lang.NullPointerException;
 public class DAOEstado {
     private Conexao conexao;
 
+    public DAOEstado(){
+        conexao = new Conexao();
+    }
+
     public ArrayList<Estado> readAll(){
         try {
             ArrayList<Estado> arrayEstado = new ArrayList<Estado>();
@@ -61,7 +65,9 @@ public class DAOEstado {
 
     public Estado readOnEstado(String uf){
         try {
-            conexao = new Conexao();
+
+            Conexao conexao = new Conexao();
+
             Estado estado;
             String queryEstado = "SELECT * FROM ESTADO WHERE UF = "+uf;
             ResultSet resultadoQuery = conexao.executaQuery(queryEstado);

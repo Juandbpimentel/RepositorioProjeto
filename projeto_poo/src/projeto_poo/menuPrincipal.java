@@ -5,6 +5,8 @@
  */
 package projeto_poo;
 
+import dao.lugar.DAOEstado;
+import modelos.lugar.Estado;
 import sistema.Conexao;
 import views.sistema.menulogin.viewMenuLogin;
 
@@ -20,9 +22,11 @@ public class menuPrincipal {
     public static void main(String[] args) {
         System.out.println("projeto_poo.menuPrincipal.main()");
         viewMenuLogin.main(args);
-        Conexao conexao = new Conexao();
-        conexao.conect();
-        conexao.disconect();
+
+        DAOEstado daoEstado = new DAOEstado();
+
+        Estado estado = daoEstado.readOnEstado("RJ");
+        System.out.println(estado);
     }
 
 }

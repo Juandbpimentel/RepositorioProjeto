@@ -107,4 +107,27 @@ public class DAOEndereco {
             return null;
         }
     }
+
+    public boolean updateEndereco(int id, Endereco endereco){
+        try {
+            conexao = new Conexao();
+            String sqlUpdate = "Update Endereco \n"+
+                               "set id = "+endereco.getId()+" , "+
+                               "numero = "+endereco.getNumero()+" , "+
+                               "cep = "+endereco.getCep()+" , "+
+                               "rua = "+endereco.getRua()+" , "+
+                               "complemento = "+endereco.getComplemento()+" , "+
+                               "id_bairro = "+endereco.getId_bairro()+" \n"+
+                               "where id = " + endereco.getId();
+            int resultado = conexao.executaSql(sqlUpdate);
+            
+            return (resultado != 0)?true:false;
+        } catch (SQLException SQLError) {
+            System.err.println("Ocorreu um erro durante a atualização do Banco de Dados: " + SQLError);
+            return false;
+        } catch (Exception geralError) {
+            System.err.println("Ocorreu um erro geral: " + geralError);
+            return false;
+        }
+    }
 }
