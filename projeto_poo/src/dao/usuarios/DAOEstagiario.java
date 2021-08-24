@@ -246,15 +246,19 @@ public class DAOEstagiario{
                 throw new Exception("Não foi possível deletar o funcionário");
             }
         }catch(SQLException SQLError){
-            System.err.println("Houve um erro durante a exclusão do Banco de Dados: "+SQLError);
-            return false;
-        }catch(Exception err){
-            System.err.println("Houve um erro geral: "+err);
+            System.err.println("Houve um erro durante a exclusão do Banco de Dados: " +SQLError);
             return false;
         }
+        catch(Exception geralError){
+            System.err.println("Houve um erro geral: " +geralError);
+            return false;
+        }
+        
     }
-
 }
+
+
+
 
 /*
     if(!resultQueryClasse.next()){
