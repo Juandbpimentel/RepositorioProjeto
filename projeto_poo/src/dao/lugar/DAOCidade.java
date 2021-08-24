@@ -21,15 +21,19 @@ public class DAOCidade {
 
             String codBusca = "Select * from funcionario";
             ResultSet resultado = conexao.executaQuery(codBusca);
-
-            while (resultado.next()) {
-                int id;
-                String est, nome;
-                id = resultado.getInt("id");
-                est = resultado.getString("id_estado");
-                nome = resultado.getString("nome");
-                Cidade cidade = new Cidade(id, nome, est);
-                arrayCidade.add(cidade);
+            
+            if (!resultado.next()) {
+                throw new NullPointerException("Não foi possível achar nenhuma cidade");
+            }else{
+                do{
+                    int id;
+                    String est, nome;
+                    id = resultado.getInt("id");
+                    est = resultado.getString("id_estado");
+                    nome = resultado.getString("nome");
+                    Cidade cidade = new Cidade(id, nome, est);
+                    arrayCidade.add(cidade);
+                }while (resultado.next());
             }
 
             return arrayCidade;

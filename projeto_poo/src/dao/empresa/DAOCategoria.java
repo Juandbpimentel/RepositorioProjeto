@@ -23,6 +23,9 @@ public class DAOCategoria {
             String codigoBusca = "Select * from categoria";
             ResultSet busca = conexao.executaQuery(codigoBusca);
 
+            if (!busca.next()) {
+                throw new NullPointerException("Não foi possível achar nenhuma categoria");
+            }
             while (busca.next()) {
                 String nome, descricao, cnpj_empresa;
                 int id, carga_horaria;
