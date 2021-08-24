@@ -8,23 +8,21 @@ package projeto_poo;
 import java.util.ArrayList;
 
 import dao.lugar.DAOEstado;
+import dao.usuarios.DAOPessoa;
 import modelos.lugar.Estado;
+import modelos.usuarios.Pessoa;
 
 /**
  *
  * @author juand
  */
-public class menuPrincipal {
+public class Projeto_poo {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        DAOEstado daoEstado = new DAOEstado();
-
-        ArrayList<Estado> estados = daoEstado.readAll();
-        
-        System.out.println(estados);
+  
     }
 
 }
