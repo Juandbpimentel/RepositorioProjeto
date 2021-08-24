@@ -7,6 +7,8 @@ package projeto_poo;
 
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import javax.swing.JFrame;
