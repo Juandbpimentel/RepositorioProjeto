@@ -108,47 +108,56 @@ public class DAOLogInteracao {
         }
     }
 
-    public boolean updateLogInteracao(int id, LogInteracao logInteracao){
-        public boolean updateEndereco(String opt, int cpf ,String dado){
-            try {
-                // 
-                //
-                conexao = new Conexao();
-                String sqlUpdate;
-    
-                switch (opt) {
-                    
-                    case "data":
-                    sqlUpdate = "Update Estado set data = \'" + dado + "\' where cpf = \'" + cpf+"\';";
-                    conexao.executaSql(sqlUpdate);
-                    break;
-    
-                    case "tipo":
-                    sqlUpdate = "Update Estado set tipo = \'" + dado + "\' where cpf = \'" + cpf+"\';";
-                    conexao.executaSql(sqlUpdate);
-                    break;
+    public boolean updateLogInteracao(String opt, int cpf ,String dado){
+        try {
+            // 
+            //
+            conexao = new Conexao();
+            String sqlUpdate;
 
-                    case "codigo":
-                    sqlUpdate = "Update Estado set codigo = \'" + dado + "\' where cpf = \'" + cpf+"\';";
+            switch (opt) {
+                
+                case "data":
+                    sqlUpdate = "Update LogInteracao set data = \'" + dado + "\' where cpf = \'" + cpf+"\'";
                     conexao.executaSql(sqlUpdate);
                     break;
+                case "tipo":
+                    sqlUpdate = "Update LogInteracao set tipo = \'" + dado + "\' where cpf = \'" + cpf+"\'";
+                    conexao.executaSql(sqlUpdate);
+                    break;
+                case "codigo":
+                    sqlUpdate = "Update LogInteracao set codigo = \'" + dado + "\' where cpf = \'" + cpf+"\'";
+                    conexao.executaSql(sqlUpdate);
+                    break;
+                case "mensagem":
+                    sqlUpdate = "Update LogInteracao set mensagem = \'" + dado + "\' where cpf = \'" + cpf+"\'";
+                    conexao.executaSql(sqlUpdate);
+                    break;
+                case "login_pessoa":
+                    sqlUpdate = "Update LogInteracao set login_pessoa = \'" + dado + "\' where cpf = \'" + cpf+"\'";
+                    conexao.executaSql(sqlUpdate);
+                    break;
+                case "id":
+                    sqlUpdate = "Update LogInteracao set id = " + dado + " where cpf = \'" + cpf+"\'";
+                    conexao.executaSql(sqlUpdate);
+                    break;
+                
 
-                    default:
-                        throw new Exception("Valor não encontrado");
-                }
-    
-                conexao.disconect();
-                return true;
-            } catch (SQLException SQLError) {
-                System.err.println("Ocorreu um erro durante a atualização do Banco de Dados: " + SQLError);
-                conexao.disconect();
-                return false;
-            } catch (Exception geralError) {
-                System.err.println("Ocorreu um erro geral: " + geralError);
-                conexao.disconect();
-                return false;
+                default:
+                    throw new Exception("Valor não encontrado");
             }
-        }    
+
+            conexao.disconect();
+            return true;
+        } catch (SQLException SQLError) {
+            System.err.println("Ocorreu um erro durante a atualização do Banco de Dados: " + SQLError);
+            conexao.disconect();
+            return false;
+        } catch (Exception geralError) {
+            System.err.println("Ocorreu um erro geral: " + geralError);
+            conexao.disconect();
+            return false;
+        }
     }
 
 }

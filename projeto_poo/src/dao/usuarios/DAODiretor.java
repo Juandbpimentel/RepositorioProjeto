@@ -100,6 +100,11 @@ public class DAODiretor {
             return null;
         }
     }
+
+
+
+
+
     public boolean deleteDiretor(String cpf){
         try{
             Conexao conexao = new Conexao();
@@ -121,6 +126,11 @@ public class DAODiretor {
         }
         return false;
     }
+
+
+
+    
+
     public boolean insertDiretor(Diretor diretor){
         try{
 

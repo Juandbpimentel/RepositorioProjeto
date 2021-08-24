@@ -3,7 +3,6 @@ import modelos.empresa.Categoria;
 
 import interfaces.gui.EstagiarioGUI;
 
-import java.sql.Date;
 import java.time.LocalDate;
 
 public class Estagiario extends Pessoa implements EstagiarioGUI {

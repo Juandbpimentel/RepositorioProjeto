@@ -151,9 +151,9 @@ public class DAOEstagiario{
             String sqlUpdate;
 
             switch (opt) {
+                
                 case "nome":
-                sqlUpdate = "Update Pessoa set nome = \'" + dado + "\' where cpf = \'" + cpf+"\';";
-
+                    sqlUpdate = "Update Pessoa set nome = \'" + dado + "\' where cpf = \'" + cpf+"\';";
                     conexao.executaSql(sqlUpdate);
                     break;
 
@@ -189,27 +189,27 @@ public class DAOEstagiario{
 
                 //Estagiario
                 case "inicio_estagio":
-                    sqlUpdate = "Update Pessoa set inicio_estagio = \'" + dado + "\' where cpf = \'" + cpf+"\'";
+                    sqlUpdate = "Update Estagiario set inicio_estagio = \'" + dado + "\' where cpf = \'" + cpf+"\'";
                     conexao.executaSql(sqlUpdate);
                     break;
                 
                 case "tempo_estagio":
-                    sqlUpdate = "Update Pessoa set tempo_estagio = " + dado + " where cpf = \'" + cpf+"\'";
+                    sqlUpdate = "Update Estagiario set tempo_estagio = " + dado + " where cpf = \'" + cpf+"\'";
                     conexao.executaSql(sqlUpdate);
                     break;
                 
                 case "dia_pagamento":
-                    sqlUpdate = "Update Pessoa set dia_pagamento = " + dado + " where cpf = \'" + cpf+"\'";
+                    sqlUpdate = "Update Estagiario set dia_pagamento = " + dado + " where cpf = \'" + cpf+"\'";
                     conexao.executaSql(sqlUpdate);
                     break;
 
                 case "id_categoria":
-                    sqlUpdate = "Update Pessoa set id_categoria = " + dado + " where cpf = \'" + cpf+"\'";
+                    sqlUpdate = "Update Estagiario set id_categoria = " + dado + " where cpf = \'" + cpf+"\'";
                     conexao.executaSql(sqlUpdate);
                     break;
 
                 case "id_setor":
-                    sqlUpdate = "Update Pessoa set id_setor = " + dado + " where cpf = \'" + cpf+"\'";
+                    sqlUpdate = "Update Estagiario set id_setor = " + dado + " where cpf = \'" + cpf+"\'";
                     conexao.executaSql(sqlUpdate);
                     break;
 
@@ -218,7 +218,7 @@ public class DAOEstagiario{
             }
 
             conexao.disconect();
-            return (resultado != 0);
+            return true;
         } catch (SQLException SQLError) {
             System.err.println("Ocorreu um erro durante a atualização do Banco de Dados: " + SQLError);
             conexao.disconect();
@@ -237,43 +237,20 @@ public class DAOEstagiario{
             int resultado = conexao.executaSql(codigoDelete);
             if(resultado != 1){
                 System.out.println("Você teve sucesso em deletar o estagiario");
+                conexao.disconect();
                 return true;
+            }else{
+                throw new Exception("Não foi possível deletar o funcionário");
             }
-
-
-
         }catch(SQLException SQLError){
             System.err.println("Houve um erro durante a exclusão do Banco de Dados: "+SQLError);
             return false;
-            System.err.println("Houve um erro geral: "+geralError);
+        }catch(Exception err){
+            System.err.println("Houve um erro geral: "+err);
             return false;
         }
-        return false;
     }
-}
 
-public boolean updateLogInteracao(int id, LogInteracao logInteracao){
-    try {
-        conexao = new Conexao();
-        String sqlUpdate = "Update Log_interacao \n"+
-                           "set data = "+logInteracao.getData()+" , "+
-                           "tipo = "+logInteracao.getTipo()+" , "+
-                           "codigo = "+logInteracao.getCodigo()+" , "+
-                           "mensagem = "+logInteracao.getMensagem()+" , "+
-                           "login_pessoa = "+logInteracao.getLogin_pessoa()+" \n"+
-                           "where id = " +logInteracao.getId();
-        int resultado = conexao.executaSql(sqlUpdate);
-        
-        return (resultado != 0)?true:false;
-    } catch (SQLException SQLError) {
-        System.err.println("Ocorreu um erro durante a atualização do Banco de Dados: " + SQLError);
-        return false;
-    } catch (Exception geralError) {
-        System.err.println("Ocorreu um erro geral: " + geralError);
-        return false;
-    }
-}
-}
 }
 
 /*

@@ -185,14 +185,12 @@ public class DAOGerente {
         try {
             // 
             //
-            conexao = new Conexao();
-            int resultado;
+            conexao.conect();
             String sqlUpdate;
 
             switch (opt) {
                 case "nome":
-                sqlUpdate = "Update Pessoa set nome = \'" + dado + "\' where cpf = \'" + cpf+"\';";
-
+                    sqlUpdate = "Update Pessoa set nome = \'" + dado + "\' where cpf = \'" + cpf+"\';";
                     conexao.executaSql(sqlUpdate);
                     break;
 
@@ -225,7 +223,39 @@ public class DAOGerente {
                     sqlUpdate = "Update Pessoa set id_endereco = " + dado + " where cpf = \'" + cpf+"\'";
                     conexao.executaSql(sqlUpdate);
                     break;
-                    
+                
+                
+                
+                
+                //Funcionario
+                case "bonificacao":
+                    sqlUpdate = "Update Funcionario set bonificacao = " + dado + " where cpf = \'" + cpf+"\'";
+                    conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "id_categoria":
+                    sqlUpdate = "Update Funcionario set id_categoria = " + dado + " where cpf = \'" + cpf+"\'";
+                    conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "id_setor":
+                    sqlUpdate = "Update Funcionario set id_setor = " + dado + " where cpf = \'" + cpf+"\'";
+                    conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "dia_pagamento":
+                    sqlUpdate = "Update Funcionario set dia_pagamento = " + dado + " where cpf = \'" + cpf+"\'";
+                    conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "data_inicio":
+                    sqlUpdate = "Update Funcionario set data_inicio = \'" + dado + "\' where cpf = \'" + cpf+"\'";
+                    conexao.executaSql(sqlUpdate);
+                    break;
+                
+                
+                
+                //Gerente                    
                 case "bonificacao_gerente":
                     sqlUpdate = "Update Gerente set bonificacao_gerente = " + dado + " where cpf = " + cpf;
                     conexao.executaSql(sqlUpdate);

@@ -67,8 +67,7 @@ public class DAOPessoa{
         try {
             // 
             //
-            conexao = new Conexao();
-            int resultado;
+            conexao.conect();
             String sqlUpdate;
 
             switch (opt) {
