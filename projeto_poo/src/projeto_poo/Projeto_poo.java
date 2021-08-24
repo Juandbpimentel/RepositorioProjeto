@@ -7,6 +7,8 @@ package projeto_poo;
 
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import javax.swing.JFrame;
@@ -45,23 +47,29 @@ public class Projeto_poo {
        AtomicBoolean closed = new AtomicBoolean(false);
         telaLogin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
-        telaLogin.addWindowListener((WindowListener) new WindowListener() {
-            @Override
-            public void windowClosed(WindowEvent e) {
-                synchronized(closed) {
-                    closed.set(true);
-                    closed.notify();
+        telaLogin.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    synchronized(closed) {
+                        closed.set(true);
+                        closed.notify();
+                    }
+                    super.windowClosed(e);
                 }
-                super.windowClosed(e);
-            }
-        } );
+            } 
+        );
 
         telaLogin.setVisible(true);
         synchronized(closed) {
             while (!closed.get()) {
-                closed.wait();
-            }
-        }
+                try{
+                    closed.wait();
+                }catch(Exception e){
+                    System.out.println("Erro dutante a execução da janela");
+                }
+        }   
+}
+        
        main.setUsuario(telaLogin.getUsuario());
        System.out.println("Usuario: " + main.getUsuario());
        System.out.println("Usuario: " + main.getUsuario());
