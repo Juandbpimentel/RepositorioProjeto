@@ -16,7 +16,7 @@ create table if not exists CIDADE(
 	constraint cidade_pkey primary key (id),
 	--chave estrangeira 
 	constraint estado_fkey foreign key (uf)
-	references estado (uf) ON UPDATE NO ACTION ON DELETE NO ACTION DEFERRABLE INITIALLY DEFERRED
+	references estado (uf) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 create table if not exists bairro(
@@ -28,7 +28,7 @@ create table if not exists bairro(
 	constraint bairro_pkey primary key (id),
 	--chave estrangeira 
 	constraint cidade_fkey foreign key (id_cidade)
-	references cidade (id) ON UPDATE NO ACTION ON DELETE NO ACTION DEFERRABLE INITIALLY DEFERRED
+	references cidade (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 create table if not exists endereco(
@@ -43,7 +43,7 @@ create table if not exists endereco(
 	constraint endereco_pkey primary key (id),
 	--chave estrangeira 
 	constraint bairro_fkey foreign key (id_bairro)
-	references bairro (id) ON UPDATE NO ACTION ON DELETE NO ACTION DEFERRABLE INITIALLY DEFERRED
+	references bairro (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 create table if not exists pessoa(
@@ -60,7 +60,7 @@ create table if not exists pessoa(
 	constraint pessoa_pkey primary key (cpf),
 	--chave estrangeira 
 	constraint endereco_fkey foreign key (id_endereco)
-	references endereco (id) ON UPDATE NO ACTION ON DELETE NO ACTION DEFERRABLE INITIALLY DEFERRED
+	references endereco (id) ON UPDATE CASCADE ON DELETE CASCADE
 	
 );
 
@@ -77,7 +77,7 @@ create table if not exists Log_Interacao(
 	constraint log_alteracao_pkey primary key (id),
 	--chave estangeira
 	constraint pessoa_fkey foreign key (login_pessoa)
-	references pessoa (login) ON UPDATE NO ACTION ON DELETE NO ACTION DEFERRABLE INITIALLY DEFERRED
+	references pessoa (login) ON UPDATE CASCADE ON DELETE CASCADE
 	
 );
 
@@ -87,7 +87,7 @@ create table if not exists dono(
 	constraint dono_pkey primary key (cpf),
 	--chave estrangeira 
 	constraint pessoa_fkey foreign key (cpf)
-	references pessoa (cpf) ON UPDATE NO ACTION ON DELETE NO ACTION DEFERRABLE INITIALLY DEFERRED
+	references pessoa (cpf) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 create table if not exists empresa(
@@ -100,7 +100,7 @@ create table if not exists empresa(
 	constraint empresa_pkey primary key (cnpj), 
 	--chave estrangeira 
 	constraint dono_fkey foreign key (cpf_dono)
-	references dono (cpf) ON UPDATE NO ACTION ON DELETE NO ACTION DEFERRABLE INITIALLY DEFERRED
+	references dono (cpf) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 create table if not exists categoria(
@@ -115,7 +115,7 @@ create table if not exists categoria(
 	constraint categoria_pkey primary key (id), 
 	--chave estrangeira 
 	constraint empresa_fkey foreign key (cnpj_empresa)
-	references empresa (cnpj) ON UPDATE NO ACTION ON DELETE NO ACTION DEFERRABLE INITIALLY DEFERRED
+	references empresa (cnpj) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 create table if not exists setor(
@@ -128,7 +128,7 @@ create table if not exists setor(
 	constraint setor_pkey primary key (id),
 	--chave estrangeira
 	constraint empresa_fkey foreign key (cnpj_empresa)
-	references empresa (cnpj) ON UPDATE NO ACTION ON DELETE NO ACTION DEFERRABLE INITIALLY DEFERRED
+	references empresa (cnpj) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 create table if not exists funcionario(
@@ -143,13 +143,13 @@ create table if not exists funcionario(
 	constraint funcionario_pkey primary key (cpf),
 	--chave estrangeira
 	constraint pessoa_fkey foreign key (cpf)
-	references pessoa (cpf) ON UPDATE NO ACTION ON DELETE NO ACTION DEFERRABLE INITIALLY DEFERRED,
+	references pessoa (cpf) ON UPDATE CASCADE ON DELETE CASCADE,
 	
 	constraint categoria_fkey foreign key (id_categoria)
-	references categoria (id) ON UPDATE NO ACTION ON DELETE NO ACTION DEFERRABLE INITIALLY DEFERRED, 
+	references categoria (id) ON UPDATE CASCADE ON DELETE CASCADE, 
 	
 	constraint setor_fkey foreign key (id_setor)
-	references setor (id) ON UPDATE NO ACTION ON DELETE NO ACTION DEFERRABLE INITIALLY DEFERRED
+	references setor (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 create table if not exists diretor(
@@ -161,13 +161,13 @@ create table if not exists diretor(
 	constraint diretor_pkey primary key (cpf),
 	--chave estrangeira
 	constraint pessoa_fkey foreign key (cpf) 
-	references pessoa (cpf) ON UPDATE NO ACTION ON DELETE NO ACTION DEFERRABLE INITIALLY DEFERRED,
+	references pessoa (cpf) ON UPDATE CASCADE ON DELETE CASCADE,
 	
 	constraint empresa_fkey foreign key (cnpj_empresa)
-	references empresa (cnpj) ON UPDATE NO ACTION ON DELETE NO ACTION DEFERRABLE INITIALLY DEFERRED, 
+	references empresa (cnpj) ON UPDATE CASCADE ON DELETE CASCADE, 
 	
 	constraint categoria_fkey foreign key (id_categoria)
-	references categoria (id) ON UPDATE NO ACTION ON DELETE NO ACTION DEFERRABLE INITIALLY DEFERRED
+	references categoria (id) ON UPDATE CASCADE ON DELETE CASCADE
 	
 );
 
@@ -183,13 +183,13 @@ create table if not exists estagiario(
 	constraint estagiario_pkey primary key (cpf), 
 	--chave estrangeira
 	constraint pessoa_fkey foreign key (cpf)
-	references pessoa (cpf) ON UPDATE NO ACTION ON DELETE NO ACTION DEFERRABLE INITIALLY DEFERRED, 
+	references pessoa (cpf) ON UPDATE CASCADE ON DELETE CASCADE, 
 	
 	constraint categoria_fkey foreign key (id_categoria)
-	references categoria (id) ON UPDATE NO ACTION ON DELETE NO ACTION DEFERRABLE INITIALLY DEFERRED, 
+	references categoria (id) ON UPDATE CASCADE ON DELETE CASCADE, 
 	
 	constraint setor_fkey foreign key (id_setor)
-	references setor (id) ON UPDATE NO ACTION ON DELETE NO ACTION DEFERRABLE INITIALLY DEFERRED
+	references setor (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 create table if not exists treina (
@@ -201,10 +201,10 @@ create table if not exists treina (
 	constraint treina_pkey primary key (cpf_estagiario),
 	--chave estrangeira
 	constraint estagiario_fkey foreign key (cpf_estagiario)
-	references estagiario (cpf) ON UPDATE NO ACTION ON DELETE NO ACTION DEFERRABLE INITIALLY DEFERRED, 
+	references estagiario (cpf) ON UPDATE CASCADE ON DELETE CASCADE, 
 	
 	constraint funcionario_fkey foreign key (cpf_funcionario)
-	references funcionario (cpf) ON UPDATE NO ACTION ON DELETE NO ACTION DEFERRABLE INITIALLY DEFERRED
+	references funcionario (cpf) ON UPDATE CASCADE ON DELETE CASCADE
 	
 );
 
@@ -216,7 +216,7 @@ create table if not exists gerente (
 	constraint gerente_pkey primary key (cpf),
 	--chave estrangeira
 	constraint funcionario_fkey foreign key (cpf)
-	references funcionario (cpf) ON UPDATE NO ACTION ON DELETE NO ACTION DEFERRABLE INITIALLY DEFERRED
+	references funcionario (cpf) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 create table if not exists gerencia (
@@ -228,8 +228,8 @@ create table if not exists gerencia (
 	constraint gerencia_pkey primary key (gerente_cpf, id_setor), 
 	--chave estrangeira
 	constraint setor_fkey foreign key (id_setor)
-	references setor (id) ON UPDATE NO ACTION ON DELETE NO ACTION DEFERRABLE INITIALLY DEFERRED,
+	references setor (id) ON UPDATE CASCADE ON DELETE CASCADE,
 	
 	constraint gerente_fkey foreign key (gerente_cpf)
-	references gerente (cpf) ON UPDATE NO ACTION ON DELETE NO ACTION DEFERRABLE INITIALLY DEFERRED
+	references gerente (cpf) ON UPDATE CASCADE ON DELETE CASCADE
 );

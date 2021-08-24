@@ -215,6 +215,66 @@ public class Conexao {
         }
     }
 
+    public void insertData(){
+        try{
+            
+            Conexao conexao2 = new Conexao();
+            conexao2.conect(); 
+            
+            StringBuilder sb = new StringBuilder();
+            String linha = "";
+            String codigoSql = "";
+            
+            BufferedReader leitorArquivoTabelas = new BufferedReader(
+                                            new FileReader("src/resources/textos/inserts.sql")
+                                            );
+
+            while ((linha = leitorArquivoTabelas.readLine()) != null){
+                sb.append(linha).append("\n");
+            }
+
+            codigoSql = sb.toString();
+            conexao2.executaSql(codigoSql);
+            leitorArquivoTabelas.close();
+        } catch (FileNotFoundException e){
+            System.out.println("Ocorreu um erro, o arquivo para criação das tabelas não foi encontrado: "+e);
+        }catch (IOException e){
+            System.out.println("Ocorreu um erro, o stream de dados foi interrompido e causou a exceção: "+e);
+        }catch(SQLException e){
+            System.out.println("Ocorreu um erro durante a tentativa de fazer a alteração no banco de dados: "+e);
+        }
+    }
+
+    public void createTriggers(){
+        try{
+            
+            Conexao conexao2 = new Conexao();
+            conexao2.conect(); 
+            
+            StringBuilder sb = new StringBuilder();
+            String linha = "";
+            String codigoSql = "";
+            
+            BufferedReader leitorArquivoTabelas = new BufferedReader(
+                                            new FileReader("src/resources/textos/triggersAndTriggersFunctions.sql")
+                                            );
+
+            while ((linha = leitorArquivoTabelas.readLine()) != null){
+                sb.append(linha).append("\n");
+            }
+
+            codigoSql = sb.toString();
+            conexao2.executaSql(codigoSql);
+            leitorArquivoTabelas.close();
+        } catch (FileNotFoundException e){
+            System.out.println("Ocorreu um erro, o arquivo para criação das tabelas não foi encontrado: "+e);
+        }catch (IOException e){
+            System.out.println("Ocorreu um erro, o stream de dados foi interrompido e causou a exceção: "+e);
+        }catch(SQLException e){
+            System.out.println("Ocorreu um erro durante a tentativa de fazer a alteração no banco de dados: "+e);
+        }
+    }
+
 
     @SuppressWarnings("unused")
 	private void sleep(long ms){

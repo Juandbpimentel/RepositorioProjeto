@@ -33,7 +33,7 @@ returns trigger as $BODY$
 			where login_pessoa = old.login;
 			return old;
 		end if;
-ALTER TABLE tbl_StudentMarks DISABLE TRIGGER ALL;
+
 	END;
 $BODY$ LANGUAGE plpgsql;
 
@@ -69,7 +69,7 @@ returns trigger as $BODY$
 			delete from estagiario where cpf = old.cpf;
 			return old;
 		end if;
-ALTER TABLE tbl_StudentMarks DISABLE TRIGGER ALL;
+
 	END;
 $BODY$ language plpgsql;
 
@@ -105,7 +105,7 @@ returns trigger as $BODY$
 			
 			return old;
 		end if;
-ALTER TABLE tbl_StudentMarks DISABLE TRIGGER ALL;
+
 	END;
 $BODY$ language plpgsql;
 
@@ -142,7 +142,7 @@ returns trigger as $BODY$
 			
 			return old;
 		end if;
-ALTER TABLE tbl_StudentMarks DISABLE TRIGGER ALL;
+
 	END;
 $BODY$ language plpgsql;
 
@@ -180,7 +180,7 @@ returns trigger as $BODY$
 			
 			return old;
 		end if;
-ALTER TABLE tbl_StudentMarks DISABLE TRIGGER ALL;
+
 	END;
 $BODY$ language plpgsql;
 
@@ -255,7 +255,7 @@ returns trigger as $BODY$
 			return old;
 		end if;
 
-ALTER TABLE tbl_StudentMarks DISABLE TRIGGER ALL;
+
 	END;
 $BODY$ language plpgsql;
 
@@ -293,7 +293,7 @@ returns trigger as $BODY$
 			where id_categoria = old.id;
 			return old;
 		end if;
-ALTER TABLE tbl_StudentMarks DISABLE TRIGGER ALL;
+
 	END;
 $BODY$ language plpgsql;
 
@@ -331,7 +331,7 @@ returns trigger as $BODY$
 			where id_categoria = old.id;
 			return old;
 		end if;
-ALTER TABLE tbl_StudentMarks DISABLE TRIGGER ALL;
+
 	END;
 $BODY$ language plpgsql;
 
@@ -366,7 +366,7 @@ returns trigger as $BODY$
 
 			return old;
 		end if;
-ALTER TABLE tbl_StudentMarks DISABLE TRIGGER ALL;
+
 	END;
 $BODY$ language plpgsql;
 
@@ -400,7 +400,7 @@ returns trigger as $BODY$
 			where id_cidade = old.id;
 			return old;
 		end if;
-ALTER TABLE tbl_StudentMarks DISABLE TRIGGER ALL;
+
 	END;
 $BODY$ language plpgsql;
 
@@ -444,7 +444,7 @@ $$
             IF NOT FOUND THEN RETURN NULL; END IF;
                 return old;
 		END IF;
-ALTER TABLE tbl_StudentMarks DISABLE TRIGGER ALL;
+
 	END;
 $$
 LANGUAGE 'plpgsql';
@@ -482,7 +482,7 @@ $$
             IF NOT FOUND THEN RETURN NULL; END IF;
             return old;
 		END IF;
-ALTER TABLE tbl_StudentMarks DISABLE TRIGGER ALL;
+
 	END;
 $$
 LANGUAGE 'plpgsql';
@@ -521,7 +521,7 @@ $$
             IF NOT FOUND THEN RETURN NULL; END IF;
             return old;
 		END IF;
-ALTER TABLE tbl_StudentMarks DISABLE TRIGGER ALL;
+
 	END;
 $$
 LANGUAGE 'plpgsql';
@@ -560,7 +560,7 @@ $$
             IF NOT FOUND THEN RETURN NULL; END IF;
             return old;
 		END IF;
-ALTER TABLE tbl_StudentMarks DISABLE TRIGGER ALL;
+
 	END;
 $$
 LANGUAGE 'plpgsql';
@@ -599,7 +599,7 @@ $$
             DELETE FROM setor WHERE cnpj_empresa = OLD.cnpj;
 			return old;
 		END IF;
-ALTER TABLE tbl_StudentMarks DISABLE TRIGGER ALL;
+
 	END;
 $$
 LANGUAGE 'plpgsql';
@@ -639,7 +639,7 @@ $$
             DELETE FROM treina WHERE cpf_funcionario = OLD.cpf;
 			return old;
 		END IF;
-ALTER TABLE tbl_StudentMarks DISABLE TRIGGER ALL;
+
 	END;
 $$
 LANGUAGE 'plpgsql';
@@ -683,11 +683,49 @@ $$
 			
 			return old;
 		END IF;
-ALTER TABLE tbl_StudentMarks DISABLE TRIGGER ALL;
+
 	END;
 $$
 LANGUAGE 'plpgsql';
 
+
+--gerente -> gerencia
+CREATE OR REPLACE FUNCTION GERENTE_GERENCIA_FUNC()
+RETURNS TRIGGER AS
+$$
+	BEGIN
+		IF(TG_OP = 'UPDATE') THEN
+		
+            UPDATE gerente SET bonificacao = new.bonificacao,
+							  cpf = new.cpf,
+							  id_categoria = new.id_categoria,
+							  id_setor = new.id_setor,
+							  dia_pagamento = new.dia_pagamento,
+							  data_inicio = new.data_inicio
+			WHERE cpf = OLD.cpf;
+			IF NOT FOUND THEN RETURN NULL; END IF;
+
+			NEW.last_updated = now();
+
+			UPDATE gerente SET cpf = NEW.cpf
+			WHERE cpf = OLD.cpf;
+			RETURN NEW;
+	
+		ELSIF (TG_OP = 'DELETE') THEN
+            
+            DELETE FROM funcionario WHERE cpf = OLD.cpf;
+            IF NOT FOUND THEN RETURN NULL; END IF;
+		
+			OLD.last_updated = now();
+			
+            DELETE FROM gerente WHERE cpf = OLD.cpf;
+			
+			return old;
+		END IF;
+
+	END;
+$$
+LANGUAGE 'plpgsql';
 
 
 
@@ -725,7 +763,7 @@ $$
             DELETE FROM treina WHERE cpf_estagiario = OLD.cpf;
             RETURN OLD;
 		END IF;
-ALTER TABLE tbl_StudentMarks DISABLE TRIGGER ALL;
+
 	END;
 $$
 LANGUAGE 'plpgsql';
@@ -766,163 +804,190 @@ $$
 
             RETURN OLD;
         END IF;
-		ALTER TABLE tbl_StudentMarks DISABLE TRIGGER ALL;
+		
 	END;
 $$
 LANGUAGE 'plpgsql';
 
 
+
 -- Pessoa -> log_interação
-CREATE TRIGGER pessoa_log_interacao
-After UPDATE OR DELETE ON Pessoa
+CREATE CONSTRAINT TRIGGER pessoa_log_interacao
+after UPDATE OR DELETE ON Pessoa
+DEFERRABLE INITIALLY DEFERRED
+DEFERRABLE INITIALLY DEFERRED
 FOR EACH ROW EXECUTE PROCEDURE pessoa_log_interacao_func();
 
 
 
 -- Pessoa -> estagiario
-CREATE TRIGGER pessoa_estagiario
-AFTER UPDATE OR DELETE ON Pessoa
-FOR EACH ROW EXECUTE PROCEDURE pessoa_estagiario_func()
+CREATE CONSTRAINT TRIGGER pessoa_estagiario
+after UPDATE OR DELETE ON Pessoa
+DEFERRABLE INITIALLY DEFERRED
+DEFERRABLE INITIALLY DEFERRED
+FOR EACH ROW EXECUTE PROCEDURE pessoa_estagiario_func();
 
 
 
 --Pessoa ->funcionario
-CREATE TRIGGER pessoa_funcionario
-AFTER UPDATE OR DELETE ON Pessoa
-FOR EACH ROW EXECUTE PROCEDURE pessoa_funcionario_func()
+CREATE CONSTRAINT TRIGGER pessoa_funcionario
+after UPDATE OR DELETE ON Pessoa
+DEFERRABLE INITIALLY DEFERRED
+DEFERRABLE INITIALLY DEFERRED
+FOR EACH ROW EXECUTE PROCEDURE pessoa_funcionario_func();
 
 
 
 
 -- Pessoa -> dono
-CREATE TRIGGER pessoa_dono
-AFTER UPDATE OR DELETE ON Pessoa
-FOR EACH ROW EXECUTE PROCEDURE pessoa_dono_func()
+CREATE CONSTRAINT TRIGGER pessoa_dono
+after UPDATE OR DELETE ON Pessoa
+DEFERRABLE INITIALLY DEFERRED
+FOR EACH ROW EXECUTE PROCEDURE pessoa_dono_func();
 
 
 
 
 -- Pessoa -> diretor
-CREATE TRIGGER pessoa_diretor
-AFTER UPDATE OR DELETE ON Pessoa
-FOR EACH ROW EXECUTE PROCEDURE pessoa_diretor_func()
+CREATE CONSTRAINT TRIGGER pessoa_diretor
+after UPDATE OR DELETE ON Pessoa
+DEFERRABLE INITIALLY DEFERRED
+DEFERRABLE INITIALLY DEFERRED
+FOR EACH ROW EXECUTE PROCEDURE pessoa_diretor_func();
 
 
 
 
 -- Pessoa -> endereco
-CREATE TRIGGER pessoa_endereco
-AFTER UPDATE OR DELETE ON Pessoa
-FOR EACH ROW EXECUTE PROCEDURE pessoa_endereco_func()
+CREATE CONSTRAINT TRIGGER pessoa_endereco
+after UPDATE OR DELETE ON Pessoa
+DEFERRABLE INITIALLY DEFERRED
+DEFERRABLE INITIALLY DEFERRED
+FOR EACH ROW EXECUTE PROCEDURE pessoa_endereco_func();
 
 
 
 
 -- categoria -> diretor
-CREATE TRIGGER categoria_diretor
-AFTER UPDATE OR DELETE ON categoria
-FOR EACH ROW EXECUTE PROCEDURE categoria_diretor_func()
+CREATE CONSTRAINT TRIGGER categoria_diretor
+after UPDATE OR DELETE ON categoria
+DEFERRABLE INITIALLY DEFERRED
+FOR EACH ROW EXECUTE PROCEDURE categoria_diretor_func();
 
 
 
 
 
 -- categoria -> estagiario
-CREATE TRIGGER categoria_estagiario
-AFTER UPDATE OR DELETE ON categoria
-FOR EACH ROW EXECUTE PROCEDURE categoria_estagiario_func()
+CREATE CONSTRAINT TRIGGER categoria_estagiario
+after UPDATE OR DELETE ON categoria
+DEFERRABLE INITIALLY DEFERRED
+FOR EACH ROW EXECUTE PROCEDURE categoria_estagiario_func();
 
 
 
 
 -- categoria -> funcionario
-CREATE TRIGGER categoria_funcionario
-AFTER UPDATE OR DELETE ON categoria
-FOR EACH ROW EXECUTE PROCEDURE categoria_funcionario_func()
+CREATE CONSTRAINT TRIGGER categoria_funcionario
+after UPDATE OR DELETE ON categoria
+DEFERRABLE INITIALLY DEFERRED
+FOR EACH ROW EXECUTE PROCEDURE categoria_funcionario_func();
 
 
 
 
 -- bairro -> endereco
-CREATE TRIGGER bairro_endereco
-AFTER UPDATE OR DELETE ON bairro
-FOR EACH ROW EXECUTE PROCEDURE bairro_endereco_func()
+CREATE CONSTRAINT TRIGGER bairro_endereco
+after UPDATE OR DELETE ON bairro
+DEFERRABLE INITIALLY DEFERRED
+FOR EACH ROW EXECUTE PROCEDURE bairro_endereco_func();
 
 
 
 
 -- cidade -> bairro
-CREATE TRIGGER cidade_bairro
-AFTER UPDATE OR DELETE ON cidade
-FOR EACH ROW EXECUTE PROCEDURE cidade_bairro_func()
+CREATE CONSTRAINT TRIGGER cidade_bairro
+after UPDATE OR DELETE ON cidade
+DEFERRABLE INITIALLY DEFERRED
+FOR EACH ROW EXECUTE PROCEDURE cidade_bairro_func();
 
 
 
 
 -- setor -> funcionario
-CREATE TRIGGER setor_funcionario
-AFTER UPDATE OR DELETE ON setor
-FOR EACH ROW EXECUTE PROCEDURE setor_funcionario_func()
+CREATE CONSTRAINT TRIGGER setor_funcionario
+after UPDATE OR DELETE ON setor
+DEFERRABLE INITIALLY DEFERRED
+FOR EACH ROW EXECUTE PROCEDURE setor_funcionario_func();
     
 
 
 
 -- setor -> gerencia
-CREATE TRIGGER SETOR_GERENCIA_FUNC
-AFTER UPDATE OR DELETE ON Pessoa
-FOR EACH ROW EXECUTE PROCEDURE SETOR_GERENCIA_FUNC()
+CREATE CONSTRAINT TRIGGER SETOR_GERENCIA_FUNC
+after UPDATE OR DELETE ON Pessoa
+DEFERRABLE INITIALLY DEFERRED
+FOR EACH ROW EXECUTE PROCEDURE SETOR_GERENCIA_FUNC();
 
 
 
 -- setor -> estagiario
-CREATE TRIGGER SETOR_ESTAGIARIO_FUNC
-AFTER UPDATE OR DELETE ON Pessoa
-FOR EACH ROW EXECUTE PROCEDURE SETOR_ESTAGIARIO_FUNC()
+CREATE CONSTRAINT TRIGGER SETOR_ESTAGIARIO_FUNC
+after UPDATE OR DELETE ON Pessoa
+DEFERRABLE INITIALLY DEFERRED
+FOR EACH ROW EXECUTE PROCEDURE SETOR_ESTAGIARIO_FUNC();
 
 
 
 
 -- empresa -> setor
-CREATE TRIGGER EMPRESA_CATEGORIA
-AFTER UPDATE OR DELETE ON Pessoa
-FOR EACH ROW EXECUTE PROCEDURE EMPRESA_CATEGORIA_FUNC()
+CREATE CONSTRAINT TRIGGER EMPRESA_CATEGORIA
+after UPDATE OR DELETE ON Pessoa
+DEFERRABLE INITIALLY DEFERRED
+DEFERRABLE INITIALLY DEFERRED
+FOR EACH ROW EXECUTE PROCEDURE EMPRESA_CATEGORIA_FUNC();
 
 
 
 
 -- empresa -> categoria
-CREATE TRIGGER empresa_categoria
-AFTER UPDATE OR DELETE ON empresa
-FOR EACH ROW EXECUTE PROCEDURE empresa_categoria_func()
+CREATE CONSTRAINT TRIGGER empresa_categoria
+after UPDATE OR DELETE ON empresa
+DEFERRABLE INITIALLY DEFERRED
+FOR EACH ROW EXECUTE PROCEDURE empresa_categoria_func();
 
 
 
 
 -- funcionario -> treina
-CREATE TRIGGER FUNCIONARIO_TREINA
-AFTER UPDATE OR DELETE ON Pessoa
-FOR EACH ROW EXECUTE PROCEDURE FUNCIONARIO_TREINA_FUNC()
+CREATE CONSTRAINT TRIGGER FUNCIONARIO_TREINA
+after UPDATE OR DELETE ON Pessoa
+DEFERRABLE INITIALLY DEFERRED
+FOR EACH ROW EXECUTE PROCEDURE FUNCIONARIO_TREINA_FUNC();
 
 
 
 
 -- funcionario -> gerente
-CREATE TRIGGER FUNCIONARIO_GERENTE
-AFTER UPDATE OR DELETE ON Pessoa
-FOR EACH ROW EXECUTE PROCEDURE FUNCIONARIO_GERENTE_FUNC()
+CREATE CONSTRAINT TRIGGER FUNCIONARIO_GERENTE
+after UPDATE OR DELETE ON Pessoa
+DEFERRABLE INITIALLY DEFERRED
+FOR EACH ROW EXECUTE PROCEDURE FUNCIONARIO_GERENTE_FUNC();
 
 
 
 
 -- estagiario -> treina
-CREATE TRIGGER ESTAGIARIO_TREINA
-AFTER UPDATE OR DELETE ON Pessoa
-FOR EACH ROW EXECUTE PROCEDURE ESTAGIARIO_TREINA_FUNC() 
+CREATE CONSTRAINT TRIGGER ESTAGIARIO_TREINA
+after UPDATE OR DELETE ON Pessoa
+DEFERRABLE INITIALLY DEFERRED
+FOR EACH ROW EXECUTE PROCEDURE ESTAGIARIO_TREINA_FUNC();
 
 
 
 
 -- estado -> cidade
-CREATE TRIGGER ESTADO_CIDADE
-AFTER UPDATE OR DELETE ON Pessoa
-FOR EACH ROW EXECUTE PROCEDURE ESTADO_CIDADE_FUNC()
+CREATE CONSTRAINT TRIGGER ESTADO_CIDADE
+after UPDATE OR DELETE ON Pessoa
+DEFERRABLE INITIALLY DEFERRED
+FOR EACH ROW EXECUTE PROCEDURE ESTADO_CIDADE_FUNC();

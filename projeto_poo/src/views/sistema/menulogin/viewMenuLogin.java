@@ -37,6 +37,7 @@ public class viewMenuLogin extends javax.swing.JFrame {
         passwordTextField = new javax.swing.JTextField();
         errorPasswordLabel = new javax.swing.JLabel();
         loginButton = new javax.swing.JButton();
+        loginLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -76,27 +77,33 @@ public class viewMenuLogin extends javax.swing.JFrame {
             }
         });
 
+        loginLabel1.setForeground(new java.awt.Color(246, 146, 84));
+        loginLabel1.setText("Fazer Registro");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(errorPasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(passwordLabel)
-                            .addComponent(errorLoginLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(loginTextField)
-                            .addComponent(loginLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.CENTER, jPanel4Layout.createSequentialGroup()
                         .addGap(52, 52, 52)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(passwordTextField, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(loginButton, javax.swing.GroupLayout.Alignment.CENTER))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.CENTER, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                                .addComponent(loginButton)
+                                .addComponent(loginLabel1))))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(errorPasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(passwordLabel)
+                    .addComponent(errorLoginLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(loginTextField)
+                    .addComponent(loginLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
                 .addGap(48, 48, 48))
         );
         jPanel4Layout.setVerticalGroup(
@@ -116,7 +123,9 @@ public class viewMenuLogin extends javax.swing.JFrame {
                 .addComponent(errorPasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(loginButton)
-                .addGap(50, 50, 50))
+                .addGap(18, 18, 18)
+                .addComponent(loginLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(31, 31, 31))
         );
 
         jPanel2.setBackground(new java.awt.Color(59, 38, 74));
@@ -148,7 +157,7 @@ public class viewMenuLogin extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -165,45 +174,47 @@ public class viewMenuLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loginTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_loginTextFieldActionPerformed
-
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         boolean errorLogin = false, errorPassword = false;
-        
+
         String login = loginTextField.getText();
-        
+
         String password = passwordTextField.getText();
-        
+
         if(login.length() == 0){
             errorLoginLabel.setText("O campo login não pode estar vazio");
             errorLogin = true;
         }
-        
+
         if(password.length() == 0){
             errorPasswordLabel.setText("O campo password não pode estar vazio");
             errorPassword = true;
         }
-        
+
         if(!errorLogin){
             errorLoginLabel.setText("");
         }
-        
+
         if(!errorPassword){
             errorPasswordLabel.setText("");
         }
-        
+
         if(errorLogin || errorPassword){
             return;
         }
-        
+
         this.login = this.loginTextField.getText();
-        
+
         this.password = this.passwordTextField.getText();
-        
+
+        this.setVisible(false);
         JOptionPane.showMessageDialog(null,"O login do seu usuário é :\n "+this.login+"\n e a senha é : \n"+this.password, "Resultado do login", WIDTH);
+        this.setVisible(true);
     }//GEN-LAST:event_loginButtonActionPerformed
+
+    private void loginTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_loginTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -249,6 +260,7 @@ public class viewMenuLogin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JButton loginButton;
     private javax.swing.JLabel loginLabel;
+    private javax.swing.JLabel loginLabel1;
     private javax.swing.JTextField loginTextField;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JTextField passwordTextField;
