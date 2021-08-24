@@ -9,10 +9,14 @@ import modelos.lugar.Bairro;
 public class DAOBairro {
     private Conexao conexao;
 
+    public DAOBairro(){
+        conexao = new Conexao();
+    }
+
     public ArrayList<Bairro> readAll(){
         try {
             ArrayList<Bairro> arrayBairro = new ArrayList<Bairro>();
-            conexao = new Conexao();
+
             conexao.conect();
 
             String codBusca = "Select * from funcionario";
@@ -27,14 +31,17 @@ public class DAOBairro {
                 Bairro bairro = new Bairro(id, nome, cid);
                 arrayBairro.add(bairro);
             }
+            conexao.disconect();
             return arrayBairro;
         } 
         catch(SQLException SQLError){
             System.err.println("Ocorreu um erro na leitura do Banco de Dados: " + SQLError);
+            conexao.disconect();
             return null;
         }
         catch(Exception geralError){
             System.err.println("Ocorreu um erro geral: " + geralError);
+            conexao.disconect();
             return null;
         }
     }
@@ -52,13 +59,16 @@ public class DAOBairro {
                 int id_cidade = resultadoQuery.getInt("id_cidade");
                 bairro = new Bairro(id, nome, id_cidade);
             }
+            conexao.disconect();
             return bairro;
         }catch(SQLException bancoError){
                System.err.println("Ocorreu um erroao buscar no banco de dados: " +bancoError);
+               conexao.disconect();
                return null;
 
         }catch(Exception geralError){
             System.err.println("Ocorreu um erro geral: " +geralError);
+            conexao.disconect();
             return null;
         }
     }
@@ -70,16 +80,20 @@ public class DAOBairro {
             int resultado = conexao.executaSql(codigoDelete);
             if(resultado != 1){
                 System.out.println("Você teve sucesso em deletar o Bairro");
+                conexao.disconect();
                 return true;
             }
 
         }catch(SQLException e){
             System.err.println("Houve um erro durante a exclusão do Banco de Dados: "+e);
+            conexao.disconect();
             return false;
         }catch (Exception e){
             System.err.println("Houve um erro geral: "+e);
+            conexao.disconect();
             return false;
         }
+        conexao.disconect();
         return false;
     }
 
@@ -87,39 +101,63 @@ public class DAOBairro {
         try{
             conexao = new Conexao();
             conexao.conect();
-            String sqlInsertion = "Insert into public Bairro(id, nome, id_cidade)"
+            String sqlInsertion = "Insert into public Bairro(nome, id_cidade)"
                                 + "values " + "(" + bairro + ")";
             int resultado = conexao.executaSql(sqlInsertion);
             
             if(resultado != 0){
+                conexao.disconect();
                 return false;
             }
+            conexao.disconect();
             return true;
             
         } catch(SQLException SQLError){
             System.err.println("Ocorreu um erro com Inserção no Banco de Dados: " + SQLError);
+            conexao.disconect();
             return false;
         } catch(Exception geralError){
             System.err.println("Ocorreu um erro geral: " + geralError);
+            conexao.disconect();
             return false;
         }
     }
 
-    public boolean updateBairro(int id, Bairro bairro){
+    public boolean updateBairro(String opt, int id, String dado){
         try {
-            conexao = new Conexao();
-            String sqlUpdate = "Update Bairro \n"+
-                               "set nome = "+bairro.getNome()+" , "+
-                               "id_cidade = "+bairro.getId_cidade()+" \n"+
-                               "where id = " +bairro.getId();
-            int resultado = conexao.executaSql(sqlUpdate);
+            conexao.conect();
             
-            return (resultado != 0)?true:false;
+            int resultado;
+            String sqlUpdate;
+
+            switch (opt) {
+                case "id":
+                    sqlUpdate = "Update Bairro set id = "+dado+" where id = " + id;
+                    conexao.executaSql(sqlUpdate);
+                    break;
+    
+                case "nome":
+                    sqlUpdate = "Update Bairro set nome = \'"+dado+"\' where id = " + id;
+                    conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "id_cidade":
+                    sqlUpdate = "Update Categoria set id_cidade = \'"+dado+"\' where id = " + id;
+                    conexao.executaSql(sqlUpdate);
+                    break;
+
+                default:
+                    throw new Exception("Valor não encontrado");
+            }
+            conexao.disconect();
+            return true;
         } catch (SQLException SQLError) {
             System.err.println("Ocorreu um erro durante a atualização do Banco de Dados: " + SQLError);
+            conexao.disconect();
             return false;
         } catch (Exception geralError) {
             System.err.println("Ocorreu um erro geral: " + geralError);
+            conexao.disconect();
             return false;
         }
     }
