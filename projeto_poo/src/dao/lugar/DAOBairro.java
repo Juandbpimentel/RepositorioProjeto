@@ -22,14 +22,18 @@ public class DAOBairro {
             String codBusca = "Select * from funcionario";
             ResultSet resultado = conexao.executaQuery(codBusca);
             
-            while(resultado.next()){
-                int id, cid;
-                String nome;
-                id = resultado.getInt("id");
-                cid = resultado.getInt("id_cidade");
-                nome = resultado.getString("nome");
-                Bairro bairro = new Bairro(id, nome, cid);
-                arrayBairro.add(bairro);
+            if (!resultado.next()) {
+                throw new NullPointerException("Não foi possível achar nenhuma categoria");
+            }else{
+                do{
+                    int id, cid;
+                    String nome;
+                    id = resultado.getInt("id");
+                    cid = resultado.getInt("id_cidade");
+                    nome = resultado.getString("nome");
+                    Bairro bairro = new Bairro(id, nome, cid);
+                    arrayBairro.add(bairro);
+                }while(resultado.next());
             }
             conexao.disconect();
             return arrayBairro;

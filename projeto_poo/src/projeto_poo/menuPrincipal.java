@@ -9,8 +9,6 @@ import java.util.ArrayList;
 
 import dao.lugar.DAOEstado;
 import modelos.lugar.Estado;
-import sistema.Conexao;
-import views.sistema.menulogin.viewMenuLogin;
 
 /**
  *

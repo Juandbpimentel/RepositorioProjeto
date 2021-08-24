@@ -23,12 +23,16 @@ public class DAOEstado {
             String codBusca = "Select * from estado";
             ResultSet resultado = conexao.executaQuery(codBusca);
             
-            while(resultado.next()){
-                String nome, uf;
-                uf = resultado.getString("uf");
-                nome = resultado.getString("nome");
-                Estado estado = new Estado(uf, nome);
-                arrayEstado.add(estado);
+            if (!resultado.next()) {
+                throw new NullPointerException("Não foi possível achar nenhuma categoria");
+            }else{
+                do{
+                    String nome, uf;
+                    uf = resultado.getString("uf");
+                    nome = resultado.getString("nome");
+                    Estado estado = new Estado(uf, nome);
+                    arrayEstado.add(estado);
+                }while(resultado.next());
             }
             return arrayEstado;
         } 

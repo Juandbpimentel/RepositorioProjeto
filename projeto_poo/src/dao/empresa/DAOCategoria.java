@@ -25,24 +25,25 @@ public class DAOCategoria {
 
             if (!busca.next()) {
                 throw new NullPointerException("Não foi possível achar nenhuma categoria");
-            }
-            while (busca.next()) {
-                String nome, descricao, cnpj_empresa;
-                int id, carga_horaria;
-                double salario;
+            }else{
+                do{
+                    String nome, descricao, cnpj_empresa;
+                    int id, carga_horaria;
+                    double salario;
 
-                nome = busca.getString("nome");
-                descricao = busca.getString("descricao");
-                cnpj_empresa = busca.getString("cnpj_empresa");
+                    nome = busca.getString("nome");
+                    descricao = busca.getString("descricao");
+                    cnpj_empresa = busca.getString("cnpj_empresa");
 
-                id = busca.getInt("id");
-                carga_horaria = busca.getInt("carga_horaria");
+                    id = busca.getInt("id");
+                    carga_horaria = busca.getInt("carga_horaria");
 
-                salario = busca.getDouble("salario");
+                    salario = busca.getDouble("salario");
 
-                Categoria categoria = new Categoria(id, carga_horaria, nome, descricao, salario, cnpj_empresa);
-                arrayCategoria.add(categoria);
-                
+                    Categoria categoria = new Categoria(id, carga_horaria, nome, descricao, salario, cnpj_empresa);
+                    arrayCategoria.add(categoria);
+                    
+                } while (busca.next());
             }
             conexao.disconect();
             return arrayCategoria;

@@ -23,34 +23,38 @@ public class DAODiretor {
             String codigoBusca = "select * from diretor";
             ResultSet resultado = conexao.executaQuery(codigoBusca);
 
-            while (resultado.next()) {
-                String cnpjEmpresa = "", cpf="";
-                int idCategoria = 0;
+            if (!resultado.next()) {
+                throw new NullPointerException("Não foi possível achar nenhuma categoria");
+            }else{
+                do{
+                    String cnpjEmpresa = "", cpf="";
+                    int idCategoria = 0;
 
-                String sqlQueryPessoa = "Select * from pessoa where cpf = \'"+cpf+"\'";
-                ResultSet resultadoQueryPessoa = conexao.executaQuery(sqlQueryPessoa);
+                    String sqlQueryPessoa = "Select * from pessoa where cpf = \'"+cpf+"\'";
+                    ResultSet resultadoQueryPessoa = conexao.executaQuery(sqlQueryPessoa);
 
-                String nome = "", login="", senha="", tipo="";
-                int id_endereco = 0;
-                Date dataNasc = new Date(System.currentTimeMillis());
-                boolean achou = false;
+                    String nome = "", login="", senha="", tipo="";
+                    int id_endereco = 0;
+                    Date dataNasc = new Date(System.currentTimeMillis());
+                    boolean achou = false;
 
-                if(resultadoQueryPessoa.next()){
-                    nome = resultado.getString("nome");
-                    login = resultado.getString("login");
-                    senha = resultado.getString("senha");
-                    tipo = resultado.getString("tipo");
-                    dataNasc = resultado.getDate("data_nasc");
-                    id_endereco = resultado.getInt("id_endereco");
-                    achou = true;
-                }
-                if (!achou) {
-                    throw new NullPointerException("Não foi achada nenhuma pessoa com esse cpf");
-                }
+                    if(resultadoQueryPessoa.next()){
+                        nome = resultado.getString("nome");
+                        login = resultado.getString("login");
+                        senha = resultado.getString("senha");
+                        tipo = resultado.getString("tipo");
+                        dataNasc = resultado.getDate("data_nasc");
+                        id_endereco = resultado.getInt("id_endereco");
+                        achou = true;
+                    }
+                    if (!achou) {
+                        throw new NullPointerException("Não foi achada nenhuma pessoa com esse cpf");
+                    }
 
-                Diretor diretor = new Diretor(nome, login, senha, tipo, cpf, dataNasc.toLocalDate(), cnpjEmpresa, idCategoria,id_endereco);
-                arrayDiretores.add(diretor);
+                    Diretor diretor = new Diretor(nome, login, senha, tipo, cpf, dataNasc.toLocalDate(), cnpjEmpresa, idCategoria,id_endereco);
+                    arrayDiretores.add(diretor);
 
+                }while(resultado.next());
             }
             return arrayDiretores;
         } catch (SQLException erroSQL) {

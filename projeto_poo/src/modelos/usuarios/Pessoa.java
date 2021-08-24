@@ -1,7 +1,6 @@
 package modelos.usuarios;
 
 import modelos.lugar.Endereco;
-import sistema.Conexao;
 
 import java.time.LocalDate;
 

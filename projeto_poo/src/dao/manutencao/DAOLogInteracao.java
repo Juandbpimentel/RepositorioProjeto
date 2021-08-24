@@ -24,19 +24,23 @@ public class DAOLogInteracao {
             String codBusca = "Select * from funcionario";
             ResultSet resultado = conexao.executaQuery(codBusca);
 
-            while(resultado.next()){
-                Timestamp data;
-                String tipo, cod, mensa, login;
-                int id;
+            if (!resultado.next()) {
+                throw new NullPointerException("Não foi possível achar nenhuma categoria");
+            }else{
+                do{
+                    Timestamp data;
+                    String tipo, cod, mensa, login;
+                    int id;
 
-                data = resultado.getTimestamp("data");
-                tipo = resultado.getString("tipo");
-                cod = resultado.getString("codigo");
-                mensa = resultado.getString("mensagem");
-                login = resultado.getString("login_pessoa");
-                id = resultado.getInt("id");
-                LogInteracao loginteracao = new LogInteracao(data, tipo, cod, mensa, id, login);
-                arrayLogInteracao.add(loginteracao);
+                    data = resultado.getTimestamp("data");
+                    tipo = resultado.getString("tipo");
+                    cod = resultado.getString("codigo");
+                    mensa = resultado.getString("mensagem");
+                    login = resultado.getString("login_pessoa");
+                    id = resultado.getInt("id");
+                    LogInteracao loginteracao = new LogInteracao(data, tipo, cod, mensa, id, login);
+                    arrayLogInteracao.add(loginteracao);
+                }while(resultado.next());
             }
             return arrayLogInteracao;
         }catch(SQLException SQLError){

@@ -124,7 +124,6 @@ public class DAOCidade {
         try {
             conexao.conect();
             
-            int resultado;
             String sqlUpdate;
 
             switch (opt) {

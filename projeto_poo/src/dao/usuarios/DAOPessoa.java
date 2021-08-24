@@ -19,20 +19,24 @@ public class DAOPessoa{
             conexao.conect();
             String sql = "SELECT * FROM Pessoa";
             ResultSet result = conexao.executaQuery(sql);
-            while(result.next()){
-                String nome, cpf, login, senha, tipo;
-                int id_endereco;
-                Date data_nasc;
+            if (!result.next()) {
+                throw new NullPointerException("Não foi possível achar nenhuma categoria");
+            }else{
+                do{
+                    String nome, cpf, login, senha, tipo;
+                    int id_endereco;
+                    Date data_nasc;
 
-                nome = result.getString("nome");
-                data_nasc = result.getDate("data_nasc");
-                cpf = result.getString("cpf");
-                login = result.getString("login");
-                senha = result.getString("senha");
-                tipo = result.getString("tipo");
-                id_endereco = result.getInt("id_endereco");
-                Pessoa pessoa = new Pessoa(nome,login,senha,tipo,cpf,data_nasc.toLocalDate(),id_endereco);
-                arrayPessoas.add(pessoa);
+                    nome = result.getString("nome");
+                    data_nasc = result.getDate("data_nasc");
+                    cpf = result.getString("cpf");
+                    login = result.getString("login");
+                    senha = result.getString("senha");
+                    tipo = result.getString("tipo");
+                    id_endereco = result.getInt("id_endereco");
+                    Pessoa pessoa = new Pessoa(nome,login,senha,tipo,cpf,data_nasc.toLocalDate(),id_endereco);
+                    arrayPessoas.add(pessoa);
+                }while(result.next());
             }
 
             return arrayPessoas;

@@ -19,21 +19,24 @@ public class DAOEndereco {
 
             ResultSet resultado = conexao.executaQuery("select * from Endereco");
 
-            while (resultado.next()) {
-                String cep, rua, complemento;
-                int id, id_bairro, numero;
+            if (!resultado.next()) {
+                throw new NullPointerException("Não foi possível achar nenhuma categoria");
+            }else{
+                do{
+                    String cep, rua, complemento;
+                    int id, id_bairro, numero;
 
-                cep = resultado.getString("cep");
-                rua = resultado.getString("rua");
-                complemento = resultado.getString("complemento");
+                    cep = resultado.getString("cep");
+                    rua = resultado.getString("rua");
+                    complemento = resultado.getString("complemento");
 
-                id = resultado.getInt("id");
-                id_bairro = resultado.getInt("id_bairro");
-                numero = resultado.getInt("numero");
+                    id = resultado.getInt("id");
+                    id_bairro = resultado.getInt("id_bairro");
+                    numero = resultado.getInt("numero");
 
-                Endereco endereco = new Endereco(id, numero, cep, rua, complemento, id_bairro);
-                arrayEnderecos.add(endereco);
-
+                    Endereco endereco = new Endereco(id, numero, cep, rua, complemento, id_bairro);
+                    arrayEnderecos.add(endereco);
+                }while(resultado.next());
             }
             conexao.disconect();
             return arrayEnderecos;
@@ -122,32 +125,37 @@ public class DAOEndereco {
     public boolean updateEndereco(String opt, int id ,String dado){
         try {
             conexao.conect();
-            int resultado;
             String sqlUpdate;
 
             switch (opt) {
                 case "id":
                     sqlUpdate = "Update Endereco set id = " + dado + " where id = " + id;
+                    conexao.executaSql(sqlUpdate);
                     break;
 
                 case "numero":
                     sqlUpdate = "Update Endereco set numero = " + dado + " where id = " + id;
+                    conexao.executaSql(sqlUpdate);
                     break;
 
                 case "cep":
                     sqlUpdate = "Update Endereco set cep = \'" + dado + "\' where id = " + id;
+                    conexao.executaSql(sqlUpdate);
                     break;
 
                 case "rua":
                     sqlUpdate = "Update Endereco set rua = \'" + dado + "\' where id = " + id;
+                    conexao.executaSql(sqlUpdate);
                     break;
 
                 case "complemento":
                     sqlUpdate = "Update Endereco set complemento = \'" + dado + "\' where id = " + id;
+                    conexao.executaSql(sqlUpdate);
                     break;
 
                 case "id_bairro":
                     sqlUpdate = "Update Endereco set id_bairro = " + dado + " where id = " + id;
+                    conexao.executaSql(sqlUpdate);
                     break;
 
                 default:

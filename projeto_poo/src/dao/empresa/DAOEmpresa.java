@@ -21,18 +21,20 @@ public class DAOEmpresa {
 
             String codBusca = "Select * from funcionario";
             ResultSet resultado = conexao.executaQuery(codBusca);
-            
-            while(resultado.next()){
-                Double orc;
-                String cnpj, nome, cpf;
-                orc = resultado.getDouble("orcamento");
-                cnpj = resultado.getString("cnpj");
-                nome = resultado.getString("nome");
-                cpf = resultado.getString("cpf_dono");
-                Empresa empresa = new Empresa(nome, orc, cnpj, cpf);
-                arrayEmpresa.add(empresa);
+            if (!resultado.next()) {
+                throw new NullPointerException("Não foi possível achar nenhuma categoria");
+            }else{
+                do{
+                    Double orc;
+                    String cnpj, nome, cpf;
+                    orc = resultado.getDouble("orcamento");
+                    cnpj = resultado.getString("cnpj");
+                    nome = resultado.getString("nome");
+                    cpf = resultado.getString("cpf_dono");
+                    Empresa empresa = new Empresa(nome, orc, cnpj, cpf);
+                    arrayEmpresa.add(empresa);
+                }while(resultado.next());
             }
-
             conexao.disconect();
             return arrayEmpresa;
         } 

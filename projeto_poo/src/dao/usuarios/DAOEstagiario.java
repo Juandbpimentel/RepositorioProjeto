@@ -22,7 +22,10 @@ public class DAOEstagiario{
             String sqlQueryEstagiario = "Select * from Estagiario";
             ResultSet resultQueryEstagiario = conexao.executaQuery(sqlQueryEstagiario);
 
-            while(resultQueryEstagiario.next()){
+            if (!resultQueryEstagiario.next()) {
+                throw new NullPointerException("Não foi possível achar nenhuma categoria");
+            }else{
+                do{
                 String cpf = "";
                 int id_categoria = 0, id_setor = 0, diaPagamento = 0, tempoEstagio = 0;
                 Date inicioEstagio = new Date(System.currentTimeMillis()); 
@@ -66,6 +69,7 @@ public class DAOEstagiario{
 
                 Estagiario estagiario = new Estagiario(nome, login, senha, tipo, cpf, data_nasc.toLocalDate(), inicioEstagio.toLocalDate(), tempoEstagio, diaPagamento, id_categoria, id_setor, id_endereco);
                 arrayEstagiario.add(estagiario);
+                }while(resultQueryEstagiario.next());
             }
 
             return arrayEstagiario;
