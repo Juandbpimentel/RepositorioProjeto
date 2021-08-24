@@ -6,7 +6,7 @@
             <name>projeto_poo</name>
             <source-roots>
                 <root id="src.src.dir"/>
-                <root id="src.resources.dir"/>
+                <root id="src.resources.dir" name="Source Packages"/>
             </source-roots>
             <test-roots>
                 <root id="test.src.dir"/>

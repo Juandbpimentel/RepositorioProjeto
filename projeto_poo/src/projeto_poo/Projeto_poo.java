@@ -5,26 +5,34 @@
  */
 package projeto_poo;
 
+import java.awt.event.WindowListener;
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 
 import dao.lugar.DAOEstado;
 import dao.usuarios.DAOPessoa;
 import modelos.lugar.Estado;
 import modelos.usuarios.Pessoa;
 import sistema.Conexao;
-import sistema.MenuLogin;
-
+import views.sistema.menulogin.viewMenuLogin;
 /**
  *
  * @author juand
  */
 public class Projeto_poo {
-
+    private Pessoa usuario;
     /**
      * @param args the command line arguments
      */
+    public Projeto_poo(){
+        this.usuario = null;
+    }
+    
     public static void main(String[] args) {
-        
+       Projeto_poo main = new Projeto_poo(); 
        /* Conexao conexao = new Conexao();
         conexao.startDatabase();
         conexao.conect();
@@ -32,7 +40,47 @@ public class Projeto_poo {
         conexao.createTriggers();
         conexao.insertData();
         */
-       MenuLogin.main(args);
-    }
+       viewMenuLogin telaLogin = new viewMenuLogin();
+       
+       AtomicBoolean closed = new AtomicBoolean(false);
+        telaLogin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
+        telaLogin.addWindowListener((WindowListener) new WindowListener() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                synchronized(closed) {
+                    closed.set(true);
+                    closed.notify();
+                }
+                super.windowClosed(e);
+            }
+        } );
 
+        telaLogin.setVisible(true);
+        synchronized(closed) {
+            while (!closed.get()) {
+                closed.wait();
+            }
+        }
+       main.setUsuario(telaLogin.getUsuario());
+       System.out.println("Usuario: " + main.getUsuario());
+       System.out.println("Usuario: " + main.getUsuario());
+    }
+    
+    @SuppressWarnings("unused")
+	private void sleep(long ms){
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException e) {
+            System.err.format("IOException: %s%n", e);
+        }
+    }
+    
+    public Pessoa getUsuario(){
+        return usuario;
+    }
+    
+    public void setUsuario(Pessoa usuario){
+        this.usuario = usuario;
+    }
 }

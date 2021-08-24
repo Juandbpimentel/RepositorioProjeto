@@ -6,6 +6,7 @@
 package views.sistema.menulogin;
 
 import javax.swing.JOptionPane;
+import modelos.usuarios.Pessoa;
 
 /**
  *
@@ -251,6 +252,16 @@ public class viewMenuLogin extends javax.swing.JFrame {
             }
         });
     }
+    
+    public Pessoa getUsuario(){
+        return usuario;
+    }
+    
+    public void setUsuario(Pessoa usuario){
+        this.usuario = usuario;
+    }
+    
+    private Pessoa usuario;
     private String login, password;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel errorLoginLabel;
