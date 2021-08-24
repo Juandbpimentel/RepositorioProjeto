@@ -146,7 +146,7 @@ public class DAOCategoria {
 
             switch (opt) {
                 case "id":
-                    sqlUpdate = "Update Categoria set id = "+Integer.parseInt(dado)+" where id = " + id;
+                    sqlUpdate = "Update Categoria set id = "+dado+" where id = " + id;
                     conexao.executaSql(sqlUpdate);
                     break;
     
@@ -156,7 +156,7 @@ public class DAOCategoria {
                     break;
 
                 case "carga_horaria":
-                    sqlUpdate = "Update Categoria set carga_horaria = "+Integer.parseInt(dado)+" where id = " + id;
+                    sqlUpdate = "Update Categoria set carga_horaria = "+dado+" where id = " + id;
                     conexao.executaSql(sqlUpdate);
                     break;
                 
@@ -166,7 +166,7 @@ public class DAOCategoria {
                     break;
 
                 case "salario":
-                    sqlUpdate = "Update Categoria set salario = "+Double.parseDouble(dado)+" where id = " + id;
+                    sqlUpdate = "Update Categoria set salario = "+dado+" where id = " + id;
                     conexao.executaSql(sqlUpdate);
                     break;
 
