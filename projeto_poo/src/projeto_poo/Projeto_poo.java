@@ -42,27 +42,8 @@ public class Projeto_poo {
         */
        viewMenuLogin telaLogin = new viewMenuLogin();
        
-       AtomicBoolean closed = new AtomicBoolean(false);
-        telaLogin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        
-        telaLogin.addWindowListener((WindowListener) new WindowListener() {
-            @Override
-            public void windowClosed(WindowEvent e) {
-                synchronized(closed) {
-                    closed.set(true);
-                    closed.notify();
-                }
-                super.windowClosed(e);
-            }
-        } );
-
-        telaLogin.setVisible(true);
-        synchronized(closed) {
-            while (!closed.get()) {
-                closed.wait();
-            }
-        }
-       main.setUsuario(telaLogin.getUsuario());
+       telaLogin.setVisible(true);
+       
        System.out.println("Usuario: " + main.getUsuario());
        System.out.println("Usuario: " + main.getUsuario());
     }
