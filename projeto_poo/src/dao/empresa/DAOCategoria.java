@@ -141,7 +141,7 @@ public class DAOCategoria {
         try {
             conexao.conect();
             
-            int resultado;
+            
             String sqlUpdate;
 
             switch (opt) {

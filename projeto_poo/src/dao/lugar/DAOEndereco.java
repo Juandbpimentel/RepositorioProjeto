@@ -8,6 +8,9 @@ import java.sql.SQLException;
 
 public class DAOEndereco {
     private Conexao conexao;
+    public DAOEndereco(){
+        this.conexao = new Conexao();
+    }
 
     public ArrayList<Endereco> readAll() {
         try {
@@ -44,7 +47,6 @@ public class DAOEndereco {
     }
     public boolean deleteEndereco(int id){
         try{
-            Conexao conexao = new Conexao();
             conexao.conect();
             String codigoDelete = "delete from endereco where id = "+ id;
             int resultado = conexao.executaSql(codigoDelete);
@@ -71,11 +73,7 @@ public class DAOEndereco {
                                 + "values " + "(" + endereco + ")";
             int resultado = conexao.executaSql(sqlInsertion);
             
-            if(resultado != 0){
-                return false;
-            }
-            return true;
-
+            return (resultado != 0);
         } catch(SQLException SQLError){
             System.err.println("Ocorreu um erro com Inserção no Banco de Dados: " + SQLError);
             return false;

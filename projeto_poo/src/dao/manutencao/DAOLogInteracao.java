@@ -10,6 +10,10 @@ import java.util.ArrayList;
 
 public class DAOLogInteracao {
     
+    public DAOLogInteracao(){
+        this.conexao = new Conexao();
+    }
+
     private Conexao conexao;
     public ArrayList<LogInteracao> readAll(){
         try{
@@ -45,7 +49,6 @@ public class DAOLogInteracao {
     }
     public boolean deleteLogInteracao(int id){
         try{
-            Conexao conexao = new Conexao();
             conexao.conect();
             String codigoDelete = "delete from LogInteracao where id = "+ id;
             int resultado = conexao.executaSql(codigoDelete);

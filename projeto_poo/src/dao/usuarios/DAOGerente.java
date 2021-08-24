@@ -181,7 +181,7 @@ public class DAOGerente {
         }
     }
 
-    public boolean updatePessoa(String opt, int cpf ,String dado){
+    public boolean updateGerente(String opt, int cpf ,String dado){
         try {
             // 
             //

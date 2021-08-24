@@ -74,7 +74,6 @@ public class DAOBairro {
     }
     public boolean deleteBairro(int id){
         try{
-            Conexao conexao = new Conexao();
             conexao.conect();
             String codigoDelete = "delete from bairro where id = "+ id;
             int resultado = conexao.executaSql(codigoDelete);
@@ -127,7 +126,6 @@ public class DAOBairro {
         try {
             conexao.conect();
             
-            int resultado;
             String sqlUpdate;
 
             switch (opt) {

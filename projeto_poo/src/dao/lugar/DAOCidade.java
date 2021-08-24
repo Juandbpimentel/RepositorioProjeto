@@ -9,6 +9,10 @@ import modelos.lugar.Cidade;
 public class DAOCidade {
     private Conexao conexao;
 
+    public DAOCidade(){
+        this.conexao = new Conexao();
+    }
+
     public ArrayList<Cidade> readAll() {
         try {
             ArrayList<Cidade> arrayCidade = new ArrayList<Cidade>();
@@ -61,7 +65,6 @@ public class DAOCidade {
     }
     public boolean deleteCidade(int id){
         try{
-            Conexao conexao = new Conexao();
             conexao.conect();
             String codigoDelete = "delete from cidade where id = "+ id;
             int resultado = conexao.executaSql(codigoDelete);
@@ -87,12 +90,8 @@ public class DAOCidade {
             String sqlInsertion = "Insert into public Cidade(nome, uf)"
                                 + "values "+ cidade;
             int resultado = conexao.executaSql(sqlInsertion);
-            
-            if(resultado != 0){
-                return false;
-            }
 
-            return true;
+            return (resultado != 0);
         } catch(SQLException SQLError){
             System.err.println("Ocorreu um erro com Inserção no Banco de Dados: " + SQLError);
             return false;
