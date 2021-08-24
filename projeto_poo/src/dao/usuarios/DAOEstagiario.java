@@ -22,7 +22,10 @@ public class DAOEstagiario{
             String sqlQueryEstagiario = "Select * from Estagiario";
             ResultSet resultQueryEstagiario = conexao.executaQuery(sqlQueryEstagiario);
 
-            while(resultQueryEstagiario.next()){
+            if (!resultQueryEstagiario.next()) {
+                throw new NullPointerException("Não foi possível achar nenhuma categoria");
+            }else{
+                do{
                 String cpf = "";
                 int id_categoria = 0, id_setor = 0, diaPagamento = 0, tempoEstagio = 0;
                 Date inicioEstagio = new Date(System.currentTimeMillis()); 
@@ -66,6 +69,7 @@ public class DAOEstagiario{
 
                 Estagiario estagiario = new Estagiario(nome, login, senha, tipo, cpf, data_nasc.toLocalDate(), inicioEstagio.toLocalDate(), tempoEstagio, diaPagamento, id_categoria, id_setor, id_endereco);
                 arrayEstagiario.add(estagiario);
+                }while(resultQueryEstagiario.next());
             }
 
             return arrayEstagiario;
@@ -124,7 +128,7 @@ public class DAOEstagiario{
 
     public boolean insertEstagiario(Estagiario estagiario){
         try{
-            conexao = new Conexao();
+            
             conexao.conect();
             String sqlInsertion = "Insert into public.Estagiario(cpf, inicio_estagio, tempo_estagio, dia_pagamento, id_categoria, id_setor, id_endereco)\n"
                                 +"values (\'"+estagiario.getCpf()+"\', "+estagiario.getInicio_estagio()+", \'"+estagiario.getTempo_estagio()+", "+estagiario.getDia_pagamento()+", "+estagiario.getId_categoria()+", "+estagiario.getId_setor()+", "+estagiario.getId_endereco()+")";
@@ -146,14 +150,13 @@ public class DAOEstagiario{
         try {
             // 
             //
-            conexao = new Conexao();
-            int resultado;
+            
             String sqlUpdate;
 
             switch (opt) {
+                
                 case "nome":
-                sqlUpdate = "Update Pessoa set nome = \'" + dado + "\' where cpf = \'" + cpf+"\';";
-
+                    sqlUpdate = "Update Pessoa set nome = \'" + dado + "\' where cpf = \'" + cpf+"\';";
                     conexao.executaSql(sqlUpdate);
                     break;
 
@@ -218,7 +221,7 @@ public class DAOEstagiario{
             }
 
             conexao.disconect();
-            return (resultado != 0);
+            return true;
         } catch (SQLException SQLError) {
             System.err.println("Ocorreu um erro durante a atualização do Banco de Dados: " + SQLError);
             conexao.disconect();
@@ -237,18 +240,20 @@ public class DAOEstagiario{
             int resultado = conexao.executaSql(codigoDelete);
             if(resultado != 1){
                 System.out.println("Você teve sucesso em deletar o estagiario");
+                conexao.disconect();
                 return true;
+            }else{
+                throw new Exception("Não foi possível deletar o funcionário");
             }
-
-
-
         }catch(SQLException SQLError){
-            System.err.println("Houve um erro durante a exclusão do Banco de Dados: "+SQLError);
-            return false;
-            System.err.println("Houve um erro geral: "+geralError);
+            System.err.println("Houve um erro durante a exclusão do Banco de Dados: " +SQLError);
             return false;
         }
-        return false;
+        catch(Exception geralError){
+            System.err.println("Houve um erro geral: " +geralError);
+            return false;
+        }
+        
     }
 }
 

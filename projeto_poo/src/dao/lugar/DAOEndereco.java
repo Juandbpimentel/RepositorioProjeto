@@ -8,86 +8,97 @@ import java.sql.SQLException;
 
 public class DAOEndereco {
     private Conexao conexao;
+    public DAOEndereco(){
+        this.conexao = new Conexao();
+    }
 
     public ArrayList<Endereco> readAll() {
         try {
             ArrayList<Endereco> arrayEnderecos = new ArrayList<Endereco>();
-            conexao = new Conexao();
             conexao.conect();
 
             ResultSet resultado = conexao.executaQuery("select * from Endereco");
 
-            while (resultado.next()) {
-                String cep, rua, complemento;
-                int id, id_bairro, numero;
+            if (!resultado.next()) {
+                throw new NullPointerException("Não foi possível achar nenhuma categoria");
+            }else{
+                do{
+                    String cep, rua, complemento;
+                    int id, id_bairro, numero;
 
-                cep = resultado.getString("cep");
-                rua = resultado.getString("rua");
-                complemento = resultado.getString("complemento");
+                    cep = resultado.getString("cep");
+                    rua = resultado.getString("rua");
+                    complemento = resultado.getString("complemento");
 
-                id = resultado.getInt("id");
-                id_bairro = resultado.getInt("id_bairro");
-                numero = resultado.getInt("numero");
+                    id = resultado.getInt("id");
+                    id_bairro = resultado.getInt("id_bairro");
+                    numero = resultado.getInt("numero");
 
-                Endereco endereco = new Endereco(id, numero, cep, rua, complemento, id_bairro);
-                arrayEnderecos.add(endereco);
-
+                    Endereco endereco = new Endereco(id, numero, cep, rua, complemento, id_bairro);
+                    arrayEnderecos.add(endereco);
+                }while(resultado.next());
             }
+            conexao.disconect();
             return arrayEnderecos;
         } catch (SQLException e) {
             System.err.println("Erro ao recuperar do banco de dados" + e);
+            conexao.disconect();
             return null;
         } catch (Exception e) {
             System.err.println("Erro Geral: " + e);
+            conexao.disconect();
             return null;
         }
     }
     public boolean deleteEndereco(int id){
         try{
-            Conexao conexao = new Conexao();
             conexao.conect();
+
             String codigoDelete = "delete from endereco where id = "+ id;
             int resultado = conexao.executaSql(codigoDelete);
             if(resultado != 1){
                 System.out.println("Você teve sucesso em deletar o Endereco");
+                conexao.disconect();
                 return true;
             }
 
         }catch(SQLException e){
             System.err.println("Houve um erro durante a exclusão do Banco de Dados: "+e);
+            conexao.disconect();
             return false;
         }catch (Exception e){
             System.err.println("Houve um erro geral: "+e);
+            conexao.disconect();
             return false;
         }
+        conexao.disconect();
         return false;
     }
 
     public boolean insertEndereco(Endereco endereco){
         try{
-            conexao = new Conexao();
             conexao.conect();
-            String sqlInsertion = "Insert into public Endereco(id, numero, cep, rua, complemento, id_bairro)"
+            String sqlInsertion = "Insert into public Endereco(numero, cep, rua, complemento, id_bairro)"
                                 + "values " + "(" + endereco + ")";
             int resultado = conexao.executaSql(sqlInsertion);
             
-            if(resultado != 0){
-                return false;
-            }
-            return true;
-
+            conexao.disconect();
+            return (resultado != 0);
         } catch(SQLException SQLError){
             System.err.println("Ocorreu um erro com Inserção no Banco de Dados: " + SQLError);
+            conexao.disconect();
             return false;
         } catch(Exception geralError){
             System.err.println("Ocorreu um erro geral: " + geralError);
+            conexao.disconect();
             return false;
         }
     }
     
     public Endereco readOnEndereco(int id) {
         try {
-            conexao = new Conexao();
+            conexao.conect();
+
             Endereco endereco;
             String queryEndereco = "SELECT * FROM endereco WHERE ID = " + id;
             ResultSet resultadoQuery = conexao.executaQuery(queryEndereco);
@@ -98,27 +109,53 @@ public class DAOEndereco {
                 int numero = resultadoQuery.getInt("numero"), idbairro = resultadoQuery.getInt("id_bairro");
                 endereco = new Endereco(id, numero, cep, rua, complemento, idbairro);
             }
+            conexao.disconect();
             return endereco;
         } catch (SQLException SQLError) {
             System.err.println("Ocorreu um erro na leitura do Banco de Dados: " + SQLError);
+            conexao.disconect();
             return null;
         } catch (Exception geralError) {
             System.err.println("Ocorreu um erro geral: " + geralError);
+            conexao.disconect();
             return null;
         }
     }
 
-    public boolean updatePessoa(String opt, int cpf ,String dado){
+    public boolean updateEndereco(String opt, int id ,String dado){
         try {
-            // 
-            //
             conexao.conect();
-            int resultado;
             String sqlUpdate;
 
             switch (opt) {
-                case "nome":
-                    sqlUpdate = "Update Pessoa set nome = \'" + dado + "\' where cpf = \'" + cpf+"\';";
+                case "id":
+                    sqlUpdate = "Update Endereco set id = " + dado + " where id = " + id;
+                    conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "numero":
+                    sqlUpdate = "Update Endereco set numero = " + dado + " where id = " + id;
+                    conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "cep":
+                    sqlUpdate = "Update Endereco set cep = \'" + dado + "\' where id = " + id;
+                    conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "rua":
+                    sqlUpdate = "Update Endereco set rua = \'" + dado + "\' where id = " + id;
+                    conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "complemento":
+                    sqlUpdate = "Update Endereco set complemento = \'" + dado + "\' where id = " + id;
+                    conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "id_bairro":
+                    sqlUpdate = "Update Endereco set id_bairro = " + dado + " where id = " + id;
+                    conexao.executaSql(sqlUpdate);
                     break;
 
                 default:

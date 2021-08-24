@@ -10,6 +10,10 @@ import java.util.ArrayList;
 
 public class DAOLogInteracao {
     
+    public DAOLogInteracao(){
+        this.conexao = new Conexao();
+    }
+
     private Conexao conexao;
     public ArrayList<LogInteracao> readAll(){
         try{
@@ -20,19 +24,23 @@ public class DAOLogInteracao {
             String codBusca = "Select * from funcionario";
             ResultSet resultado = conexao.executaQuery(codBusca);
 
-            while(resultado.next()){
-                Timestamp data;
-                String tipo, cod, mensa, login;
-                int id;
+            if (!resultado.next()) {
+                throw new NullPointerException("Não foi possível achar nenhuma categoria");
+            }else{
+                do{
+                    Timestamp data;
+                    String tipo, cod, mensa, login;
+                    int id;
 
-                data = resultado.getTimestamp("data");
-                tipo = resultado.getString("tipo");
-                cod = resultado.getString("codigo");
-                mensa = resultado.getString("mensagem");
-                login = resultado.getString("login_pessoa");
-                id = resultado.getInt("id");
-                LogInteracao loginteracao = new LogInteracao(data, tipo, cod, mensa, id, login);
-                arrayLogInteracao.add(loginteracao);
+                    data = resultado.getTimestamp("data");
+                    tipo = resultado.getString("tipo");
+                    cod = resultado.getString("codigo");
+                    mensa = resultado.getString("mensagem");
+                    login = resultado.getString("login_pessoa");
+                    id = resultado.getInt("id");
+                    LogInteracao loginteracao = new LogInteracao(data, tipo, cod, mensa, id, login);
+                    arrayLogInteracao.add(loginteracao);
+                }while(resultado.next());
             }
             return arrayLogInteracao;
         }catch(SQLException SQLError){
@@ -45,7 +53,6 @@ public class DAOLogInteracao {
     }
     public boolean deleteLogInteracao(int id){
         try{
-            Conexao conexao = new Conexao();
             conexao.conect();
             String codigoDelete = "delete from LogInteracao where id = "+ id;
             int resultado = conexao.executaSql(codigoDelete);
@@ -108,47 +115,56 @@ public class DAOLogInteracao {
         }
     }
 
-    public boolean updateLogInteracao(int id, LogInteracao logInteracao){
-        public boolean updateEndereco(String opt, int cpf ,String dado){
-            try {
-                // 
-                //
-                conexao = new Conexao();
-                String sqlUpdate;
-    
-                switch (opt) {
-                    
-                    case "data":
-                    sqlUpdate = "Update Estado set data = \'" + dado + "\' where cpf = \'" + cpf+"\';";
-                    conexao.executaSql(sqlUpdate);
-                    break;
-    
-                    case "tipo":
-                    sqlUpdate = "Update Estado set tipo = \'" + dado + "\' where cpf = \'" + cpf+"\';";
-                    conexao.executaSql(sqlUpdate);
-                    break;
+    public boolean updateLogInteracao(String opt, int cpf ,String dado){
+        try {
+            // 
+            //
+            conexao = new Conexao();
+            String sqlUpdate;
 
-                    case "codigo":
-                    sqlUpdate = "Update Estado set codigo = \'" + dado + "\' where cpf = \'" + cpf+"\';";
+            switch (opt) {
+                
+                case "data":
+                    sqlUpdate = "Update LogInteracao set data = \'" + dado + "\' where cpf = \'" + cpf+"\'";
                     conexao.executaSql(sqlUpdate);
                     break;
+                case "tipo":
+                    sqlUpdate = "Update LogInteracao set tipo = \'" + dado + "\' where cpf = \'" + cpf+"\'";
+                    conexao.executaSql(sqlUpdate);
+                    break;
+                case "codigo":
+                    sqlUpdate = "Update LogInteracao set codigo = \'" + dado + "\' where cpf = \'" + cpf+"\'";
+                    conexao.executaSql(sqlUpdate);
+                    break;
+                case "mensagem":
+                    sqlUpdate = "Update LogInteracao set mensagem = \'" + dado + "\' where cpf = \'" + cpf+"\'";
+                    conexao.executaSql(sqlUpdate);
+                    break;
+                case "login_pessoa":
+                    sqlUpdate = "Update LogInteracao set login_pessoa = \'" + dado + "\' where cpf = \'" + cpf+"\'";
+                    conexao.executaSql(sqlUpdate);
+                    break;
+                case "id":
+                    sqlUpdate = "Update LogInteracao set id = " + dado + " where cpf = \'" + cpf+"\'";
+                    conexao.executaSql(sqlUpdate);
+                    break;
+                
 
-                    default:
-                        throw new Exception("Valor não encontrado");
-                }
-    
-                conexao.disconect();
-                return true;
-            } catch (SQLException SQLError) {
-                System.err.println("Ocorreu um erro durante a atualização do Banco de Dados: " + SQLError);
-                conexao.disconect();
-                return false;
-            } catch (Exception geralError) {
-                System.err.println("Ocorreu um erro geral: " + geralError);
-                conexao.disconect();
-                return false;
+                default:
+                    throw new Exception("Valor não encontrado");
             }
-        }    
+
+            conexao.disconect();
+            return true;
+        } catch (SQLException SQLError) {
+            System.err.println("Ocorreu um erro durante a atualização do Banco de Dados: " + SQLError);
+            conexao.disconect();
+            return false;
+        } catch (Exception geralError) {
+            System.err.println("Ocorreu um erro geral: " + geralError);
+            conexao.disconect();
+            return false;
+        }
     }
 
 }

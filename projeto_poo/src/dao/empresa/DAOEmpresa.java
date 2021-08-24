@@ -21,18 +21,20 @@ public class DAOEmpresa {
 
             String codBusca = "Select * from funcionario";
             ResultSet resultado = conexao.executaQuery(codBusca);
-            
-            while(resultado.next()){
-                Double orc;
-                String cnpj, nome, cpf;
-                orc = resultado.getDouble("orcamento");
-                cnpj = resultado.getString("cnpj");
-                nome = resultado.getString("nome");
-                cpf = resultado.getString("cpf_dono");
-                Empresa empresa = new Empresa(nome, orc, cnpj, cpf);
-                arrayEmpresa.add(empresa);
+            if (!resultado.next()) {
+                throw new NullPointerException("Não foi possível achar nenhuma categoria");
+            }else{
+                do{
+                    Double orc;
+                    String cnpj, nome, cpf;
+                    orc = resultado.getDouble("orcamento");
+                    cnpj = resultado.getString("cnpj");
+                    nome = resultado.getString("nome");
+                    cpf = resultado.getString("cpf_dono");
+                    Empresa empresa = new Empresa(nome, orc, cnpj, cpf);
+                    arrayEmpresa.add(empresa);
+                }while(resultado.next());
             }
-
             conexao.disconect();
             return arrayEmpresa;
         } 
@@ -132,28 +134,28 @@ public class DAOEmpresa {
         try {
             conexao.conect();
             
-            int resultado;
+            
             String sqlUpdate;
 
             switch (opt) {
                 case "orcamento":
                     sqlUpdate = "Update Empresa set id = "+dado+" where cnpj = \'"+cnpj+"\'";
-                    resultado = conexao.executaSql(sqlUpdate);
+                    conexao.executaSql(sqlUpdate);
                     break;
     
                 case "nome":
                     sqlUpdate = "Update Empresa set nome = \'"+dado+"\' where cnpj = \'"+cnpj+"\'";
-                    resultado = conexao.executaSql(sqlUpdate);
+                    conexao.executaSql(sqlUpdate);
                     break;
 
                 case "cpf_dono":
                     sqlUpdate = "Update Empresa set cpf_dono = \'"+dado+"\' where cnpj = \'"+cnpj+"\'";
-                    resultado = conexao.executaSql(sqlUpdate);
+                    conexao.executaSql(sqlUpdate);
                     break;
                 
                 case "cnpj":
                     sqlUpdate = "Update Empresa set cnpj = \'"+dado+"\' where cnpj = \'"+cnpj+"\'";
-                    resultado = conexao.executaSql(sqlUpdate);
+                    conexao.executaSql(sqlUpdate);
                     break;
 
                 default:

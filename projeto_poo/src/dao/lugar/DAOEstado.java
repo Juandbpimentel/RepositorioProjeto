@@ -23,12 +23,16 @@ public class DAOEstado {
             String codBusca = "Select * from estado";
             ResultSet resultado = conexao.executaQuery(codBusca);
             
-            while(resultado.next()){
-                String nome, uf;
-                uf = resultado.getString("uf");
-                nome = resultado.getString("nome");
-                Estado estado = new Estado(uf, nome);
-                arrayEstado.add(estado);
+            if (!resultado.next()) {
+                throw new NullPointerException("Não foi possível achar nenhuma categoria");
+            }else{
+                do{
+                    String nome, uf;
+                    uf = resultado.getString("uf");
+                    nome = resultado.getString("nome");
+                    Estado estado = new Estado(uf, nome);
+                    arrayEstado.add(estado);
+                }while(resultado.next());
             }
             return arrayEstado;
         } 
@@ -104,7 +108,7 @@ public class DAOEstado {
         return false;
     }
 
-    public boolean updateEndereco(String opt, int cpf ,String dado){
+    public boolean updateEstado(String opt, int cpf ,String dado){
         try {
             // 
             //
@@ -113,16 +117,6 @@ public class DAOEstado {
 
             switch (opt) {
                 
-                case "nome":
-                sqlUpdate = "Update Estado set nome = \'" + dado + "\' where cpf = \'" + cpf+"\';";
-                conexao.executaSql(sqlUpdate);
-                break;
-
-                case "uf":
-                sqlUpdate = "Update Estado set uf = \'" + dado + "\' where cpf = \'" + cpf+"\';";
-                conexao.executaSql(sqlUpdate);
-                break;
-
                 case "nome":
                 sqlUpdate = "Update Estado set nome = \'" + dado + "\' where cpf = \'" + cpf+"\';";
                 conexao.executaSql(sqlUpdate);

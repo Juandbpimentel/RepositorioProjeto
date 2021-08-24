@@ -21,7 +21,10 @@ public class DAODono {
             String codigoBusca = "select * from dono";
             ResultSet resultado = conexao.executaQuery(codigoBusca);
 
-            while (resultado.next()) {
+            if (!resultado.next()) {
+                throw new NullPointerException("Não foi possível achar nenhuma categoria");
+            }else{
+                do{
                 String cpf;
 
                 cpf = resultado.getString("cpf");
@@ -48,6 +51,7 @@ public class DAODono {
                 }
                 Dono dono = new Dono(nome, login, senha, tipo, cpf, dataNasc.toLocalDate(),id_endereco);
                 arrayDono.add(dono);
+                }while(resultado.next());
             }
             return arrayDono;
         } catch (SQLException erroSQL) {

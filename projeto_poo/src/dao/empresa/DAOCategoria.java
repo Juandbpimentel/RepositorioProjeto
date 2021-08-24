@@ -23,23 +23,27 @@ public class DAOCategoria {
             String codigoBusca = "Select * from categoria";
             ResultSet busca = conexao.executaQuery(codigoBusca);
 
-            while (busca.next()) {
-                String nome, descricao, cnpj_empresa;
-                int id, carga_horaria;
-                double salario;
+            if (!busca.next()) {
+                throw new NullPointerException("Não foi possível achar nenhuma categoria");
+            }else{
+                do{
+                    String nome, descricao, cnpj_empresa;
+                    int id, carga_horaria;
+                    double salario;
 
-                nome = busca.getString("nome");
-                descricao = busca.getString("descricao");
-                cnpj_empresa = busca.getString("cnpj_empresa");
+                    nome = busca.getString("nome");
+                    descricao = busca.getString("descricao");
+                    cnpj_empresa = busca.getString("cnpj_empresa");
 
-                id = busca.getInt("id");
-                carga_horaria = busca.getInt("carga_horaria");
+                    id = busca.getInt("id");
+                    carga_horaria = busca.getInt("carga_horaria");
 
-                salario = busca.getDouble("salario");
+                    salario = busca.getDouble("salario");
 
-                Categoria categoria = new Categoria(id, carga_horaria, nome, descricao, salario, cnpj_empresa);
-                arrayCategoria.add(categoria);
-                
+                    Categoria categoria = new Categoria(id, carga_horaria, nome, descricao, salario, cnpj_empresa);
+                    arrayCategoria.add(categoria);
+                    
+                } while (busca.next());
             }
             conexao.disconect();
             return arrayCategoria;
@@ -114,6 +118,18 @@ public class DAOCategoria {
     public boolean insertCategoria(Categoria categoria){
         try{
             conexao.conect();
+            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+            
+            !!!!!!!!!!!!!!!!!!!!!!!!!CONCERTA ESSE INSERT!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
             String sqlInsertion = "Insert into public Categoria(carga_horaria, nome, descricao, salario, cnpj_empresa)"
                                 + " values " + categoria;
@@ -141,12 +157,12 @@ public class DAOCategoria {
         try {
             conexao.conect();
             
-            int resultado;
+            
             String sqlUpdate;
 
             switch (opt) {
                 case "id":
-                    sqlUpdate = "Update Categoria set id = "+Integer.parseInt(dado)+" where id = " + id;
+                    sqlUpdate = "Update Categoria set id = "+dado+" where id = " + id;
                     conexao.executaSql(sqlUpdate);
                     break;
     
@@ -156,7 +172,7 @@ public class DAOCategoria {
                     break;
 
                 case "carga_horaria":
-                    sqlUpdate = "Update Categoria set carga_horaria = "+Integer.parseInt(dado)+" where id = " + id;
+                    sqlUpdate = "Update Categoria set carga_horaria = "+dado+" where id = " + id;
                     conexao.executaSql(sqlUpdate);
                     break;
                 
@@ -166,7 +182,7 @@ public class DAOCategoria {
                     break;
 
                 case "salario":
-                    sqlUpdate = "Update Categoria set salario = "+Double.parseDouble(dado)+" where id = " + id;
+                    sqlUpdate = "Update Categoria set salario = "+dado+" where id = " + id;
                     conexao.executaSql(sqlUpdate);
                     break;
 
