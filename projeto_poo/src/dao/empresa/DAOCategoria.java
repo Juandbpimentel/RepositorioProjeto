@@ -62,7 +62,7 @@ public class DAOCategoria {
             conexao.conect();
 
             String codigoDelete = "delete from categoria where id = "+ id;
-            int conexao.executaSql(codigoDelete);
+            int resultado = conexao.executaSql(codigoDelete);
             if(resultado != 1){
                 System.out.println("Você teve sucesso em deletar a Categoria");
                 conexao.disconect();
@@ -115,9 +115,9 @@ public class DAOCategoria {
         try{
             conexao.conect();
 
-            String sqlInsertion = "Insert into public Categoria(id, carga_horaria, nome, descricao, salario, cnpj_empresa)"
+            String sqlInsertion = "Insert into public Categoria(carga_horaria, nome, descricao, salario, cnpj_empresa)"
                                 + " values " + categoria;
-            int conexao.executaSql(sqlInsertion);
+            int resultado = conexao.executaSql(sqlInsertion);
             
             if(resultado != 0){
                 conexao.disconect();
@@ -146,7 +146,7 @@ public class DAOCategoria {
 
             switch (opt) {
                 case "id":
-                    sqlUpdate = "Update Categoria set id = "+Integer.parseInt(dado)+" where id = " + id;
+                    sqlUpdate = "Update Categoria set id = "+dado+" where id = " + id;
                     conexao.executaSql(sqlUpdate);
                     break;
     
@@ -156,7 +156,7 @@ public class DAOCategoria {
                     break;
 
                 case "carga_horaria":
-                    sqlUpdate = "Update Categoria set carga_horaria = "+Integer.parseInt(dado)+" where id = " + id;
+                    sqlUpdate = "Update Categoria set carga_horaria = "+dado+" where id = " + id;
                     conexao.executaSql(sqlUpdate);
                     break;
                 
@@ -166,7 +166,7 @@ public class DAOCategoria {
                     break;
 
                 case "salario":
-                    sqlUpdate = "Update Categoria set salario = "+Double.parseDouble(dado)+" where id = " + id;
+                    sqlUpdate = "Update Categoria set salario = "+dado+" where id = " + id;
                     conexao.executaSql(sqlUpdate);
                     break;
 
@@ -179,7 +179,7 @@ public class DAOCategoria {
                     throw new Exception("Valor não encontrado");
             }
             conexao.disconect();
-            return (resultado != 0)?true:false;
+            return true;
         } catch (SQLException SQLError) {
             System.err.println("Ocorreu um erro durante a atualização do Banco de Dados: " + SQLError);
             conexao.disconect();
