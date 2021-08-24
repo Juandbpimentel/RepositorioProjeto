@@ -5,20 +5,15 @@
  */
 package projeto_poo;
 
-import java.awt.event.WindowListener;
-import java.util.ArrayList;
+
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import javax.swing.JFrame;
-import javax.swing.WindowConstants;
 
-import dao.lugar.DAOEstado;
-import dao.usuarios.DAOPessoa;
-import modelos.lugar.Estado;
+
 import modelos.usuarios.Pessoa;
-import sistema.Conexao;
 import views.sistema.menulogin.viewMenuLogin;
 /**
  *
