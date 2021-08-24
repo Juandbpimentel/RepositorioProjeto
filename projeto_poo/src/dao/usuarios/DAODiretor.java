@@ -59,9 +59,6 @@ public class DAODiretor {
     }   
 
 
-
-
-
     public Diretor readOneDiretor(String cpf){
 
         try{
@@ -98,6 +95,76 @@ public class DAODiretor {
         } catch (Exception erroGeral) {
             System.err.println("ocorreu um erro Geral: " + erroGeral);
             return null;
+        }
+    }
+    public boolean updateDiretor(String opt, int cpf ,String dado){
+        try {
+            // 
+            //
+            conexao.conect();
+            String sqlUpdate;
+
+            switch (opt) {
+                case "nome":
+                sqlUpdate = "Update Pessoa set nome = \'" + dado + "\' where cpf = \'" + cpf+"\';";
+
+                    conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "login":
+                    sqlUpdate = "Update Pessoa set login = \'" + dado + "\' where cpf = \'" + cpf+"\';";
+                    conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "senha":
+                    sqlUpdate = "Update Pessoa set senha = \'" + dado + "\' where cpf = \'" + cpf+"\';";
+                    conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "tipo":
+                    sqlUpdate = "Update Pessoa set tipo = \'" + dado + "\' where cpf = \'" + cpf+"\';";
+                    conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "cpf":
+                    sqlUpdate = "Update Pessoa set cpf = \'" + dado + "\' where cpf = \'" + cpf+"\';";
+                    conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "data_nasc":
+                    sqlUpdate = "Update Pessoa set data_nasc = \'" + dado + "\' where cpf = \'" + cpf+"\';";
+                    conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "id_endereco":
+                    sqlUpdate = "Update Pessoa set id_endereco = " + dado + " where cpf = \'" + cpf+"\'";
+                    conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "cnpj_empresa":
+                    sqlUpdate = "Update Diretor set cnpj_empresa = \'" + dado + "\' where cpf = \'" + cpf+"\';";
+                    conexao.executaSql(sqlUpdate);
+                    break;
+
+                case "id_categoria":
+                    sqlUpdate = "Update Pessoa set id_categoria = " + dado + " where cpf = \'" + cpf+"\'";
+                    conexao.executaSql(sqlUpdate);
+                    break;
+
+                default:
+                    throw new Exception("Valor não encontrado");
+            }
+
+            conexao.disconect();
+            return true;
+        } catch (SQLException SQLError) {
+            System.err.println("Ocorreu um erro durante a atualização do Banco de Dados: " + SQLError);
+            conexao.disconect();
+            return false;
+        } catch (Exception geralError) {
+            System.err.println("Ocorreu um erro geral: " + geralError);
+            conexao.disconect();
+            return false;
         }
     }
     public boolean deleteDiretor(String cpf){
