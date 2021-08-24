@@ -128,29 +128,28 @@ public class DAOSetor {
     public boolean updateSetor(String opt, int id, String dado){
         try {
             conexao.conect();
-            
-            int resultado;
+                        
             String sqlUpdate;
 
             switch (opt) {
                 case "id":
                     sqlUpdate = "Update Setor set id = "+dado+" where id = "+id;
-                    resultado = conexao.executaSql(sqlUpdate);
+                    conexao.executaSql(sqlUpdate);
                     break;
     
                 case "nome":
                     sqlUpdate = "Update Setor set nome = \'"+dado+"\' where id = "+id;
-                    resultado = conexao.executaSql(sqlUpdate);
+                    conexao.executaSql(sqlUpdate);
                     break;
 
                 case "orcamento":
                     sqlUpdate = "Update Setor set orcamento = "+dado+" where id = "+id;
-                    resultado = conexao.executaSql(sqlUpdate);
+                    conexao.executaSql(sqlUpdate);
                     break;
                 
                 case "cnpj_empresa":
                     sqlUpdate = "Update Setor set cnpj_empresa = \'"+dado+"\' where id = "+id;
-                    resultado = conexao.executaSql(sqlUpdate);
+                    conexao.executaSql(sqlUpdate);
                     break;
 
                 default:

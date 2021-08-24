@@ -10,6 +10,10 @@ import java.sql.Date;
 public class DAODiretor {
     private Conexao conexao;
 
+    public DAODiretor(){
+        this.conexao = new Conexao();
+    }
+
     public ArrayList<Diretor> readAll() {
         try {
             ArrayList<Diretor> arrayDiretores = new ArrayList<Diretor>();
@@ -141,7 +145,7 @@ public class DAODiretor {
                     sqlUpdate = "Update Pessoa set id_endereco = " + dado + " where cpf = \'" + cpf+"\'";
                     conexao.executaSql(sqlUpdate);
                     break;
-
+                //Diretor
                 case "cnpj_empresa":
                     sqlUpdate = "Update Diretor set cnpj_empresa = \'" + dado + "\' where cpf = \'" + cpf+"\';";
                     conexao.executaSql(sqlUpdate);
@@ -171,7 +175,6 @@ public class DAODiretor {
 
     public boolean deleteDiretor(String cpf){
         try{
-            Conexao conexao = new Conexao();
             conexao.conect();
             
             String codigoDelete = "delete from Diretor where cpf = \'"+ cpf +"\'";

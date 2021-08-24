@@ -132,28 +132,28 @@ public class DAOEmpresa {
         try {
             conexao.conect();
             
-            int resultado;
+            
             String sqlUpdate;
 
             switch (opt) {
                 case "orcamento":
                     sqlUpdate = "Update Empresa set id = "+dado+" where cnpj = \'"+cnpj+"\'";
-                    resultado = conexao.executaSql(sqlUpdate);
+                    conexao.executaSql(sqlUpdate);
                     break;
     
                 case "nome":
                     sqlUpdate = "Update Empresa set nome = \'"+dado+"\' where cnpj = \'"+cnpj+"\'";
-                    resultado = conexao.executaSql(sqlUpdate);
+                    conexao.executaSql(sqlUpdate);
                     break;
 
                 case "cpf_dono":
                     sqlUpdate = "Update Empresa set cpf_dono = \'"+dado+"\' where cnpj = \'"+cnpj+"\'";
-                    resultado = conexao.executaSql(sqlUpdate);
+                    conexao.executaSql(sqlUpdate);
                     break;
                 
                 case "cnpj":
                     sqlUpdate = "Update Empresa set cnpj = \'"+dado+"\' where cnpj = \'"+cnpj+"\'";
-                    resultado = conexao.executaSql(sqlUpdate);
+                    conexao.executaSql(sqlUpdate);
                     break;
 
                 default:

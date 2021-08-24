@@ -9,6 +9,10 @@ import sistema.Conexao;
 
 public class DAOPessoa{
     private Conexao conexao;
+
+    public DAOPessoa(){
+        this.conexao = new Conexao();
+    }
     public ArrayList<Pessoa> ReadAll(){
         try {
             ArrayList<Pessoa> arrayPessoas = new ArrayList<Pessoa>();
@@ -44,7 +48,6 @@ public class DAOPessoa{
     }
     public boolean deletePessoa(String cpf){
         try{
-            Conexao conexao = new Conexao();
             conexao.conect();
             String codigoDelete = "delete from pessoa where cpf = "+ cpf;
             int resultado = conexao.executaSql(codigoDelete);

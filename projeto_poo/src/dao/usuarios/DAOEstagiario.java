@@ -124,7 +124,7 @@ public class DAOEstagiario{
 
     public boolean insertEstagiario(Estagiario estagiario){
         try{
-            conexao = new Conexao();
+            
             conexao.conect();
             String sqlInsertion = "Insert into public.Estagiario(cpf, inicio_estagio, tempo_estagio, dia_pagamento, id_categoria, id_setor, id_endereco)\n"
                                 +"values (\'"+estagiario.getCpf()+"\', "+estagiario.getInicio_estagio()+", \'"+estagiario.getTempo_estagio()+", "+estagiario.getDia_pagamento()+", "+estagiario.getId_categoria()+", "+estagiario.getId_setor()+", "+estagiario.getId_endereco()+")";
@@ -142,12 +142,11 @@ public class DAOEstagiario{
         
     }
 
-    public boolean updatePessoa(String opt, int cpf ,String dado){
+    public boolean updateEstagiario(String opt, int cpf ,String dado){
         try {
             // 
             //
-            conexao = new Conexao();
-            int resultado;
+            
             String sqlUpdate;
 
             switch (opt) {

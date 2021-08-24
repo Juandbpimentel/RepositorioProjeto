@@ -10,7 +10,7 @@ public class DAOCidade {
     private Conexao conexao;
 
     public DAOCidade(){
-        conexao = new Conexao();
+        this.conexao = new Conexao();
     }
 
     public ArrayList<Cidade> readAll() {
@@ -102,14 +102,9 @@ public class DAOCidade {
             String sqlInsertion = "Insert into public Cidade(nome, uf)"
                                 + "values "+ cidade;
             int resultado = conexao.executaSql(sqlInsertion);
-            
-            if(resultado != 0){
-                conexao.disconect();
-                return false;
-            }
 
             conexao.disconect();
-            return true;
+            return (resultado != 0);
         } catch(SQLException SQLError){
             System.err.println("Ocorreu um erro com Inserção no Banco de Dados: " + SQLError);
             conexao.disconect();

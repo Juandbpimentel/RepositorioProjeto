@@ -104,7 +104,7 @@ public class DAOEstado {
         return false;
     }
 
-    public boolean updateEndereco(String opt, int cpf ,String dado){
+    public boolean updateEstado(String opt, int cpf ,String dado){
         try {
             // 
             //
@@ -113,16 +113,6 @@ public class DAOEstado {
 
             switch (opt) {
                 
-                case "nome":
-                sqlUpdate = "Update Estado set nome = \'" + dado + "\' where cpf = \'" + cpf+"\';";
-                conexao.executaSql(sqlUpdate);
-                break;
-
-                case "uf":
-                sqlUpdate = "Update Estado set uf = \'" + dado + "\' where cpf = \'" + cpf+"\';";
-                conexao.executaSql(sqlUpdate);
-                break;
-
                 case "nome":
                 sqlUpdate = "Update Estado set nome = \'" + dado + "\' where cpf = \'" + cpf+"\';";
                 conexao.executaSql(sqlUpdate);

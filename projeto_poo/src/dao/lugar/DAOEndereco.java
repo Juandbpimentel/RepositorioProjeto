@@ -8,9 +8,8 @@ import java.sql.SQLException;
 
 public class DAOEndereco {
     private Conexao conexao;
-
     public DAOEndereco(){
-        conexao = new Conexao();
+        this.conexao = new Conexao();
     }
 
     public ArrayList<Endereco> readAll() {
@@ -80,13 +79,8 @@ public class DAOEndereco {
                                 + "values " + "(" + endereco + ")";
             int resultado = conexao.executaSql(sqlInsertion);
             
-            if(resultado != 0){
-                conexao.disconect();
-                return false;
-            }
             conexao.disconect();
-            return true;
-
+            return (resultado != 0);
         } catch(SQLException SQLError){
             System.err.println("Ocorreu um erro com Inserção no Banco de Dados: " + SQLError);
             conexao.disconect();
