@@ -154,6 +154,38 @@ public class DAOPessoa{
             return null;
         }
     }
+    
+    public Pessoa readOnePessoa(String entryLogin, String entrySenha){
+        try {
+            conexao.conect();
+            String sqlQueryPessoa = "SELECT * FROM PESSOA WHERE login = \'"+entryLogin+"\'";
+            ResultSet resultadoQueryPessoa = conexao.executaQuery(sqlQueryPessoa);
+            if (!resultadoQueryPessoa.next()) {
+                throw new NullPointerException("A pessoa que você está procurando não foi encontrado, retornou nulo");
+            }else{
+                if(resultadoQueryPessoa.getString("senha") == entrySenha){
+                    String nome = resultadoQueryPessoa.getString("nome"), 
+                            login = resultadoQueryPessoa.getString("login"), 
+                            senha = resultadoQueryPessoa.getString("senha"), 
+                            tipo = resultadoQueryPessoa.getString("tipo"), 
+                            cpf = resultadoQueryPessoa.getString("cpf");
+                    
+                    int idendereco = resultadoQueryPessoa.getInt("id_endereco");
+                    Date data = resultadoQueryPessoa.getDate("data_nasc");
+                    Pessoa pessoa = new Pessoa(nome,login,senha,tipo,cpf,data.toLocalDate(),idendereco);
+                    return pessoa;
+                }else{
+                    throw new Exception("A senha digitada é incorreta");
+                }
+            }
+        } catch (SQLException SQLError) {
+            System.err.println("Usuário não encontrado ou Senha digitada incorretamente: " + SQLError);
+            return null;
+        } catch (Exception geralError) {
+            System.err.println("Ocorreu um erro geral: " + geralError);
+            return null;
+        }
+    }
 
     public boolean insertPessoa(Pessoa pessoa){
         try{

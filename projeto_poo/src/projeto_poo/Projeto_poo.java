@@ -34,45 +34,45 @@ public class Projeto_poo {
     }
     
     public static void main(String[] args) {
-       Projeto_poo main = new Projeto_poo(); 
-       /* Conexao conexao = new Conexao();
-        conexao.startDatabase();
-        conexao.conect();
-        conexao.createTables();
-        conexao.createTriggers();
-        conexao.insertData();
-        */
-       viewMenuLogin telaLogin = new viewMenuLogin();
-       
-       AtomicBoolean closed = new AtomicBoolean(false);
+        Projeto_poo main = new Projeto_poo(); 
+        /* Conexao conexao = new Conexao();
+         conexao.startDatabase();
+         conexao.conect();
+         conexao.createTables();
+         conexao.createTriggers();
+         conexao.insertData();
+         */
+        viewMenuLogin telaLogin = new viewMenuLogin();
+
+        AtomicBoolean closed = new AtomicBoolean(false);
         telaLogin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        
+
         telaLogin.addWindowListener(new WindowAdapter() {
-                @Override
-                public void windowClosed(WindowEvent e) {
-                    synchronized(closed) {
-                        closed.set(true);
-                        closed.notify();
-                    }
-                    super.windowClosed(e);
-                }
-            } 
+                 @Override
+                 public void windowClosed(WindowEvent e) {
+                     synchronized(closed) {
+                         closed.set(true);
+                         closed.notify();
+                     }
+                     super.windowClosed(e);
+                 }
+             } 
         );
 
         telaLogin.setVisible(true);
-        synchronized(closed) {
+            synchronized(closed) {
             while (!closed.get()) {
                 try{
                     closed.wait();
                 }catch(Exception e){
                     System.out.println("Erro dutante a execução da janela");
                 }
-        }   
-}
-        
-       main.setUsuario(telaLogin.getUsuario());
-       System.out.println("Usuario: " + main.getUsuario());
-       System.out.println("Usuario: " + main.getUsuario());
+            }   
+        }
+
+        main.setUsuario(telaLogin.getUsuario());
+        System.out.println("Usuario: " + main.getUsuario());
+        System.out.println("Usuario: " + main.getUsuario());
     }
     
     @SuppressWarnings("unused")
