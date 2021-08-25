@@ -24,10 +24,10 @@ public class MenuLogin_Registro extends javax.swing.JFrame {
      * Creates new form MenuLogin_Regisro
      */
     public MenuLogin_Registro() {
-        
         initComponents();
         populaComboEmpresa();
-        comboboxTipo.setModel(new DefaultComboBoxModel<String>(new String[] {"Funcionário","Estagiario","Gerente","Dono","Diretor"}));
+        DefaultComboBoxModel<String>  modelo = new DefaultComboBoxModel<String>(new String[] {"Funcionário","Estagiario","Gerente","Dono","Diretor"});
+        comboboxTipo.setModel(modelo);
     
     }
 
@@ -45,7 +45,6 @@ public class MenuLogin_Registro extends javax.swing.JFrame {
         comboboxTipo = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         comboboxEmpresa = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
 
@@ -60,7 +59,7 @@ public class MenuLogin_Registro extends javax.swing.JFrame {
         jLabel2.setText("Selecione o tipo:");
 
         comboboxTipo.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        comboboxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione uma Empresa" }));
+        comboboxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione um Tipo" }));
         comboboxTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboboxTipoActionPerformed(evt);
@@ -75,14 +74,6 @@ public class MenuLogin_Registro extends javax.swing.JFrame {
         comboboxEmpresa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboboxEmpresaActionPerformed(evt);
-            }
-        });
-
-        jButton1.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jButton1.setText("Cadastro Nova Empresa");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
             }
         });
 
@@ -111,7 +102,7 @@ public class MenuLogin_Registro extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addComponent(backButton)
-                        .addGap(18, 18, 18)
+                        .addGap(57, 57, 57)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(49, 49, 49)
@@ -123,12 +114,9 @@ public class MenuLogin_Registro extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboboxEmpresa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton2)
+                                    .addComponent(comboboxEmpresa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -146,29 +134,30 @@ public class MenuLogin_Registro extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(comboboxEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(19, 19, 19))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(21, 21, 21))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       CadEmpresa cadastroEmpresa = new CadEmpresa();
-
-        cadastroEmpresa.setVisible(true);
-        cadastroEmpresa.pack();
-        cadastroEmpresa.setLocationRelativeTo(null);
-        cadastroEmpresa.setDefaultCloseOperation(JFrame .EXIT_ON_CLOSE);
-        this.dispose();
-
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+            
+        switch(comboboxTipo.getSelectedItem().toString()){
+            case"Funcionario":
+                break;
+                case"Gerente":
+                break;
+                case"Estagiario":
+                break;
+                case"Funcionario":
+                break;
+                case"Funcionario":
+                break;
+            default:
+                
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -184,11 +173,11 @@ public class MenuLogin_Registro extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void comboboxTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboboxTipoActionPerformed
-
+        
     }//GEN-LAST:event_comboboxTipoActionPerformed
 
     private void comboboxEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboboxEmpresaActionPerformed
-
+        populaComboEmpresa();
 
         
     }//GEN-LAST:event_comboboxEmpresaActionPerformed
@@ -198,10 +187,14 @@ public class MenuLogin_Registro extends javax.swing.JFrame {
         conexao.conect();
         ArrayList<Empresa> empresas = new DAOEmpresa().readAll();
         
-        if(empresas.size() > 0){
+        if(!empresas.isEmpty()){
             for (Empresa empresa : empresas) {
-                comboboxEmpresa.addItem( empresa.getNome() );
-                System.out.println(empresa.getNome());
+                for(int i = 0 ; i < comboboxEmpresa.getItemCount(); i++){
+                    if(!comboboxEmpresa.getItemAt(i).equals(empresa.getNome())){
+                        comboboxEmpresa.addItem(empresa.getNome());
+                    }
+                }
+                
             }
         }
     }
@@ -248,7 +241,6 @@ public class MenuLogin_Registro extends javax.swing.JFrame {
     private javax.swing.JButton backButton;
     private javax.swing.JComboBox<String> comboboxEmpresa;
     private javax.swing.JComboBox<String> comboboxTipo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -180,22 +180,6 @@ public class CadEmpresa extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         System.out.println("Registro clicado");
-        //chama a tela de registro como um pop up
-        /*MenuLogin_Registro.getObj().setVisible(true);
-        MenuLogin_Registro.getObj().setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        
-        MenuLogin_Registro.getObj().addWindowListener(new WindowAdapter() {
-    
-            @Override
-            public void windowClosing(WindowEvent arg0) {
-                synchronized (lock2) {
-                    MenuLogin_Registro.getObj().setVisible(false);
-                }
-            }
-    
-        });
-        /**/
-        //fecha a tela de registro e volta pro menu login
         MenuLogin_Registro telaRegistro = new MenuLogin_Registro();
         telaRegistro.setVisible(true);
         telaRegistro.pack();
