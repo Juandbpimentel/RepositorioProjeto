@@ -95,7 +95,7 @@ public class Funcionario extends Pessoa implements FuncionarioGUI {
 
     @Override
     public void consultarDadosEmprego() {
-        ConsultarDadosEmprego consultarDados = new ConsultarDadosEmprego(this);
+        ConsultarDadosEmprego consultarDados = new ConsultarDadosEmprego(this, true);
         
         consultarDados.setVisible(true);
         consultarDados.pack();

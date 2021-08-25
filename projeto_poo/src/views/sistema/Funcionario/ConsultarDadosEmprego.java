@@ -6,12 +6,23 @@
 package views.sistema.Funcionario;
 
 import modelos.usuarios.Funcionario;
+import modelos.usuarios.Pessoa;
+import dao.usuarios.DAOFuncionario;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import modelos.lugar.Endereco;
 /**
  *
  * @author Yara
  */
 public class ConsultarDadosEmprego extends javax.swing.JFrame {
     private Funcionario funcionario;
+    private DAOFuncionario daoFuncionario;
+    private DefaultTableModel model;
+    
+    private Funcionario resultado;
+    private String nomeResultado = "", loginResultado = "", senhaResultado = "";
+    private boolean tabela;
     /**
      * Creates new form ConsultarDadosEmprego
      */
@@ -19,6 +30,19 @@ public class ConsultarDadosEmprego extends javax.swing.JFrame {
         this.funcionario = funcionario;
         initComponents();
     }
+    
+    public ConsultarDadosEmprego(Funcionario funcionario, boolean tabela) {
+       resultado = daoFuncionario.readOneFuncionario(funcionario.getCpf().toString());
+        
+        if (tabela) {
+            model = new DefaultTableModel();
+            model.addRow(new Object[]{resultado.getNome(), resultado.getSenha(), resultado.getLogin()});
+        }
+        
+        this.funcionario = funcionario;
+        initComponents();
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,7 +55,7 @@ public class ConsultarDadosEmprego extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelaDados = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -54,18 +78,35 @@ public class ConsultarDadosEmprego extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 153, 0));
         jLabel1.setText("Alterar Dados - Funcionário");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaDados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nome", "Login", "Senha"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tabelaDados);
+        if (tabelaDados.getColumnModel().getColumnCount() > 0) {
+            tabelaDados.getColumnModel().getColumn(0).setResizable(false);
+            tabelaDados.getColumnModel().getColumn(1).setResizable(false);
+            tabelaDados.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         jButton1.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jButton1.setText("Salvar");
@@ -303,9 +344,9 @@ public class ConsultarDadosEmprego extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTable tabelaDados;
     // End of variables declaration//GEN-END:variables
 }

@@ -3,6 +3,8 @@ package modelos.usuarios;
 import interfaces.alterDB.GerenteAlterDB;
 import interfaces.gui.GerenteGUI;
 import views.sistema.Gerente.MenuGerente;
+import views.sistema.Gerente.MenuGerente_AdmEstagiario;
+import views.sistema.Gerente.MenuGerente_AdmFuncionario;
 
 import java.time.LocalDate;
 
@@ -43,17 +45,27 @@ public class Gerente extends Funcionario implements GerenteGUI,GerenteAlterDB {
     */
     @Override
     public void administrarFuncionarios() {
-
+        MenuGerente_AdmFuncionario administrarFuncionario = new MenuGerente_AdmFuncionario(this);
+        
+        administrarFuncionario.setVisible(true);
+        administrarFuncionario.pack();
+        administrarFuncionario.setLocationRelativeTo(null);
+        administrarFuncionario.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     @Override
     public void administrarEstagiarios() {
-
+        MenuGerente_AdmEstagiario administrarEstagiarios = new MenuGerente_AdmEstagiario(this);
+        
+        administrarEstagiarios.setVisible(true);
+        administrarEstagiarios.pack();
+        administrarEstagiarios.setLocationRelativeTo(null);
+        administrarEstagiarios.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     @Override
     public void mostrarMenu() {
-        MenuGerente menu = new MenuGerente(); 
+        MenuGerente menu = new MenuGerente(this); 
         
         menu.setVisible(true);
         menu.pack();

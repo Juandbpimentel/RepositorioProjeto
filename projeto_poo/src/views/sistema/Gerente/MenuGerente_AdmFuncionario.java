@@ -5,16 +5,19 @@
  */
 package views.sistema.Gerente;
 
+import modelos.usuarios.Gerente;
+
 /**
  *
  * @author Ana Beatriz
  */
 public class MenuGerente_AdmFuncionario extends javax.swing.JFrame {
-
+    private Gerente gerente;
     /**
      * Creates new form MenuGerente_AdmFuncionario
      */
-    public MenuGerente_AdmFuncionario() {
+    public MenuGerente_AdmFuncionario(Gerente gerente) {
+        this.gerente = gerente;
         initComponents();
     }
 
@@ -28,7 +31,7 @@ public class MenuGerente_AdmFuncionario extends javax.swing.JFrame {
     private void initComponents() {
 
         jTextField2 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -57,8 +60,13 @@ public class MenuGerente_AdmFuncionario extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jButton3.setText("Voltar");
+        backButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        backButton.setText("Voltar");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Poppins", 3, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 153, 0));
@@ -199,7 +207,7 @@ public class MenuGerente_AdmFuncionario extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(10, 10, 10)
-                    .addComponent(jButton3)
+                    .addComponent(backButton)
                     .addContainerGap(438, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
@@ -243,7 +251,7 @@ public class MenuGerente_AdmFuncionario extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jButton3)
+                    .addComponent(backButton)
                     .addContainerGap(587, Short.MAX_VALUE)))
         );
 
@@ -269,6 +277,11 @@ public class MenuGerente_AdmFuncionario extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        gerente.mostrarMenu();
+        this.dispose();
+    }//GEN-LAST:event_backButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -300,15 +313,15 @@ public class MenuGerente_AdmFuncionario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuGerente_AdmFuncionario().setVisible(true);
+            //    new MenuGerente_AdmFuncionario().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton7;
