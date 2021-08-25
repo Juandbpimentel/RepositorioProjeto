@@ -47,6 +47,7 @@ public class CadEmpresa extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jButton3.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jButton3.setText("Voltar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
