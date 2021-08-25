@@ -1,6 +1,11 @@
 package views.sistema.Funcionario;
 
 import javax.swing.JFrame;
+
+import modelos.usuarios.Diretor;
+import modelos.usuarios.Dono;
+import modelos.usuarios.Gerente;
+import modelos.usuarios.Pessoa;
 import views.sistema.menulogin.MenuLogin_Registro;
 
 /*
@@ -14,11 +19,12 @@ import views.sistema.menulogin.MenuLogin_Registro;
  * @author Ana Beatriz
  */
 public class CadFuncionario extends javax.swing.JFrame {
-
+    private Pessoa pessoa;
     /**
      * Creates new form FrameTest
      */
-    public CadFuncionario() {
+    public CadFuncionario(Pessoa pessoa) {
+        this.pessoa = pessoa;
         initComponents();
     }
 
@@ -306,14 +312,33 @@ public class CadFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void backbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbuttonActionPerformed
-        MenuLogin_Registro telaRegistro = new MenuLogin_Registro();
-        
-        telaRegistro.setVisible(true);
-        telaRegistro.pack();
-        telaRegistro.setLocationRelativeTo(null);
-        telaRegistro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        this.dispose();
+        switch (pessoa.getTipo()) {
+            case "DIR":
+                Diretor diretor =(Diretor) pessoa;
+                diretor.administrarFuncionarios();
+                this.dispose();
+                break;
+
+            case "DON":
+                Dono dono = (Dono) pessoa;
+                dono.administrarFuncionarios();
+                this.dispose();
+                break;
+
+            case "GER":
+                Gerente gerente = (Gerente) pessoa;
+                gerente.administrarFuncionarios();
+                this.dispose();
+                break;
+
+            default:
+                MenuLogin_Registro menuReg = new MenuLogin_Registro();
+                menuReg.setVisible(true);
+                menuReg.pack();
+                menuReg.setLocationRelativeTo(null);
+                this.dispose();
+                break;
+        }
     }//GEN-LAST:event_backbuttonActionPerformed
 
     private void jTextField13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField13ActionPerformed
@@ -355,7 +380,7 @@ public class CadFuncionario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadFuncionario().setVisible(true);
+                //new CadFuncionario().setVisible(true);
             }
         });
     }

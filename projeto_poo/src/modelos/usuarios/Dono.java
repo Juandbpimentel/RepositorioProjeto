@@ -4,7 +4,7 @@ package modelos.usuarios;
 import modelos.empresa.Empresa;
 import views.sistema.Dono.MenuDono;
 import views.sistema.Dono.MenuDono_AdmEmpresa;
-import views.sistema.Dono.ConsultarFuncionario.MenuDono_AdmFuncionario;
+import views.sistema.Dono.MenuDono_AdmFuncionario;
 import interfaces.alterDB.DonoAlterDB;
 import interfaces.gui.DonoGUI;
 
@@ -14,7 +14,9 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import views.sistema.Dono.MenuDono_AdmDiretor;
 import views.sistema.Dono.MenuDono_AdmSetor;
-import views.sistema.Dono.ConsultarEstagiario.MenuDono_AdmEstagiario;
+import views.sistema.Estagiario.CadEstagiario;
+import views.sistema.Funcionario.CadFuncionario;
+import views.sistema.Dono.MenuDono_AdmEstagiario;
 import views.sistema.menulogin.viewMenuLogin;
 
 
@@ -94,12 +96,22 @@ public class Dono extends Pessoa implements DonoGUI,DonoAlterDB {
 
     @Override
     public void admitirFuncionario() {
-
+        CadFuncionario menu = new CadFuncionario((Pessoa)this); 
+        
+        menu.setVisible(true);
+        menu.pack();
+        menu.setLocationRelativeTo(null);
+        menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     @Override
     public void admitirEstagiario() {
-
+        CadEstagiario menu = new CadFuncionario(this); 
+        
+        menu.setVisible(true);
+        menu.pack();
+        menu.setLocationRelativeTo(null);
+        menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     @Override

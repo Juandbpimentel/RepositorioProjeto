@@ -154,7 +154,7 @@ public class MenuLogin_Registro extends javax.swing.JFrame {
             case "Funcionário":
                 System.out.println("Funcionário");
                 System.out.println(campos[0]+campos[1]);
-                CadFuncionario cadFuncionario = new CadFuncionario();
+                CadFuncionario cadFuncionario = new CadFuncionario(null);
 
                 cadFuncionario.setVisible(true);
                 cadFuncionario.pack();

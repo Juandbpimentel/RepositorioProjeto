@@ -6,7 +6,10 @@
 package views.sistema.Categoria;
 
 
+import modelos.usuarios.Diretor;
 import modelos.usuarios.Dono;
+import modelos.usuarios.Pessoa;
+import views.sistema.menulogin.MenuLogin_Registro;
 
 
 /**
@@ -14,12 +17,12 @@ import modelos.usuarios.Dono;
  * @author Yara
  */
 public class CadastrarCategoria extends javax.swing.JFrame {
-    private Dono dono;
+    private Pessoa pessoa;
     /**
      * Creates new form CadastrarCategoria
      */
-    public CadastrarCategoria(Dono dono) {
-        this.dono = dono;
+    public CadastrarCategoria(Pessoa pessoa) {
+        this.pessoa = pessoa;
         initComponents();
     }
 
@@ -213,9 +216,26 @@ public class CadastrarCategoria extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-                dono.administrarEmpresa();
-
+        switch (pessoa.getTipo()) {
+            case "DIR":
+                Diretor diretor =(Diretor) pessoa;
+                diretor.administrarSetores();
                 this.dispose();
+                break;
+
+            case "DON":
+                Dono dono = (Dono) pessoa;
+                dono.administrarEmpresa();
+                this.dispose();
+                break;
+            default:
+                MenuLogin_Registro menuReg = new MenuLogin_Registro();
+                menuReg.setVisible(true);
+                menuReg.pack();
+                menuReg.setLocationRelativeTo(null);
+                this.dispose();
+                break;
+        }
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
