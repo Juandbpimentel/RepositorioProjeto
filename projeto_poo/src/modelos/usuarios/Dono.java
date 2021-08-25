@@ -11,6 +11,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
+import views.sistema.Dono.MenuDono_AdmDiretor;
+import views.sistema.Dono.MenuDono_AdmSetor;
+import views.sistema.menulogin.viewMenuLogin;
 
 
 public class Dono extends Pessoa implements DonoGUI,DonoAlterDB {
@@ -52,12 +55,17 @@ public class Dono extends Pessoa implements DonoGUI,DonoAlterDB {
 
     @Override
     public void administrarDiretores() {
-
+        MenuDono_AdmDiretor menu = new MenuDono_AdmDiretor(this); 
+        
+        menu.setVisible(true);
+        menu.pack();
+        menu.setLocationRelativeTo(null);
+        menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     @Override
     public void consultarEstagiarios() {
-
+        return;
     }
 
     @Override
@@ -77,6 +85,12 @@ public class Dono extends Pessoa implements DonoGUI,DonoAlterDB {
 
     @Override
     public void administrarSetores() {
+        MenuDono_AdmSetor telaLogin = new MenuDono_AdmSetor(this);
+
+        telaLogin.setVisible(true);
+        telaLogin.pack();
+        telaLogin.setLocationRelativeTo(null);
+        telaLogin.setDefaultCloseOperation(JFrame .EXIT_ON_CLOSE);
 
     }
 
@@ -104,8 +118,8 @@ public class Dono extends Pessoa implements DonoGUI,DonoAlterDB {
     }
 
     @Override
-    public void alterarOrcamentoEmpresa() {
-
+    public void administrarEmpresa() {
+        
     }
 
     @Override
@@ -154,7 +168,7 @@ public class Dono extends Pessoa implements DonoGUI,DonoAlterDB {
     }
 
     @Override
-    public void alterarDadosSetor() {
+    public void administrarSetor() {
         
     }
 
