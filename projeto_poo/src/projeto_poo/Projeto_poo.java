@@ -9,6 +9,7 @@ package projeto_poo;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.concurrent.atomic.AtomicBoolean;
+import sistema.Conexao;
 
 import javax.swing.JFrame;
 
@@ -32,7 +33,7 @@ public class Projeto_poo {
     
     public static void main(String[] args) {
         Projeto_poo main = new Projeto_poo(); 
-        /* Conexao conexao = new Conexao();
+        /*Conexao conexao = new Conexao();
          conexao.startDatabase();
          conexao.conect();
          conexao.createTables();
@@ -40,6 +41,8 @@ public class Projeto_poo {
          conexao.insertData();
          */
         // Pessoa = Funcionario = gerente
+         /*conexao.insertData();*/
+         
         
         int x = (int) 0.5;
 
