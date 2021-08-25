@@ -37,12 +37,8 @@ public class viewMenuLogin extends javax.swing.JFrame {
         passwordLabel = new javax.swing.JLabel();
         errorPasswordLabel = new javax.swing.JLabel();
         loginButton = new javax.swing.JButton();
-        loginLabel1 = new javax.swing.JLabel();
-        passwordTextField = new javax.swing.JPasswordField();
+        registerButtonLabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        errorImportPessoaLabel = new javax.swing.JLabel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(103, 66, 130));
@@ -76,8 +72,13 @@ public class viewMenuLogin extends javax.swing.JFrame {
             }
         });
 
-        loginLabel1.setForeground(new java.awt.Color(246, 146, 84));
-        loginLabel1.setText("Fazer Registro");
+        registerButtonLabel.setForeground(new java.awt.Color(246, 146, 84));
+        registerButtonLabel.setText("Fazer Registro");
+        registerButtonLabel.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                registerButtonLabelKeyTyped(evt);
+            }
+        });
 
         passwordTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,6 +91,16 @@ public class viewMenuLogin extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(110, 110, 110)
+                        .addComponent(loginButton))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(119, 119, 119)
+                        .addComponent(registerButtonLabel)))
+                .addContainerGap(111, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                         .addGap(53, 53, 53)
@@ -131,7 +142,7 @@ public class viewMenuLogin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(loginButton)
                 .addGap(18, 18, 18)
-                .addComponent(loginLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(registerButtonLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(31, 31, 31))
         );
 
@@ -232,13 +243,18 @@ public class viewMenuLogin extends javax.swing.JFrame {
         this.setUsuario(usuario);
     }//GEN-LAST:event_loginButtonActionPerformed
 
+    
+    private void registerClick(java.awt.event.ActionEvent evt){
+        
+    }
+    
     private void loginTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginTextFieldActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_loginTextFieldActionPerformed
 
-    private void passwordTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordTextFieldActionPerformed
+    private void registerButtonLabelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_registerButtonLabelKeyTyped
+        
+    }//GEN-LAST:event_registerButtonLabelKeyTyped
 
     /**
      * @param args the command line arguments
@@ -295,9 +311,9 @@ public class viewMenuLogin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JButton loginButton;
     private javax.swing.JLabel loginLabel;
-    private javax.swing.JLabel loginLabel1;
     private javax.swing.JTextField loginTextField;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JPasswordField passwordTextField;
+    private javax.swing.JLabel registerButtonLabel;
     // End of variables declaration//GEN-END:variables
 }
