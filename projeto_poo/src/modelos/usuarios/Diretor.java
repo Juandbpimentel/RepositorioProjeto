@@ -2,8 +2,11 @@ package modelos.usuarios;
 
 import interfaces.alterDB.DiretorAlterDB;
 import interfaces.gui.DiretorGUI;
+import views.sistema.Diretor.MenuDiretor;
 
 import java.time.LocalDate;
+
+import javax.swing.JFrame;
 
 public class Diretor extends Pessoa implements DiretorGUI, DiretorAlterDB {
     private String cnpj_empresa;
@@ -124,4 +127,15 @@ public class Diretor extends Pessoa implements DiretorGUI, DiretorAlterDB {
     public void alterarDadosSetor() {
         
     }
+
+    @Override
+    public void mostrarMenu() {
+        MenuDiretor menu = new MenuDiretor(); 
+        
+        menu.setVisible(true);
+        menu.pack();
+        menu.setLocationRelativeTo(null);
+        menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
 }
