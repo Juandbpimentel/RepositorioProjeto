@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
- package views.sistema.Dono.consultarFuncionarios;
+ package views.sistema.Dono.ConsultarFuncionario;
 
 /**
  *
