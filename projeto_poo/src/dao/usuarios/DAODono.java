@@ -22,7 +22,7 @@ public class DAODono {
             ResultSet resultado = conexao.executaQuery(codigoBusca);
 
             if (!resultado.next()) {
-                throw new NullPointerException("Não foi possível achar nenhuma categoria");
+                throw new NullPointerException("Não foi possível achar nenhum dono");
             }else{
                 do{
                 String cpf;

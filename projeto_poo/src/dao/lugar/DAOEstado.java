@@ -24,7 +24,7 @@ public class DAOEstado {
             ResultSet resultado = conexao.executaQuery(codBusca);
             
             if (!resultado.next()) {
-                throw new NullPointerException("Não foi possível achar nenhuma categoria");
+                throw new NullPointerException("Não foi possível achar nenhuma estado");
             }else{
                 do{
                     String nome, uf;

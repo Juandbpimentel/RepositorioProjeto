@@ -1,8 +1,11 @@
 package modelos.usuarios;
 
 import modelos.lugar.Endereco;
+import views.sistema.Pessoa.MenuPessoa;
 
 import java.time.LocalDate;
+
+import javax.swing.JFrame;
 
 import interfaces.alterDB.PessoaAlterDB;
 import interfaces.gui.PessoaGUI;
@@ -111,15 +114,35 @@ public class Pessoa implements PessoaGUI, PessoaAlterDB {
 
     @Override
     public void mostrarMenu() {
-        viewMenuUsuario menu = new viewMenuUsuario(); 
-    
+        MenuPessoa menu = new MenuPessoa(); 
+        
+        menu.setVisible(true);
+        menu.pack();
+        menu.setLocationRelativeTo(null);
+        menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-
 /*
   AlterDB
 */
     @Override
     public boolean alterarDadosPessoais() {
         return true;
+    }
+
+    @Override
+    public String toString() {
+        // TODO Auto-generated method stub
+        return "( nome : \'"+nome+"\' , login: \'"+login+"\' , "+senha+"\' , "+tipo+"\' , "+cpf+"\' , "+data_nasc+"\' , "+id_endereco+"\' )";
+        
+        /*
+            protected String nome;
+            protected String login;
+            protected String senha;
+            protected String tipo;
+            protected String cpf;
+            protected LocalDate data_nasc;
+            protected int id_endereco;
+            protected Endereco endereco;
+        */
     }
 }

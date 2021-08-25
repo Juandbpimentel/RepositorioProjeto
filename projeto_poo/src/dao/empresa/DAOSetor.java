@@ -18,7 +18,7 @@ public class DAOSetor {
             ArrayList<Setor> arraySetor = new ArrayList<Setor>();
             conexao.conect();
 
-            String codBusca = "Select * from funcionario";
+            String codBusca = "Select * from Setor";
             ResultSet resultado = conexao.executaQuery(codBusca);
             
             if (!resultado.next()) {

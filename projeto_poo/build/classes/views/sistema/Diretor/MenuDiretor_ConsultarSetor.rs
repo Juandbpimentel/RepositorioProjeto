@@ -1,3 +1,0 @@
-Diretor.MenuDiretor_ConsultarSetor$1
-Diretor.MenuDiretor_ConsultarSetor
-Diretor.MenuDiretor_ConsultarSetor$2

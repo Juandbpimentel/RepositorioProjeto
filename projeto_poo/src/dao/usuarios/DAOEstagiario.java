@@ -23,7 +23,7 @@ public class DAOEstagiario{
             ResultSet resultQueryEstagiario = conexao.executaQuery(sqlQueryEstagiario);
 
             if (!resultQueryEstagiario.next()) {
-                throw new NullPointerException("Não foi possível achar nenhuma categoria");
+                throw new NullPointerException("Não foi possível achar nenhum Estagiario");
             }else{
                 do{
                 String cpf = "";

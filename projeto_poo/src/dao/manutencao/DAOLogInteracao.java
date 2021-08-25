@@ -21,11 +21,11 @@ public class DAOLogInteracao {
             conexao = new Conexao();
             conexao.conect();
 
-            String codBusca = "Select * from funcionario";
+            String codBusca = "Select * from log_interacao";
             ResultSet resultado = conexao.executaQuery(codBusca);
 
             if (!resultado.next()) {
-                throw new NullPointerException("Não foi possível achar nenhuma categoria");
+                throw new NullPointerException("Não foi possível achar nenhuma log_interacao");
             }else{
                 do{
                     Timestamp data;

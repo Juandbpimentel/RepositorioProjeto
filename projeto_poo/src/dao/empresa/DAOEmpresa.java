@@ -19,10 +19,10 @@ public class DAOEmpresa {
             
             conexao.conect();
 
-            String codBusca = "Select * from funcionario";
+            String codBusca = "Select * from empresa";
             ResultSet resultado = conexao.executaQuery(codBusca);
             if (!resultado.next()) {
-                throw new NullPointerException("Não foi possível achar nenhuma categoria");
+                throw new NullPointerException("Não foi possível achar nenhuma empresa");
             }else{
                 do{
                     Double orc;

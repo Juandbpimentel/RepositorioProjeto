@@ -19,7 +19,7 @@ public class DAOCidade {
 
             conexao.conect();
 
-            String codBusca = "Select * from funcionario";
+            String codBusca = "Select * from cidade";
             ResultSet resultado = conexao.executaQuery(codBusca);
             
             if (!resultado.next()) {

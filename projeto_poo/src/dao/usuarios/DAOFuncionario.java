@@ -25,7 +25,7 @@ public class DAOFuncionario {
             ResultSet resultado = conexao.executaQuery(codBusca);
             
             if (!resultado.next()) {
-                throw new NullPointerException("Não foi possível achar nenhuma categoria");
+                throw new NullPointerException("Não foi possível achar nenhuma funcionario");
             }else{
                 do{
                     int id_categoria=0, 
@@ -116,7 +116,9 @@ public class DAOFuncionario {
             if(!resultadoQueryFuncionario.next()){
                 throw new NullPointerException("Não foi possível encontrar o funcionário com este cpf");            
             } else{
-                int idsetor = resultadoQueryFuncionario.getInt("id_setor"), diapagamento = resultadoQueryFuncionario.getInt("dia_pagamento"), idcat = resultadoQueryFuncionario.getInt("id_categoria");
+                int idsetor = resultadoQueryFuncionario.getInt("id_setor"), 
+                              diapagamento = resultadoQueryFuncionario.getInt("dia_pagamento"), 
+                              idcat = resultadoQueryFuncionario.getInt("id_categoria");
                 double bonificacao = resultadoQueryFuncionario.getDouble("bonificacao");
                 Date inicio = resultadoQueryFuncionario.getDate("data_inicio");
                 String sqlQueryPessoa = "Select * from pessoa where cpf = \'"+cpf+"\'";

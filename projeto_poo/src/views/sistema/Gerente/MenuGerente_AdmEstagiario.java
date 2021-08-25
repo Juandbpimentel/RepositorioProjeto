@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Estagiário;
+package views.sistema.Gerente;
 
 /**
  *
@@ -79,7 +79,7 @@ public class MenuGerente_AdmEstagiario extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Poppins", 0, 11)); // NOI18N
-        jLabel2.setText("Selecione o funcionário para editar:");
+        jLabel2.setText("Selecione o estagiário para editar:");
 
         jLabel3.setFont(new java.awt.Font("Poppins", 0, 11)); // NOI18N
         jLabel3.setText("Dia do Pagamento:");

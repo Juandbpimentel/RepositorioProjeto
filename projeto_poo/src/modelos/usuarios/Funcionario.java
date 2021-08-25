@@ -98,5 +98,9 @@ public class Funcionario extends Pessoa implements FuncionarioGUI {
 
     }
     
+    @Override
+    public String toString(){
+        return super.toString()+" ( bonificacao : \'"+bonificacao+"\', cpf : \'"+cpf+"\', id_categoria : "+id_categoria+", id_setor : "+id_setor+", dia_pagamento : "+dia_pagamento+", data_inicio \'"+data_inicio+"\' )";
+    }
 
 }

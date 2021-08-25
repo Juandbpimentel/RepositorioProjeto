@@ -19,11 +19,11 @@ public class DAOBairro {
 
             conexao.conect();
 
-            String codBusca = "Select * from funcionario";
+            String codBusca = "Select * from bairro";
             ResultSet resultado = conexao.executaQuery(codBusca);
             
             if (!resultado.next()) {
-                throw new NullPointerException("Não foi possível achar nenhuma categoria");
+                throw new NullPointerException("Não foi possível achar nenhuma bairro");
             }else{
                 do{
                     int id, cid;

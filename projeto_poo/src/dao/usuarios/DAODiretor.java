@@ -24,7 +24,7 @@ public class DAODiretor {
             ResultSet resultado = conexao.executaQuery(codigoBusca);
 
             if (!resultado.next()) {
-                throw new NullPointerException("Não foi possível achar nenhuma categoria");
+                throw new NullPointerException("Não foi possível achar nenhuma diretor");
             }else{
                 do{
                     String cnpjEmpresa = "", cpf="";

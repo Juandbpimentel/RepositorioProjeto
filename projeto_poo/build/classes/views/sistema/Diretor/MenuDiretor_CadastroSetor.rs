@@ -1,6 +1,0 @@
-Diretor.MenuDiretor_CadastroSetor$1
-Diretor.MenuDiretor_CadastroSetor$4
-Diretor.MenuDiretor_CadastroSetor$5
-Diretor.MenuDiretor_CadastroSetor$2
-Diretor.MenuDiretor_CadastroSetor$3
-Diretor.MenuDiretor_CadastroSetor
