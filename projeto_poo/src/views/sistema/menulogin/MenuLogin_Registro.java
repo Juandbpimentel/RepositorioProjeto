@@ -19,20 +19,12 @@ import views.sistema.Empresa.CadEmpresa;
  * @author Ana Beatriz
  */
 public class MenuLogin_Registro extends javax.swing.JFrame {
-    private static MenuLogin_Registro frame;
     
-    public static MenuLogin_Registro getObj(){
-       if(frame == null){
-           frame = new MenuLogin_Registro();
-       }
-       return frame;
-    }
     /**
      * Creates new form MenuLogin_Regisro
      */
     public MenuLogin_Registro() {
         
-        setUndecorated(true);
         initComponents();
         populaComboEmpresa();
         comboboxTipo.setModel(new DefaultComboBoxModel<String>(new String[] {"Funcionário","Estagiario","Gerente","Dono","Diretor"}));
@@ -58,6 +50,7 @@ public class MenuLogin_Registro extends javax.swing.JFrame {
         backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Poppins", 3, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 153, 0));

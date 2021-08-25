@@ -169,7 +169,7 @@ public class DAOPessoa{
             if (!resultadoQueryPessoa.next()) {
                 throw new NullPointerException("A pessoa que você está procurando não foi encontrado, retornou nulo");
             }else{
-                if (entryLogin.equals(resultadoQueryPessoa.getString("senha")) ) {
+                if (!entrySenha.equals(resultadoQueryPessoa.getString("senha")) ) {
                     throw new Exception("A senha digitada está incorreta");
                 }
                 String nome = resultadoQueryPessoa.getString("nome"), 
@@ -251,6 +251,7 @@ public class DAOPessoa{
                         return new Dono(nome, login, senha, tipo, cpf, data_nasc.toLocalDate(), id_endereco);
                 
                     default:
+                        
                         Pessoa pessoa = new Pessoa(nome,login,senha,tipo,cpf,data_nasc.toLocalDate(),id_endereco);
                         return pessoa;
                 }

@@ -21,17 +21,8 @@ import java.awt.event.WindowEvent;
  */
 public class viewMenuLogin extends javax.swing.JFrame {
     
-    private static viewMenuLogin frame;
-    
-    public static viewMenuLogin getObj(){
-       if(frame == null){
-           frame = new viewMenuLogin();
-       }
-       return frame;
-    }
     
     public viewMenuLogin() {
-        setUndecorated(true);
         initComponents();
         
     }
@@ -97,6 +88,12 @@ public class viewMenuLogin extends javax.swing.JFrame {
         registerButtonLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 registerButtonLabelMouseClicked(evt);
+            }
+        });
+
+        passwordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordFieldActionPerformed(evt);
             }
         });
 
@@ -210,8 +207,6 @@ public class viewMenuLogin extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        
-       
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -281,6 +276,10 @@ public class viewMenuLogin extends javax.swing.JFrame {
     private void closeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeButtonMouseClicked
         System.exit(0);
     }//GEN-LAST:event_closeButtonMouseClicked
+
+    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordFieldActionPerformed
 
     
 

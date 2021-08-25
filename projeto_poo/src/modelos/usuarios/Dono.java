@@ -2,12 +2,14 @@ package modelos.usuarios;
 
 
 import modelos.empresa.Empresa;
-
+import views.sistema.Dono.MenuDono;
 import interfaces.alterDB.DonoAlterDB;
 import interfaces.gui.DonoGUI;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import javax.swing.JFrame;
 
 
 public class Dono extends Pessoa implements DonoGUI,DonoAlterDB {
@@ -159,7 +161,7 @@ public class Dono extends Pessoa implements DonoGUI,DonoAlterDB {
 
     @Override
     public void mostrarMenu() {
-        views.sistema.Dono. menu = new MenuGerente(); 
+        MenuDono menu = new MenuDono(); 
         
         menu.setVisible(true);
         menu.pack();
