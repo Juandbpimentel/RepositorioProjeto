@@ -5,16 +5,20 @@
  */
 package views.sistema.Funcionario;
 
+import javax.swing.JFrame;
+import views.sistema.menulogin.viewMenuLogin;
+import modelos.usuarios.Funcionario;
 /**
  *
  * @author Yara
  */
 public class MenuFuncionario extends javax.swing.JFrame {
-
+    private Funcionario funcionario;
     /**
      * Creates new form MenuFuncionario
      */
-    public MenuFuncionario() {
+    public MenuFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
         initComponents();
     }
 
@@ -29,9 +33,9 @@ public class MenuFuncionario extends javax.swing.JFrame {
 
         jScrollBar1 = new javax.swing.JScrollBar();
         jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        consultarDadosEmprego = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
+        consultarEstagiarios = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -39,22 +43,27 @@ public class MenuFuncionario extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 153, 0));
         jLabel1.setText("Bem-Vindo(a) ao Menu do Funcionário");
 
-        jButton2.setFont(new java.awt.Font("Poppins", 0, 11)); // NOI18N
-        jButton2.setText("Consultar Dados de Emprego");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        consultarDadosEmprego.setFont(new java.awt.Font("Poppins", 0, 11)); // NOI18N
+        consultarDadosEmprego.setText("Consultar Dados de Emprego");
+        consultarDadosEmprego.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                consultarDadosEmpregoActionPerformed(evt);
             }
         });
 
-        jButton5.setFont(new java.awt.Font("Poppins", 0, 11)); // NOI18N
-        jButton5.setText("Voltar");
-
-        jButton6.setFont(new java.awt.Font("Poppins", 0, 11)); // NOI18N
-        jButton6.setText("Consultar Estagiários");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        backButton.setFont(new java.awt.Font("Poppins", 0, 11)); // NOI18N
+        backButton.setText("Voltar");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                backButtonActionPerformed(evt);
+            }
+        });
+
+        consultarEstagiarios.setFont(new java.awt.Font("Poppins", 0, 11)); // NOI18N
+        consultarEstagiarios.setText("Consultar Estagiários");
+        consultarEstagiarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultarEstagiariosActionPerformed(evt);
             }
         });
 
@@ -69,12 +78,12 @@ public class MenuFuncionario extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(consultarDadosEmprego, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(consultarEstagiarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(112, 112, 112))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton5)
+                .addComponent(backButton)
                 .addGap(175, 175, 175))
         );
         layout.setVerticalGroup(
@@ -83,24 +92,37 @@ public class MenuFuncionario extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(consultarDadosEmprego)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton6)
+                .addComponent(consultarEstagiarios)
                 .addGap(25, 25, 25)
-                .addComponent(jButton5)
+                .addComponent(backButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void consultarDadosEmpregoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarDadosEmpregoActionPerformed
+        funcionario.consultarDadosEmprego();
+        this.dispose();
+    }//GEN-LAST:event_consultarDadosEmpregoActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    private void consultarEstagiariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarEstagiariosActionPerformed
+        funcionario.consultarEstagiarios();
+        this.dispose();
+    }//GEN-LAST:event_consultarEstagiariosActionPerformed
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        viewMenuLogin telaLogin = new viewMenuLogin();
+
+        telaLogin.setVisible(true);
+        telaLogin.pack();
+        telaLogin.setLocationRelativeTo(null);
+        telaLogin.setDefaultCloseOperation(JFrame .EXIT_ON_CLOSE);
+
+        this.dispose();
+    }//GEN-LAST:event_backButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -132,15 +154,15 @@ public class MenuFuncionario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuFuncionario().setVisible(true);
+            //    new MenuFuncionario().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JButton backButton;
+    private javax.swing.JButton consultarDadosEmprego;
+    private javax.swing.JButton consultarEstagiarios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollBar jScrollBar1;
     // End of variables declaration//GEN-END:variables
