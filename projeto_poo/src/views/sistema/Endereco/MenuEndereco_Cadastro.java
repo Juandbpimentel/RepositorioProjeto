@@ -4,17 +4,18 @@
  * and open the template in the editor.
  */
 package views.sistema.Endereco;
-
+import modelos.usuarios.Pessoa;
 /**
  *
  * @author Ana Beatriz
  */
 public class MenuEndereco_Cadastro extends javax.swing.JFrame {
-
+    private Pessoa pessoa;
     /**
      * Creates new form MenuEndereco_Cadastro
      */
-    public MenuEndereco_Cadastro() {
+    public MenuEndereco_Cadastro(Pessoa pessoa) {
+        this.pessoa = pessoa;
         initComponents();
     }
 
@@ -213,7 +214,7 @@ public class MenuEndereco_Cadastro extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuEndereco_Cadastro().setVisible(true);
+            //    new MenuEndereco_Cadastro().setVisible(true);
             }
         });
     }
