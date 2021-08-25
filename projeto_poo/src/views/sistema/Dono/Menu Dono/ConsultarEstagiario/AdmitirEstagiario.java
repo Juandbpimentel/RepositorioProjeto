@@ -40,6 +40,8 @@ public class AdmitirEstagiario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Poppins", 3, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 102, 0));
         jLabel1.setText("Admitir Estagiário");
 
         jButton1.setText("Voltar");
