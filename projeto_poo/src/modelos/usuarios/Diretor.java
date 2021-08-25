@@ -44,35 +44,8 @@ public class Diretor extends Pessoa implements DiretorGUI, DiretorAlterDB {
 /*
      GUI
  */
-    @Override
-    public void administrarFuncionarios() {
+    
 
-    }
-
-    @Override
-    public void administrarEstagiarios() {
-
-    }
-
-    @Override
-    public void administrarSetores() {
-
-    }
-
-    @Override
-    public void consultarFuncionarios() {
-
-    }
-
-    @Override
-    public void consultarEstagiarios() {
-
-    }
-
-    @Override
-    public void consultarSetores() {
-
-    }
 
 /*
     Alteração banco de dados
@@ -124,8 +97,18 @@ public class Diretor extends Pessoa implements DiretorGUI, DiretorAlterDB {
     }
 
     @Override
-    public void alterarDadosSetor() {
-        
+    public void administrarFuncionarios() {
+
+    }
+
+    @Override
+    public void administrarEstagiarios() {
+
+    }
+
+    @Override
+    public void administrarSetores() {
+
     }
 
     @Override

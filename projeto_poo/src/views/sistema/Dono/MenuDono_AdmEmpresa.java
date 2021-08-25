@@ -220,7 +220,7 @@ public class MenuDono_AdmEmpresa extends javax.swing.JFrame {
     }//GEN-LAST:event_salvarButtonActionPerformed
 
     private void criarCatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarCatButtonActionPerformed
-        CadastrarCategoria menuCadCategoria = new CadastrarCategoria( (Pessoa) dono );
+        CadastrarCategoria menuCadCategoria = new CadastrarCategoria( dono );
         menuCadCategoria.setVisible(true);
         menuCadCategoria.pack();
         menuCadCategoria.setLocationRelativeTo(null);
@@ -234,7 +234,7 @@ public class MenuDono_AdmEmpresa extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void admSetoresButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admSetoresButtonActionPerformed
-        dono.administrarSetor();
+        dono.administrarSetores();
         
         this.dispose();
     }//GEN-LAST:event_admSetoresButtonActionPerformed

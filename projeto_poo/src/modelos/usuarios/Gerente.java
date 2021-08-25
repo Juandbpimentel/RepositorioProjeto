@@ -52,16 +52,6 @@ public class Gerente extends Funcionario implements GerenteGUI,GerenteAlterDB {
     }
 
     @Override
-    public void consultarFuncionarios() {
-
-    }
-
-    @Override
-    public void consultarEstagiarios() {
-
-    }
-
-    @Override
     public void mostrarMenu() {
         MenuGerente menu = new MenuGerente(); 
         

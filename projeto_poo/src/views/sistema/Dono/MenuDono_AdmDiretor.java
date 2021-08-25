@@ -279,7 +279,7 @@ public class MenuDono_AdmDiretor extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        dono.mostrarMenu();
+        dono.administrarEmpresa();
         this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
 

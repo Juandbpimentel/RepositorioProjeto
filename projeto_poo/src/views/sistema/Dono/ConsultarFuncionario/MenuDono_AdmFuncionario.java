@@ -6,16 +6,19 @@
 
  package views.sistema.Dono.ConsultarFuncionario;
 
+import modelos.usuarios.Dono;
+
 /**
  *
  * @author Yara
  */
 public class MenuDono_AdmFuncionario extends javax.swing.JFrame {
-
+    private Dono dono;
     /**
      * Creates new form AdministrarFuncionario
      */
-    public MenuDono_AdmFuncionario() {
+    public MenuDono_AdmFuncionario(Dono dono) {
+        this.dono = dono;
         initComponents();
     }
 
@@ -303,7 +306,7 @@ public class MenuDono_AdmFuncionario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuDono_AdmFuncionario().setVisible(true);
+                //new MenuDono_AdmFuncionario().setVisible(true);
             }
         });
     }

@@ -9,12 +9,17 @@
  * @author sarah
  */
 package views.sistema.Dono.ConsultarEstagiario;
-public class MenuDono_AdmEstagiario extends javax.swing.JFrame {
 
+import modelos.usuarios.Dono;
+import modelos.usuarios.Pessoa;
+
+public class MenuDono_AdmEstagiario extends javax.swing.JFrame {
+    private Dono dono;
     /**
      * Creates new form ConsultarEstagiarioDono
      */
-    public MenuDono_AdmEstagiario() {
+    public MenuDono_AdmEstagiario(Dono dono) {
+        this.dono = dono;
         initComponents();
     }
 
@@ -313,7 +318,7 @@ public class MenuDono_AdmEstagiario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuDono_AdmEstagiario().setVisible(true);
+                //new MenuDono_AdmEstagiario().setVisible(true);
             }
         });
     }

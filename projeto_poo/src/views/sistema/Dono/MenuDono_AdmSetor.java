@@ -31,42 +31,42 @@ public class MenuDono_AdmSetor extends javax.swing.JFrame {
     private void initComponents() {
 
         jTextField1 = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
+        saveSetorButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
+        clearLabelsButton = new javax.swing.JButton();
         jTextField2 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        backDonoButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        admFuncionariosButton = new javax.swing.JButton();
+        admEstagiariosButton = new javax.swing.JButton();
+        admDiretoresButton = new javax.swing.JButton();
+        excludeSetorButton = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTextField1.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
 
-        jButton4.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jButton4.setText("Salvar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        saveSetorButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        saveSetorButton.setText("Salvar");
+        saveSetorButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                saveSetorButtonActionPerformed(evt);
             }
         });
 
         jLabel3.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jLabel3.setText("Orçamento:");
 
-        jButton5.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jButton5.setText("Limpar");
+        clearLabelsButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        clearLabelsButton.setText("Limpar");
 
         jTextField2.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
 
@@ -90,8 +90,13 @@ public class MenuDono_AdmSetor extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jButton3.setText("Voltar");
+        backDonoButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        backDonoButton.setText("Voltar");
+        backDonoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backDonoButtonActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -115,35 +120,35 @@ public class MenuDono_AdmSetor extends javax.swing.JFrame {
         jComboBox2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jButton6.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jButton6.setText("Administrar Funcionários");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        admFuncionariosButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        admFuncionariosButton.setText("Administrar Funcionários");
+        admFuncionariosButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                admFuncionariosButtonActionPerformed(evt);
             }
         });
 
-        jButton7.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jButton7.setText("Administrar Estagiários");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        admEstagiariosButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        admEstagiariosButton.setText("Administrar Estagiários");
+        admEstagiariosButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                admEstagiariosButtonActionPerformed(evt);
             }
         });
 
-        jButton8.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jButton8.setText("Administrar Diretores");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        admDiretoresButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        admDiretoresButton.setText("Administrar Diretores");
+        admDiretoresButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                admDiretoresButtonActionPerformed(evt);
             }
         });
 
-        jButton9.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jButton9.setText("Excluir Setor");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        excludeSetorButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        excludeSetorButton.setText("Excluir Setor");
+        excludeSetorButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                excludeSetorButtonActionPerformed(evt);
             }
         });
 
@@ -164,9 +169,9 @@ public class MenuDono_AdmSetor extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jCheckBox1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton4)
+                        .addComponent(saveSetorButton)
                         .addGap(109, 109, 109)
-                        .addComponent(jButton5)))
+                        .addComponent(clearLabelsButton)))
                 .addGap(197, 197, 197))
             .addGroup(layout.createSequentialGroup()
                 .addGap(49, 49, 49)
@@ -179,7 +184,7 @@ public class MenuDono_AdmSetor extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6)
-                                    .addComponent(jButton3))
+                                    .addComponent(backDonoButton))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
@@ -187,9 +192,9 @@ public class MenuDono_AdmSetor extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(admDiretoresButton, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(38, 38, 38)
-                                        .addComponent(jButton6))
+                                        .addComponent(admFuncionariosButton))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel3)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -209,9 +214,9 @@ public class MenuDono_AdmSetor extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton7)
+                                    .addComponent(admEstagiariosButton)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(excludeSetorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(194, 194, 194)))))
                         .addGap(48, 48, 48))))
         );
@@ -220,7 +225,7 @@ public class MenuDono_AdmSetor extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
+                    .addComponent(backDonoButton)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -240,46 +245,49 @@ public class MenuDono_AdmSetor extends javax.swing.JFrame {
                     .addComponent(jButton2))
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton8)
-                    .addComponent(jButton6)
-                    .addComponent(jButton7))
+                    .addComponent(admDiretoresButton)
+                    .addComponent(admFuncionariosButton)
+                    .addComponent(admEstagiariosButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton9)
+                .addComponent(excludeSetorButton)
                 .addGap(9, 9, 9)
                 .addComponent(jCheckBox1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
+                    .addComponent(saveSetorButton)
+                    .addComponent(clearLabelsButton))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void saveSetorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveSetorButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_saveSetorButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    private void admFuncionariosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admFuncionariosButtonActionPerformed
+        dono.administrarFuncionarios();
+        this.dispose();
+    }//GEN-LAST:event_admFuncionariosButtonActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+    private void admDiretoresButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admDiretoresButtonActionPerformed
+        dono.administrarDiretores();
+        this.dispose();
+    }//GEN-LAST:event_admDiretoresButtonActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void excludeSetorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excludeSetorButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_excludeSetorButtonActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    private void admEstagiariosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admEstagiariosButtonActionPerformed
+        dono.administrarEstagiarios();
+        this.dispose();
+    }//GEN-LAST:event_admEstagiariosButtonActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
@@ -288,6 +296,12 @@ public class MenuDono_AdmSetor extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void backDonoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backDonoButtonActionPerformed
+        dono.administrarEmpresa();
+        this.dispose();
+        this.dispose();
+    }//GEN-LAST:event_backDonoButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -320,21 +334,20 @@ public class MenuDono_AdmSetor extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuDono_AdmSetor().setVisible(true);
+                //new MenuDono_AdmSetor().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton admDiretoresButton;
+    private javax.swing.JButton admEstagiariosButton;
+    private javax.swing.JButton admFuncionariosButton;
+    private javax.swing.JButton backDonoButton;
+    private javax.swing.JButton clearLabelsButton;
+    private javax.swing.JButton excludeSetorButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
@@ -345,5 +358,6 @@ public class MenuDono_AdmSetor extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JButton saveSetorButton;
     // End of variables declaration//GEN-END:variables
 }

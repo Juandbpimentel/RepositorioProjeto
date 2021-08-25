@@ -38,7 +38,7 @@ public class MenuDono extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        alterarDadosEmpresaButton = new javax.swing.JButton();
+        admEmpresaButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -47,16 +47,16 @@ public class MenuDono extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 153, 0));
         jLabel1.setText("Menu do Dono");
 
-        alterarDadosEmpresaButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        alterarDadosEmpresaButton.setText("Administrar Dados da Empresa");
-        alterarDadosEmpresaButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        admEmpresaButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        admEmpresaButton.setText("Administrar Empresa");
+        admEmpresaButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                alterarDadosEmpresaButtonMouseClicked(evt);
+                admEmpresaButtonMouseClicked(evt);
             }
         });
-        alterarDadosEmpresaButton.addActionListener(new java.awt.event.ActionListener() {
+        admEmpresaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                alterarDadosEmpresaButtonActionPerformed(evt);
+                admEmpresaButtonActionPerformed(evt);
             }
         });
 
@@ -83,7 +83,7 @@ public class MenuDono extends javax.swing.JFrame {
                 .addContainerGap(84, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(alterarDadosEmpresaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(admEmpresaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
         );
         layout.setVerticalGroup(
@@ -92,7 +92,7 @@ public class MenuDono extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
-                .addComponent(alterarDadosEmpresaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(admEmpresaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -101,14 +101,14 @@ public class MenuDono extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void alterarDadosEmpresaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarDadosEmpresaButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_alterarDadosEmpresaButtonActionPerformed
+    private void admEmpresaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admEmpresaButtonActionPerformed
+        
+    }//GEN-LAST:event_admEmpresaButtonActionPerformed
 
-    private void alterarDadosEmpresaButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_alterarDadosEmpresaButtonMouseClicked
-        dono.alterarDadosEmpresa();
+    private void admEmpresaButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admEmpresaButtonMouseClicked
+        dono.administrarEmpresa();
         this.dispose();
-    }//GEN-LAST:event_alterarDadosEmpresaButtonMouseClicked
+    }//GEN-LAST:event_admEmpresaButtonMouseClicked
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         viewMenuLogin telaLogin = new viewMenuLogin();
@@ -157,7 +157,7 @@ public class MenuDono extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton alterarDadosEmpresaButton;
+    private javax.swing.JButton admEmpresaButton;
     private javax.swing.JButton backButton;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables

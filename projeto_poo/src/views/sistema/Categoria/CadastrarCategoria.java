@@ -5,13 +5,9 @@
  */
 package views.sistema.Categoria;
 
-import javax.swing.JFrame;
-import modelos.usuarios.Pessoa;
-import views.sistema.Diretor.MenuDiretor_AdmSetor;
-import modelos.usuarios.Diretor;
+
 import modelos.usuarios.Dono;
-import views.sistema.Dono.MenuDono_AdmEmpresa;
-import views.sistema.menulogin.MenuLogin_Registro;
+
 
 /**
  *
@@ -217,12 +213,7 @@ public class CadastrarCategoria extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-                dono.administrarEm
-            
-                telaRegistro.setVisible(true);
-                telaRegistro.pack();
-                telaRegistro.setLocationRelativeTo(null);
-                telaRegistro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                dono.administrarEmpresa();
 
                 this.dispose();
 
@@ -270,7 +261,7 @@ public class CadastrarCategoria extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadastrarCategoria().setVisible(true);
+                //new CadastrarCategoria().setVisible(true);
             }
         });
     }
