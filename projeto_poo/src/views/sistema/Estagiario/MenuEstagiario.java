@@ -5,16 +5,21 @@
  */
 package views.sistema.Estagiario;
 
+import javax.swing.JFrame;
+import views.sistema.menulogin.viewMenuLogin;
+import modelos.usuarios.Estagiario;
+
 /**
  *
  * @author Ana Beatriz
  */
 public class MenuEstagiario extends javax.swing.JFrame {
-
+    private Estagiario estagiario;
     /**
      * Creates new form MenuEstagiario
      */
-    public MenuEstagiario() {
+    public MenuEstagiario(Estagiario estagiario) {
+        this.estagiario = estagiario;
         initComponents();
     }
 
@@ -28,8 +33,8 @@ public class MenuEstagiario extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        consultarDados = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -37,16 +42,21 @@ public class MenuEstagiario extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 153, 0));
         jLabel1.setText("Bem-Vindo(a) ao Menu do Estagiário");
 
-        jButton1.setFont(new java.awt.Font("Poppins", 0, 11)); // NOI18N
-        jButton1.setText("Consultar Dados Pessoais");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        consultarDados.setFont(new java.awt.Font("Poppins", 0, 11)); // NOI18N
+        consultarDados.setText("Consultar Dados Pessoais");
+        consultarDados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                consultarDadosActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Poppins", 0, 11)); // NOI18N
-        jButton2.setText("Voltar");
+        backButton.setFont(new java.awt.Font("Poppins", 0, 11)); // NOI18N
+        backButton.setText("Voltar");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -55,17 +65,15 @@ public class MenuEstagiario extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE))
+                        .addGap(125, 125, 125)
+                        .addComponent(consultarDados))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(161, 161, 161)
-                        .addComponent(jButton2)
-                        .addGap(0, 166, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(104, 104, 104)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(173, 173, 173)
+                        .addComponent(backButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabel1)))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -73,18 +81,30 @@ public class MenuEstagiario extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(30, 30, 30)
-                .addComponent(jButton1)
+                .addComponent(consultarDados)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(backButton)
                 .addGap(39, 39, 39))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void consultarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarDadosActionPerformed
+        estagiario.consultaDadosEstagio();
+        this.dispose();
+    }//GEN-LAST:event_consultarDadosActionPerformed
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        viewMenuLogin telaLogin = new viewMenuLogin();
+
+        telaLogin.setVisible(true);
+        telaLogin.pack();
+        telaLogin.setLocationRelativeTo(null);
+        telaLogin.setDefaultCloseOperation(JFrame .EXIT_ON_CLOSE);
+
+        this.dispose();
+    }//GEN-LAST:event_backButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -116,14 +136,14 @@ public class MenuEstagiario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuEstagiario().setVisible(true);
+            //    new MenuEstagiario().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton backButton;
+    private javax.swing.JButton consultarDados;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

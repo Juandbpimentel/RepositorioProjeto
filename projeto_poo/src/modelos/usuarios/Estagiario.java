@@ -6,6 +6,7 @@ import interfaces.gui.EstagiarioGUI;
 import java.time.LocalDate;
 
 import javax.swing.JFrame;
+import views.sistema.Estagiario.MenuEstagiario_ConsultarDados;
 
 public class Estagiario extends Pessoa implements EstagiarioGUI {
     public LocalDate inicio_estagio;
@@ -86,12 +87,17 @@ public class Estagiario extends Pessoa implements EstagiarioGUI {
 
     @Override
     public void consultaDadosEstagio() {
-
+        MenuEstagiario_ConsultarDados consultarDados = new MenuEstagiario_ConsultarDados(this);
+        
+        consultarDados.setVisible(true);
+        consultarDados.pack();
+        consultarDados.setLocationRelativeTo(null);
+        consultarDados.setDefaultCloseOperation(JFrame .EXIT_ON_CLOSE);
     }
 
     @Override
     public void mostrarMenu() {
-        MenuEstagiario menu = new MenuEstagiario(); 
+        MenuEstagiario menu = new MenuEstagiario(this); 
         
         menu.setVisible(true);
         menu.pack();
