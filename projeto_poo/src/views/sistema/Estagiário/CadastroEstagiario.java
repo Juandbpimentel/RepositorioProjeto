@@ -79,7 +79,10 @@ public class CadastroEstagiario extends javax.swing.JFrame {
 
         jLabel10.setText("CEP:");
 
+        jLabel11.setFont(new java.awt.Font("Poppins", 3, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 51, 0));
         jLabel11.setText("CADASTRAR NOVO ESTAGIARIO");
+        jLabel11.setToolTipText("");
 
         jLabel12.setText("Numero:");
 
@@ -195,7 +198,7 @@ public class CadastroEstagiario extends javax.swing.JFrame {
                                         .addComponent(jTextField11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
                                         .addComponent(jTextField12)
                                         .addComponent(jTextField10)))))
-                        .addGap(0, 266, Short.MAX_VALUE)))
+                        .addGap(0, 174, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -254,7 +257,7 @@ public class CadastroEstagiario extends javax.swing.JFrame {
                     .addComponent(jTextField10))
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                    .addComponent(jTextField11, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
