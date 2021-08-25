@@ -16,7 +16,7 @@ public class DAODiretor {
 
     public ArrayList<Diretor> readAll() {
         try {
-            ArrayList<Diretor> arrayDiretores = new ArrayList<Diretor>();
+            ArrayList<Diretor> arrayDiretores = new ArrayList<>();
             conexao = new Conexao();
             conexao.conect();
 
@@ -82,7 +82,7 @@ public class DAODiretor {
                 String sqlQueryPessoa = "select * from pessoa where cpf = \'"+cpf+"\'";
                 ResultSet resultadoQueryPessoa = conexao.executaQuery(sqlQueryPessoa);
                 if (!resultadoQueryPessoa.next()){
-                    throw new NullPointerException("O Dono que você está procurando não foi encontrado, retornou nulo");
+                    throw new NullPointerException("A pessoa que você está procurando não foi encontrada, retornou nulo");
                 }else{
                     String  nome = resultadoQueryPessoa.getString("nome"),
                             login = resultadoQueryPessoa.getString("login"),
