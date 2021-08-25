@@ -55,7 +55,7 @@ public class MenuDono_AdmFuncionario extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton2.setFont(new java.awt.Font("Poppins", 0, 11)); // NOI18N
-        jButton2.setText("Demitir Estagiário");
+        jButton2.setText("Demitir Fucionário");
 
         jButton8.setText("Modificar Setor");
 
@@ -232,11 +232,11 @@ public class MenuDono_AdmFuncionario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton8))
-                .addGap(61, 61, 61)
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4)
                     .addComponent(jButton5))
-                .addGap(66, 66, 66))
+                .addGap(30, 30, 30))
         );
 
         pack();
