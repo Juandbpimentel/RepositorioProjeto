@@ -12,7 +12,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import javax.swing.JFrame;
 
-
+import dao.usuarios.DAOFuncionario;
+import dao.usuarios.DAOPessoa;
+import modelos.usuarios.Funcionario;
 import modelos.usuarios.Pessoa;
 import views.sistema.menulogin.viewMenuLogin;
 /**
@@ -37,7 +39,13 @@ public class Projeto_poo {
          conexao.createTriggers();
          conexao.insertData();
          */
+        // Pessoa = Funcionario = gerente
         
+        int x = (int) 0.5;
+
+        Pessoa teste = new DAOPessoa().readOnePessoa("333333333-33");
+        Pessoa teste2 = (Pessoa) (new DAOFuncionario().readOneFuncionario("333333333-33"));
+        Funcionario func = (Funcionario) teste2;
         main.menu();
         if(main.getUsuario() == null){
             try{
@@ -46,7 +54,7 @@ public class Projeto_poo {
                System.err.println("");
             }
         }
-       
+        usuario.menulogin();
     }
     private void menu(){
         viewMenuLogin telaLogin = new viewMenuLogin();

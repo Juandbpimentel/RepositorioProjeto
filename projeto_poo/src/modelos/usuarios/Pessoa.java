@@ -111,7 +111,7 @@ public class Pessoa implements PessoaGUI, PessoaAlterDB {
 
     @Override
     public void mostrarMenu() {
-        viewMenuUsuario menu = new viewMenuUsuario(); 
+        //viewMenuUsuario menu = new viewMenuUsuario(); 
     
     }
 
@@ -121,5 +121,22 @@ public class Pessoa implements PessoaGUI, PessoaAlterDB {
     @Override
     public boolean alterarDadosPessoais() {
         return true;
+    }
+
+    @Override
+    public String toString() {
+        // TODO Auto-generated method stub
+        return "( nome : \'"+nome+"\' , login: \'"+login+"\' , "+senha+"\' , "+tipo+"\' , "+cpf+"\' , "+data_nasc+"\' , "+id_endereco+"\' )";
+        
+        /*
+            protected String nome;
+            protected String login;
+            protected String senha;
+            protected String tipo;
+            protected String cpf;
+            protected LocalDate data_nasc;
+            protected int id_endereco;
+            protected Endereco endereco;
+        */
     }
 }
