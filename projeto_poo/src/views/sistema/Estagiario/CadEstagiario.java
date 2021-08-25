@@ -4,6 +4,10 @@
  * and open the template in the editor.
  */
 package views.sistema.Estagiario;
+
+import javax.swing.JFrame;
+import views.sistema.menulogin.MenuLogin_Registro;
+
 /**
  *
  * @author sarah
@@ -278,7 +282,14 @@ public class CadEstagiario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        MenuLogin_Registro telaRegistro = new MenuLogin_Registro();
+        
+        telaRegistro.setVisible(true);
+        telaRegistro.pack();
+        telaRegistro.setLocationRelativeTo(null);
+        telaRegistro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField13ActionPerformed
