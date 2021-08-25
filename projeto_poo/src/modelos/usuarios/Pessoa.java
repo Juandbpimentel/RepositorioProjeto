@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import interfaces.alterDB.PessoaAlterDB;
 import interfaces.gui.PessoaGUI;
 import views.sistema.Pessoa.MenuPessoa_AlterarDados;
+import views.sistema.Endereco.MenuEndereco_Cadastro;
 
 public class Pessoa implements PessoaGUI, PessoaAlterDB {
     protected String nome;
@@ -127,6 +128,16 @@ public class Pessoa implements PessoaGUI, PessoaAlterDB {
         menu.pack();
         menu.setLocationRelativeTo(null);
         menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    
+    @Override
+    public void criarNovoEndereco(){
+        MenuEndereco_Cadastro enderecoCadastro = new MenuEndereco_Cadastro(this);
+        
+        enderecoCadastro.setVisible(true);
+        enderecoCadastro.pack();
+        enderecoCadastro.setLocationRelativeTo(null);
+        enderecoCadastro.setDefaultCloseOperation(JFrame .EXIT_ON_CLOSE);
     }
 /*
   AlterDB
