@@ -111,7 +111,7 @@ public class Pessoa implements PessoaGUI, PessoaAlterDB {
 
     @Override
     public void mostrarMenu() {
-        viewMenuUsuario menu = new viewMenuUsuario(); 
+        //viewMenuUsuario menu = new viewMenuUsuario(); 
     
     }
 

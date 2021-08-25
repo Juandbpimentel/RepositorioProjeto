@@ -9,6 +9,7 @@ package projeto_poo;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.concurrent.atomic.AtomicBoolean;
+import sistema.Conexao;
 
 import javax.swing.JFrame;
 
@@ -30,13 +31,13 @@ public class Projeto_poo {
     
     public static void main(String[] args) {
         Projeto_poo main = new Projeto_poo(); 
-        /* Conexao conexao = new Conexao();
+        /*Conexao conexao = new Conexao();
          conexao.startDatabase();
          conexao.conect();
          conexao.createTables();
          conexao.createTriggers();
-         conexao.insertData();
-         */
+         conexao.insertData();*/
+         
         
         main.menu();
         if(main.getUsuario() == null){

@@ -163,7 +163,8 @@ public class DAOPessoa{
             if (!resultadoQueryPessoa.next()) {
                 throw new NullPointerException("A pessoa que você está procurando não foi encontrado, retornou nulo");
             }else{
-                if(resultadoQueryPessoa.getString("senha") == entrySenha){
+                System.out.println("senha banco "+resultadoQueryPessoa.getString("senha")+" | Senha iserida: "+entrySenha);
+                if(resultadoQueryPessoa.getString("senha").equals(entrySenha)){
                     String nome = resultadoQueryPessoa.getString("nome"), 
                             login = resultadoQueryPessoa.getString("login"), 
                             senha = resultadoQueryPessoa.getString("senha"), 
