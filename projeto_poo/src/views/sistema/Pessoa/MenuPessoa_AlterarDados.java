@@ -4,16 +4,22 @@
  * and open the template in the editor.
  */
 package views.sistema.Pessoa;
+
+import javax.swing.JFrame;
+import modelos.usuarios.Pessoa;
+import views.sistema.Pessoa.MenuPessoa;
+
 /**
  *
  * @author sarah
  */
 public class MenuPessoa_AlterarDados extends javax.swing.JFrame {
-
+    private Pessoa pessoa;
     /**
      * Creates new form ConsultarDadosPessoa
      */
-    public MenuPessoa_AlterarDados() {
+    public MenuPessoa_AlterarDados(Pessoa pessoa) {
+        this.pessoa = pessoa;
         initComponents();
     }
 
@@ -53,6 +59,7 @@ public class MenuPessoa_AlterarDados extends javax.swing.JFrame {
         jComboBox2 = new javax.swing.JComboBox<>();
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -146,6 +153,14 @@ public class MenuPessoa_AlterarDados extends javax.swing.JFrame {
         jButton11.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jButton11.setText("Limpar");
 
+        backButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        backButton.setText("Voltar");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -205,7 +220,9 @@ public class MenuPessoa_AlterarDados extends javax.swing.JFrame {
                                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(191, 191, 191)
+                        .addGap(14, 14, 14)
+                        .addComponent(backButton)
+                        .addGap(126, 126, 126)
                         .addComponent(jLabel1)))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
@@ -213,7 +230,9 @@ public class MenuPessoa_AlterarDados extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backButton))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -276,6 +295,11 @@ public class MenuPessoa_AlterarDados extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        pessoa.mostrarMenu();
+        super.dispose();
+    }//GEN-LAST:event_backButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -307,13 +331,14 @@ public class MenuPessoa_AlterarDados extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuPessoa_AlterarDados().setVisible(true);
+            //    new MenuPessoa_AlterarDados().setVisible(true);
             }
         });
     }
         int tamanhoTabela = 1;
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;

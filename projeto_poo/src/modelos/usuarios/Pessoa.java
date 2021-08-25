@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 
 import interfaces.alterDB.PessoaAlterDB;
 import interfaces.gui.PessoaGUI;
+import views.sistema.Pessoa.MenuPessoa_AlterarDados;
 
 public class Pessoa implements PessoaGUI, PessoaAlterDB {
     protected String nome;
@@ -104,7 +105,13 @@ public class Pessoa implements PessoaGUI, PessoaAlterDB {
 */
     @Override
     public void consultarDadosPessoais() {
-
+        MenuPessoa_AlterarDados consultarDados = new MenuPessoa_AlterarDados(this);
+        
+        consultarDados.setVisible(true);
+        consultarDados.pack();
+        consultarDados.setLocationRelativeTo(null);
+        consultarDados.setDefaultCloseOperation(JFrame .EXIT_ON_CLOSE);
+            
     }
 
     @Override
@@ -114,7 +121,7 @@ public class Pessoa implements PessoaGUI, PessoaAlterDB {
 
     @Override
     public void mostrarMenu() {
-        MenuPessoa menu = new MenuPessoa(); 
+        MenuPessoa menu = new MenuPessoa(this); 
         
         menu.setVisible(true);
         menu.pack();
