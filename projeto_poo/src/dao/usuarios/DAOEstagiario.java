@@ -16,7 +16,7 @@ public class DAOEstagiario{
 
     public ArrayList<Estagiario> ReadAll(){
         try {
-            ArrayList<Estagiario> arrayEstagiario = new ArrayList<Estagiario>();
+            ArrayList<Estagiario> arrayEstagiario = new ArrayList<>();
             conexao.conect();
 
             String sqlQueryEstagiario = "Select * from Estagiario";

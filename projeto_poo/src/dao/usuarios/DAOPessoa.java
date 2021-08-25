@@ -21,7 +21,7 @@ public class DAOPessoa{
     }
     public ArrayList<Pessoa> ReadAll(){
         try {
-            ArrayList<Pessoa> arrayPessoas = new ArrayList<Pessoa>();
+            ArrayList<Pessoa> arrayPessoas = new ArrayList<>();
             conexao.conect();
             String sql = "SELECT * FROM Pessoa";
             ResultSet result = conexao.executaQuery(sql);

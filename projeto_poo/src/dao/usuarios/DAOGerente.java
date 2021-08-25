@@ -16,7 +16,7 @@ public class DAOGerente {
 
     public ArrayList<Gerente> readAll(){
         try {
-            ArrayList<Gerente> arrayGerente= new ArrayList<Gerente>();
+            ArrayList<Gerente> arrayGerente= new ArrayList<>();
             conexao.conect();
 
             String codBusca = "Select * from Gerente";

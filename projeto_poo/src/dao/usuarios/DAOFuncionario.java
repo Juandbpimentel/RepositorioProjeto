@@ -17,7 +17,7 @@ public class DAOFuncionario {
 
     public ArrayList<Funcionario> readAll(){
         try {
-            ArrayList<Funcionario> arrayFuncionario = new ArrayList<Funcionario>();
+            ArrayList<Funcionario> arrayFuncionario = new ArrayList<>();
             conexao = new Conexao();
             conexao.conect();
 
