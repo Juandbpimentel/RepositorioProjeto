@@ -23,7 +23,7 @@ public class DAOGerente {
             ResultSet resultado = conexao.executaQuery(codBusca);
 
             if (!resultado.next()) {
-                throw new NullPointerException("Não foi possível achar nenhuma categoria");
+                throw new NullPointerException("Não foi possível achar nenhuma Gerente");
             }else{
                 do{
                     String cpf = "";

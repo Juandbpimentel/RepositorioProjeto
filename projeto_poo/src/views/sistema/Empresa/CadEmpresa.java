@@ -5,6 +5,9 @@
  */
 package views.sistema.Empresa;
 
+import javax.swing.JFrame;
+import views.sistema.menulogin.MenuLogin_Registro;
+
 /**
  *
  * @author Yara
@@ -15,6 +18,7 @@ public class CadEmpresa extends javax.swing.JFrame {
      * Creates new form Empresa
      */
     public CadEmpresa() {
+        setUndecorated(true);
         initComponents();
     }
 
@@ -165,7 +169,29 @@ public class CadEmpresa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        System.out.println("Registro clicado");
+        //chama a tela de registro como um pop up
+        /*MenuLogin_Registro.getObj().setVisible(true);
+        MenuLogin_Registro.getObj().setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        
+        MenuLogin_Registro.getObj().addWindowListener(new WindowAdapter() {
+    
+            @Override
+            public void windowClosing(WindowEvent arg0) {
+                synchronized (lock2) {
+                    MenuLogin_Registro.getObj().setVisible(false);
+                }
+            }
+    
+        });
+        /**/
+        //fecha a tela de registro e volta pro menu login
+        MenuLogin_Registro telaRegistro = new MenuLogin_Registro();
+        telaRegistro.setVisible(true);
+        telaRegistro.pack();
+        telaRegistro.setLocationRelativeTo(null);
+        telaRegistro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed

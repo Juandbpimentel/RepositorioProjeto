@@ -5,20 +5,35 @@
  */
 package views.sistema.menulogin;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import modelos.usuarios.Pessoa;
 import dao.usuarios.DAOPessoa;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 /**
  *
  * @author juand
  */
 public class viewMenuLogin extends javax.swing.JFrame {
-
-    /**
-     * Creates new form telaLogin
-     */
+    
+    private static viewMenuLogin frame;
+    
+    public static viewMenuLogin getObj(){
+       if(frame == null){
+           frame = new viewMenuLogin();
+       }
+       return frame;
+    }
+    
     public viewMenuLogin() {
+        setUndecorated(true);
         initComponents();
+        
     }
 
     /**
@@ -40,6 +55,7 @@ public class viewMenuLogin extends javax.swing.JFrame {
         registerButtonLabel = new javax.swing.JLabel();
         passwordField = new javax.swing.JPasswordField();
         jPanel2 = new javax.swing.JPanel();
+        closeButton = new javax.swing.JButton();
         errorImportPessoaLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -81,11 +97,6 @@ public class viewMenuLogin extends javax.swing.JFrame {
         registerButtonLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 registerButtonLabelMouseClicked(evt);
-            }
-        });
-        registerButtonLabel.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                registerButtonLabelKeyTyped(evt);
             }
         });
 
@@ -136,15 +147,30 @@ public class viewMenuLogin extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(59, 38, 74));
 
+        closeButton.setBackground(new java.awt.Color(72, 45, 91));
+        closeButton.setForeground(new java.awt.Color(228, 149, 101));
+        closeButton.setText("Sair");
+        closeButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                closeButtonMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(closeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 59, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(closeButton)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         errorImportPessoaLabel.setForeground(new java.awt.Color(255, 68, 67));
@@ -155,24 +181,23 @@ public class viewMenuLogin extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(228, 228, 228)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(207, 207, 207)
-                        .addComponent(errorImportPessoaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(228, Short.MAX_VALUE))
+                .addGap(210, 210, 210)
+                .addComponent(errorImportPessoaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(239, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(239, 239, 239))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errorImportPessoaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGap(43, 43, 43))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -185,10 +210,13 @@ public class viewMenuLogin extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+        
+       
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    //função que valida login 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         boolean errorLogin = false, errorPassword = false;
 
@@ -228,22 +256,51 @@ public class viewMenuLogin extends javax.swing.JFrame {
             errorImportPessoaLabel.setText("O Usuário Não Foi Encontrado Ou a Senha Está Incorreta");
             return;
         }
+        
+        this.dispose();
+        pessoaAux.mostrarMenu();
+        
 
-        this.setUsuario(pessoaAux);
+        System.exit(0);
     }//GEN-LAST:event_loginButtonActionPerformed
   
     private void loginTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginTextFieldActionPerformed
         
     }//GEN-LAST:event_loginTextFieldActionPerformed
-
-    private void registerButtonLabelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_registerButtonLabelKeyTyped
-        
-    }//GEN-LAST:event_registerButtonLabelKeyTyped
-
+    
+    private static Object lock2 = new Object();
     private void registerButtonLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerButtonLabelMouseClicked
-        System.out.println("print registrar");
-    }//GEN-LAST:event_registerButtonLabelMouseClicked
+        System.out.println("Registro clicado");
+        //chama a tela de registro como um pop up
+        /*MenuLogin_Registro.getObj().setVisible(true);
+        MenuLogin_Registro.getObj().setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         
+        MenuLogin_Registro.getObj().addWindowListener(new WindowAdapter() {
+    
+            @Override
+            public void windowClosing(WindowEvent arg0) {
+                synchronized (lock2) {
+                    MenuLogin_Registro.getObj().setVisible(false);
+                }
+            }
+    
+        });
+        /**/
+        //fecha a tela de registro e volta pro menu login
+        MenuLogin_Registro telaRegistro = new MenuLogin_Registro();
+        telaRegistro.setVisible(true);
+        telaRegistro.pack();
+        telaRegistro.setLocationRelativeTo(null);
+        telaRegistro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
+    }//GEN-LAST:event_registerButtonLabelMouseClicked
+    //fecha o menu login
+    private void closeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeButtonMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_closeButtonMouseClicked
+
+    
+
     /**
      * @param args the command line arguments
      */
@@ -287,11 +344,11 @@ public class viewMenuLogin extends javax.swing.JFrame {
     public void setUsuario(Pessoa usuario){
         this.usuario = usuario;
     }
-    
     private Pessoa usuario;
     private String login, password;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton closeButton;
     private javax.swing.JLabel errorImportPessoaLabel;
     private javax.swing.JLabel errorLoginLabel;
     private javax.swing.JLabel errorPasswordLabel;

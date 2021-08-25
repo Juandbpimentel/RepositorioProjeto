@@ -20,7 +20,7 @@ public class DAOPessoa{
             String sql = "SELECT * FROM Pessoa";
             ResultSet result = conexao.executaQuery(sql);
             if (!result.next()) {
-                throw new NullPointerException("Não foi possível achar nenhuma categoria");
+                throw new NullPointerException("Não foi possível achar nenhuma Pessoa");
             }else{
                 do{
                     String nome, cpf, login, senha, tipo;

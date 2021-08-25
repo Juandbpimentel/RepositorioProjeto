@@ -25,7 +25,7 @@ public class DAOFuncionario {
             ResultSet resultado = conexao.executaQuery(codBusca);
             
             if (!resultado.next()) {
-                throw new NullPointerException("Não foi possível achar nenhuma categoria");
+                throw new NullPointerException("Não foi possível achar nenhuma funcionario");
             }else{
                 do{
                     int id_categoria=0, 

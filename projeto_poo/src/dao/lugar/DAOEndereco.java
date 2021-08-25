@@ -20,7 +20,7 @@ public class DAOEndereco {
             ResultSet resultado = conexao.executaQuery("select * from Endereco");
 
             if (!resultado.next()) {
-                throw new NullPointerException("Não foi possível achar nenhuma categoria");
+                throw new NullPointerException("Não foi possível achar nenhum Endereco");
             }else{
                 do{
                     String cep, rua, complemento;
