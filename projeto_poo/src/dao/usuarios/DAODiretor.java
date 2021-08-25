@@ -84,6 +84,7 @@ public class DAODiretor {
                 if (!resultadoQueryPessoa.next()){
                     throw new NullPointerException("O Dono que você está procurando não foi encontrado, retornou nulo");
                 }else{
+                    
                     String  nome = resultadoQueryPessoa.getString("nome"),
                             login = resultadoQueryPessoa.getString("login"),
                             senha = resultadoQueryPessoa.getString("senha"),
