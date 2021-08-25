@@ -11,12 +11,12 @@ import views.sistema.Gerente.*;
  *
  * @author Ana Beatriz
  */
-public class MenuDono_AdmEstagiarios extends javax.swing.JFrame {
+public class MenuDiretor_AdmEstagiarios extends javax.swing.JFrame {
 
     /**
      * Creates new form ConsultarDadosEstagiario
      */
-    public MenuDono_AdmEstagiarios() {
+    public MenuDiretor_AdmEstagiarios() {
         initComponents();
     }
 
@@ -289,14 +289,30 @@ public class MenuDono_AdmEstagiarios extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuDono_AdmEstagiarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuDiretor_AdmEstagiarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuDono_AdmEstagiarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuDiretor_AdmEstagiarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuDono_AdmEstagiarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuDiretor_AdmEstagiarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuDono_AdmEstagiarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuDiretor_AdmEstagiarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -317,7 +333,7 @@ public class MenuDono_AdmEstagiarios extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuDono_AdmEstagiarios().setVisible(true);
+                new MenuDiretor_AdmEstagiarios().setVisible(true);
             }
         });
     }
