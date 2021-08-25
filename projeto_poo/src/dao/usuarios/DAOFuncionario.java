@@ -116,7 +116,9 @@ public class DAOFuncionario {
             if(!resultadoQueryFuncionario.next()){
                 throw new NullPointerException("Não foi possível encontrar o funcionário com este cpf");            
             } else{
-                int idsetor = resultadoQueryFuncionario.getInt("id_setor"), diapagamento = resultadoQueryFuncionario.getInt("dia_pagamento"), idcat = resultadoQueryFuncionario.getInt("id_categoria");
+                int idsetor = resultadoQueryFuncionario.getInt("id_setor"), 
+                              diapagamento = resultadoQueryFuncionario.getInt("dia_pagamento"), 
+                              idcat = resultadoQueryFuncionario.getInt("id_categoria");
                 double bonificacao = resultadoQueryFuncionario.getDouble("bonificacao");
                 Date inicio = resultadoQueryFuncionario.getDate("data_inicio");
                 String sqlQueryPessoa = "Select * from pessoa where cpf = \'"+cpf+"\'";

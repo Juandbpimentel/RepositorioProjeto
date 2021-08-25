@@ -249,6 +249,7 @@ public class viewMenuLogin extends javax.swing.JFrame {
         this.login = this.loginTextField.getText();
 
         this.password = new String(this.passwordField.getPassword());
+        
         DAOPessoa daoImport = new DAOPessoa();
         Pessoa pessoaAux = daoImport.readOnePessoa(login, password);
 
@@ -257,11 +258,8 @@ public class viewMenuLogin extends javax.swing.JFrame {
             return;
         }
         
-        this.dispose();
         pessoaAux.mostrarMenu();
-        
-
-        System.exit(0);
+        this.dispose();
     }//GEN-LAST:event_loginButtonActionPerformed
   
     private void loginTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginTextFieldActionPerformed
@@ -270,28 +268,13 @@ public class viewMenuLogin extends javax.swing.JFrame {
     
     private static Object lock2 = new Object();
     private void registerButtonLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerButtonLabelMouseClicked
-        System.out.println("Registro clicado");
-        //chama a tela de registro como um pop up
-        /*MenuLogin_Registro.getObj().setVisible(true);
-        MenuLogin_Registro.getObj().setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        
-        MenuLogin_Registro.getObj().addWindowListener(new WindowAdapter() {
-    
-            @Override
-            public void windowClosing(WindowEvent arg0) {
-                synchronized (lock2) {
-                    MenuLogin_Registro.getObj().setVisible(false);
-                }
-            }
-    
-        });
-        /**/
-        //fecha a tela de registro e volta pro menu login
         MenuLogin_Registro telaRegistro = new MenuLogin_Registro();
+        
         telaRegistro.setVisible(true);
         telaRegistro.pack();
         telaRegistro.setLocationRelativeTo(null);
         telaRegistro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
         this.dispose();
     }//GEN-LAST:event_registerButtonLabelMouseClicked
     //fecha o menu login
