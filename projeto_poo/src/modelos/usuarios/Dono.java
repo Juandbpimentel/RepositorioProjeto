@@ -3,6 +3,7 @@ package modelos.usuarios;
 
 import modelos.empresa.Empresa;
 import views.sistema.Dono.MenuDono;
+import views.sistema.Dono.MenuDono_AdmEmpresa;
 import interfaces.alterDB.DonoAlterDB;
 import interfaces.gui.DonoGUI;
 
@@ -40,13 +41,13 @@ public class Dono extends Pessoa implements DonoGUI,DonoAlterDB {
     GUI
  */
     @Override
-    public void administrarEmpresa() {
-
-    }
-
-    @Override
     public void alterarDadosEmpresa() {
-
+        MenuDono_AdmEmpresa menu = new MenuDono_AdmEmpresa(this); 
+        
+        menu.setVisible(true);
+        menu.pack();
+        menu.setLocationRelativeTo(null);
+        menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     @Override
@@ -152,8 +153,6 @@ public class Dono extends Pessoa implements DonoGUI,DonoAlterDB {
 
     }
 
-
-
     @Override
     public void alterarDadosSetor() {
         
@@ -161,7 +160,7 @@ public class Dono extends Pessoa implements DonoGUI,DonoAlterDB {
 
     @Override
     public void mostrarMenu() {
-        MenuDono menu = new MenuDono(); 
+        MenuDono menu = new MenuDono(this); 
         
         menu.setVisible(true);
         menu.pack();

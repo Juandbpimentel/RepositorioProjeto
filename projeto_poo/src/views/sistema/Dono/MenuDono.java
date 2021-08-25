@@ -4,16 +4,26 @@
  * and open the template in the editor.
  */
 package views.sistema.Dono;
+
+import dao.empresa.DAOEmpresa;
+import javax.swing.JFrame;
+import modelos.usuarios.Dono;
+import modelos.usuarios.Pessoa;
+import dao.usuarios.DAODono;
+import java.util.ArrayList;
+import modelos.empresa.Empresa;
+import views.sistema.menulogin.viewMenuLogin;
 /**
  *
  * @author sarah
  */
 public class MenuDono extends javax.swing.JFrame {
-
+    private Dono dono;
     /**
      * Creates new form MenuDono
      */
-    public MenuDono() {
+    public MenuDono(Dono dono) {
+        this.dono = dono;
         initComponents();
     }
 
@@ -29,8 +39,8 @@ public class MenuDono extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        AlterarDadosEmpresa = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,16 +59,26 @@ public class MenuDono extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jButton3.setText("Alterar Dados da Empresa");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        AlterarDadosEmpresa.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        AlterarDadosEmpresa.setText("Alterar Dados da Empresa");
+        AlterarDadosEmpresa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AlterarDadosEmpresaMouseClicked(evt);
+            }
+        });
+        AlterarDadosEmpresa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                AlterarDadosEmpresaActionPerformed(evt);
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jButton4.setText("Voltar");
+        backButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        backButton.setText("Voltar");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -69,13 +89,13 @@ public class MenuDono extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(AlterarDadosEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(49, 49, 49))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(107, 107, 107)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(75, 75, 75)
                         .addComponent(jLabel1)))
@@ -87,13 +107,13 @@ public class MenuDono extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(AlterarDadosEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -104,9 +124,25 @@ public class MenuDono extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void AlterarDadosEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlterarDadosEmpresaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_AlterarDadosEmpresaActionPerformed
+
+    private void AlterarDadosEmpresaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlterarDadosEmpresaMouseClicked
+        dono.alterarDadosEmpresa();
+        this.dispose();
+    }//GEN-LAST:event_AlterarDadosEmpresaMouseClicked
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        viewMenuLogin telaLogin = new viewMenuLogin();
+
+        telaLogin.setVisible(true);
+        telaLogin.pack();
+        telaLogin.setLocationRelativeTo(null);
+        telaLogin.setDefaultCloseOperation(JFrame .EXIT_ON_CLOSE);
+
+        super.dispose();
+    }//GEN-LAST:event_backButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -138,16 +174,16 @@ public class MenuDono extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuDono().setVisible(true);
+                //new MenuDono().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AlterarDadosEmpresa;
+    private javax.swing.JButton backButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
