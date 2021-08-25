@@ -37,6 +37,18 @@ public class Projeto_poo {
          conexao.createTriggers();
          conexao.insertData();
          */
+        
+        main.menu();
+        if(main.getUsuario() == null){
+            try{
+                throw new Exception("Houve algum erro durante a execução do login");
+            }catch(Exception e){
+               System.err.println("");
+            }
+        }
+       
+    }
+    private void menu(){
         viewMenuLogin telaLogin = new viewMenuLogin();
 
         AtomicBoolean closed = new AtomicBoolean(false);
@@ -64,10 +76,8 @@ public class Projeto_poo {
                 }
             }   
         }
-
-        main.setUsuario(telaLogin.getUsuario());
-        System.out.println("Usuario: " + main.getUsuario());
-        System.out.println("Usuario: " + main.getUsuario());
+            
+        this.setUsuario(telaLogin.getUsuario());
     }
     
     @SuppressWarnings("unused")
