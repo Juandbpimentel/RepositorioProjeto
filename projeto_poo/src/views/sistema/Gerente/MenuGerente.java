@@ -1,4 +1,9 @@
 package views.sistema.Gerente;
+
+import javax.swing.JFrame;
+import views.sistema.menulogin.viewMenuLogin;
+import modelos.usuarios.Gerente;
+import views.sistema.Pessoa.MenuPessoa_AlterarDados;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,11 +15,12 @@ package views.sistema.Gerente;
  * @author Ana Beatriz
  */
 public class MenuGerente extends javax.swing.JFrame {
-
+    private Gerente gerente;
     /**
      * Creates new form testeMenuEstagiario
      */
-    public MenuGerente() {
+    public MenuGerente(Gerente gerente) {
+        this.gerente = gerente;
         initComponents();
     }
 
@@ -27,21 +33,21 @@ public class MenuGerente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        administrarEstagiarios = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        administrarFuncionarios = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
+        alterarDadosPessoais = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(102, 0, 102));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jButton1.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jButton1.setText("Administrar Estagiários");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        administrarEstagiarios.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        administrarEstagiarios.setText("Administrar Estagiários");
+        administrarEstagiarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                administrarEstagiariosActionPerformed(evt);
             }
         });
 
@@ -49,27 +55,27 @@ public class MenuGerente extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 153, 0));
         jLabel1.setText("Bem-Vindo(a) ao Menu Gerente");
 
-        jButton4.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jButton4.setText("Administrar Funcionários");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        administrarFuncionarios.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        administrarFuncionarios.setText("Administrar Funcionários");
+        administrarFuncionarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                administrarFuncionariosActionPerformed(evt);
             }
         });
 
-        jButton6.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jButton6.setText("Voltar");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        backButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        backButton.setText("Voltar");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                backButtonActionPerformed(evt);
             }
         });
 
-        jButton5.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jButton5.setText("Alterar Dados Pessoais");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        alterarDadosPessoais.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        alterarDadosPessoais.setText("Alterar Dados Pessoais");
+        alterarDadosPessoais.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                alterarDadosPessoaisActionPerformed(evt);
             }
         });
 
@@ -80,11 +86,11 @@ public class MenuGerente extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(administrarFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(administrarEstagiarios, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(alterarDadosPessoais, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -93,34 +99,44 @@ public class MenuGerente extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(administrarEstagiarios)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
+                .addComponent(administrarFuncionarios)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
+                .addComponent(alterarDadosPessoais)
                 .addGap(37, 37, 37)
-                .addComponent(jButton6)
+                .addComponent(backButton)
                 .addGap(35, 35, 35))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void administrarEstagiariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_administrarEstagiariosActionPerformed
+        gerente.administrarEstagiarios();
+        this.dispose();
+    }//GEN-LAST:event_administrarEstagiariosActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void administrarFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_administrarFuncionariosActionPerformed
+        gerente.administrarFuncionarios();
+        this.dispose();
+    }//GEN-LAST:event_administrarFuncionariosActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        viewMenuLogin telaLogin = new viewMenuLogin();
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+        telaLogin.setVisible(true);
+        telaLogin.pack();
+        telaLogin.setLocationRelativeTo(null);
+        telaLogin.setDefaultCloseOperation(JFrame .EXIT_ON_CLOSE);
+
+        this.dispose();
+    }//GEN-LAST:event_backButtonActionPerformed
+
+    private void alterarDadosPessoaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarDadosPessoaisActionPerformed
+        gerente.consultarDadosPessoais();
+        this.dispose();
+    }//GEN-LAST:event_alterarDadosPessoaisActionPerformed
 
     /**
      * @param args the command line arguments
@@ -155,16 +171,16 @@ public class MenuGerente extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuGerente().setVisible(true);
+            //    new MenuGerente().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JButton administrarEstagiarios;
+    private javax.swing.JButton administrarFuncionarios;
+    private javax.swing.JButton alterarDadosPessoais;
+    private javax.swing.JButton backButton;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
