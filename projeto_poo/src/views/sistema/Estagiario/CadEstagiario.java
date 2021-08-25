@@ -59,6 +59,7 @@ public class CadEstagiario extends javax.swing.JFrame {
         jLabel11.setText("Cadastro - Novo Estagiário");
         jLabel11.setToolTipText("");
 
+        jButton1.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jButton1.setText("Voltar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,6 +76,7 @@ public class CadEstagiario extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Poppins", 0, 11)); // NOI18N
         jLabel2.setText("Endereço:");
 
+        jComboBox1.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel5.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
@@ -87,11 +89,13 @@ public class CadEstagiario extends javax.swing.JFrame {
             }
         });
 
+        jComboBox2.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel3.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jLabel3.setText("Nome:");
 
+        jComboBox3.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel15.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
@@ -129,10 +133,13 @@ public class CadEstagiario extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jLabel16.setText("Senha:");
 
+        jButton2.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jButton2.setText("Limpar");
 
+        jButton3.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jButton3.setText("Finalizar");
 
+        jButton4.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jButton4.setText("Cadastrar Novo Endereço");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
