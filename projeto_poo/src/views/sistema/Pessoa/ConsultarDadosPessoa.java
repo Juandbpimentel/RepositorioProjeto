@@ -56,6 +56,7 @@ public class ConsultarDadosPessoa extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jTable1.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -69,22 +70,32 @@ public class ConsultarDadosPessoa extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jLabel1.setFont(new java.awt.Font("Poppins", 3, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 102, 0));
         jLabel1.setText("Dados Pessoais");
 
+        jLabel2.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jLabel2.setText("Nome:");
 
+        jLabel3.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jLabel3.setText("Data de Nascimento:");
 
+        jLabel4.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jLabel4.setText("CPF:");
 
+        jLabel5.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jLabel5.setText("Login:");
 
+        jLabel6.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jLabel6.setText("Senha:");
 
+        jLabel7.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jLabel7.setText("Tipo:");
 
+        jComboBox1.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jButton1.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jButton1.setText("Selecionar Endereço");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,8 +103,10 @@ public class ConsultarDadosPessoa extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jButton2.setText("Criar novo Endereço");
 
+        jButton3.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jButton3.setText("Alterar Nome");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,20 +114,28 @@ public class ConsultarDadosPessoa extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jButton4.setText("Alterar Data de Nascimento");
 
+        jButton5.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jButton5.setText("Alterar CPF");
 
+        jButton6.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jButton6.setText("Alterar Login");
 
+        jButton7.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jButton7.setText("Alterar Senha");
 
+        jButton8.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jButton8.setText("Selecionar tipo");
 
+        jLabel8.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jLabel8.setText("Endereço");
 
+        jComboBox2.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jButton9.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jButton9.setText("Voltar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -190,7 +211,7 @@ public class ConsultarDadosPessoa extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(229, 229, 229)
+                        .addGap(225, 225, 225)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -238,9 +259,9 @@ public class ConsultarDadosPessoa extends javax.swing.JFrame {
                     .addComponent(jButton1)
                     .addComponent(jLabel8)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(61, 61, 61)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(jButton2)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGap(40, 40, 40))
         );
 
         pack();
