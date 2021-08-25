@@ -1,5 +1,0 @@
-AdmitirFuncionario$2
-AdmitirFuncionario$1
-AdmitirFuncionario$4
-AdmitirFuncionario$3
-AdmitirFuncionario

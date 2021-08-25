@@ -5,6 +5,9 @@
  */
 package views.sistema.Diretor;
 
+import javax.swing.JFrame;
+import views.sistema.menulogin.MenuLogin_Registro;
+
 /**
  *
  * @author Yara
@@ -272,7 +275,14 @@ public class CadDiretor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        MenuLogin_Registro telaRegistro = new MenuLogin_Registro();
+        
+        telaRegistro.setVisible(true);
+        telaRegistro.pack();
+        telaRegistro.setLocationRelativeTo(null);
+        telaRegistro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

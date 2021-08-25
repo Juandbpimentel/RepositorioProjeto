@@ -12,7 +12,12 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import modelos.empresa.Empresa;
 import sistema.Conexao;
+import views.sistema.Diretor.CadDiretor;
+import views.sistema.Dono.CadDono;
 import views.sistema.Empresa.CadEmpresa;
+import views.sistema.Estagiario.CadEstagiario;
+import views.sistema.Funcionario.CadFuncionario;
+import views.sistema.Gerente.CadGerente;
 
 /**
  *
@@ -143,17 +148,66 @@ public class MenuLogin_Registro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-            
+        String [] campos = comboboxEmpresa.getSelectedItem().toString().split(",");
+        
         switch(comboboxTipo.getSelectedItem().toString()){
-            case"Funcionario":
+            case "Funcionário":
+                System.out.println("Funcionário");
+                System.out.println(campos[0]+campos[1]);
+                CadFuncionario cadFuncionario = new CadFuncionario();
+
+                cadFuncionario.setVisible(true);
+                cadFuncionario.pack();
+                cadFuncionario.setLocationRelativeTo(null);
+                cadFuncionario.setDefaultCloseOperation(JFrame .EXIT_ON_CLOSE);
+
+                super.dispose();
                 break;
-                case"Gerente":
+            
+            case "Gerente":
+                System.out.println("Gerente");
+                System.out.println(campos[0]+campos[1]);
+                CadGerente cadGerente = new CadGerente();
+
+                cadGerente.setVisible(true);
+                cadGerente.pack();
+                cadGerente.setLocationRelativeTo(null);
+                cadGerente.setDefaultCloseOperation(JFrame .EXIT_ON_CLOSE);
+
+                super.dispose();
                 break;
-                case"Estagiario":
+            case "Estagiario":
+                System.out.println("Estagiario");
+                System.out.println(campos[0]+campos[1]);
+                CadEstagiario cadEstagiario = new CadEstagiario();
+
+                cadEstagiario.setVisible(true);
+                cadEstagiario.pack();
+                cadEstagiario.setLocationRelativeTo(null);
+                cadEstagiario.setDefaultCloseOperation(JFrame .EXIT_ON_CLOSE);
+                super.dispose();
                 break;
-                case"Funcionario":
+            case "Dono":
+                System.out.println("Dono");
+                System.out.println(campos[0]+campos[1]);
+                CadDono cadDono = new CadDono();
+
+                cadDono.setVisible(true);
+                cadDono.pack();
+                cadDono.setLocationRelativeTo(null);
+                cadDono.setDefaultCloseOperation(JFrame .EXIT_ON_CLOSE);
+                super.dispose();
                 break;
-                case"Funcionario":
+            case "Diretor":
+                System.out.println("Diretor");
+                System.out.println(campos[0]+campos[1]);
+                CadDiretor cadDiretor = new CadDiretor();
+
+                cadDiretor.setVisible(true);
+                cadDiretor.pack();
+                cadDiretor.setLocationRelativeTo(null);
+                cadDiretor.setDefaultCloseOperation(JFrame .EXIT_ON_CLOSE);
+                super.dispose();
                 break;
             default:
                 
@@ -190,8 +244,8 @@ public class MenuLogin_Registro extends javax.swing.JFrame {
         if(!empresas.isEmpty()){
             for (Empresa empresa : empresas) {
                 for(int i = 0 ; i < comboboxEmpresa.getItemCount(); i++){
-                    if(!comboboxEmpresa.getItemAt(i).equals(empresa.getNome())){
-                        comboboxEmpresa.addItem(empresa.getNome());
+                    if(!comboboxEmpresa.getItemAt(i).equals(empresa.getNome()+","+empresa.getCnpj())){
+                        comboboxEmpresa.addItem(empresa.getNome()+","+empresa.getCnpj());
                     }
                 }
                 
