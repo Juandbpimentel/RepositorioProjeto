@@ -5,16 +5,25 @@
  */
 package views.sistema.Categoria;
 
+import javax.swing.JFrame;
+import modelos.usuarios.Pessoa;
+import views.sistema.Diretor.MenuDiretor_AdmSetor;
+import modelos.usuarios.Diretor;
+import modelos.usuarios.Dono;
+import views.sistema.Dono.MenuDono_AdmEmpresa;
+import views.sistema.menulogin.MenuLogin_Registro;
+
 /**
  *
  * @author Yara
  */
 public class CadastrarCategoria extends javax.swing.JFrame {
-
+    private Dono dono;
     /**
      * Creates new form CadastrarCategoria
      */
-    public CadastrarCategoria() {
+    public CadastrarCategoria(Dono dono) {
+        this.dono = dono;
         initComponents();
     }
 
@@ -208,7 +217,15 @@ public class CadastrarCategoria extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+                dono.administrarEm
+            
+                telaRegistro.setVisible(true);
+                telaRegistro.pack();
+                telaRegistro.setLocationRelativeTo(null);
+                telaRegistro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+                this.dispose();
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed

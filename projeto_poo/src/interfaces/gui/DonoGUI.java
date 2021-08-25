@@ -1,7 +1,7 @@
 package interfaces.gui;
 
 public interface DonoGUI {
-    public abstract void alterarDadosEmpresa();
+    public abstract void administrarEmpresa();
     public abstract void administrarDiretores();
     public abstract void consultarEstagiarios();
     public abstract void administrarFuncionarios();

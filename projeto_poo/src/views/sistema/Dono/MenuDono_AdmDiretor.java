@@ -5,16 +5,20 @@
  */
 package views.sistema.Dono;
 
+import javax.swing.JFrame;
+import modelos.usuarios.Dono;
+
 /**
  *
  * @author Ana Beatriz
  */
 public class MenuDono_AdmDiretor extends javax.swing.JFrame {
-
+    private Dono dono;
     /**
      * Creates new form MenuDono_AdmDiretor
      */
-    public MenuDono_AdmDiretor() {
+    public MenuDono_AdmDiretor(Dono dono) {
+        this.dono = dono;
         initComponents();
     }
 
@@ -45,7 +49,7 @@ public class MenuDono_AdmDiretor extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -138,8 +142,13 @@ public class MenuDono_AdmDiretor extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jButton5.setText("Voltar");
+        backButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        backButton.setText("Voltar");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jLabel4.setText("Valor:");
@@ -150,7 +159,7 @@ public class MenuDono_AdmDiretor extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(jButton5)
+                .addComponent(backButton)
                 .addGap(29, 29, 29)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -204,7 +213,7 @@ public class MenuDono_AdmDiretor extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
+                    .addComponent(backButton)
                     .addComponent(jLabel1))
                 .addGap(16, 16, 16)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -269,6 +278,11 @@ public class MenuDono_AdmDiretor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        dono.mostrarMenu();
+        this.dispose();
+    }//GEN-LAST:event_backButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -299,17 +313,17 @@ public class MenuDono_AdmDiretor extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuDono_AdmDiretor().setVisible(true);
+                //new MenuDono_AdmDiretor().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;

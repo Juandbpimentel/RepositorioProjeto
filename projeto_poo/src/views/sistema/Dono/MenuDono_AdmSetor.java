@@ -4,16 +4,20 @@
  * and open the template in the editor.
  */
 package views.sistema.Dono;
+
+import modelos.usuarios.Dono;
+
 /**
  *
  * @author sarah
  */
 public class MenuDono_AdmSetor extends javax.swing.JFrame {
-
+    private Dono dono;
     /**
      * Creates new form AlterarDadosSetorDono
      */
-    public MenuDono_AdmSetor() {
+    public MenuDono_AdmSetor(Dono dono) {
+        this.dono = dono;
         initComponents();
     }
 
@@ -180,14 +184,17 @@ public class MenuDono_AdmSetor extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
                                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField2)
-                                .addGap(226, 226, 226))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(414, 414, 414)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(38, 38, 38)
+                                        .addComponent(jButton6))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextField2)))
+                                .addGap(226, 226, 226)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -202,10 +209,7 @@ public class MenuDono_AdmSetor extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton6)
-                                        .addGap(38, 38, 38)
-                                        .addComponent(jButton7))
+                                    .addComponent(jButton7)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(194, 194, 194)))))
