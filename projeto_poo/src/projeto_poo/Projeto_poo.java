@@ -23,7 +23,7 @@ import views.sistema.menulogin.viewMenuLogin;
  * @author juand
  */
 public class Projeto_poo {
-    private Pessoa usuario;
+    private static Pessoa usuario;
     /**
      * @param args the command line arguments
      */
@@ -33,21 +33,21 @@ public class Projeto_poo {
     
     public static void main(String[] args) {
         Projeto_poo main = new Projeto_poo(); 
-        /*Conexao conexao = new Conexao();
+        Conexao conexao = new Conexao();
          conexao.startDatabase();
          conexao.conect();
          conexao.createTables();
          conexao.createTriggers();
          conexao.insertData();
-         */
+         
         // Pessoa = Funcionario = gerente
          /*conexao.insertData();*/
          
-        
+
         int x = (int) 0.5;
 
-        Pessoa teste = new DAOPessoa().readOnePessoa("333333333-33");
-        Pessoa teste2 = (Pessoa) (new DAOFuncionario().readOneFuncionario("333333333-33"));
+        Pessoa teste = new DAOPessoa().readOnePessoa("44444444-44");
+        Pessoa teste2 = (Pessoa) (new DAOFuncionario().readOneFuncionario("44444444-44"));
         Funcionario func = (Funcionario) teste2;
         main.menu();
         if(main.getUsuario() == null){
@@ -57,7 +57,9 @@ public class Projeto_poo {
                System.err.println("");
             }
         }
-        usuario.menulogin();
+        System.out.println(teste);
+        System.out.println(teste2);
+        //usuario.mostrarMenu();
     }
     private void menu(){
         viewMenuLogin telaLogin = new viewMenuLogin();
