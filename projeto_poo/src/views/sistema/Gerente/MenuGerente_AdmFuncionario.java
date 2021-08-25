@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package views.sistema.Estagiário;
+package views.sistema.Gerente;
 
 /**
  *
  * @author Ana Beatriz
  */
-public class MenuEstagiario_ConsultarDados extends javax.swing.JFrame {
+public class MenuGerente_AdmFuncionario extends javax.swing.JFrame {
 
     /**
-     * Creates new form MenuEstagiario_ConsultarDados
+     * Creates new form MenuGerente_AdmFuncionario
      */
-    public MenuEstagiario_ConsultarDados() {
+    public MenuGerente_AdmFuncionario() {
         initComponents();
     }
 
@@ -60,20 +60,20 @@ public class MenuEstagiario_ConsultarDados extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuEstagiario_ConsultarDados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuGerente_AdmFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuEstagiario_ConsultarDados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuGerente_AdmFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuEstagiario_ConsultarDados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuGerente_AdmFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuEstagiario_ConsultarDados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuGerente_AdmFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuEstagiario_ConsultarDados().setVisible(true);
+                new MenuGerente_AdmFuncionario().setVisible(true);
             }
         });
     }
