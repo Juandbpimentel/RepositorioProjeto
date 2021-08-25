@@ -170,7 +170,7 @@ public class DAOPessoa{
                 throw new NullPointerException("A pessoa que você está procurando não foi encontrado, retornou nulo");
             }else{
                 if (entryLogin.equals(resultadoQueryPessoa.getString("senha")) ) {
-                    
+                    throw new Exception("A senha digitada está incorreta");
                 }
                 String nome = resultadoQueryPessoa.getString("nome"), 
                        login = resultadoQueryPessoa.getString("login"), 

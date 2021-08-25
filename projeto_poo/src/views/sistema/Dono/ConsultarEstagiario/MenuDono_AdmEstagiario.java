@@ -8,6 +8,7 @@
  *
  * @author sarah
  */
+package views.sistema.Dono.ConsultarEstagiario;
 public class MenuDono_AdmEstagiario extends javax.swing.JFrame {
 
     /**

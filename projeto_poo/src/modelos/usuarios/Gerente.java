@@ -2,8 +2,11 @@ package modelos.usuarios;
 
 import interfaces.alterDB.GerenteAlterDB;
 import interfaces.gui.GerenteGUI;
+import views.sistema.Gerente.MenuGerente;
 
 import java.time.LocalDate;
+
+import javax.swing.JFrame;
 
 public class Gerente extends Funcionario implements GerenteGUI,GerenteAlterDB {
     private double bonificacao_gerente;
@@ -56,6 +59,16 @@ public class Gerente extends Funcionario implements GerenteGUI,GerenteAlterDB {
     @Override
     public void consultarEstagiarios() {
 
+    }
+
+    @Override
+    public void mostrarMenu() {
+        MenuGerente menu = new MenuGerente(); 
+        
+        menu.setVisible(true);
+        menu.pack();
+        menu.setLocationRelativeTo(null);
+        menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
 /*

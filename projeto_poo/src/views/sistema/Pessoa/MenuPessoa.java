@@ -8,6 +8,8 @@
  *
  * @author sarah
  */
+
+ package views.sistema.Pessoa;
 public class MenuPessoa extends javax.swing.JFrame {
 
     /**

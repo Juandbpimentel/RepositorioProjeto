@@ -2,9 +2,12 @@ package modelos.usuarios;
 
 
 import modelos.empresa.Categoria;
+import views.sistema.Funcionario.MenuFuncionario;
 import interfaces.gui.FuncionarioGUI;
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import javax.swing.JFrame;
 
 public class Funcionario extends Pessoa implements FuncionarioGUI {
     protected double bonificacao;
@@ -96,6 +99,16 @@ public class Funcionario extends Pessoa implements FuncionarioGUI {
     @Override
     public void consultarEstagiarios() {
 
+    }
+
+    @Override
+    public void mostrarMenu() {
+        MenuFuncionario menu = new MenuFuncionario(); 
+        
+        menu.setVisible(true);
+        menu.pack();
+        menu.setLocationRelativeTo(null);
+        menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
     @Override
