@@ -30,7 +30,6 @@ public class MenuLogin_Registro extends javax.swing.JFrame {
      */
     public MenuLogin_Registro() {
         initComponents();
-        populaComboEmpresa();
         DefaultComboBoxModel<String>  modelo = new DefaultComboBoxModel<String>(new String[] {"Funcionário","Estagiario","Gerente","Dono","Diretor"});
         comboboxTipo.setModel(modelo);
     
@@ -48,8 +47,6 @@ public class MenuLogin_Registro extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         comboboxTipo = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
-        comboboxEmpresa = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
 
@@ -68,17 +65,6 @@ public class MenuLogin_Registro extends javax.swing.JFrame {
         comboboxTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboboxTipoActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jLabel3.setText("Selecione empresa:");
-
-        comboboxEmpresa.setFont(new java.awt.Font("Poppins", 0, 11)); // NOI18N
-        comboboxEmpresa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione uma Empresa" }));
-        comboboxEmpresa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboboxEmpresaActionPerformed(evt);
             }
         });
 
@@ -111,17 +97,14 @@ public class MenuLogin_Registro extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(49, 49, 49)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(comboboxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton2)
-                                    .addComponent(comboboxEmpresa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                .addGap(117, 117, 117)
+                                .addComponent(jButton2)))))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -135,11 +118,7 @@ public class MenuLogin_Registro extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(comboboxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(comboboxEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addGap(21, 21, 21))
         );
@@ -148,14 +127,13 @@ public class MenuLogin_Registro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String [] campos = comboboxEmpresa.getSelectedItem().toString().split(",");
+        
         
         switch(comboboxTipo.getSelectedItem().toString()){
             case "Funcionário":
                 System.out.println("Funcionário");
-                System.out.println(campos[0]+campos[1]);
                 CadFuncionario cadFuncionario = new CadFuncionario(null);
-
+                
                 cadFuncionario.setVisible(true);
                 cadFuncionario.pack();
                 cadFuncionario.setLocationRelativeTo(null);
@@ -166,7 +144,6 @@ public class MenuLogin_Registro extends javax.swing.JFrame {
             
             case "Gerente":
                 System.out.println("Gerente");
-                System.out.println(campos[0]+campos[1]);
                 CadGerente cadGerente = new CadGerente();
 
                 cadGerente.setVisible(true);
@@ -178,7 +155,6 @@ public class MenuLogin_Registro extends javax.swing.JFrame {
                 break;
             case "Estagiario":
                 System.out.println("Estagiario");
-                System.out.println(campos[0]+campos[1]);
                 CadEstagiario cadEstagiario = new CadEstagiario(null);
 
                 cadEstagiario.setVisible(true);
@@ -189,7 +165,6 @@ public class MenuLogin_Registro extends javax.swing.JFrame {
                 break;
             case "Dono":
                 System.out.println("Dono");
-                System.out.println(campos[0]+campos[1]);
                 CadDono cadDono = new CadDono();
 
                 cadDono.setVisible(true);
@@ -200,7 +175,6 @@ public class MenuLogin_Registro extends javax.swing.JFrame {
                 break;
             case "Diretor":
                 System.out.println("Diretor");
-                System.out.println(campos[0]+campos[1]);
                 CadDiretor cadDiretor = new CadDiretor();
 
                 cadDiretor.setVisible(true);
@@ -227,31 +201,9 @@ public class MenuLogin_Registro extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void comboboxTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboboxTipoActionPerformed
-        
+        System.out.println("views.sistema.menulogin.MenuLogin_Registro.comboboxTipoActionPerformed()");
     }//GEN-LAST:event_comboboxTipoActionPerformed
-
-    private void comboboxEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboboxEmpresaActionPerformed
-        populaComboEmpresa();
-
-        
-    }//GEN-LAST:event_comboboxEmpresaActionPerformed
-    
-    private void populaComboEmpresa(){
-        Conexao conexao = new Conexao();
-        conexao.conect();
-        ArrayList<Empresa> empresas = new DAOEmpresa().readAll();
-        
-        if(!empresas.isEmpty()){
-            for (Empresa empresa : empresas) {
-                for(int i = 0 ; i < comboboxEmpresa.getItemCount(); i++){
-                    if(!comboboxEmpresa.getItemAt(i).equals(empresa.getNome()+","+empresa.getCnpj())){
-                        comboboxEmpresa.addItem(empresa.getNome()+","+empresa.getCnpj());
-                    }
-                }
-                
-            }
-        }
-    }
+   
     
     
     
@@ -293,11 +245,9 @@ public class MenuLogin_Registro extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
-    private javax.swing.JComboBox<String> comboboxEmpresa;
     private javax.swing.JComboBox<String> comboboxTipo;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

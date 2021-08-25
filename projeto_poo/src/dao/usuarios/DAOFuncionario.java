@@ -148,8 +148,9 @@ public class DAOFuncionario {
         try {
             conexao.conect();
             String sqlInsertFuncionario = "insert into public.Funcionario(bonificacao, cpf, id_categoria, id_setor, dia_pagamento, data_inicio)\n"
-            +"values ("+funcionario.getBonificacao()+" , \'"+funcionario.getCpf()+" , "+funcionario.getId_categoria()+" , "+funcionario.getId_setor()+" , "+funcionario.getDia_pagamento()+" , \'"+funcionario.getData_inicio()+"\')";
+            +"values ("+funcionario.getBonificacao()+" , \'"+funcionario.getCpf()+"\' , "+funcionario.getId_categoria()+" , "+funcionario.getId_setor()+" , "+funcionario.getDia_pagamento()+" , \'"+funcionario.getData_inicio()+"\')";
             int resultado = conexao.executaSql(sqlInsertFuncionario);
+            System.out.println("Deu certo funcionário");
             return (resultado != 0);
         } catch (SQLException e) {
             System.err.println("Houve um erro durante a inserção no banco de dados: "+e);

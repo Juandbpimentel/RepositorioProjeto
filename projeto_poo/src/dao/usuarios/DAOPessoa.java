@@ -271,6 +271,7 @@ public class DAOPessoa{
             String sqlInsertPessoa = "insert into public.Pessoa(nome, data_nasc, cpf, login, senha, tipo, id_endereco)\n"
             +"values (\'"+pessoa.getNome()+"\' , \'"+pessoa.getData_nasc()+"\' , \'"+pessoa.getCpf()+"\' , \'"+pessoa.getLogin()+"\' , \'"+pessoa.getSenha()+"\' , \'"+pessoa.getTipo()+"\' , "+pessoa.getId_endereco()+")";
             int resultado = conexao.executaSql(sqlInsertPessoa);
+            System.out.println("Deu certo pessoa");
             return (resultado != 0);
         }catch (SQLException e) {
             System.err.println("Houve um erro durante a inserção no banco de dados: "+e);
