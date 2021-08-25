@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import modelos.usuarios.Funcionario;
 import modelos.usuarios.Pessoa;
 import sistema.Conexao;
 
@@ -143,8 +145,65 @@ public class DAOPessoa{
                 String nome = resultadoQueryPessoa.getString("nome"), login = resultadoQueryPessoa.getString("login"), senha = resultadoQueryPessoa.getString("senha"), tipo = resultadoQueryPessoa.getString("tipo");
                 int idendereco = resultadoQueryPessoa.getInt("id_endereco");
                 Date data = resultadoQueryPessoa.getDate("data_nasc");
-                Pessoa pessoa = new Pessoa(nome,login,senha,tipo,cpf,data.toLocalDate(),idendereco);
-                return pessoa;
+
+                switch (resultadoQueryPessoa.getString("tipo")) {
+                    case "FUN":
+                        String sqlQueryFuncionario = "Select * From Funcionario Where cpf = \'"+cpf+"\'";
+                        ResultSet resultadoQueryFuncionario = conexao.executaQuery(sqlQueryFuncionario);
+                
+                        if(!resultadoQueryFuncionario.next()){
+                            throw new NullPointerException("Não foi possível encontrar o funcionário com este cpf");            
+                        } else{
+                            int idsetor = resultadoQueryFuncionario.getInt("id_setor"), 
+                                        diapagamento = resultadoQueryFuncionario.getInt("dia_pagamento"), 
+                                        idcat = resultadoQueryFuncionario.getInt("id_categoria");
+                            double bonificacao = resultadoQueryFuncionario.getDouble("bonificacao");
+                            Date inicio = resultadoQueryFuncionario.getDate("data_inicio");
+                            Funcionario funcionario = new Funcionario(nome, login, senha, tipo, cpf, data.toLocalDate(), idendereco, bonificacao,idcat, idsetor, diapagamento, inicio.toLocalDate());
+                            return funcionario;
+                        }
+                    case "GER":
+                        String codBusca = "Select * from Gerente";
+                        ResultSet resultado = conexao.executaQuery(codBusca);
+            
+                        if (!resultado.next()) {
+                            throw new NullPointerException("Não foi possível achar nenhuma Gerente");
+                        }else{
+                            Double bonificacao_gerente = 0.0;
+                            bonificacao_gerente = resultado.getDouble("bonificacao_gerente");
+
+
+                            String sqlQueryFuncionarioGerente = "Select * From Funcionario Where cpf = \'"+cpf+"\'";
+                            ResultSet resultadoQueryFuncionarioGerente = conexao.executaQuery(sqlQueryFuncionarioGerente);
+                    
+                            if(!resultadoQueryFuncionarioGerente.next()){
+                                throw new NullPointerException("Não foi possível encontrar o funcionário com este cpf");            
+                            } else{
+                                int idsetor = resultadoQueryFuncionarioGerente.getInt("id_setor"), 
+                                            diapagamento = resultadoQueryFuncionarioGerente.getInt("dia_pagamento"), 
+                                            idcat = resultadoQueryFuncionarioGerente.getInt("id_categoria");
+                                double bonificacao = resultadoQueryFuncionarioGerente.getDouble("bonificacao");
+                                Date inicio = resultadoQueryFuncionarioGerente.getDate("data_inicio");
+                                Funcionario funcionario = new Funcionario(nome, login, senha, tipo, cpf, data.toLocalDate(), idendereco, bonificacao,idcat, idsetor, diapagamento, inicio.toLocalDate());
+                                return funcionario;
+                            }
+                        }
+                        break;
+                    case "EST":
+                        
+                        break;
+                    case "DIR":
+                        
+                        break;
+                    case "DON":
+                        
+                        break;
+                
+                    default:
+                        Pessoa pessoa = new Pessoa(nome,login,senha,tipo,cpf,data.toLocalDate(),idendereco);
+                        return pessoa;
+                }
+
             }
         } catch (SQLException SQLError) {
             System.err.println("Ocorreu um erro durante a busca no Banco de Dados: " + SQLError);

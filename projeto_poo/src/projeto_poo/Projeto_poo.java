@@ -15,8 +15,10 @@ import sistema.Conexao;
 import javax.swing.JFrame;
 
 import dao.usuarios.DAOFuncionario;
+import dao.usuarios.DAOGerente;
 import dao.usuarios.DAOPessoa;
 import modelos.usuarios.Funcionario;
+import modelos.usuarios.Gerente;
 import modelos.usuarios.Pessoa;
 import views.sistema.menulogin.MenuLogin_Registro;
 import views.sistema.menulogin.viewMenuLogin;
@@ -42,13 +44,16 @@ public class Projeto_poo {
 
         main.menu();
     }
+    
     private void menu(){
-        viewMenuLogin telaLogin = viewMenuLogin.getObj();
+        
+        viewMenuLogin telaLogin = new viewMenuLogin();
 
         telaLogin.setVisible(true);
         telaLogin.pack();
         telaLogin.setLocationRelativeTo(null);
         telaLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    
     }
     
     @SuppressWarnings("unused")
