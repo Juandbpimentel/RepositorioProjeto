@@ -15,7 +15,7 @@ public class DAODono {
     }
     public ArrayList<Dono> readAll() {
         try {
-            ArrayList<Dono> arrayDono = new ArrayList<Dono>();
+            ArrayList<Dono> arrayDono = new ArrayList<>();
             conexao.conect();
 
             String codigoBusca = "select * from dono";
