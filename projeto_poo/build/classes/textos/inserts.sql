@@ -24,7 +24,8 @@ values('Juan Pimentel', '2001-11-13', '111111111-11', 'juanpimentel', '12345', '
         ('Sarah Soares', '2002-01-23', '22222222-22', 'sarahsoares', '122333', 'DIR', 2), 
         ('Marcus Queiros', '2002-10-17', '3333333-33', 'marcusqueiros', '3333333', 'GER', 3), 
         ('Ana Beatriz', '2002-03-11', '44444444-44', 'anabeatriz', '444444', 'FUN', 4), 
-        ('Yara Paula', '2002-06-09', '55555555-55', 'yarapaula', '555555', 'EST', 5);
+        ('Yara Paula', '2002-06-09', '55555555-55', 'yarapaula', '555555', 'EST', 5),
+        ('Adriano Gomes', '1980-11-13', '111111111-11', 'adrianogomes', '123', 'PS', 6);
 
 --TABELA LOG INTERACAO
 insert into log_interacao (data, tipo, codigo, mensagem, login_pessoa)

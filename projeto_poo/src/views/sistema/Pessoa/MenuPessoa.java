@@ -9,13 +9,19 @@
  * @author sarah
  */
 
- package views.sistema.Pessoa;
-public class MenuPessoa extends javax.swing.JFrame {
+package views.sistema.Pessoa;
 
+import modelos.usuarios.Pessoa;
+import javax.swing.JFrame;
+import views.sistema.menulogin.viewMenuLogin;
+
+public class MenuPessoa extends javax.swing.JFrame {
+    private Pessoa pessoa;
     /**
      * Creates new form MenuPessoa
      */
-    public MenuPessoa() {
+    public MenuPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
         initComponents();
     }
 
@@ -29,8 +35,8 @@ public class MenuPessoa extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        consultarDados = new javax.swing.JButton();
+        backbutton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -38,11 +44,21 @@ public class MenuPessoa extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 102, 0));
         jLabel1.setText("Bem-Vindo ao Menu Pessoa");
 
-        jButton2.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jButton2.setText("Consultar Dados Pessoais");
+        consultarDados.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        consultarDados.setText("Consultar Dados Pessoais");
+        consultarDados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultarDadosActionPerformed(evt);
+            }
+        });
 
-        jButton3.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jButton3.setText("Voltar");
+        backbutton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        backbutton.setText("Voltar");
+        backbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backbuttonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -50,31 +66,49 @@ public class MenuPessoa extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(49, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(49, 49, 49))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(49, 49, 49))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addGap(79, 79, 79))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton3)
-                        .addGap(137, 137, 137))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addComponent(consultarDados))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(140, 140, 140)
+                        .addComponent(backbutton)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addComponent(jButton2)
                 .addGap(27, 27, 27)
-                .addComponent(jButton3)
+                .addComponent(consultarDados)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addComponent(backbutton)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void backbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbuttonActionPerformed
+        viewMenuLogin telaLogin = new viewMenuLogin();
+
+        telaLogin.setVisible(true);
+        telaLogin.pack();
+        telaLogin.setLocationRelativeTo(null);
+        telaLogin.setDefaultCloseOperation(JFrame .EXIT_ON_CLOSE);
+
+        this.dispose();
+    }//GEN-LAST:event_backbuttonActionPerformed
+
+    private void consultarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarDadosActionPerformed
+        pessoa.consultarDadosPessoais();
+        this.dispose();
+        
+    }//GEN-LAST:event_consultarDadosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -106,14 +140,14 @@ public class MenuPessoa extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuPessoa().setVisible(true);
+            //    new MenuPessoa().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton backbutton;
+    private javax.swing.JButton consultarDados;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
