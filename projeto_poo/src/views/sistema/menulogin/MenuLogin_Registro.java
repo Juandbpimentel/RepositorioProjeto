@@ -31,10 +31,12 @@ public class MenuLogin_Registro extends javax.swing.JFrame {
      * Creates new form MenuLogin_Regisro
      */
     public MenuLogin_Registro() {
+        
         setUndecorated(true);
         initComponents();
         populaComboEmpresa();
         comboboxTipo.setModel(new DefaultComboBoxModel<String>(new String[] {"Funcionário","Estagiario","Gerente","Dono","Diretor"}));
+    
     }
 
     /**
