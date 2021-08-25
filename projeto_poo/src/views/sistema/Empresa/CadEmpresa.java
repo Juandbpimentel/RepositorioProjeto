@@ -18,7 +18,6 @@ public class CadEmpresa extends javax.swing.JFrame {
      * Creates new form Empresa
      */
     public CadEmpresa() {
-        setUndecorated(true);
         initComponents();
     }
 
