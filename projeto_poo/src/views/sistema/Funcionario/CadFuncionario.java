@@ -312,6 +312,14 @@ public class CadFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void backbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbuttonActionPerformed
+        
+        if(pessoa == null){
+            MenuLogin_Registro menuReg = new MenuLogin_Registro();
+            menuReg.setVisible(true);
+            menuReg.pack();
+            menuReg.setLocationRelativeTo(null);
+            this.dispose();
+        }
         switch (pessoa.getTipo()) {
             case "DIR":
                 Diretor diretor =(Diretor) pessoa;
@@ -330,15 +338,8 @@ public class CadFuncionario extends javax.swing.JFrame {
                 gerente.administrarFuncionarios();
                 this.dispose();
                 break;
-
-            default:
-                MenuLogin_Registro menuReg = new MenuLogin_Registro();
-                menuReg.setVisible(true);
-                menuReg.pack();
-                menuReg.setLocationRelativeTo(null);
-                this.dispose();
-                break;
         }
+        
     }//GEN-LAST:event_backbuttonActionPerformed
 
     private void jTextField13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField13ActionPerformed

@@ -106,7 +106,7 @@ public class Dono extends Pessoa implements DonoGUI,DonoAlterDB {
 
     @Override
     public void admitirEstagiario() {
-        CadEstagiario menu = new CadFuncionario(this); 
+        CadEstagiario menu = new CadEstagiario((Pessoa)this); 
         
         menu.setVisible(true);
         menu.pack();

@@ -6,6 +6,11 @@
 package views.sistema.Estagiario;
 
 import javax.swing.JFrame;
+
+import modelos.usuarios.Diretor;
+import modelos.usuarios.Dono;
+import modelos.usuarios.Gerente;
+import modelos.usuarios.Pessoa;
 import views.sistema.menulogin.MenuLogin_Registro;
 
 /**
@@ -13,11 +18,12 @@ import views.sistema.menulogin.MenuLogin_Registro;
  * @author sarah
  */
 public class CadEstagiario extends javax.swing.JFrame {
-
+    private Pessoa pessoa;
     /**
      * Creates new form CadastroEstagiario
      */
-    public CadEstagiario() {
+    public CadEstagiario(Pessoa pessoa) {
+        this.pessoa = pessoa;
         initComponents();
     }
 
@@ -282,14 +288,32 @@ public class CadEstagiario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        MenuLogin_Registro telaRegistro = new MenuLogin_Registro();
-        
-        telaRegistro.setVisible(true);
-        telaRegistro.pack();
-        telaRegistro.setLocationRelativeTo(null);
-        telaRegistro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        this.dispose();
+        if(pessoa == null){
+            MenuLogin_Registro menuReg = new MenuLogin_Registro();
+            menuReg.setVisible(true);
+            menuReg.pack();
+            menuReg.setLocationRelativeTo(null);
+            this.dispose();
+        }
+        switch (pessoa.getTipo()) {
+            case "DIR":
+                Diretor diretor =(Diretor) pessoa;
+                diretor.administrarEstagiarios();
+                this.dispose();
+                break;
+
+            case "DON":
+                Dono dono = (Dono) pessoa;
+                dono.administrarEstagiarios();
+                this.dispose();
+                break;
+
+            case "GER":
+                Gerente gerente = (Gerente) pessoa;
+                gerente.administrarEstagiarios();
+                this.dispose();
+                break;
+        }
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void jTextField13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField13ActionPerformed
@@ -339,7 +363,7 @@ public class CadEstagiario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadEstagiario().setVisible(true);
+                //new CadEstagiario().setVisible(true);
             }
         });
     }
