@@ -42,7 +42,7 @@ public class ConsultarDadosEmprego extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jButton4 = new javax.swing.JButton();
+        criarEndereco = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
         jButton8 = new javax.swing.JButton();
@@ -116,11 +116,11 @@ public class ConsultarDadosEmprego extends javax.swing.JFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jButton4.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jButton4.setText("Criar Novo Endereço");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        criarEndereco.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        criarEndereco.setText("Criar Novo Endereço");
+        criarEndereco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                criarEnderecoActionPerformed(evt);
             }
         });
 
@@ -174,7 +174,7 @@ public class ConsultarDadosEmprego extends javax.swing.JFrame {
                                         .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(67, 67, 67)
-                                    .addComponent(jButton4)
+                                    .addComponent(criarEndereco)
                                     .addGap(18, 18, 18)
                                     .addComponent(jButton1)
                                     .addGap(18, 18, 18)
@@ -215,7 +215,7 @@ public class ConsultarDadosEmprego extends javax.swing.JFrame {
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(criarEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(backButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(45, 45, 45))
@@ -245,9 +245,9 @@ public class ConsultarDadosEmprego extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField13ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void criarEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarEnderecoActionPerformed
+        
+    }//GEN-LAST:event_criarEnderecoActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
@@ -290,9 +290,9 @@ public class ConsultarDadosEmprego extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
+    private javax.swing.JButton criarEndereco;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
