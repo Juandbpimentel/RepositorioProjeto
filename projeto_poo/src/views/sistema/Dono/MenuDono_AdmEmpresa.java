@@ -256,7 +256,7 @@ public class MenuDono_AdmEmpresa extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuDono_AdmEmpresa().setVisible(true);
+                //new MenuDono_AdmEmpresa().setVisible(true);
             }
         });
     }
