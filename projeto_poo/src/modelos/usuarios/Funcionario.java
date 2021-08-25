@@ -8,6 +8,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
+import views.sistema.Funcionario.ConsultarDadosEmprego;
+import views.sistema.Funcionario.ConsultarEstagiarioFuncionario;
 
 public class Funcionario extends Pessoa implements FuncionarioGUI {
     protected double bonificacao;
@@ -93,17 +95,27 @@ public class Funcionario extends Pessoa implements FuncionarioGUI {
 
     @Override
     public void consultarDadosEmprego() {
-
+        ConsultarDadosEmprego consultarDados = new ConsultarDadosEmprego(this);
+        
+        consultarDados.setVisible(true);
+        consultarDados.pack();
+        consultarDados.setLocationRelativeTo(null);
+        consultarDados.setDefaultCloseOperation(JFrame .EXIT_ON_CLOSE);
     }
 
     @Override
     public void consultarEstagiarios() {
-
+        ConsultarEstagiarioFuncionario consultarEstagiarios = new ConsultarEstagiarioFuncionario(this);
+        
+        consultarEstagiarios.setVisible(true);
+        consultarEstagiarios.pack();
+        consultarEstagiarios.setLocationRelativeTo(null);
+        consultarEstagiarios.setDefaultCloseOperation(JFrame .EXIT_ON_CLOSE);
     }
 
     @Override
     public void mostrarMenu() {
-        MenuFuncionario menu = new MenuFuncionario(); 
+        MenuFuncionario menu = new MenuFuncionario(this); 
         
         menu.setVisible(true);
         menu.pack();
