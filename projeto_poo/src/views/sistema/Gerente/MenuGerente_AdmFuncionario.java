@@ -5,6 +5,8 @@
  */
 package views.sistema.Gerente;
 
+import dao.usuarios.DAOFuncionario;
+import modelos.usuarios.Funcionario;
 import modelos.usuarios.Gerente;
 
 /**
@@ -20,7 +22,23 @@ public class MenuGerente_AdmFuncionario extends javax.swing.JFrame {
         this.gerente = gerente;
         initComponents();
     }
+    
+    
+    public void iniciaTabela(){
+        ArrayListFuncionario resultado = new DAOFuncionario().readAll();
 
+           DefaultTableModel testetabela = (DefaultTableModel) tabelaDados.getModel();
+           // Object[] teste = {resultado.getNome(), resultado.getSenha(), resultado.getLogin()};
+           Object[] colunas = {"Nome","Senha","Login"};
+           final Object[] entrada = new Object[4];
+           entrada[0] = resultado.getNome(); 
+           entrada[1] = resultado.getSenha();
+           entrada[2] = resultado.getLogin();
+           testetabela.setColumnIdentifiers(colunas);
+           tabelaDados.setModel(testetabela);
+           testetabela.addRow(entrada);
+            
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -82,9 +100,17 @@ public class MenuGerente_AdmFuncionario extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nome", "Cpf", "Login", "Senha"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jComboBox1.setFont(new java.awt.Font("Poppins", 0, 10)); // NOI18N
