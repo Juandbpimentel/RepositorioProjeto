@@ -18,7 +18,6 @@ import modelos.lugar.Endereco;
 public class ConsultarDadosEmprego extends javax.swing.JFrame {
     private Funcionario funcionario;
     private DAOFuncionario daoFuncionario;
-    private DefaultTableModel model;
     
     private Funcionario resultado;
     private String nomeResultado = "", loginResultado = "", senhaResultado = "";
@@ -29,20 +28,24 @@ public class ConsultarDadosEmprego extends javax.swing.JFrame {
     public ConsultarDadosEmprego(Funcionario funcionario) {
         this.funcionario = funcionario;
         initComponents();
+        iniciaTabela();
     }
     
-    public ConsultarDadosEmprego(Funcionario funcionario, boolean tabela) {
-       resultado = daoFuncionario.readOneFuncionario(funcionario.getCpf().toString());
-        
-        if (tabela) {
-            model = new DefaultTableModel();
-            model.addRow(new Object[]{resultado.getNome(), resultado.getSenha(), resultado.getLogin()});
-        }
-        
-        this.funcionario = funcionario;
-        initComponents();
+    public void iniciaTabela(){
+        resultado = new DAOFuncionario().readOneFuncionario(funcionario.getCpf());
+
+           DefaultTableModel testetabela = (DefaultTableModel) tabelaDados.getModel();
+           // Object[] teste = {resultado.getNome(), resultado.getSenha(), resultado.getLogin()};
+           Object[] colunas = {"Nome","Senha","Login"};
+           final Object[] entrada = new Object[4];
+           entrada[0] = resultado.getNome(); 
+           entrada[1] = resultado.getSenha();
+           entrada[2] = resultado.getLogin();
+           testetabela.setColumnIdentifiers(colunas);
+           tabelaDados.setModel(testetabela);
+           testetabela.addRow(entrada);
+            
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -53,6 +56,8 @@ public class ConsultarDadosEmprego extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jEditorPane1 = new javax.swing.JEditorPane();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaDados = new javax.swing.JTable();
@@ -72,41 +77,16 @@ public class ConsultarDadosEmprego extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
         jTextField2 = new javax.swing.JTextField();
 
+        jScrollPane2.setViewportView(jEditorPane1);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Poppins", 3, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 153, 0));
         jLabel1.setText("Alterar Dados - Funcionário");
 
-        tabelaDados.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Nome", "Login", "Senha"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        tabelaDados.setModel(new DefaultTableModel());
         jScrollPane1.setViewportView(tabelaDados);
-        if (tabelaDados.getColumnModel().getColumnCount() > 0) {
-            tabelaDados.getColumnModel().getColumn(0).setResizable(false);
-            tabelaDados.getColumnModel().getColumn(1).setResizable(false);
-            tabelaDados.getColumnModel().getColumn(2).setResizable(false);
-        }
 
         jButton1.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jButton1.setText("Salvar");
@@ -266,7 +246,7 @@ public class ConsultarDadosEmprego extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        System.out.println("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -338,12 +318,14 @@ public class ConsultarDadosEmprego extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField2;

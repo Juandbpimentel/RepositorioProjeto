@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch ConsultarDadosEmprego",
+            "request": "launch",
+            "mainClass": "views.sistema.Funcionario.ConsultarDadosEmprego",
+            "projectName": "projeto_poo_aee0547b"
+        },
+        {
+            "type": "java",
             "name": "Launch MenuDono_AdmSetor",
             "request": "launch",
             "mainClass": "views.sistema.Dono.MenuDono_AdmSetor",
