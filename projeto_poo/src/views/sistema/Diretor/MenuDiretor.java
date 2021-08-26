@@ -3,19 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package views.sistema.Diretor;
+package views.sistema.diretor;
+
+import dao.usuarios.DAODiretor;
+import modelos.usuarios.Diretor;
 
 /**
  *
  * @author Ana Beatriz
  */
 public class MenuDiretor extends javax.swing.JFrame {
-
+    private Diretor diretor;
     /**
      * Creates new form MenuDiretor
      */
-    public MenuDiretor() {
-        initComponents();
+    public MenuDiretor(String cpf) {
+        if(cpf != null){
+            this.diretor = new DAODiretor().readOneDiretor(cpf);
+            initComponents();
+        }else{
+            initComponents();
+        }
     }
 
     /**
@@ -166,7 +174,7 @@ public class MenuDiretor extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuDiretor().setVisible(true);
+                new MenuDiretor(null).setVisible(true);
             }
         });
     }

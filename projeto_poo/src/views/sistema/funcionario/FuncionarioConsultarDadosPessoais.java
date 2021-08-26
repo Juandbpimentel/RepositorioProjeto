@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package views.sistema.Funcionario;
+package views.sistema.funcionario;
 
 import modelos.usuarios.Funcionario;
 import modelos.usuarios.Pessoa;
@@ -15,35 +15,34 @@ import modelos.lugar.Endereco;
  *
  * @author Yara
  */
-public class ConsultarDadosEmprego extends javax.swing.JFrame {
+public class FuncionarioConsultarDadosPessoais extends javax.swing.JFrame {
     private Funcionario funcionario;
-    private DAOFuncionario daoFuncionario;
-    
-    private Funcionario resultado;
-    private String nomeResultado = "", loginResultado = "", senhaResultado = "";
-    private boolean tabela;
     /**
      * Creates new form ConsultarDadosEmprego
      */
-    public ConsultarDadosEmprego(Funcionario funcionario) {
-        this.funcionario = funcionario;
-        initComponents();
-        iniciaTabela();
+    public FuncionarioConsultarDadosPessoais(String cpf) {
+        if(cpf != null){
+            this.funcionario = new DAOFuncionario().readOneFuncionario(cpf);
+            initComponents();
+            iniciaTabela();
+        }else{
+            initComponents();
+        }
     }
-    
+        
     public void iniciaTabela(){
-        resultado = new DAOFuncionario().readOneFuncionario(funcionario.getCpf());
+        Funcionario resultado = new DAOFuncionario().readOneFuncionario(funcionario.getCpf());
 
            DefaultTableModel testetabela = (DefaultTableModel) tabelaDados.getModel();
-           // Object[] teste = {resultado.getNome(), resultado.getSenha(), resultado.getLogin()};
            Object[] colunas = {"Nome","Senha","Login"};
            final Object[] entrada = new Object[4];
            entrada[0] = resultado.getNome(); 
            entrada[1] = resultado.getSenha();
            entrada[2] = resultado.getLogin();
            testetabela.setColumnIdentifiers(colunas);
-           tabelaDados.setModel(testetabela);
            testetabela.addRow(entrada);
+           tabelaDados.setModel(testetabela);
+           
             
     }
 
@@ -85,8 +84,25 @@ public class ConsultarDadosEmprego extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 153, 0));
         jLabel1.setText("Alterar Dados - Funcionário");
 
-        tabelaDados.setModel(new DefaultTableModel());
+        tabelaDados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null}
+            },
+            new String [] {
+                "nome", "login", "senha"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tabelaDados.setColumnSelectionAllowed(true);
         jScrollPane1.setViewportView(tabelaDados);
+        tabelaDados.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         jButton1.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jButton1.setText("Salvar");
@@ -291,20 +307,20 @@ public class ConsultarDadosEmprego extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConsultarDadosEmprego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FuncionarioConsultarDadosPessoais.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConsultarDadosEmprego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FuncionarioConsultarDadosPessoais.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConsultarDadosEmprego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FuncionarioConsultarDadosPessoais.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConsultarDadosEmprego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FuncionarioConsultarDadosPessoais.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-            //    new ConsultarDadosEmprego().setVisible(true);
+                new FuncionarioConsultarDadosPessoais(null).setVisible(true);
             }
         });
     }

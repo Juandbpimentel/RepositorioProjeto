@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package views.sistema.Estagiario;
+package views.sistema.estagiario;
 
 import javax.swing.JFrame;
-import views.sistema.menulogin.viewMenuLogin;
+
+import dao.usuarios.DAOEstagiario;
+import views.sistema.menulogin.MenuLogin;
 import modelos.usuarios.Estagiario;
 
 /**
@@ -18,9 +20,13 @@ public class MenuEstagiario extends javax.swing.JFrame {
     /**
      * Creates new form MenuEstagiario
      */
-    public MenuEstagiario(Estagiario estagiario) {
-        this.estagiario = estagiario;
-        initComponents();
+    public MenuEstagiario(String cpf) {
+        if(cpf != null){
+            this.estagiario = new DAOEstagiario().readOneEstagiario(cpf);
+            initComponents();
+        }else{
+            initComponents();
+        }
     }
 
     /**
@@ -91,12 +97,12 @@ public class MenuEstagiario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void consultarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarDadosActionPerformed
-        estagiario.consultaDadosEstagio();
+        estagiario.consultarDadosPessoais();
         this.dispose();
     }//GEN-LAST:event_consultarDadosActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        viewMenuLogin telaLogin = new viewMenuLogin();
+        MenuLogin telaLogin = new MenuLogin();
 
         telaLogin.setVisible(true);
         telaLogin.pack();
@@ -136,7 +142,7 @@ public class MenuEstagiario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-            //    new MenuEstagiario().setVisible(true);
+                new MenuEstagiario(null).setVisible(true);
             }
         });
     }

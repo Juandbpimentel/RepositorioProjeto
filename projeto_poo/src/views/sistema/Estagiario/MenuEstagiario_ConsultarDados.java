@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package views.sistema.Estagiario;
+package views.sistema.estagiario;
 
+import dao.usuarios.DAOEstagiario;
 import modelos.usuarios.Estagiario;
 /**
  *
@@ -15,9 +16,13 @@ public class MenuEstagiario_ConsultarDados extends javax.swing.JFrame {
     /**
      * Creates new form TelaAlterarDadosEstagiario
      */
-    public MenuEstagiario_ConsultarDados(Estagiario estagiario) {
-        this.estagiario = estagiario;
-        initComponents();
+    public MenuEstagiario_ConsultarDados(String cpf) {
+        if(cpf != null){
+            this.estagiario = new DAOEstagiario().readOneEstagiario(cpf);
+            initComponents();
+        }else{
+            initComponents();
+        }
     }
 
     /**
@@ -285,7 +290,7 @@ public class MenuEstagiario_ConsultarDados extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-            //    new MenuEstagiario_ConsultarDados().setVisible(true);
+                new MenuEstagiario_ConsultarDados(null).setVisible(true);
             }
         });
     }

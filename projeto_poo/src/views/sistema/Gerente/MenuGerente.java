@@ -1,14 +1,10 @@
-package views.sistema.Gerente;
+package views.sistema.gerente;
 
 import javax.swing.JFrame;
-import views.sistema.menulogin.viewMenuLogin;
+
+import dao.usuarios.DAOGerente;
+import views.sistema.menulogin.MenuLogin;
 import modelos.usuarios.Gerente;
-import views.sistema.Pessoa.MenuPessoa_AlterarDados;
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
  *
@@ -17,11 +13,15 @@ import views.sistema.Pessoa.MenuPessoa_AlterarDados;
 public class MenuGerente extends javax.swing.JFrame {
     private Gerente gerente;
     /**
-     * Creates new form testeMenuEstagiario
+     * Creates new form MenuGerente
      */
-    public MenuGerente(Gerente gerente) {
-        this.gerente = gerente;
-        initComponents();
+    public MenuGerente(String cpf) {
+        if(cpf != null){
+            this.gerente = new DAOGerente().readOneGerente(cpf);
+            initComponents();
+        }else{
+            initComponents();
+        }
     }
 
     /**
@@ -123,7 +123,7 @@ public class MenuGerente extends javax.swing.JFrame {
     }//GEN-LAST:event_administrarFuncionariosActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        viewMenuLogin telaLogin = new viewMenuLogin();
+        MenuLogin telaLogin = new MenuLogin();
 
         telaLogin.setVisible(true);
         telaLogin.pack();
@@ -171,7 +171,7 @@ public class MenuGerente extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-            //    new MenuGerente().setVisible(true);
+                new MenuGerente(null).setVisible(true);
             }
         });
     }

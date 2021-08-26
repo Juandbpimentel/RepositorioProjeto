@@ -3,21 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package views.sistema.Funcionario;
+package views.sistema.funcionario;
 
+import dao.usuarios.DAOFuncionario;
 import modelos.usuarios.Funcionario;
 /**
  *
  * @author Yara
  */
-public class ConsultarEstagiarioFuncionario extends javax.swing.JFrame {
+public class FuncionarioConsultarEstagiario extends javax.swing.JFrame {
     private Funcionario funcionario;
     /**
      * Creates new form ConsultarEstagiarioFuncionario
      */
-    public ConsultarEstagiarioFuncionario(Funcionario funcionario) {
-        this.funcionario = funcionario;
-        initComponents();
+    public FuncionarioConsultarEstagiario(String cpf) {
+        if(cpf != null){
+            this.funcionario = new DAOFuncionario().readOneFuncionario(cpf);
+            initComponents();
+        }else{
+            initComponents();
+        }
     }
 
     /**
@@ -116,20 +121,20 @@ public class ConsultarEstagiarioFuncionario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConsultarEstagiarioFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FuncionarioConsultarEstagiario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConsultarEstagiarioFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FuncionarioConsultarEstagiario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConsultarEstagiarioFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FuncionarioConsultarEstagiario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConsultarEstagiarioFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FuncionarioConsultarEstagiario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-            //    new ConsultarEstagiarioFuncionario().setVisible(true);
+                new FuncionarioConsultarEstagiario(null).setVisible(true);
             }
         });
     }

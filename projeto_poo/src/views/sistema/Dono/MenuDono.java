@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package views.sistema.Dono;
+package views.sistema.dono;
 
 import dao.empresa.DAOEmpresa;
 import javax.swing.JFrame;
@@ -13,7 +13,8 @@ import dao.usuarios.DAODono;
 import java.util.ArrayList;
 import modelos.empresa.Empresa;
 import views.sistema.menulogin.MenuLogin_Registro;
-import views.sistema.menulogin.viewMenuLogin;
+import views.sistema.menulogin.MenuLogin;
+import dao.usuarios.DAODono;
 /**
  *
  * @author sarah
@@ -23,9 +24,13 @@ public class MenuDono extends javax.swing.JFrame {
     /**
      * Creates new form MenuDono
      */
-    public MenuDono(Dono dono) {
-        this.dono = dono;
-        initComponents();
+    public MenuDono(String cpf) {
+        if(cpf != null){
+            this.dono = new DAODono().readOneDono(cpf);
+            initComponents();
+        }else{
+            initComponents();
+        }
     }
 
     /**
@@ -111,7 +116,7 @@ public class MenuDono extends javax.swing.JFrame {
     }//GEN-LAST:event_admEmpresaButtonMouseClicked
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        viewMenuLogin telaLogin = new viewMenuLogin();
+        MenuLogin telaLogin = new MenuLogin();
 
         telaLogin.setVisible(true);
         telaLogin.pack();
@@ -151,7 +156,7 @@ public class MenuDono extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //new MenuDono().setVisible(true);
+                new MenuDono(null).setVisible(true);
             }
         });
     }

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package views.sistema.Gerente;
+package views.sistema.gerente;
 
+import dao.usuarios.DAOGerente;
 import modelos.usuarios.Gerente;
 /**
  *
@@ -15,9 +16,13 @@ public class MenuGerente_AdmEstagiario extends javax.swing.JFrame {
     /**
      * Creates new form ConsultarDadosEstagiario
      */
-    public MenuGerente_AdmEstagiario(Gerente gerente) {
-        this.gerente = gerente;
-        initComponents();
+    public MenuGerente_AdmEstagiario(String cpf) {
+        if(cpf != null){
+            this.gerente = new DAOGerente().readOneGerente(cpf);
+            initComponents();
+        }else{
+            initComponents();
+        }
     }
 
     /**
@@ -305,7 +310,7 @@ public class MenuGerente_AdmEstagiario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-            //    new MenuGerente_AdmEstagiario().setVisible(true);
+                new MenuGerente_AdmEstagiario(null).setVisible(true);
             }
         });
     }

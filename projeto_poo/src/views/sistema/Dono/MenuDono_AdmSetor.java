@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package views.sistema.Dono;
+package views.sistema.dono;
 
+import dao.usuarios.DAODono;
 import modelos.usuarios.Dono;
 
 /**
@@ -16,9 +17,13 @@ public class MenuDono_AdmSetor extends javax.swing.JFrame {
     /**
      * Creates new form AlterarDadosSetorDono
      */
-    public MenuDono_AdmSetor(Dono dono) {
-        this.dono = dono;
-        initComponents();
+    public MenuDono_AdmSetor(String cpf) {
+        if(cpf != null){
+            this.dono = new DAODono().readOneDono(cpf);
+            initComponents();
+        }else{
+            initComponents();
+        }
     }
 
     /**
@@ -312,7 +317,7 @@ public class MenuDono_AdmSetor extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //new MenuDono_AdmSetor().setVisible(true);
+                new MenuDono_AdmSetor(null).setVisible(true);
             }
         });
     }

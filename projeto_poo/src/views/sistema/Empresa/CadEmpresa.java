@@ -3,9 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package views.sistema.Empresa;
+package views.sistema.empresa;
 
 import javax.swing.JFrame;
+
+import dao.usuarios.DAOPessoa;
+import modelos.usuarios.Pessoa;
 import views.sistema.menulogin.MenuLogin_Registro;
 
 /**
@@ -13,12 +16,17 @@ import views.sistema.menulogin.MenuLogin_Registro;
  * @author Yara
  */
 public class CadEmpresa extends javax.swing.JFrame {
-
+    private Pessoa pessoa;
     /**
      * Creates new form Empresa
      */
-    public CadEmpresa() {
-        initComponents();
+    public CadEmpresa(String cpf) {
+        if(cpf != null){
+            this.pessoa = new DAOPessoa().readOnePessoa(cpf);
+            initComponents();
+        }else{
+            initComponents();
+        }
     }
 
     /**
@@ -231,7 +239,7 @@ public class CadEmpresa extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadEmpresa().setVisible(true);
+                new CadEmpresa(null).setVisible(true);
             }
         });
     }

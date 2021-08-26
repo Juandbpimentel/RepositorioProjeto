@@ -1,15 +1,17 @@
-package views.sistema.Funcionario;
+package views.sistema.funcionario;
 
 import dao.empresa.DAOCategoria;
 import dao.empresa.DAOEmpresa;
 import dao.empresa.DAOSetor;
 import dao.lugar.DAOEndereco;
+import dao.usuarios.DAODiretor;
+import dao.usuarios.DAODono;
 import dao.usuarios.DAOFuncionario;
+import dao.usuarios.DAOGerente;
 import dao.usuarios.DAOPessoa;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import modelos.empresa.Categoria;
@@ -23,9 +25,9 @@ import modelos.usuarios.Funcionario;
 import modelos.usuarios.Gerente;
 import modelos.usuarios.Pessoa;
 import sistema.Conexao;
-import views.sistema.Endereco.MenuEndereco_Cadastro;
 import views.sistema.menulogin.MenuLogin_Registro;
-import views.sistema.menulogin.viewMenuLogin;
+import views.sistema.endereco.MenuEndereco_Cadastro;
+import views.sistema.menulogin.MenuLogin;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -42,13 +44,17 @@ public class CadFuncionario extends javax.swing.JFrame {
     /**
      * Creates new form FrameTest
      */
-    public CadFuncionario(Pessoa pessoa) {
-        this.pessoa = pessoa;
-        initComponents();
-        populaComboCategoria();
-        populaComboEmpresa();
-        populaComboEndereco();
-        populaComboSetor();
+    public CadFuncionario(String cpf) {
+        if(cpf != null){
+            this.pessoa = new DAOPessoa().readOnePessoa(cpf);
+            initComponents();
+            populaComboCategoria();
+            populaComboEmpresa();
+            populaComboEndereco();
+            populaComboSetor();
+        }else{
+            initComponents();
+        }
     }
 
     /**
@@ -363,22 +369,23 @@ public class CadFuncionario extends javax.swing.JFrame {
             menuReg.pack();
             menuReg.setLocationRelativeTo(null);
             this.dispose();
+            return;
         }
         switch (pessoa.getTipo()) {
             case "DIR":
-                Diretor diretor =(Diretor) pessoa;
+                Diretor diretor = new DAODiretor().readOneDiretor(pessoa.getCpf());
                 diretor.administrarFuncionarios();
                 this.dispose();
                 break;
 
             case "DON":
-                Dono dono = (Dono) pessoa;
+                Dono dono = new DAODono().readOneDono(pessoa.getCpf());
                 dono.administrarFuncionarios();
                 this.dispose();
                 break;
 
             case "GER":
-                Gerente gerente = (Gerente) pessoa;
+                Gerente gerente = new DAOGerente().readOneGerente(pessoa.getCpf());
                 gerente.administrarFuncionarios();
                 this.dispose();
                 break;
@@ -446,7 +453,7 @@ public class CadFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        MenuEndereco_Cadastro enderecoCadastro = new MenuEndereco_Cadastro(pessoa);
+        MenuEndereco_Cadastro enderecoCadastro = new MenuEndereco_Cadastro(this.pessoa.getCpf());
         
         enderecoCadastro.setVisible(true);
         enderecoCadastro.pack();
@@ -500,7 +507,7 @@ public class CadFuncionario extends javax.swing.JFrame {
                                                       Integer.parseInt(comboboxSetor.getSelectedItem().toString().split(",")[1]), Integer.parseInt(diaPAgamentoField.getText()), (new Date(date2.getTime()).toLocalDate()));
             new DAOFuncionario().insertFuncionario(funcionario);
             System.out.println("Deu certo");
-            viewMenuLogin telalogin = new viewMenuLogin();
+            MenuLogin telalogin = new MenuLogin();
             telalogin.setVisible(true);
             telalogin.pack();
             telalogin.setLocationRelativeTo(null);
@@ -545,7 +552,7 @@ public class CadFuncionario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //new CadFuncionario().setVisible(true);
+                new CadFuncionario(null).setVisible(true);
             }
         });
     }

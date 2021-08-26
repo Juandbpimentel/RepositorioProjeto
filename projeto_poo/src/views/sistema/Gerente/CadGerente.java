@@ -1,6 +1,9 @@
-package views.sistema.Gerente;
+package views.sistema.gerente;
 
 import javax.swing.JFrame;
+
+import dao.usuarios.DAOPessoa;
+import modelos.usuarios.Pessoa;
 import views.sistema.menulogin.MenuLogin_Registro;
 
 /*
@@ -14,12 +17,17 @@ import views.sistema.menulogin.MenuLogin_Registro;
  * @author Ana Beatriz
  */
 public class CadGerente extends javax.swing.JFrame {
-
+    private Pessoa pessoa;
     /**
      * Creates new form CadGerente
      */
-    public CadGerente() {
-        initComponents();
+    public CadGerente(String cpf) {
+        if(cpf != null){
+            this.pessoa = new DAOPessoa().readOnePessoa(cpf);
+            initComponents();
+        }else{
+            initComponents();
+        }
     }
 
     /**
@@ -342,7 +350,7 @@ public class CadGerente extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadGerente().setVisible(true);
+                new CadGerente(null).setVisible(true);
             }
         });
     }

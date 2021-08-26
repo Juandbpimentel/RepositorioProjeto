@@ -55,7 +55,7 @@ create table if not exists pessoa(
 	tipo varchar (3) not null, 
 	id_endereco integer not null, 
 	--valores padrao tipo 
-	constraint tipo_check check (tipo in ('FUN', 'EST', 'GER', 'ADM', 'DIR', 'DON','DEM')),
+	constraint tipo_check check (tipo in ('FUN', 'EST', 'GER', 'ADM', 'DIR', 'DON','DEM','PES')),
 	--chave primária
 	constraint pessoa_pkey primary key (cpf),
 	--chave estrangeira 

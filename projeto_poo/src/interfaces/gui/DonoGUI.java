@@ -1,6 +1,6 @@
 package interfaces.gui;
 
-public interface DonoGUI {
+public interface DonoGUI extends PessoaGUI{
     public abstract void administrarEmpresa();
     public abstract void administrarDiretores();
     public abstract void administrarFuncionarios();

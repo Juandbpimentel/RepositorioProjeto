@@ -9,19 +9,21 @@
  * @author sarah
  */
 
-package views.sistema.Pessoa;
+package views.sistema.pessoa;
 
 import modelos.usuarios.Pessoa;
 import javax.swing.JFrame;
-import views.sistema.menulogin.viewMenuLogin;
+
+import dao.usuarios.DAOPessoa;
+import views.sistema.menulogin.MenuLogin;
 
 public class MenuPessoa extends javax.swing.JFrame {
     private Pessoa pessoa;
     /**
      * Creates new form MenuPessoa
      */
-    public MenuPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
+    public MenuPessoa(String cpf) {
+        this.pessoa = new DAOPessoa().readOnePessoa(cpf);
         initComponents();
     }
 
@@ -94,7 +96,7 @@ public class MenuPessoa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbuttonActionPerformed
-        viewMenuLogin telaLogin = new viewMenuLogin();
+        MenuLogin telaLogin = new MenuLogin();
 
         telaLogin.setVisible(true);
         telaLogin.pack();

@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package views.sistema.Categoria;
+package views.sistema.categoria;
 
 
+import dao.usuarios.DAOPessoa;
 import modelos.usuarios.Diretor;
 import modelos.usuarios.Dono;
 import modelos.usuarios.Pessoa;
@@ -21,9 +22,13 @@ public class CadastrarCategoria extends javax.swing.JFrame {
     /**
      * Creates new form CadastrarCategoria
      */
-    public CadastrarCategoria(Pessoa pessoa) {
-        this.pessoa = pessoa;
-        initComponents();
+    public CadastrarCategoria(String cpf) {
+        if(cpf != null){
+            this.pessoa = new DAOPessoa().readOnePessoa(cpf);
+            initComponents();
+        }else{
+            initComponents();
+        }
     }
 
     /**
@@ -281,7 +286,7 @@ public class CadastrarCategoria extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //new CadastrarCategoria().setVisible(true);
+                new CadastrarCategoria(null).setVisible(true);
             }
         });
     }

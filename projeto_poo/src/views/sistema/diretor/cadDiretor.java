@@ -3,9 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package views.sistema.Diretor;
+package views.sistema.diretor;
 
 import javax.swing.JFrame;
+
+import dao.usuarios.DAOPessoa;
+import modelos.usuarios.Pessoa;
 import views.sistema.menulogin.MenuLogin_Registro;
 
 /**
@@ -13,12 +16,17 @@ import views.sistema.menulogin.MenuLogin_Registro;
  * @author Yara
  */
 public class CadDiretor extends javax.swing.JFrame {
-
+    private Pessoa pessoa;
     /**
      * Creates new form Diretor
      */
-    public CadDiretor() {
-        initComponents();
+    public CadDiretor(String cpf) {
+        if(cpf != null){
+            this.pessoa = new DAOPessoa().readOnePessoa(cpf);
+            initComponents();
+        }else{
+            initComponents();
+        }
     }
 
     /**
@@ -336,7 +344,7 @@ public class CadDiretor extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadDiretor().setVisible(true);
+                new CadDiretor(null).setVisible(true);
             }
         });
     }

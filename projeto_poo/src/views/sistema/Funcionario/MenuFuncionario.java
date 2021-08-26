@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package views.sistema.Funcionario;
+package views.sistema.funcionario;
 
 import javax.swing.JFrame;
-import views.sistema.menulogin.viewMenuLogin;
+
+import dao.usuarios.DAOFuncionario;
+import views.sistema.menulogin.MenuLogin;
 import modelos.usuarios.Funcionario;
 /**
  *
@@ -17,9 +19,13 @@ public class MenuFuncionario extends javax.swing.JFrame {
     /**
      * Creates new form MenuFuncionario
      */
-    public MenuFuncionario(Funcionario funcionario) {
-        this.funcionario = funcionario;
-        initComponents();
+    public MenuFuncionario(String cpf) {
+        if(cpf != null){
+            this.funcionario = new DAOFuncionario().readOneFuncionario(cpf);
+            initComponents();
+        }else{
+            initComponents();
+        }
     }
 
     /**
@@ -104,7 +110,7 @@ public class MenuFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void consultarDadosEmpregoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarDadosEmpregoActionPerformed
-        funcionario.consultarDadosEmprego();
+        funcionario.consultarDadosPessoais();
         this.dispose();
     }//GEN-LAST:event_consultarDadosEmpregoActionPerformed
 
@@ -114,7 +120,7 @@ public class MenuFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_consultarEstagiariosActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        viewMenuLogin telaLogin = new viewMenuLogin();
+        MenuLogin telaLogin = new MenuLogin();
 
         telaLogin.setVisible(true);
         telaLogin.pack();
@@ -154,7 +160,7 @@ public class MenuFuncionario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-            //    new MenuFuncionario().setVisible(true);
+                new MenuFuncionario(null).setVisible(true);
             }
         });
     }

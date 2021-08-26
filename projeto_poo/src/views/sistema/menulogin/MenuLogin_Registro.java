@@ -12,12 +12,12 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import modelos.empresa.Empresa;
 import sistema.Conexao;
-import views.sistema.Diretor.CadDiretor;
-import views.sistema.Dono.CadDono;
-import views.sistema.Empresa.CadEmpresa;
-import views.sistema.Estagiario.CadEstagiario;
-import views.sistema.Funcionario.CadFuncionario;
-import views.sistema.Gerente.CadGerente;
+import views.sistema.diretor.CadDiretor;
+import views.sistema.dono.CadDono;
+import views.sistema.empresa.CadEmpresa;
+import views.sistema.estagiario.CadEstagiario;
+import views.sistema.funcionario.CadFuncionario;
+import views.sistema.gerente.CadGerente;
 
 /**
  *
@@ -131,7 +131,6 @@ public class MenuLogin_Registro extends javax.swing.JFrame {
         
         switch(comboboxTipo.getSelectedItem().toString()){
             case "Funcionário":
-                System.out.println("Funcionário");
                 CadFuncionario cadFuncionario = new CadFuncionario(null);
                 
                 cadFuncionario.setVisible(true);
@@ -143,8 +142,7 @@ public class MenuLogin_Registro extends javax.swing.JFrame {
                 break;
             
             case "Gerente":
-                System.out.println("Gerente");
-                CadGerente cadGerente = new CadGerente();
+                CadGerente cadGerente = new CadGerente(null);
 
                 cadGerente.setVisible(true);
                 cadGerente.pack();
@@ -154,7 +152,6 @@ public class MenuLogin_Registro extends javax.swing.JFrame {
                 super.dispose();
                 break;
             case "Estagiario":
-                System.out.println("Estagiario");
                 CadEstagiario cadEstagiario = new CadEstagiario(null);
 
                 cadEstagiario.setVisible(true);
@@ -164,8 +161,7 @@ public class MenuLogin_Registro extends javax.swing.JFrame {
                 super.dispose();
                 break;
             case "Dono":
-                System.out.println("Dono");
-                CadDono cadDono = new CadDono();
+                CadDono cadDono = new CadDono(null);
 
                 cadDono.setVisible(true);
                 cadDono.pack();
@@ -174,8 +170,7 @@ public class MenuLogin_Registro extends javax.swing.JFrame {
                 super.dispose();
                 break;
             case "Diretor":
-                System.out.println("Diretor");
-                CadDiretor cadDiretor = new CadDiretor();
+                CadDiretor cadDiretor = new CadDiretor(null);
 
                 cadDiretor.setVisible(true);
                 cadDiretor.pack();
@@ -190,7 +185,7 @@ public class MenuLogin_Registro extends javax.swing.JFrame {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         
-        viewMenuLogin telaLogin = new viewMenuLogin();
+        MenuLogin telaLogin = new MenuLogin();
 
         telaLogin.setVisible(true);
         telaLogin.pack();
@@ -201,7 +196,6 @@ public class MenuLogin_Registro extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void comboboxTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboboxTipoActionPerformed
-        System.out.println("views.sistema.menulogin.MenuLogin_Registro.comboboxTipoActionPerformed()");
     }//GEN-LAST:event_comboboxTipoActionPerformed
    
     

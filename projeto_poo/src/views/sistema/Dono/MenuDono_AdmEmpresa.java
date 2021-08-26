@@ -3,13 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package views.sistema.Dono;
+package views.sistema.dono;
 
 import javax.swing.JFrame;
+
+import dao.usuarios.DAODono;
 import modelos.usuarios.Dono;
 import modelos.usuarios.Pessoa;
-import views.sistema.Categoria.CadastrarCategoria;
-import views.sistema.Dono.MenuDono;
+import views.sistema.categoria.CadastrarCategoria;
+import views.sistema.dono.MenuDono;
 
 /**
  *
@@ -20,9 +22,13 @@ public class MenuDono_AdmEmpresa extends javax.swing.JFrame {
     /**
      * Creates new form AlterarDadosEmpresaDono
      */
-    public MenuDono_AdmEmpresa(Dono dono) {
-        this.dono = dono;
-        initComponents();
+    public MenuDono_AdmEmpresa(String cpf) {
+        if(cpf != null){
+            this.dono = new DAODono().readOneDono(cpf);
+            initComponents();
+        }else{
+            initComponents();
+        }
     }
 
     /**
@@ -241,7 +247,7 @@ public class MenuDono_AdmEmpresa extends javax.swing.JFrame {
     }//GEN-LAST:event_salvarButtonActionPerformed
 
     private void criarCatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarCatButtonActionPerformed
-        CadastrarCategoria menuCadCategoria = new CadastrarCategoria( dono );
+        CadastrarCategoria menuCadCategoria = new CadastrarCategoria( dono.getCpf());
         menuCadCategoria.setVisible(true);
         menuCadCategoria.pack();
         menuCadCategoria.setLocationRelativeTo(null);
@@ -296,7 +302,7 @@ public class MenuDono_AdmEmpresa extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //new MenuDono_AdmEmpresa().setVisible(true);
+                new MenuDono_AdmEmpresa(null).setVisible(true);
             }
         });
     }

@@ -3,23 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package views.sistema.Pessoa;
+package views.sistema.pessoa;
 
 import javax.swing.JFrame;
+
+import dao.usuarios.DAOPessoa;
 import modelos.usuarios.Pessoa;
-import views.sistema.Pessoa.MenuPessoa;
+import views.sistema.pessoa.MenuPessoa;
 
 /**
  *
  * @author sarah
  */
-public class MenuPessoa_AlterarDados extends javax.swing.JFrame {
+public class MenuPessoa_ConsultarDados extends javax.swing.JFrame {
     private Pessoa pessoa;
     /**
      * Creates new form ConsultarDadosPessoa
      */
-    public MenuPessoa_AlterarDados(Pessoa pessoa) {
-        this.pessoa = pessoa;
+    public MenuPessoa_ConsultarDados(String cpf) {
+        this.pessoa = new DAOPessoa().readOnePessoa(cpf);
         initComponents();
     }
 
@@ -317,13 +319,13 @@ public class MenuPessoa_AlterarDados extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuPessoa_AlterarDados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuPessoa_ConsultarDados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuPessoa_AlterarDados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuPessoa_ConsultarDados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuPessoa_AlterarDados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuPessoa_ConsultarDados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuPessoa_AlterarDados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuPessoa_ConsultarDados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>

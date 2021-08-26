@@ -1,12 +1,12 @@
 package modelos.usuarios;
 import modelos.empresa.Categoria;
-import views.sistema.Estagiario.MenuEstagiario;
+import views.sistema.estagiario.MenuEstagiario;
+import views.sistema.estagiario.MenuEstagiario_ConsultarDados;
 import interfaces.gui.EstagiarioGUI;
 
 import java.time.LocalDate;
 
 import javax.swing.JFrame;
-import views.sistema.Estagiario.MenuEstagiario_ConsultarDados;
 
 public class Estagiario extends Pessoa implements EstagiarioGUI {
     public LocalDate inicio_estagio;
@@ -84,10 +84,22 @@ public class Estagiario extends Pessoa implements EstagiarioGUI {
     public void setTempo_estagio(int tempoEstagio) {
         this.tempo_estagio = tempoEstagio;
     }
+    
+    //NÃO CRIAR MAIS
+    @Override
+    public void consultarLogs(){
+        
+    }
+    
+    //CRIAR
+    @Override
+    public void criarNovoEndereco(){
+
+    }
 
     @Override
-    public void consultaDadosEstagio() {
-        MenuEstagiario_ConsultarDados consultarDados = new MenuEstagiario_ConsultarDados(this);
+    public void consultarDadosPessoais() {
+        MenuEstagiario_ConsultarDados consultarDados = new MenuEstagiario_ConsultarDados(this.cpf);
         
         consultarDados.setVisible(true);
         consultarDados.pack();
@@ -97,7 +109,7 @@ public class Estagiario extends Pessoa implements EstagiarioGUI {
 
     @Override
     public void mostrarMenu() {
-        MenuEstagiario menu = new MenuEstagiario(this); 
+        MenuEstagiario menu = new MenuEstagiario(this.cpf); 
         
         menu.setVisible(true);
         menu.pack();

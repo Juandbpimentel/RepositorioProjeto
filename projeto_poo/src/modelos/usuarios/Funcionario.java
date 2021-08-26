@@ -2,14 +2,14 @@ package modelos.usuarios;
 
 
 import modelos.empresa.Categoria;
-import views.sistema.Funcionario.MenuFuncionario;
+import views.sistema.funcionario.FuncionarioConsultarDadosPessoais;
+import views.sistema.funcionario.FuncionarioConsultarEstagiario;
+import views.sistema.funcionario.MenuFuncionario;
 import interfaces.gui.FuncionarioGUI;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
-import views.sistema.Funcionario.ConsultarDadosEmprego;
-import views.sistema.Funcionario.ConsultarEstagiarioFuncionario;
 
 public class Funcionario extends Pessoa implements FuncionarioGUI {
     protected double bonificacao;
@@ -92,10 +92,24 @@ public class Funcionario extends Pessoa implements FuncionarioGUI {
     public void setEstagiarios(ArrayList<Estagiario> estagiarios) {
         this.estagiarios = estagiarios;
     }
+    
+    //NÃO CRIAR MAIS
+    @Override
+    public void consultarLogs(){
+
+    }
+
+    //CRIAR
+
+    
+    @Override
+    public void criarNovoEndereco(){
+
+    }
 
     @Override
-    public void consultarDadosEmprego() {
-        ConsultarDadosEmprego consultarDados = new ConsultarDadosEmprego(this, true);
+    public void consultarDadosPessoais() {
+        FuncionarioConsultarDadosPessoais consultarDados = new FuncionarioConsultarDadosPessoais(this.cpf);
         
         consultarDados.setVisible(true);
         consultarDados.pack();
@@ -105,7 +119,7 @@ public class Funcionario extends Pessoa implements FuncionarioGUI {
 
     @Override
     public void consultarEstagiarios() {
-        ConsultarEstagiarioFuncionario consultarEstagiarios = new ConsultarEstagiarioFuncionario(this);
+        FuncionarioConsultarEstagiario consultarEstagiarios = new FuncionarioConsultarEstagiario(this.cpf);
         
         consultarEstagiarios.setVisible(true);
         consultarEstagiarios.pack();
@@ -115,7 +129,7 @@ public class Funcionario extends Pessoa implements FuncionarioGUI {
 
     @Override
     public void mostrarMenu() {
-        MenuFuncionario menu = new MenuFuncionario(this); 
+        MenuFuncionario menu = new MenuFuncionario(this.cpf); 
         
         menu.setVisible(true);
         menu.pack();

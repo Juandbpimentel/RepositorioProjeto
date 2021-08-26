@@ -3,21 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package views.sistema.Dono;
+package views.sistema.diretor;
 
-import views.sistema.Diretor.*;
+import dao.usuarios.DAODiretor;
+import modelos.usuarios.Diretor;
 
 /**
  *
  * @author Ana Beatriz
  */
-public class MenuDono_AltererDados extends javax.swing.JFrame {
-
+public class MenuDiretor_ConsultarDadosPessoais extends javax.swing.JFrame {
+    private Diretor diretor;
     /**
-     * Creates new form MenuDiretor_AltererDads
+     * Creates new form AdmitirFuncionario
      */
-    public MenuDono_AltererDados() {
-        initComponents();
+    public MenuDiretor_ConsultarDadosPessoais(String cpf) {
+        if(cpf != null){
+            this.diretor = new DAODiretor().readOneDiretor(cpf);
+            initComponents();
+        }else{
+            initComponents();
+        }
     }
 
     /**
@@ -53,7 +59,7 @@ public class MenuDono_AltererDados extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Poppins", 3, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 153, 0));
-        jLabel1.setText("Alterar Dados - Dono");
+        jLabel1.setText("Alterar Dados - Diretor");
 
         jTextField1.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jTextField1.setToolTipText("");
@@ -267,23 +273,21 @@ public class MenuDono_AltererDados extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuDono_AltererDados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuDiretor_ConsultarDadosPessoais.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuDono_AltererDados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuDiretor_ConsultarDadosPessoais.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuDono_AltererDados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuDiretor_ConsultarDadosPessoais.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuDono_AltererDados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuDiretor_ConsultarDadosPessoais.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuDono_AltererDados().setVisible(true);
+                new MenuDiretor_ConsultarDadosPessoais(null).setVisible(true);
             }
         });
     }

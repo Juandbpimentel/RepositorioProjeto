@@ -1,7 +1,7 @@
 package modelos.usuarios;
 
 import modelos.lugar.Endereco;
-import views.sistema.Pessoa.MenuPessoa;
+import views.sistema.pessoa.MenuPessoa;
 
 import java.time.LocalDate;
 
@@ -9,8 +9,8 @@ import javax.swing.JFrame;
 
 import interfaces.alterDB.PessoaAlterDB;
 import interfaces.gui.PessoaGUI;
-import views.sistema.Pessoa.MenuPessoa_AlterarDados;
-import views.sistema.Endereco.MenuEndereco_Cadastro;
+import views.sistema.pessoa.MenuPessoa_ConsultarDados;
+import views.sistema.endereco.MenuEndereco_Cadastro;
 
 public class Pessoa implements PessoaGUI, PessoaAlterDB {
     protected String nome;
@@ -105,14 +105,13 @@ public class Pessoa implements PessoaGUI, PessoaAlterDB {
   GUI
 */
     @Override
-    public void consultarDadosPessoais() {
-        MenuPessoa_AlterarDados consultarDados = new MenuPessoa_AlterarDados(this);
+    public void consultarDadosPessoais() {      
+        MenuPessoa_ConsultarDados consultarDados = new MenuPessoa_ConsultarDados(this.getCpf());
         
         consultarDados.setVisible(true);
         consultarDados.pack();
         consultarDados.setLocationRelativeTo(null);
         consultarDados.setDefaultCloseOperation(JFrame .EXIT_ON_CLOSE);
-            
     }
 
     @Override
@@ -122,7 +121,7 @@ public class Pessoa implements PessoaGUI, PessoaAlterDB {
 
     @Override
     public void mostrarMenu() {
-        MenuPessoa menu = new MenuPessoa(this); 
+        MenuPessoa menu = new MenuPessoa(this.getCpf()); 
         
         menu.setVisible(true);
         menu.pack();
@@ -132,35 +131,16 @@ public class Pessoa implements PessoaGUI, PessoaAlterDB {
     
     @Override
     public void criarNovoEndereco(){
-        MenuEndereco_Cadastro enderecoCadastro = new MenuEndereco_Cadastro(this);
+        MenuEndereco_Cadastro enderecoCadastro = new MenuEndereco_Cadastro(this.getCpf());
         
         enderecoCadastro.setVisible(true);
         enderecoCadastro.pack();
         enderecoCadastro.setLocationRelativeTo(null);
         enderecoCadastro.setDefaultCloseOperation(JFrame .EXIT_ON_CLOSE);
     }
-/*
-  AlterDB
-*/
-    @Override
-    public boolean alterarDadosPessoais() {
-        return true;
-    }
 
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
         return "( nome : \'"+nome+"\' , login: \'"+login+"\' , "+senha+"\' , "+tipo+"\' , "+cpf+"\' , "+data_nasc+"\' , "+id_endereco+"\' )";
-        
-        /*
-            protected String nome;
-            protected String login;
-            protected String senha;
-            protected String tipo;
-            protected String cpf;
-            protected LocalDate data_nasc;
-            protected int id_endereco;
-            protected Endereco endereco;
-        */
     }
 }

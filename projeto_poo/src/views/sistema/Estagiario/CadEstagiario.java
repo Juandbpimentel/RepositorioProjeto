@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package views.sistema.Estagiario;
+package views.sistema.estagiario;
 
 import javax.swing.JFrame;
 
+import dao.usuarios.DAOPessoa;
 import modelos.usuarios.Diretor;
 import modelos.usuarios.Dono;
 import modelos.usuarios.Gerente;
@@ -22,9 +23,13 @@ public class CadEstagiario extends javax.swing.JFrame {
     /**
      * Creates new form CadastroEstagiario
      */
-    public CadEstagiario(Pessoa pessoa) {
-        this.pessoa = pessoa;
-        initComponents();
+    public CadEstagiario(String cpf) {
+        if(cpf != null){
+            this.pessoa = new DAOPessoa().readOnePessoa(cpf);
+            initComponents();
+        }else{
+            initComponents();
+        }
     }
 
     /**
@@ -294,6 +299,7 @@ public class CadEstagiario extends javax.swing.JFrame {
             menuReg.pack();
             menuReg.setLocationRelativeTo(null);
             this.dispose();
+            return;
         }
         switch (pessoa.getTipo()) {
             case "DIR":
@@ -363,7 +369,7 @@ public class CadEstagiario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //new CadEstagiario().setVisible(true);
+                new CadEstagiario(null).setVisible(true);
             }
         });
     }

@@ -3,11 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package views.sistema.Gerente;
+package views.sistema.gerente;
 
 import dao.usuarios.DAOFuncionario;
+import dao.usuarios.DAOGerente;
 import modelos.usuarios.Funcionario;
 import modelos.usuarios.Gerente;
+import java.util.ArrayList;
+
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,28 +20,39 @@ import modelos.usuarios.Gerente;
 public class MenuGerente_AdmFuncionario extends javax.swing.JFrame {
     private Gerente gerente;
     /**
-     * Creates new form MenuGerente_AdmFuncionario
+     * Creates new form MenuGerente
      */
-    public MenuGerente_AdmFuncionario(Gerente gerente) {
-        this.gerente = gerente;
-        initComponents();
+    public MenuGerente_AdmFuncionario(String cpf) {
+        if(cpf != null){
+            this.gerente = new DAOGerente().readOneGerente(cpf);
+            initComponents();
+        }else{
+            initComponents();
+        }
     }
     
     
     public void iniciaTabela(){
-        ArrayListFuncionario resultado = new DAOFuncionario().readAll();
-
-           DefaultTableModel testetabela = (DefaultTableModel) tabelaDados.getModel();
-           // Object[] teste = {resultado.getNome(), resultado.getSenha(), resultado.getLogin()};
-           Object[] colunas = {"Nome","Senha","Login"};
-           final Object[] entrada = new Object[4];
-           entrada[0] = resultado.getNome(); 
-           entrada[1] = resultado.getSenha();
-           entrada[2] = resultado.getLogin();
-           testetabela.setColumnIdentifiers(colunas);
-           tabelaDados.setModel(testetabela);
-           testetabela.addRow(entrada);
+            ArrayList<Funcionario> resultado = new DAOFuncionario().readAll();
             
+            for (Funcionario funcionario : resultado) {
+                
+                DefaultTableModel testetabela = (DefaultTableModel) tabelaDados.getModel();
+
+                Object[] colunas = {"Nome","Cpf","Senha","Login"};
+                final Object[] entrada = new Object[4];
+                
+                entrada[0] = funcionario.getNome(); 
+                entrada[1] = funcionario.getCpf();
+                entrada[2] = funcionario.getSenha();
+                entrada[3] = funcionario.getLogin();
+
+                testetabela.setColumnIdentifiers(colunas);
+                
+                tabelaDados.setModel(testetabela);
+                testetabela.addRow(entrada);     
+            
+            }  
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -52,7 +67,7 @@ public class MenuGerente_AdmFuncionario extends javax.swing.JFrame {
         backButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelaDados = new javax.swing.JTable();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
@@ -90,9 +105,9 @@ public class MenuGerente_AdmFuncionario extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 153, 0));
         jLabel1.setText("Administrar Dados - Funcionário");
 
-        jTable1.setBackground(new java.awt.Color(102, 102, 102));
-        jTable1.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaDados.setBackground(new java.awt.Color(102, 102, 102));
+        tabelaDados.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        tabelaDados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -111,7 +126,7 @@ public class MenuGerente_AdmFuncionario extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabelaDados);
 
         jComboBox1.setFont(new java.awt.Font("Poppins", 0, 10)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -339,7 +354,7 @@ public class MenuGerente_AdmFuncionario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-            //    new MenuGerente_AdmFuncionario().setVisible(true);
+                new MenuGerente_AdmFuncionario(null).setVisible(true);
             }
         });
     }
@@ -362,7 +377,7 @@ public class MenuGerente_AdmFuncionario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tabelaDados;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables

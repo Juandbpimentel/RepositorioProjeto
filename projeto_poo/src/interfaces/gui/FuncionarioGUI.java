@@ -1,6 +1,5 @@
 package interfaces.gui;
 
-public interface FuncionarioGUI {
-    public abstract void consultarDadosEmprego();
+public interface FuncionarioGUI extends PessoaGUI{
     public abstract void consultarEstagiarios();
 }

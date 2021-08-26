@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package views.sistema.Dono;
+package views.sistema.dono;
 
-import javax.swing.JFrame;
+import dao.usuarios.DAODono;
 import modelos.usuarios.Dono;
 
 /**
@@ -17,9 +17,13 @@ public class MenuDono_AdmDiretor extends javax.swing.JFrame {
     /**
      * Creates new form MenuDono_AdmDiretor
      */
-    public MenuDono_AdmDiretor(Dono dono) {
-        this.dono = dono;
-        initComponents();
+    public MenuDono_AdmDiretor(String cpf) {
+        if(cpf != null){
+            this.dono = new DAODono().readOneDono(cpf);
+            initComponents();
+        }else{
+            initComponents();
+        }
     }
 
     /**

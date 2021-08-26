@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package views.sistema.Endereco;
+package views.sistema.endereco;
+import dao.usuarios.DAOPessoa;
 import modelos.usuarios.Diretor;
 import modelos.usuarios.Dono;
 import modelos.usuarios.Estagiario;
@@ -20,9 +21,13 @@ public class MenuEndereco_Cadastro extends javax.swing.JFrame {
     /**
      * Creates new form MenuEndereco_Cadastro
      */
-    public MenuEndereco_Cadastro(Pessoa pessoa) {
-        this.pessoa = pessoa;
-        initComponents();
+    public MenuEndereco_Cadastro(String cpf) {
+        if(cpf != null){
+            this.pessoa = new DAOPessoa().readOnePessoa(cpf);
+            initComponents();
+        }else{
+            initComponents();
+        }
     }
 
     /**
@@ -193,23 +198,24 @@ public class MenuEndereco_Cadastro extends javax.swing.JFrame {
             menuReg.pack();
             menuReg.setLocationRelativeTo(null);
             this.dispose();
+            return;
         }
         switch (pessoa.getTipo()) {
             case "DIR":
                 Diretor diretor =(Diretor) pessoa;
-                diretor.alterarDadosPessoais();
+                diretor.consultarDadosPessoais();
                 this.dispose();
                 break;
 
             case "DON":
                 Dono dono = (Dono) pessoa;
-                dono.administrarEstagiarios();
+                dono.consultarDadosPessoais();
                 this.dispose();
                 break;
 
             case "GER":
                 Gerente gerente = (Gerente) pessoa;
-                gerente.administrarEstagiarios();
+                gerente.consultarDadosPessoais();
                 this.dispose();
                 break;
             case "EST":
@@ -219,7 +225,7 @@ public class MenuEndereco_Cadastro extends javax.swing.JFrame {
                 break;
             case "FUN":
                 Funcionario funcionario =(Funcionario) pessoa;
-                funcionario.consultarDadosEmprego();
+                funcionario.consultarDadosPessoais();
                 this.dispose();
                 break;
         }
@@ -255,7 +261,7 @@ public class MenuEndereco_Cadastro extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-            //    new MenuEndereco_Cadastro().setVisible(true);
+                new MenuEndereco_Cadastro(null).setVisible(true);
             }
         });
     }

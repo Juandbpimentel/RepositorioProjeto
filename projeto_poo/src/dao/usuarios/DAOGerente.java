@@ -172,10 +172,16 @@ public class DAOGerente {
     public boolean insertGerente(Gerente gerente){
         try {
             conexao.conect();
-            String sqlInsertGerente = "insert into public.Gerente(bonificacao_gerente, cpf)\n"
-            +"values("+gerente.getBonificacao_gerente()+" , \'"+gerente.getCpf()+"\')";
-            int resultado = conexao.executaSql(sqlInsertGerente);
-            return (resultado != 0);
+            String sqlChecaGerencia = "select * from gerencia where id_setor = \'"+gerente.getId_setor()+"\'\n";
+            ResultSet resultadoCheca = conexao.executaQuery(sqlChecaGerencia);
+            if (resultadoCheca.next()){
+                throw new SQLException("Não foi possível inserir o gerente porque já tem um gerente pra esse setor");
+            }else{
+                String sqlInsertGerente = "insert into public.Gerente(bonificacao_gerente, cpf)\n"
+                +"values("+gerente.getBonificacao_gerente()+" , \'"+gerente.getCpf()+"\')";
+                int resultado = conexao.executaSql(sqlInsertGerente);
+                return (resultado != 0);
+            }
         } catch (SQLException e) {
             System.err.println("Houve um erro durante a inserção no banco de dados: "+e);
             return false;
