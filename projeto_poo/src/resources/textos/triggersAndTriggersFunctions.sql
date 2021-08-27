@@ -422,7 +422,7 @@ $$
                             login = new.login,
                             senha = new.senha,
                             tipo = new.tipo,
-                            id_endereco = new.tipo
+                            id_endereco = new.id_endereco
             WHERE cpf = OLD.cpf;
             IF NOT FOUND THEN RETURN NULL; END IF;
 
