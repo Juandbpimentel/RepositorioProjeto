@@ -85,15 +85,18 @@ public class DAOGerente {
                     arrayGerente.add(gerente);
                 }while(resultado.next());
             }
-        return arrayGerente;
+            conexao.disconect();
+            return arrayGerente;
 
         } 
         catch (SQLException SQLError) {
             System.err.println("Erro no banco de dados:" +SQLError);            
+            conexao.disconect();
             return null; 
         } 
         catch (Exception geralError){
             System.err.println("Erro no código:" +geralError);            
+            conexao.disconect();
             return null;
         }
     }
@@ -137,15 +140,18 @@ public class DAOGerente {
                         Date data_nasc = resultadoQueryPessoa.getDate("data_nasc");
                         
                         Gerente gerente = new Gerente(nome, login, senha, tipo, cpf, data_nasc.toLocalDate(), id_categoria, id_setor, dia_pagamento, bonificacao, data_inicio.toLocalDate(), bonificacao_gerente, id_endereco);
+                        conexao.disconect();
                         return gerente;
                     }
                 }
             }
         } catch (SQLException SQLError) {
             System.err.println("Ocorreu um erro durante a busca no Banco de Dados: " + SQLError);
+            conexao.disconect();
             return null;
         } catch (Exception geralError) {
             System.err.println("Ocorreu um erro geral: " + geralError);
+            conexao.disconect();
             return null;
         }
     }
@@ -157,15 +163,16 @@ public class DAOGerente {
             int resultado = conexao.executaSql(codigoDelete);
             if(resultado != 0){
                 System.out.println("Você teve sucesso em deletar o gerente");
+                conexao.disconect();
                 return true;
             }
+                conexao.disconect();
                 return false;
-
         }catch (Exception e){
             System.err.println("Houve um erro geral: "+e);
+            conexao.disconect();
             return false;
         }
-        return false;
     }
     public boolean insertGerente(Gerente gerente){
         try {
@@ -178,7 +185,12 @@ public class DAOGerente {
                 String sqlInsertGerente = "insert into public.Gerente(bonificacao_gerente, cpf)\n"
                 +"values("+gerente.getBonificacao_gerente()+" , \'"+gerente.getCpf()+"\')";
                 int resultado = conexao.executaSql(sqlInsertGerente);
-                return (resultado != 0);
+                if (resultado != 0) {
+                    conexao.disconect();
+                    return true;
+                }
+                conexao.disconect();
+                return false;
             }
         } catch (SQLException e) {
             System.err.println("Houve um erro durante a inserção no banco de dados: "+e);

@@ -53,12 +53,15 @@ public class DAODono {
                 arrayDono.add(dono);
                 }while(resultado.next());
             }
+            conexao.disconect();
             return arrayDono;
         } catch (SQLException erroSQL) {
             System.err.println("Erro ao recuperar do banco de dados: " + erroSQL);
+            conexao.disconect();
             return null;
         } catch (Exception erroGeral) {
             System.err.println("Erro Geral: " + erroGeral);
+            conexao.disconect();
             return null;
         }
 
@@ -84,6 +87,7 @@ public class DAODono {
                     int id_endereco = resultadoQueryPessoa.getInt("id_endereco");
 
                     Dono dono = new Dono(nome, login, senha, tipo, cpf, data_nasc.toLocalDate(), id_endereco);
+                    conexao.disconect();
                     return dono;
 
                 }
@@ -94,9 +98,11 @@ public class DAODono {
         }
         catch (SQLException erroSQL) {
             System.err.println("Ocorreu um erro durante a busca do banco de dados: " + erroSQL);
+            conexao.disconect();
             return null;
         } catch (Exception erroGeral) {
             System.err.println("ocorreu um erro Geral: " + erroGeral);
+            conexao.disconect();
             return null;
         }
     }
@@ -106,21 +112,21 @@ public class DAODono {
             conexao.conect();
             String codigoDelete = "delete from Dono where cpf = "+ cpf;
             int resultado = conexao.executaSql(codigoDelete);
-            if(resultado != 1){
+            if(resultado != 0){
                 System.out.println("Você teve sucesso em deletar o dono");
+                conexao.disconect();
                 return true;
             }
 
 
-
-        }catch(SQLException e){
-            System.err.println("Houve um erro durante a exclusão do Banco de Dados: "+e);
+            conexao.disconect();
             return false;
         }catch (Exception e){
             System.err.println("Houve um erro geral: "+e);
+            conexao.disconect();
             return false;
         }
-        return false;
+
     }
     public boolean insertDono(Dono dono){
         try{
@@ -129,11 +135,14 @@ public class DAODono {
             String sqlInsertDono = "insert into public.Dono(cpf)\n"
                                  + "values (\'"+dono.getCpf()+"\')";
             int resultado = conexao.executaSql(sqlInsertDono);
-            return (resultado != 0);
-        } catch(SQLException e){
-            System.err.println("Houve um erro durante a inserção no banco de dados: "+e);
-            return false;
-        }catch(Exception e){
+            if(resultado == 0){
+                conexao.disconect();
+                return false;
+            }
+
+            conexao.disconect();
+            return true;
+        } catch(Exception e){
             System.err.println("Houve um erro geral: "+e);
             return false;
 
@@ -187,17 +196,14 @@ public class DAODono {
                 default:
                         throw new Exception("Valor não encontrado");
             }
-
             conexao.disconect();
             return true;
-
         }catch(SQLException e){
             System.err.println("Houve um erro durante a inserção no banco de dados: "+e);
             return false;
         }catch(Exception e){
             System.err.println("Houve um erro geral: "+e);
             return false;
-
         }     
 
     }

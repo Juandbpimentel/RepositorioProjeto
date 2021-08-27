@@ -262,7 +262,8 @@ public class MenuLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_loginTextFieldActionPerformed
     
     private static Object lock2 = new Object();
-    private void registerButtonLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerButtonLabelMouseClicked
+    private void registerButtonLabelMouseClicked(java.awt.event.MouseEvent evt) {
+        //GEN-FIRST:event_registerButtonLabelMouseClicked
         MenuLogin_Registro telaRegistro = new MenuLogin_Registro();
         
         telaRegistro.setVisible(true);

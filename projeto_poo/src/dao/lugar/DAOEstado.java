@@ -34,14 +34,17 @@ public class DAOEstado {
                     arrayEstado.add(estado);
                 }while(resultado.next());
             }
+            conexao.disconect();
             return arrayEstado;
         } 
         catch(SQLException SQLError){
             System.err.println("Ocorreu um erro na leitura do Banco de Dados: " + SQLError);
+            conexao.disconect();
             return null;
         }
         catch(Exception geralError){
             System.err.println("Ocorreu um erro geral: " + geralError);
+            conexao.disconect();
             return null;
         }
     }
@@ -52,15 +55,15 @@ public class DAOEstado {
             String sqlInsertion = "Insert into public Estado(uf,nome)"+
                                   "Values "+"("+estado+")";
             int resultado = conexao.executaSql(sqlInsertion);
-            if(resultado != 0){
+            if(resultado == 0){
+                conexao.disconect();
                 return false; 
             }
+            conexao.disconect();
             return true;
-        } catch(SQLException SQLError){
-            System.err.println("Ocorreu um erro com Inserção no Banco de Dados: " + SQLError);
-            return false;
-        } catch(Exception geralError){
+        }  catch(Exception geralError){
             System.err.println("Ocorreu um erro geral: " + geralError);
+            conexao.disconect();
             return false;
         }
     }
@@ -77,13 +80,16 @@ public class DAOEstado {
                 String nome = resultadoQuery.getString("nome");
                 estado = new Estado(uf, nome);
             }
+            conexao.disconect();
             return estado;
         } catch(SQLException SQLError){
             System.err.println("Ocorreu um erro com Inserção no Banco de Dados: " + SQLError);
+            conexao.disconect();
             return null;
         }
         catch(Exception geralError){
             System.err.println("Ocorreu um erro geral: " + geralError);
+            conexao.disconect();
             return null;
         }
     }
@@ -93,19 +99,17 @@ public class DAOEstado {
             conexao.conect();
             String codigoDelete = "delete from estado where id = "+ id;
             int resultado = conexao.executaSql(codigoDelete);
-            if(resultado != 1){
+            if(resultado != 0){
                 System.out.println("Você teve sucesso em deletar o estado");
+                conexao.disconect();
                 return true;
             }
-
-        }catch(SQLException e){
-            System.err.println("Houve um erro durante a exclusão do Banco de Dados: "+e);
+            conexao.disconect();
             return false;
         }catch (Exception e){
             System.err.println("Houve um erro geral: "+e);
             return false;
         }
-        return false;
     }
 
     public boolean updateEstado(String opt, int cpf ,String dado){
