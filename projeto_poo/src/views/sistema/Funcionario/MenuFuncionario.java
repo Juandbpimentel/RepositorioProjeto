@@ -39,7 +39,7 @@ public class MenuFuncionario extends javax.swing.JFrame {
 
         jScrollBar1 = new javax.swing.JScrollBar();
         jLabel1 = new javax.swing.JLabel();
-        consultarDadosEmprego = new javax.swing.JButton();
+        consultarDadosPessoais = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
         consultarEstagiarios = new javax.swing.JButton();
 
@@ -49,11 +49,11 @@ public class MenuFuncionario extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 153, 0));
         jLabel1.setText("Bem-Vindo(a) ao Menu do Funcionário");
 
-        consultarDadosEmprego.setFont(new java.awt.Font("Poppins", 0, 11)); // NOI18N
-        consultarDadosEmprego.setText("Consultar Dados de Emprego");
-        consultarDadosEmprego.addActionListener(new java.awt.event.ActionListener() {
+        consultarDadosPessoais.setFont(new java.awt.Font("Poppins", 0, 11)); // NOI18N
+        consultarDadosPessoais.setText("Consultar Dados Pessoais");
+        consultarDadosPessoais.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                consultarDadosEmpregoActionPerformed(evt);
+                consultarDadosPessoaisActionPerformed(evt);
             }
         });
 
@@ -84,9 +84,9 @@ public class MenuFuncionario extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(119, 119, 119)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(consultarEstagiarios, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(consultarDadosEmprego)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(consultarEstagiarios, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                            .addComponent(consultarDadosPessoais, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(172, 172, 172)
                         .addComponent(backButton)))
@@ -98,7 +98,7 @@ public class MenuFuncionario extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(consultarDadosEmprego)
+                .addComponent(consultarDadosPessoais)
                 .addGap(18, 18, 18)
                 .addComponent(consultarEstagiarios)
                 .addGap(18, 18, 18)
@@ -109,10 +109,10 @@ public class MenuFuncionario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void consultarDadosEmpregoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarDadosEmpregoActionPerformed
+    private void consultarDadosPessoaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarDadosPessoaisActionPerformed
         funcionario.consultarDadosPessoais();
         this.dispose();
-    }//GEN-LAST:event_consultarDadosEmpregoActionPerformed
+    }//GEN-LAST:event_consultarDadosPessoaisActionPerformed
 
     private void consultarEstagiariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarEstagiariosActionPerformed
         funcionario.consultarEstagiarios();
@@ -167,7 +167,7 @@ public class MenuFuncionario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
-    private javax.swing.JButton consultarDadosEmprego;
+    private javax.swing.JButton consultarDadosPessoais;
     private javax.swing.JButton consultarEstagiarios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollBar jScrollBar1;

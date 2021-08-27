@@ -18,7 +18,7 @@ public class consultarEstagiarioFuncionario extends javax.swing.JFrame {
      */
     public consultarEstagiarioFuncionario(String cpf) {
         if(cpf != null){
-            this.funcionario = new DAOFuncionario().readOneFuncionario(cpf);
+            this.funcionario = new DAOFuncionario().readOneFuncionario(funcionario.getCpf());
             initComponents();
         }else{
             initComponents();
