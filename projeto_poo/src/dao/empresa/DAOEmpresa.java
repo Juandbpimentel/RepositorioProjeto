@@ -39,7 +39,6 @@ public class DAOEmpresa {
             return arrayEmpresa;
         } 
         catch(SQLException SQLError){
-            System.err.println("Ocorreu um erro na leitura do Banco de Dados: " + SQLError);
             conexao.disconect();
             return null;
         }
@@ -57,24 +56,20 @@ public class DAOEmpresa {
             String codigoDelete = "delete from empresa where cnpj = "+ cnpj;
             int resultado = conexao.executaSql(codigoDelete);
             if(resultado != 1){
-                System.out.println("Você teve sucesso em deletar a Empresa");
                 conexao.disconect();
                 return true;
             }
 
-
-
-        }catch(SQLException e){
-            System.err.println("Houve um erro durante a exclusão do Banco de Dados: "+e);
+            
+            System.err.println("Houve um erro durante a exclusão do Banco de Dados: ");
             conexao.disconect();
             return false;
+
         }catch (Exception e){
             System.err.println("Houve um erro geral: "+e);
             conexao.disconect();
             return false;
         }
-        conexao.disconect();
-        return false;
     }
 
     public boolean insertEmpresa(Empresa empresa){
@@ -92,10 +87,6 @@ public class DAOEmpresa {
             conexao.disconect();
             return true;
 
-        } catch(SQLException SQLError){
-            System.err.println("Ocorreu um erro com Inserção no Banco de Dados: " + SQLError);
-            conexao.disconect();
-            return false;
         } catch(Exception geralError){
             System.err.println("Ocorreu um erro geral: " + geralError);
             conexao.disconect();

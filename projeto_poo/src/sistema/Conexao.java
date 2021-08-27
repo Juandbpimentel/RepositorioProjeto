@@ -183,8 +183,6 @@ public class Conexao {
         }catch (IOException e){
             System.out.println("Ocorreu um erro, o stream de dados foi interrompido e causou a exceção: "+e);
             return false;
-        }catch(SQLException e){
-            return false;
         }
     }
 
@@ -213,8 +211,6 @@ public class Conexao {
             System.out.println("Ocorreu um erro, o arquivo para criação das tabelas não foi encontrado: "+e);
         }catch (IOException e){
             System.out.println("Ocorreu um erro, o stream de dados foi interrompido e causou a exceção: "+e);
-        }catch(SQLException e){
-            System.out.println("Ocorreu um erro durante a tentativa de fazer a alteração no banco de dados: "+e);
         }
     }
 
@@ -243,8 +239,6 @@ public class Conexao {
             System.out.println("Ocorreu um erro, o arquivo para criação das tabelas não foi encontrado: "+e);
         }catch (IOException e){
             System.out.println("Ocorreu um erro, o stream de dados foi interrompido e causou a exceção: "+e);
-        }catch(SQLException e){
-            System.out.println("Ocorreu um erro durante a tentativa de fazer a alteração no banco de dados: "+e);
         }
     }
 
@@ -273,8 +267,6 @@ public class Conexao {
             System.out.println("Ocorreu um erro, o arquivo para criação das tabelas não foi encontrado: "+e);
         }catch (IOException e){
             System.out.println("Ocorreu um erro, o stream de dados foi interrompido e causou a exceção: "+e);
-        }catch(SQLException e){
-            System.out.println("Ocorreu um erro durante a tentativa de fazer a alteração no banco de dados: "+e);
         }
     }
 

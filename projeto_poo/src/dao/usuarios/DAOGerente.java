@@ -155,14 +155,12 @@ public class DAOGerente {
             conexao.conect();
             String codigoDelete = "delete from Gerente where cpf = "+ cpf;
             int resultado = conexao.executaSql(codigoDelete);
-            if(resultado != 1){
+            if(resultado != 0){
                 System.out.println("Você teve sucesso em deletar o gerente");
                 return true;
             }
+                return false;
 
-        }catch(SQLException e){
-            System.err.println("Houve um erro durante a exclusão do Banco de Dados: "+e);
-            return false;
         }catch (Exception e){
             System.err.println("Houve um erro geral: "+e);
             return false;

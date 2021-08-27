@@ -62,8 +62,6 @@ public class DAOSetor {
                 return true;
             }
 
-        }catch(SQLException e){
-            System.err.println("Houve um erro durante a exclusão do Banco de Dados: "+e);
             conexao.disconect();
             return false;
         }catch (Exception e){
@@ -71,8 +69,6 @@ public class DAOSetor {
             conexao.disconect();
             return false;
         }
-        conexao.disconect();
-        return false;
     }
 
     public boolean insertSetor(Setor setor){
@@ -90,10 +86,6 @@ public class DAOSetor {
             conexao.disconect();
             return true;
 
-        } catch(SQLException SQLError){
-            System.err.println("Ocorreu um erro com Inserção no Banco de Dados: " + SQLError);
-            conexao.disconect();
-            return false;
         } catch(Exception geralError){
             System.err.println("Ocorreu um erro geral: " + geralError);
             conexao.disconect();

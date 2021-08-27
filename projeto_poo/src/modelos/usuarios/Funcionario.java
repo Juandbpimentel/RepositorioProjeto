@@ -2,8 +2,8 @@ package modelos.usuarios;
 
 
 import modelos.empresa.Categoria;
-import views.sistema.funcionario.FuncionarioConsultarDadosPessoais;
-import views.sistema.funcionario.FuncionarioConsultarEstagiario;
+import views.sistema.funcionario.consultarDadosPessoaisFuncionario;
+import views.sistema.funcionario.consultarEstagiarioFuncionario;
 import views.sistema.funcionario.MenuFuncionario;
 import interfaces.gui.FuncionarioGUI;
 import java.time.LocalDate;
@@ -109,7 +109,7 @@ public class Funcionario extends Pessoa implements FuncionarioGUI {
 
     @Override
     public void consultarDadosPessoais() {
-        FuncionarioConsultarDadosPessoais consultarDados = new FuncionarioConsultarDadosPessoais(this.cpf);
+        consultarDadosPessoaisFuncionario consultarDados = new consultarDadosPessoaisFuncionario(this.cpf);
         
         consultarDados.setVisible(true);
         consultarDados.pack();
@@ -119,7 +119,7 @@ public class Funcionario extends Pessoa implements FuncionarioGUI {
 
     @Override
     public void consultarEstagiarios() {
-        FuncionarioConsultarEstagiario consultarEstagiarios = new FuncionarioConsultarEstagiario(this.cpf);
+        consultarEstagiarioFuncionario consultarEstagiarios = new consultarEstagiarioFuncionario(this.cpf);
         
         consultarEstagiarios.setVisible(true);
         consultarEstagiarios.pack();

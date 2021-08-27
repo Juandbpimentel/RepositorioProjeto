@@ -86,8 +86,6 @@ public class DAOCidade {
                 return true;
             }
 
-        }catch(SQLException e){
-            System.err.println("Houve um erro durante a exclusão do Banco de Dados: "+e);
             conexao.disconect();
             return false;
         }catch (Exception e){
@@ -95,8 +93,6 @@ public class DAOCidade {
             conexao.disconect();
             return false;
         }
-        conexao.disconect();
-        return false;
     }
 
     public boolean insertCidade(Cidade cidade){
@@ -108,11 +104,14 @@ public class DAOCidade {
             int resultado = conexao.executaSql(sqlInsertion);
 
             conexao.disconect();
-            return (resultado != 0);
-        } catch(SQLException SQLError){
-            System.err.println("Ocorreu um erro com Inserção no Banco de Dados: " + SQLError);
+
+            if(resultado != 0){
+                return true;
+            }
+
             conexao.disconect();
             return false;
+            
         } catch(Exception geralError){
             System.err.println("Ocorreu um erro geral: " + geralError);
             conexao.disconect();
