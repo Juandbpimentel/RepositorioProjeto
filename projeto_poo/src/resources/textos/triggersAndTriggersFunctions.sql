@@ -19,7 +19,7 @@ returns trigger as $BODY$
 
 			
 			
-			UPDATE LOG_INTERACAO SET login = NEW.login 
+			UPDATE LOG_INTERACAO SET login_pessoa = NEW.login 
 			where login_pessoa = old.login;
 			
 			return new;
