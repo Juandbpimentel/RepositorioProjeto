@@ -63,7 +63,6 @@ public class consultarDadosPessoaisFuncionario extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaDados = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
         nameAlterButton = new javax.swing.JButton();
         nameTextField = new javax.swing.JTextField();
@@ -76,7 +75,7 @@ public class consultarDadosPessoaisFuncionario extends javax.swing.JFrame {
         criarEndereco = new javax.swing.JButton();
         loginAlterButton = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
-        jButton8 = new javax.swing.JButton();
+        passwordAlterButton = new javax.swing.JButton();
         passwordTextField = new javax.swing.JTextField();
         errorMessage = new javax.swing.JLabel();
 
@@ -107,14 +106,6 @@ public class consultarDadosPessoaisFuncionario extends javax.swing.JFrame {
         tabelaDados.setColumnSelectionAllowed(true);
         jScrollPane1.setViewportView(tabelaDados);
         tabelaDados.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-
-        jButton1.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jButton1.setText("Salvar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         backButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         backButton.setText("Voltar");
@@ -180,7 +171,12 @@ public class consultarDadosPessoaisFuncionario extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jLabel16.setText("Senha");
 
-        jButton8.setLabel("Alterar Senha");
+        passwordAlterButton.setLabel("Alterar Senha");
+        passwordAlterButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordAlterButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -189,57 +185,56 @@ public class consultarDadosPessoaisFuncionario extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(jLabel3)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel15)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(loginTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(nameAlterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(loginAlterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel6)
-                                    .addGap(331, 331, 331)
-                                    .addComponent(adressAlterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(errorMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel16)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(169, 169, 169)
+                        .addGap(14, 14, 14)
+                        .addComponent(backButton)
+                        .addGap(112, 112, 112)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(164, 164, 164)
-                        .addComponent(criarEndereco)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(backButton)))
-                .addContainerGap(51, Short.MAX_VALUE))
+                        .addGap(48, 48, 48)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel15)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(loginTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nameAlterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(loginAlterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(331, 331, 331)
+                                .addComponent(adressAlterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(errorMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel16)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(passwordAlterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(192, 192, 192)
+                                .addComponent(criarEndereco))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(backButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
@@ -257,24 +252,17 @@ public class consultarDadosPessoaisFuncionario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton8)
+                    .addComponent(passwordAlterButton)
                     .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errorMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(criarEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(backButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(32, 32, 32))
+                .addComponent(criarEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(19, 19, 19))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        System.out.println("");
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         funcionario.mostrarMenu();
@@ -298,24 +286,44 @@ public class consultarDadosPessoaisFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_criarEnderecoActionPerformed
 
     private void loginAlterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginAlterButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_loginAlterButtonActionPerformed
-
-    private void nameAlterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameAlterButtonActionPerformed
-        boolean errorName = false;
-        String nome = nameTextField.getText();
-        System.out.println(nome);
+        boolean error = false;
+        String login = loginTextField.getText();
         
-        if(nome.length() == 0){
+        if(login.length() == 0){
             errorMessage.setText("O campo login não pode estar vazio");
-            errorName = true;
+            error = true;
         }
         
-        if(!errorName){
+        if(!error){
             errorMessage.setText("");
         }
         
-        if(errorName){
+        if(error){
+            return;
+        }
+        
+        DAOFuncionario daoFuncionario = new DAOFuncionario();
+        daoFuncionario.updateFuncionario("login", this.funcionario.getCpf(), login);
+        
+        this.funcionario = daoFuncionario.readOneFuncionario(this.funcionario.getCpf());
+        
+        iniciaTabela();
+    }//GEN-LAST:event_loginAlterButtonActionPerformed
+
+    private void nameAlterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameAlterButtonActionPerformed
+        boolean error = false;
+        String nome = nameTextField.getText();
+        
+        if(nome.length() == 0){
+            errorMessage.setText("O campo nome não pode estar vazio");
+            error = true;
+        }
+        
+        if(!error){
+            errorMessage.setText("");
+        }
+        
+        if(error){
             return;
         }
         
@@ -326,6 +334,31 @@ public class consultarDadosPessoaisFuncionario extends javax.swing.JFrame {
         
         iniciaTabela();
     }//GEN-LAST:event_nameAlterButtonActionPerformed
+
+    private void passwordAlterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordAlterButtonActionPerformed
+        boolean error = false;
+        String password = passwordTextField.getText();
+        
+        if(password.length() == 0){
+            errorMessage.setText("O campo senha não pode estar vazio");
+            error = true;
+        }
+        
+        if(!error){
+            errorMessage.setText("");
+        }
+        
+        if(error){
+            return;
+        }
+        
+        DAOFuncionario daoFuncionario = new DAOFuncionario();
+        daoFuncionario.updateFuncionario("senha", this.funcionario.getCpf(), password);
+        
+        this.funcionario = daoFuncionario.readOneFuncionario(this.funcionario.getCpf());
+        
+        iniciaTabela();
+    }//GEN-LAST:event_passwordAlterButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -367,8 +400,6 @@ public class consultarDadosPessoaisFuncionario extends javax.swing.JFrame {
     private javax.swing.JButton backButton;
     private javax.swing.JButton criarEndereco;
     private javax.swing.JLabel errorMessage;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton8;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
@@ -382,6 +413,7 @@ public class consultarDadosPessoaisFuncionario extends javax.swing.JFrame {
     private javax.swing.JTextField loginTextField;
     private javax.swing.JButton nameAlterButton;
     private javax.swing.JTextField nameTextField;
+    private javax.swing.JButton passwordAlterButton;
     private javax.swing.JTextField passwordTextField;
     private javax.swing.JTable tabelaDados;
     // End of variables declaration//GEN-END:variables
