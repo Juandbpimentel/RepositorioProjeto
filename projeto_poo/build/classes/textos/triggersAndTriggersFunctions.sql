@@ -13,13 +13,13 @@ returns trigger as $BODY$
 							  login = new.login,
 							  senha = new.senha,
 							  tipo = new.tipo,
-							  id_endereco = new.tipo
+							  id_endereco = new.id_endereco
 			where cpf = old.cpf;
 			if not found then return null; end if;
 
-			new.last_updated = now();
 			
-			UPDATE LOG_INTERACAO SET login = NEW.login 
+			
+			UPDATE LOG_INTERACAO SET login_pessoa = NEW.login 
 			where login_pessoa = old.login;
 			
 			return new;
@@ -27,7 +27,7 @@ returns trigger as $BODY$
 			DELETE FROM pessoa where cpf = old.cpf;
 			if not found then return null; end if;
 
-			old.last_updated = now();
+			
 
 			delete from log_interacao
 			where login_pessoa = old.login;
@@ -50,11 +50,11 @@ returns trigger as $BODY$
 							  login = new.login,
 							  senha = new.senha,
 							  tipo = new.tipo,
-							  id_endereco = new.tipo
+							  id_endereco = new.id_endereco
 			where cpf = old.cpf;
 			if not found then return null; end if;
 
-			new.last_updated = now();
+			
 			
 			update estagiario set cpf = new.cpf
 			where cpf = old.cpf;
@@ -64,7 +64,7 @@ returns trigger as $BODY$
 			DELETE FROM pessoa where cpf = old.cpf;
 			if not found then return null; end if;
 
-			old.last_updated = now();
+			
 			
 			delete from estagiario where cpf = old.cpf;
 			return old;
@@ -86,11 +86,11 @@ returns trigger as $BODY$
 							  login = new.login,
 							  senha = new.senha,
 							  tipo = new.tipo,
-							  id_endereco = new.tipo
+							  id_endereco = new.id_endereco
 			where cpf = old.cpf;
 			if not found then return null; end if;
 
-			new.last_updated = now();
+			
 			
 			update funcionario set cpf = new.cpf
 			where cpf = old.cpf;
@@ -99,7 +99,7 @@ returns trigger as $BODY$
 			DELETE FROM pessoa where cpf = old.cpf;
 			if not found then return null; end if;
 
-			old.last_updated = now();
+			
 			
 			delete from funcionario where cpf = old.cpf;
 			
@@ -122,11 +122,11 @@ returns trigger as $BODY$
 							  login = new.login,
 							  senha = new.senha,
 							  tipo = new.tipo,
-							  id_endereco = new.tipo
+							  id_endereco = new.id_endereco
 			where cpf = old.cpf;
 			if not found then return null; end if;
 
-			new.last_updated = now();
+			
 			
 			update dono set cpf = new.cpf
 			where cpf = old.cpf;
@@ -136,7 +136,7 @@ returns trigger as $BODY$
 			DELETE FROM pessoa where cpf = old.cpf;
 			if not found then return null; end if;
 
-			old.last_updated = now();
+			
 			
 			delete from dono where cpf = old.cpf;
 			
@@ -158,11 +158,11 @@ returns trigger as $BODY$
 							  login = new.login,
 							  senha = new.senha,
 							  tipo = new.tipo,
-							  id_endereco = new.tipo
+							  id_endereco = new.id_endereco
 			where cpf = old.cpf;
 			if not found then return null; end if;
 
-			new.last_updated = now();
+			
 			
 			if (new.id_endereco != old.id_endereco) then
 				delete from endereco
@@ -174,7 +174,7 @@ returns trigger as $BODY$
 			DELETE FROM pessoa where cpf = old.cpf;
 			if not found then return null; end if;
 
-			old.last_updated = now();
+			
 			
 			delete from endereco where id = old.id_endereco;
 			
@@ -198,7 +198,7 @@ begin
 		
 		if not found then return null; end if;
 		
-		new.last_updated = now();
+		
 		
 		update categoria set cnpj_empresa = new.cnpj
 		where cnpj_empresa = old.cnpj;
@@ -209,7 +209,7 @@ begin
 		
 		if not found then return null; end if;
 		
-		old.last_updated = now();
+		
 		
 		delete from categoria
 		where cnpj_empresa = old.cnpj;
@@ -235,7 +235,7 @@ returns trigger as $BODY$
 
 			if not found then return null; end if;
 
-			new.last_updated = now();
+			
 
 			update diretor set id_categoria = new.id
 			where id_categoria = old.id;
@@ -246,7 +246,7 @@ returns trigger as $BODY$
 			
 			if not found then return null; end if;
 		
-			old.last_updated = now();
+			
 			
 			delete from diretor
 			where id_categoria = old.id;
@@ -274,7 +274,7 @@ returns trigger as $BODY$
 
 			if not found then return null; end if;
 
-			new.last_updated = now();
+			
 
 			update estagiario set id_categoria = new.id
 			where id_categoria = old.id;
@@ -285,7 +285,7 @@ returns trigger as $BODY$
 			
 			if not found then return null; end if;
 		
-			old.last_updated = now();
+			
 			
 			delete from estagiario
 			where id_categoria = old.id;
@@ -310,7 +310,7 @@ returns trigger as $BODY$
 
 			if not found then return null; end if;
 
-			new.last_updated = now();
+			
 
 			update funcionario set id_categoria = new.id
 			where id_categoria = old.id;
@@ -323,7 +323,7 @@ returns trigger as $BODY$
 			
 			if not found then return null; end if;
 		
-			old.last_updated = now();
+			
 			
 			delete from funcionario
 			where id_categoria = old.id;
@@ -346,7 +346,7 @@ returns trigger as $BODY$
 
 			if not found then return null; end if;
 
-			new.last_updated = now();
+			
 
 			update endereco set id_bairro = new.id
 			where id_bairro = old.id;
@@ -357,7 +357,7 @@ returns trigger as $BODY$
 			
 			if not found then return null; end if;
 		
-			old.last_updated = now();
+			
 			
 			delete from endereco
 			where id_bairro = old.id;
@@ -381,7 +381,7 @@ returns trigger as $BODY$
 
 			if not found then return null; end if;
 
-			new.last_updated = now();
+			
 
 			update bairro set id_cidade = new.id
 			where id_cidade = old.id;
@@ -392,7 +392,7 @@ returns trigger as $BODY$
 			
 			if not found then return null; end if;
 		
-			old.last_updated = now();
+			
 			
 			delete from bairro
 			where id_cidade = old.id;
@@ -422,11 +422,11 @@ $$
                             login = new.login,
                             senha = new.senha,
                             tipo = new.tipo,
-                            id_endereco = new.tipo
+                            id_endereco = new.id_endereco
             WHERE cpf = OLD.cpf;
             IF NOT FOUND THEN RETURN NULL; END IF;
 
-            NEW.last_updated = now();
+            
             
             UPDATE diretor SET cpf = NEW.cpf
 
@@ -436,7 +436,7 @@ $$
             DELETE FROM pessoa WHERE cpf = OLD.cpf;
             IF NOT FOUND THEN RETURN NULL; END IF;
 		
-			OLD.last_updated = now();
+			
 			
             DELETE FROM diretor WHERE cpf = OLD.cpf;
             IF NOT FOUND THEN RETURN NULL; END IF;
@@ -465,7 +465,7 @@ $$
 			WHERE id = OLD.id;
 			IF NOT FOUND THEN RETURN NULL; END IF;
 
-			NEW.last_updated = now();
+			
 
 			UPDATE funcionario SET id_setor = NEW.id
 			WHERE id_setor = OLD.id;
@@ -474,7 +474,7 @@ $$
             DELETE FROM setor WHERE id = OLD.id;
             IF NOT FOUND THEN RETURN NULL; END IF;
 		
-			OLD.last_updated = now();
+			
 			
             DELETE FROM funcionario WHERE id_setor = OLD.id;
             IF NOT FOUND THEN RETURN NULL; END IF;
@@ -503,7 +503,7 @@ $$
             WHERE id = OLD.id;
             IF NOT FOUND THEN RETURN NULL; END IF;
 
-            NEW.last_updated = now();
+            
             
             UPDATE gerencia SET id_setor = NEW.id
             WHERE id_setor = OLD.id;
@@ -513,7 +513,7 @@ $$
             DELETE FROM setor WHERE id = OLD.id;
             IF NOT FOUND THEN RETURN NULL; END IF;
 		
-			OLD.last_updated = now();
+			
 			
             DELETE FROM gerencia WHERE id_setor = OLD.id;
             IF NOT FOUND THEN RETURN NULL; END IF;
@@ -542,7 +542,7 @@ $$
             WHERE id = OLD.id;
             IF NOT FOUND THEN RETURN NULL; END IF;
 
-            NEW.last_updated = now();
+            
             
             UPDATE estagiario SET id_setor = NEW.id		
             WHERE id_setor = OLD.id;
@@ -552,7 +552,7 @@ $$
             DELETE FROM setor WHERE id = OLD.id;
             IF NOT FOUND THEN RETURN NULL; END IF;
 		
-			OLD.last_updated = now();
+			
 			
             DELETE FROM estagiario WHERE id_setor = OLD.id;
             IF NOT FOUND THEN RETURN NULL; END IF;
@@ -582,7 +582,7 @@ $$
 			WHERE cnpj = OLD.cnpj;
 			IF NOT FOUND THEN RETURN NULL; END IF;
 
-			NEW.last_updated = now();
+			
 
 			UPDATE setor SET cnpj_empresa = NEW.cnpj
 			WHERE cnpj_empresa = OLD.cnpj;
@@ -592,7 +592,7 @@ $$
             DELETE FROM empresa WHERE cnpj = OLD.cnpj;
             IF NOT FOUND THEN RETURN NULL; END IF;
 		
-			OLD.last_updated = now();
+			
 			
             DELETE FROM setor WHERE cnpj_empresa = OLD.cnpj;
 			return old;
@@ -622,7 +622,7 @@ $$
 			WHERE cpf = OLD.cpf;
 			IF NOT FOUND THEN RETURN NULL; END IF;
 
-			NEW.last_updated = now();
+			
 
 			UPDATE treina SET cpf_funcionario = NEW.cpf
 			WHERE cpf_funcionario = OLD.cpf;
@@ -632,7 +632,7 @@ $$
             DELETE FROM funcionario WHERE cpf = OLD.cpf;
             IF NOT FOUND THEN RETURN NULL; END IF;
 		
-			OLD.last_updated = now();
+			
 			
             DELETE FROM treina WHERE cpf_funcionario = OLD.cpf;
 			return old;
@@ -664,7 +664,7 @@ $$
 			WHERE cpf = OLD.cpf;
 			IF NOT FOUND THEN RETURN NULL; END IF;
 
-			NEW.last_updated = now();
+			
 
 			UPDATE gerente SET cpf = NEW.cpf
 			WHERE cpf = OLD.cpf;
@@ -675,7 +675,7 @@ $$
             DELETE FROM funcionario WHERE cpf = OLD.cpf;
             IF NOT FOUND THEN RETURN NULL; END IF;
 		
-			OLD.last_updated = now();
+			
 			
             DELETE FROM gerente WHERE cpf = OLD.cpf;
 			
@@ -703,7 +703,7 @@ $$
 			WHERE cpf = OLD.cpf;
 			IF NOT FOUND THEN RETURN NULL; END IF;
 
-			NEW.last_updated = now();
+			
 
 			UPDATE gerencia SET cpf = NEW.cpf
 			WHERE cpf = OLD.cpf;
@@ -714,7 +714,7 @@ $$
             DELETE FROM funcionario WHERE cpf = OLD.cpf;
             IF NOT FOUND THEN RETURN NULL; END IF;
 		
-			OLD.last_updated = now();
+			
 			
             DELETE FROM gerencia WHERE cpf = OLD.cpf;
 			
@@ -745,7 +745,7 @@ $$
 			WHERE cpf = OLD.cpf;
 			IF NOT FOUND THEN RETURN NULL; END IF;
 
-			NEW.last_updated = now();
+			
 
 			UPDATE treina SET cpf_estagiario = NEW.cpf
 			WHERE cpf_estagiario = OLD.cpf;
@@ -756,7 +756,7 @@ $$
             DELETE FROM estagiario WHERE cpf = OLD.cpf;
             IF NOT FOUND THEN RETURN NULL; END IF;
 		
-			OLD.last_updated = now();
+			
 			
             DELETE FROM treina WHERE cpf_estagiario = OLD.cpf;
             RETURN OLD;
@@ -786,7 +786,7 @@ $$
 
 			IF NOT FOUND THEN RETURN NULL; END IF;
 
-			NEW.last_updated = now();
+			
 
 			UPDATE cidade SET uf = NEW.uf
 			WHERE uf = OLD.uf;
@@ -796,7 +796,7 @@ $$
             DELETE FROM estado WHERE uf = OLD.uf;
             IF NOT FOUND THEN RETURN NULL; END IF;
 		
-			OLD.last_updated = now();
+			
 			
             DELETE FROM cidade WHERE uf = OLD.uf;
 

@@ -5,9 +5,6 @@
  */
 package projeto_poo;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import javax.swing.JFrame;
 
 import sistema.Conexao;
