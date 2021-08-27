@@ -40,7 +40,7 @@ public class consultarDadosPessoaisFuncionario extends javax.swing.JFrame {
            entrada[1] = resultado.getSenha();
            entrada[2] = resultado.getLogin();
            if(testetabela.getRowCount() > 0){
-               
+               testetabela.removeRow(testetabela.getRowCount()-1);
            }
            testetabela.setColumnIdentifiers(colunas);
            testetabela.addRow(entrada);
