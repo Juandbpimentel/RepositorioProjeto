@@ -56,12 +56,15 @@ public class DAODiretor {
 
                 }while(resultado.next());
             }
+            conexao.disconect();
             return arrayDiretores;
         } catch (SQLException erroSQL) {
             System.err.println("Erro ao recuperar do banco de dados: " + erroSQL);
+            conexao.disconect();
             return null;
         } catch (Exception erroGeral) {
             System.err.println("Erro Geral: " + erroGeral);
+            conexao.disconect();
             return null;
         }
     }   
@@ -93,6 +96,7 @@ public class DAODiretor {
                     int id_endereco = resultadoQueryPessoa.getInt("id_endereco");
 
                     Diretor diretor = new Diretor(nome, login, senha, tipo, cpf, data_nasc.toLocalDate(),cnpj_empresa, id_categoria, id_endereco);
+                    conexao.disconect();
                     return diretor;
 
                 }
@@ -100,9 +104,11 @@ public class DAODiretor {
             }
         }catch (SQLException erroSQL) {
             System.err.println("Ocorreu um erro durante a busca do banco de dados: " + erroSQL);
+            conexao.disconect();
             return null;
         } catch (Exception erroGeral) {
             System.err.println("ocorreu um erro Geral: " + erroGeral);
+            conexao.disconect();
             return null;
         }
     }
@@ -184,19 +190,19 @@ public class DAODiretor {
             
             String codigoDelete = "delete from Diretor where cpf = \'"+ cpf +"\'";
             int resultado = conexao.executaSql(codigoDelete);
-            if(resultado != 1){
+            if(resultado != 0){
                 System.out.println("Você teve sucesso em deletar o diretor");
+                conexao.disconect();
                 return true;
             }
 
-        }catch(SQLException e){
-            System.err.println("Houve um erro durante a exclusão do Banco de Dados: "+e);
+            conexao.disconect();
             return false;
         }catch (Exception e){
             System.err.println("Houve um erro geral: "+e);
+            conexao.disconect();
             return false;
         }
-        return false;
     }
 
 
@@ -210,12 +216,15 @@ public class DAODiretor {
             String sqlInsertDiretor = "insert into public.Diretor(cpf, cnpj_empresa, id_categoria)\n"
                                  + "values (\'"+diretor.getCpf()+"\' , \'"+diretor.getCnpj_empresa()+"\' , "+diretor.getId_categoria()+ ")\n";
             int resultado = conexao.executaSql(sqlInsertDiretor);
-            return (resultado != 0);
-        } catch(SQLException e){
-            System.err.println("Houve um erro durante a inserção no banco de dados: "+e);
-            return false;
-        }catch(Exception e){
+            if (resultado == 0) {
+                conexao.disconect();
+                return false;
+            }
+            conexao.disconect();
+            return true;
+        } catch(Exception e){
             System.err.println("Houve um erro geral: "+e);
+            conexao.disconect();
             return false;
 
         }

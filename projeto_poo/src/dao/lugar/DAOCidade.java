@@ -80,7 +80,7 @@ public class DAOCidade {
 
             String codigoDelete = "delete from cidade where id = "+ id;
             int resultado = conexao.executaSql(codigoDelete);
-            if(resultado != 1){
+            if(resultado != 0){
                 System.out.println("Você teve sucesso em deletar a cidade");
                 conexao.disconect();
                 return true;
@@ -106,12 +106,13 @@ public class DAOCidade {
             conexao.disconect();
 
             if(resultado != 0){
+                conexao.disconect();
                 return true;
             }
 
             conexao.disconect();
             return false;
-            
+
         } catch(Exception geralError){
             System.err.println("Ocorreu um erro geral: " + geralError);
             conexao.disconect();

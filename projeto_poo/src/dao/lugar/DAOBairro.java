@@ -81,7 +81,7 @@ public class DAOBairro {
             conexao.conect();
             String codigoDelete = "delete from bairro where id = "+ id;
             int resultado = conexao.executaSql(codigoDelete);
-            if(resultado != 1){
+            if(resultado != 0){
                 System.out.println("Você teve sucesso em deletar o Bairro");
                 conexao.disconect();
                 return true;
@@ -104,7 +104,7 @@ public class DAOBairro {
                                 + "values " + "(" + bairro + ")";
             int resultado = conexao.executaSql(sqlInsertion);
             
-            if(resultado != 0){
+            if(resultado == 0){
                 conexao.disconect();
                 return false;
             }

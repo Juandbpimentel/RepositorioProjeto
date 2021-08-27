@@ -42,12 +42,15 @@ public class DAOLogInteracao {
                     arrayLogInteracao.add(loginteracao);
                 }while(resultado.next());
             }
+            conexao.disconect();
             return arrayLogInteracao;
         }catch(SQLException SQLError){
             System.err.println("Ocorreu um erro na leitura do Banco de Dados: " + SQLError);
+            conexao.disconect();
             return null;
         }catch(Exception geralError){
             System.err.println("Ocorreu um erro geral: " + geralError);
+            conexao.disconect();
             return null;
         }
     }
@@ -60,15 +63,13 @@ public class DAOLogInteracao {
                 System.out.println("Você teve sucesso em deletar o LogInteracao");
                 return true;
             }
-
-        }catch(SQLException e){
-            System.err.println("Houve um erro durante a exclusão do Banco de Dados: "+e);
+            conexao.disconect();
             return false;
         }catch (Exception e){
             System.err.println("Houve um erro geral: "+e);
+            conexao.disconect();
             return false;
         }
-        return false;
     }
     public LogInteracao readOneLogInteracao(int id){
         try {
@@ -83,12 +84,15 @@ public class DAOLogInteracao {
                 Timestamp data = resultadoQuery.getTimestamp("data");
                 loginteracao = new LogInteracao(data, tipo, codigo, mensagem, id, login);
             }
+            conexao.disconect();
             return loginteracao;
         } catch(SQLException SQLError){
             System.err.println("Ocorreu um erro na leitura do Banco de Dados: " + SQLError);
+            conexao.disconect();
             return null;
         } catch(Exception geralError){
             System.err.println("Ocorreu um erro geral: " + geralError);
+            conexao.disconect();
             return null;
         }
     }
@@ -101,16 +105,16 @@ public class DAOLogInteracao {
                                 + "values " + "(" + logInteracao + ")";
             int resultado = conexao.executaSql(sqlInsertion);
             
-            if(resultado != 0){
+            if(resultado == 0){
+                conexao.disconect();
                 return false;
             }
+            conexao.disconect();
             return true;
 
-        } catch(SQLException SQLError){
-            System.err.println("Ocorreu um erro com Inserção no Banco de Dados: " + SQLError);
-            return false;
         } catch(Exception geralError){
             System.err.println("Ocorreu um erro geral: " + geralError);
+            conexao.disconect();
             return false;
         }
     }

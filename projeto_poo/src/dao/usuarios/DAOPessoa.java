@@ -61,25 +61,21 @@ public class DAOPessoa{
             conexao.conect();
             String codigoDelete = "delete from pessoa where cpf = "+ cpf;
             int resultado = conexao.executaSql(codigoDelete);
-            if(resultado != 1){
+            if(resultado != 0){
                 System.out.println("Você teve sucesso em deletar o pessoa");
+                conexao.disconect();
                 return true;
             }
-
-        }catch(SQLException e){
-            System.err.println("Houve um erro durante a exclusão do Banco de Dados: "+e);
+            conexao.disconect();
             return false;
         }catch (Exception e){
             System.err.println("Houve um erro geral: "+e);
             return false;
         }
-        return false;
     }
 
     public boolean updatePessoa(String opt, int cpf ,String dado){
         try {
-            // 
-            //
             conexao.conect();
             String sqlUpdate;
 
@@ -150,13 +146,16 @@ public class DAOPessoa{
                 int id_endereco = resultadoQueryPessoa.getInt("id_endereco");
                 Date data_nasc = resultadoQueryPessoa.getDate("data_nasc");
                 Pessoa pessoa = new Pessoa(nome,login,senha,tipo,cpf,data_nasc.toLocalDate(),id_endereco);
+                conexao.disconect();
                 return pessoa;
             }
         } catch (SQLException SQLError) {
             System.err.println("Ocorreu um erro durante a busca no Banco de Dados: " + SQLError);
+            conexao.disconect();
             return null;
         } catch (Exception geralError) {
             System.err.println("Ocorreu um erro geral: " + geralError);
+            conexao.disconect();
             return null;
         }
     }
@@ -195,6 +194,7 @@ public class DAOPessoa{
 
                             Date data_inicio = resultadoQueryFuncionario.getDate("data_inicio");
                             Funcionario funcionario = new Funcionario(nome, login, senha, tipo, cpf, data_nasc.toLocalDate(), id_endereco, bonificacao,id_categoria, id_setor, dia_pagamento, data_inicio.toLocalDate());
+                            conexao.disconect();
                             return funcionario;
                         }
                     case "GER":
@@ -220,6 +220,7 @@ public class DAOPessoa{
                                 double bonificacao = resultadoQueryFuncionarioGerente.getDouble("bonificacao");
                                 Date data_inicio = resultadoQueryFuncionarioGerente.getDate("data_inicio");
                                 Gerente gerente = new Gerente(nome, login, senha, tipo, cpf, data_nasc.toLocalDate(), id_categoria, id_setor, dia_pagamento, bonificacao, data_inicio.toLocalDate(), bonificacao_gerente, id_endereco);
+                                conexao.disconect();
                                 return gerente;
                             }
                         }
@@ -235,6 +236,7 @@ public class DAOPessoa{
                             int tempo_estagio = resultadoQueryEstagiario.getInt("tempo_estagio");
                             Date inicio_estagio = resultadoQueryEstagiario.getDate("incio_estagio");
                             Estagiario estagiario = new Estagiario(nome, login, senha, tipo, cpf, data_nasc.toLocalDate(), inicio_estagio.toLocalDate(), tempo_estagio, dia_pagamento, id_categoria, id_setor, id_endereco);
+                            conexao.disconect();
                             return estagiario;
                         }
                     case "DIR":
@@ -245,22 +247,27 @@ public class DAOPessoa{
                         }else{ 
                             String cnpj_empresa = resultadoQueryDiretor.getString("cnpj_empresa");
                             int id_categoria = resultadoQueryDiretor.getInt("id_categoria");
+                            conexao.disconect();
                             return new Diretor(nome, login, senha, tipo, cpf, data_nasc.toLocalDate(), cnpj_empresa, id_categoria, id_endereco);
                         }
                     case "DON":
+                        conexao.disconect();
                         return new Dono(nome, login, senha, tipo, cpf, data_nasc.toLocalDate(), id_endereco);
                 
                     default:
                         
                         Pessoa pessoa = new Pessoa(nome,login,senha,tipo,cpf,data_nasc.toLocalDate(),id_endereco);
+                        conexao.disconect();
                         return pessoa;
                 }
             }
         } catch (SQLException SQLError) {
             System.err.println("Usuário não encontrado ou Senha digitada incorretamente: " + SQLError);
+            conexao.disconect();
             return null;
         } catch (Exception geralError) {
             System.err.println("Ocorreu um erro geral: " + geralError);
+            conexao.disconect();
             return null;
         }
     }
@@ -272,12 +279,15 @@ public class DAOPessoa{
             +"values (\'"+pessoa.getNome()+"\' , \'"+pessoa.getData_nasc()+"\' , \'"+pessoa.getCpf()+"\' , \'"+pessoa.getLogin()+"\' , \'"+pessoa.getSenha()+"\' , \'"+pessoa.getTipo()+"\' , "+pessoa.getId_endereco()+")";
             int resultado = conexao.executaSql(sqlInsertPessoa);
             System.out.println("Deu certo pessoa");
-            return (resultado != 0);
-        }catch (SQLException e) {
-            System.err.println("Houve um erro durante a inserção no banco de dados: "+e);
+            
+            conexao.disconect();
+            if(resultado != 0){
+                return true;
+            }
             return false;
         }catch(Exception e){
             System.err.println("Houve um erro geral: "+e);
+            conexao.disconect();
             return false;
         }
     }

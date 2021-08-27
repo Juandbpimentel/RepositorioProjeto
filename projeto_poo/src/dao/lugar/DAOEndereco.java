@@ -56,7 +56,7 @@ public class DAOEndereco {
 
             String codigoDelete = "delete from endereco where id = "+ id;
             int resultado = conexao.executaSql(codigoDelete);
-            if(resultado != 1){
+            if(resultado != 0){
                 System.out.println("Você teve sucesso em deletar o Endereco");
                 conexao.disconect();
                 return true;

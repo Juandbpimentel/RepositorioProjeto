@@ -66,10 +66,13 @@ public class DAOCategoria {
 
             String codigoDelete = "delete from categoria where id = "+ id;
             int resultado = conexao.executaSql(codigoDelete);
+            
             if(resultado != 0){
                 conexao.disconect();
+                System.out.println("Você teve sucesso ao deletar setor");
                 return true;
             }
+
             System.err.println("Houve um erro durante a exclusão do Banco de Dados: ");
             conexao.disconect();
             return false;
@@ -118,7 +121,7 @@ public class DAOCategoria {
                                 + " values ( " + categoria.getCarga_horaria() +""  ;
             int resultado = conexao.executaSql(sqlInsertion);
             
-            if(resultado != 0){
+            if(resultado == 0){
                 conexao.disconect();
                 return false;
             }
