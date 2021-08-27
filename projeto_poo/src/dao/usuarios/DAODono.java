@@ -149,7 +149,7 @@ public class DAODono {
         }
     }
 
-    public boolean updateDono(String opt, int cpf ,String dado){
+    public boolean updateDono(String opt, String cpf ,String dado){
         try {
             // programador
             // programa a dor

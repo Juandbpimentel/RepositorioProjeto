@@ -151,7 +151,7 @@ public class DAOEstagiario{
         
     }
 
-    public boolean updateEstagiario(String opt, int cpf ,String dado){
+    public boolean updateEstagiario(String opt, String cpf ,String dado){
         try {
 
             String sqlUpdate;

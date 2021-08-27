@@ -74,7 +74,7 @@ public class DAOPessoa{
         }
     }
 
-    public boolean updatePessoa(String opt, int cpf ,String dado){
+    public boolean updatePessoa(String opt, String cpf ,String dado){
         try {
             conexao.conect();
             String sqlUpdate;

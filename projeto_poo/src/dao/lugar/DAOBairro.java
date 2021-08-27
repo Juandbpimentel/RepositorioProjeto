@@ -136,7 +136,7 @@ public class DAOBairro {
                     break;
 
                 case "id_cidade":
-                    sqlUpdate = "Update Categoria set id_cidade = \'"+dado+"\' where id = " + id;
+                    sqlUpdate = "Update Categoria set id_cidade = "+dado+" where id = " + id;
                     conexao.executaSql(sqlUpdate);
                     break;
 

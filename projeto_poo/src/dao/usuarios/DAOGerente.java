@@ -201,7 +201,7 @@ public class DAOGerente {
         }
     }
 
-    public boolean updateGerente(String opt, int cpf ,String dado){
+    public boolean updateGerente(String opt, String cpf ,String dado){
         try {
             // 
             //

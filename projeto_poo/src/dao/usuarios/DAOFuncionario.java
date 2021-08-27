@@ -168,7 +168,7 @@ public class DAOFuncionario {
         }
     }
 
-    public boolean updateFuncionario(String opt, int cpf ,String dado){
+    public boolean updateFuncionario(String opt, String cpf ,String dado){
         try {
             conexao.conect();
             String sqlUpdate;

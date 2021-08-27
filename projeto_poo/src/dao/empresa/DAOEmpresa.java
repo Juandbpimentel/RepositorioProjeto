@@ -130,7 +130,7 @@ public class DAOEmpresa {
 
             switch (opt) {
                 case "orcamento":
-                    sqlUpdate = "Update Empresa set id = "+dado+" where cnpj = \'"+cnpj+"\'";
+                    sqlUpdate = "Update Empresa set orcamento = "+dado+" where cnpj = \'"+cnpj+"\'";
                     conexao.executaSql(sqlUpdate);
                     break;
     

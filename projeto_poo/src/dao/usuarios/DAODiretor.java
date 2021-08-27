@@ -113,7 +113,7 @@ public class DAODiretor {
         }
     }
     
-    public boolean updateDiretor(String opt, int cpf ,String dado){
+    public boolean updateDiretor(String opt, String cpf ,String dado){
         try {
             // 
             //
