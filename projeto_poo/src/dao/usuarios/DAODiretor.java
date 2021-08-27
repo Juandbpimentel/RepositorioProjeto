@@ -189,8 +189,9 @@ public class DAODiretor {
             conexao.conect();
             
             String codigoDelete = "delete from Diretor where cpf = \'"+ cpf +"\'";
-            int resultado = conexao.executaSql(codigoDelete);
-            if(resultado != 0){
+            boolean resultado = conexao.executaSql(codigoDelete);
+            
+            if(resultado){
                 System.out.println("Você teve sucesso em deletar o diretor");
                 conexao.disconect();
                 return true;
@@ -215,8 +216,9 @@ public class DAODiretor {
             conexao.conect();
             String sqlInsertDiretor = "insert into public.Diretor(cpf, cnpj_empresa, id_categoria)\n"
                                  + "values (\'"+diretor.getCpf()+"\' , \'"+diretor.getCnpj_empresa()+"\' , "+diretor.getId_categoria()+ ")\n";
-            int resultado = conexao.executaSql(sqlInsertDiretor);
-            if (resultado == 0) {
+            boolean resultado = conexao.executaSql(sqlInsertDiretor);
+
+            if(!resultado){
                 conexao.disconect();
                 return false;
             }

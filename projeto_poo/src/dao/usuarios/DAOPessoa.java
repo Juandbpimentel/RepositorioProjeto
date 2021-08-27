@@ -60,8 +60,9 @@ public class DAOPessoa{
         try{
             conexao.conect();
             String codigoDelete = "delete from pessoa where cpf = "+ cpf;
-            int resultado = conexao.executaSql(codigoDelete);
-            if(resultado != 0){
+            boolean resultado = conexao.executaSql(codigoDelete);
+            
+            if(resultado){
                 System.out.println("Você teve sucesso em deletar o pessoa");
                 conexao.disconect();
                 return true;
@@ -277,11 +278,11 @@ public class DAOPessoa{
             conexao.conect();
             String sqlInsertPessoa = "insert into public.Pessoa(nome, data_nasc, cpf, login, senha, tipo, id_endereco)\n"
             +"values (\'"+pessoa.getNome()+"\' , \'"+pessoa.getData_nasc()+"\' , \'"+pessoa.getCpf()+"\' , \'"+pessoa.getLogin()+"\' , \'"+pessoa.getSenha()+"\' , \'"+pessoa.getTipo()+"\' , "+pessoa.getId_endereco()+")";
-            int resultado = conexao.executaSql(sqlInsertPessoa);
-            System.out.println("Deu certo pessoa");
+            boolean resultado = conexao.executaSql(sqlInsertPessoa);
             
             conexao.disconect();
-            if(resultado != 0){
+            if(resultado){
+                System.out.println("Deu certo pessoa");
                 return true;
             }
             return false;

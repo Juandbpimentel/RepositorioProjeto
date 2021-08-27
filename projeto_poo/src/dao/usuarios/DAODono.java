@@ -111,8 +111,9 @@ public class DAODono {
         try{
             conexao.conect();
             String codigoDelete = "delete from Dono where cpf = "+ cpf;
-            int resultado = conexao.executaSql(codigoDelete);
-            if(resultado != 0){
+            boolean resultado = conexao.executaSql(codigoDelete);
+            
+            if(resultado){
                 System.out.println("Você teve sucesso em deletar o dono");
                 conexao.disconect();
                 return true;
@@ -134,8 +135,9 @@ public class DAODono {
             conexao.conect();
             String sqlInsertDono = "insert into public.Dono(cpf)\n"
                                  + "values (\'"+dono.getCpf()+"\')";
-            int resultado = conexao.executaSql(sqlInsertDono);
-            if(resultado == 0){
+            boolean resultado = conexao.executaSql(sqlInsertDono);
+
+            if(!resultado){
                 conexao.disconect();
                 return false;
             }

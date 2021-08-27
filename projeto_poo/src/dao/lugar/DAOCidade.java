@@ -79,8 +79,9 @@ public class DAOCidade {
             conexao.conect();
 
             String codigoDelete = "delete from cidade where id = "+ id;
-            int resultado = conexao.executaSql(codigoDelete);
-            if(resultado != 0){
+            boolean resultado = conexao.executaSql(codigoDelete);
+            
+            if(resultado){
                 System.out.println("Você teve sucesso em deletar a cidade");
                 conexao.disconect();
                 return true;
@@ -101,11 +102,9 @@ public class DAOCidade {
 
             String sqlInsertion = "Insert into public Cidade(nome, uf)"
                                 + "values "+ cidade;
-            int resultado = conexao.executaSql(sqlInsertion);
+            boolean resultado = conexao.executaSql(sqlInsertion);
 
-            conexao.disconect();
-
-            if(resultado != 0){
+            if(resultado){
                 conexao.disconect();
                 return true;
             }

@@ -137,8 +137,9 @@ public class DAOEstagiario{
             conexao.conect();
             String sqlInsertion = "Insert into public.Estagiario(cpf, inicio_estagio, tempo_estagio, dia_pagamento, id_categoria, id_setor, id_endereco)\n"
                                 +"values (\'"+estagiario.getCpf()+"\', "+estagiario.getInicio_estagio()+", \'"+estagiario.getTempo_estagio()+", "+estagiario.getDia_pagamento()+", "+estagiario.getId_categoria()+", "+estagiario.getId_setor()+", "+estagiario.getId_endereco()+")";
-            int resultado = conexao.executaSql(sqlInsertion);
-            if(resultado != 0){
+            boolean resultado = conexao.executaSql(sqlInsertion);
+
+            if(resultado){
                 conexao.disconect();
                 return true;
             }
@@ -240,8 +241,9 @@ public class DAOEstagiario{
         try{
             conexao.conect();
             String codigoDelete = "delete from estagiario where cpf = "+ cpf;
-            int resultado = conexao.executaSql(codigoDelete);
-            if(resultado != 0){
+            boolean resultado = conexao.executaSql(codigoDelete);
+            
+            if(resultado){
                 System.out.println("Você teve sucesso em deletar o estagiario");
                 conexao.disconect();
                 return true;

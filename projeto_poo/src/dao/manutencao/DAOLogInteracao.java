@@ -58,8 +58,9 @@ public class DAOLogInteracao {
         try{
             conexao.conect();
             String codigoDelete = "delete from LogInteracao where id = "+ id;
-            int resultado = conexao.executaSql(codigoDelete);
-            if(resultado != 1){
+            boolean resultado = conexao.executaSql(codigoDelete);
+            
+            if(!resultado){
                 System.out.println("Você teve sucesso em deletar o LogInteracao");
                 return true;
             }
@@ -103,9 +104,9 @@ public class DAOLogInteracao {
             conexao.conect();
             String sqlInsertion = "Insert into public log_interacao(data, tipo, codigo, mensagem, id, login_pessoa)"
                                 + "values " + "(" + logInteracao + ")";
-            int resultado = conexao.executaSql(sqlInsertion);
-            
-            if(resultado == 0){
+            boolean resultado = conexao.executaSql(sqlInsertion);
+
+            if(!resultado){
                 conexao.disconect();
                 return false;
             }

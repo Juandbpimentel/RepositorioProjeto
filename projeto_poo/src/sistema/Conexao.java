@@ -56,14 +56,14 @@ public class Conexao {
         }
     }
 
-    public int executaSql(String sql){
+    public boolean executaSql(String sql){
         try {
             int resultado = getStatement().executeUpdate(sql);
             System.out.println("\n<<<  Comando executado com sucesso  >>>\n");
-            return resultado;
+            return true;
         } catch(SQLException SQLError){
             System.out.println("Ocorreu um erro durante a tentativa de fazer uma alteração no banco de dados: "+SQLError);
-            return 0;
+            return false;
         }
     }
 
@@ -169,11 +169,20 @@ public class Conexao {
                                                                 );
             StringBuilder sb = new StringBuilder();
             String linha;
+            
             while ((linha = leitorArquivoBanco.readLine()) != null){
                 sb.append(linha).append("\n");
             }
+            
             codigoSql = sb.toString();
-            conexao.executaSql(codigoSql);
+            boolean resultado = conexao.executaSql(codigoSql);
+            System.out.println(resultado);
+            if(!resultado){
+                conexao.disconect();
+                leitorArquivoBanco.close();
+                return false;
+            }
+
             conexao.disconect();
             leitorArquivoBanco.close();
             return true;

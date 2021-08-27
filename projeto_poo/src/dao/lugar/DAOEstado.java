@@ -54,8 +54,9 @@ public class DAOEstado {
             conexao.conect();
             String sqlInsertion = "Insert into public Estado(uf,nome)"+
                                   "Values "+"("+estado+")";
-            int resultado = conexao.executaSql(sqlInsertion);
-            if(resultado == 0){
+            boolean resultado = conexao.executaSql(sqlInsertion);
+
+            if(!resultado){
                 conexao.disconect();
                 return false; 
             }
@@ -98,12 +99,15 @@ public class DAOEstado {
         try{
             conexao.conect();
             String codigoDelete = "delete from estado where id = "+ id;
-            int resultado = conexao.executaSql(codigoDelete);
-            if(resultado != 0){
+            
+            boolean resultado = conexao.executaSql(codigoDelete);
+            
+            if(resultado){
                 System.out.println("Você teve sucesso em deletar o estado");
                 conexao.disconect();
                 return true;
             }
+
             conexao.disconect();
             return false;
         }catch (Exception e){

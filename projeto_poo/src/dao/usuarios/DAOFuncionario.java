@@ -90,8 +90,9 @@ public class DAOFuncionario {
         try{
             conexao.conect();
             String codigoDelete = "delete from Funcionario where cpf = "+ cpf;
-            int resultado = conexao.executaSql(codigoDelete);
-            if(resultado != 0){
+            boolean resultado = conexao.executaSql(codigoDelete);
+            
+            if(resultado){
                 System.out.println("Você teve sucesso em deletar o Funcionario");
                 conexao.disconect();
                 return true;
@@ -154,9 +155,10 @@ public class DAOFuncionario {
             conexao.conect();
             String sqlInsertFuncionario = "insert into public.Funcionario(bonificacao, cpf, id_categoria, id_setor, dia_pagamento, data_inicio)\n"
             +"values ("+funcionario.getBonificacao()+" , \'"+funcionario.getCpf()+"\' , "+funcionario.getId_categoria()+" , "+funcionario.getId_setor()+" , "+funcionario.getDia_pagamento()+" , \'"+funcionario.getData_inicio()+"\')";
-            int resultado = conexao.executaSql(sqlInsertFuncionario);
-            System.out.println("Deu certo funcionário");
-            if(resultado != 0){
+            boolean resultado = conexao.executaSql(sqlInsertFuncionario);
+            
+            if(resultado){
+                System.out.println("Deu certo funcionário");
                 conexao.disconect();
                 return true;
             }
@@ -177,7 +179,7 @@ public class DAOFuncionario {
 
                 case "nome":
                 sqlUpdate = "Update Pessoa set nome = \'" + dado + "\' where cpf = \'" + cpf+"\';";
-
+                    System.out.println(sqlUpdate);
                     conexao.executaSql(sqlUpdate);
                     break;
 

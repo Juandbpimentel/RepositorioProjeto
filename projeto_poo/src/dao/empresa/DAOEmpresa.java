@@ -54,8 +54,9 @@ public class DAOEmpresa {
             conexao.conect();
 
             String codigoDelete = "delete from empresa where cnpj = "+ cnpj;
-            int resultado = conexao.executaSql(codigoDelete);
-            if(resultado == 0){
+            boolean resultado = conexao.executaSql(codigoDelete);
+            
+            if(!resultado){
                 conexao.disconect();
                 return true;
             }
@@ -78,9 +79,9 @@ public class DAOEmpresa {
 
             String sqlInsertion = "Insert into public Empresa(nome, orcamento, cnpj, cpf_dono)"
                                 + "values " + "(" + empresa + ")";
-            int resultado = conexao.executaSql(sqlInsertion);
-            
-            if(resultado == 0){
+            boolean resultado = conexao.executaSql(sqlInsertion);
+
+            if(!resultado){
                 conexao.disconect();
                 return false;
             }

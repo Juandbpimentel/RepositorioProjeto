@@ -55,8 +55,9 @@ public class DAOEndereco {
             conexao.conect();
 
             String codigoDelete = "delete from endereco where id = "+ id;
-            int resultado = conexao.executaSql(codigoDelete);
-            if(resultado != 0){
+            boolean resultado = conexao.executaSql(codigoDelete);
+            
+            if(resultado){
                 System.out.println("Você teve sucesso em deletar o Endereco");
                 conexao.disconect();
                 return true;
@@ -76,9 +77,9 @@ public class DAOEndereco {
             conexao.conect();
             String sqlInsertion = "Insert into public Endereco(numero, cep, rua, complemento, id_bairro)"
                                 + "values " + "(" + endereco + ")";
-            int resultado = conexao.executaSql(sqlInsertion);
-            
-            if(resultado == 0){
+                boolean resultado = conexao.executaSql(sqlInsertion);
+
+                if(!resultado){
                 conexao.disconect();
                 return false;
             }

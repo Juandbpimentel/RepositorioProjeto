@@ -160,8 +160,9 @@ public class DAOGerente {
         try{
             conexao.conect();
             String codigoDelete = "delete from Gerente where cpf = "+ cpf;
-            int resultado = conexao.executaSql(codigoDelete);
-            if(resultado != 0){
+            boolean resultado = conexao.executaSql(codigoDelete);
+            
+            if(resultado){
                 System.out.println("Você teve sucesso em deletar o gerente");
                 conexao.disconect();
                 return true;
@@ -184,8 +185,9 @@ public class DAOGerente {
             }else{
                 String sqlInsertGerente = "insert into public.Gerente(bonificacao_gerente, cpf)\n"
                 +"values("+gerente.getBonificacao_gerente()+" , \'"+gerente.getCpf()+"\')";
-                int resultado = conexao.executaSql(sqlInsertGerente);
-                if (resultado != 0) {
+                boolean resultado = conexao.executaSql(sqlInsertGerente);
+            
+                if(resultado){
                     conexao.disconect();
                     return true;
                 }

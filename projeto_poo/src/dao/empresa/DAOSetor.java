@@ -55,8 +55,9 @@ public class DAOSetor {
             conexao.conect();
 
             String codigoDelete = "delete from setor where id = "+ id;
-            int resultado = conexao.executaSql(codigoDelete);
-            if(resultado != 0){
+            boolean resultado = conexao.executaSql(codigoDelete);
+            
+            if(!resultado){
                 System.out.println("Você teve sucesso em deletar o Setor");
                 conexao.disconect();
                 return true;
@@ -77,9 +78,9 @@ public class DAOSetor {
 
             String sqlInsertion = "Insert into public Setor(orcamento, nome, cnpj_empresa)"
                                 + "values " + "(" + setor + ")";
-            int resultado = conexao.executaSql(sqlInsertion);
-            
-            if(resultado == 0){
+            boolean resultado = conexao.executaSql(sqlInsertion);
+
+            if(!resultado){
                 conexao.disconect();
                 return false;
             }

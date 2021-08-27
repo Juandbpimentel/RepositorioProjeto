@@ -20,12 +20,13 @@ public class Projeto_poo {
         Projeto_poo main = new Projeto_poo(); 
         
         boolean db = Conexao.startDatabase();
+        System.out.println(db);
         if(db){
             Conexao.createTables();
-            Conexao.createTriggers();
+            //Conexao.createTriggers();
             Conexao.insertData();
         }
-
+        System.out.println("teste");
         main.menu();
     }
     
