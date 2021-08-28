@@ -334,7 +334,12 @@ public class MenuRegistroADM extends javax.swing.JFrame {
             errorLabelCpf.setText("O campo cpf não pode estar vazio");
             erroCpf = true;
         }else{
-            errorLabelCpf.setText("");
+            if( !(cpfField.getText().contains(".") && (cpfField.getText().contains("-"))) ){
+                errorLabelCpf.setText("O campo cpf está no formato errado");
+                erroCpf = true;
+            }else{
+                errorLabelCpf.setText("");
+            }
         }
         
         if(comboboxEndereco.getSelectedItem().equals("Selecione um endereço") || comboboxEndereco.getSelectedItem().equals("Não há nenhum endereço criado")){
