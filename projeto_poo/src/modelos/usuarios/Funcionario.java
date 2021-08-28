@@ -119,6 +119,7 @@ public class Funcionario extends Pessoa implements FuncionarioGUI {
 
     @Override
     public void consultarEstagiarios() {
+        System.out.println(cpf);
         consultarEstagiarioFuncionario consultarEstagiarios = new consultarEstagiarioFuncionario(this.getCpf());
         
         consultarEstagiarios.setVisible(true);

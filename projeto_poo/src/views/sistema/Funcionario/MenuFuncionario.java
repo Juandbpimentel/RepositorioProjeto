@@ -21,6 +21,7 @@ public class MenuFuncionario extends javax.swing.JFrame {
      */
     public MenuFuncionario(String cpf) {
         if(cpf != null){
+            System.out.println(cpf);
             this.funcionario = new DAOFuncionario().readOneFuncionario(cpf);
             initComponents();
         }else{
@@ -115,7 +116,7 @@ public class MenuFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_consultarDadosPessoaisActionPerformed
 
     private void consultarEstagiariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarEstagiariosActionPerformed
-        funcionario.consultarEstagiarios();
+        this.funcionario.consultarEstagiarios();
         this.dispose();
     }//GEN-LAST:event_consultarEstagiariosActionPerformed
 
