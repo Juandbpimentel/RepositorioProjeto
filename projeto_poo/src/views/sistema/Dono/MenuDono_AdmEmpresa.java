@@ -39,14 +39,14 @@ public class MenuDono_AdmEmpresa extends javax.swing.JFrame {
     }
     
     public void iniciaTabela(){
-        
-        Empresa resultado = new DAOEmpresa().readOnEmpresa();
+
+        empresa = new DAOEmpresa().readOnEmpresa(dono.getCpf(), "cpf");
 
         DefaultTableModel testetabela = (DefaultTableModel) tabelaDados.getModel();
         Object[] colunas = {"nome","orcamento"};
         final Object[] entrada = new Object[4];
-        entrada[0] = resultado.getNome(); 
-        entrada[1] = resultado.getOrcamento();
+        entrada[0] = empresa.getNome(); 
+        entrada[1] = empresa.getOrcamento();
         if(testetabela.getRowCount() > 0){
             testetabela.removeRow(testetabela.getRowCount()-1);
         }
@@ -304,9 +304,10 @@ public class MenuDono_AdmEmpresa extends javax.swing.JFrame {
         }
         
         DAOEmpresa daoEmpresa = new DAOEmpresa();
-        daoEmpresa.updateEmpresa("nome", this.empresa.getCnpj(), nome);
+        String cnpj = daoEmpresa.readOnEmpresa(dono.getCpf(), "cpf").getCnpj();
+        daoEmpresa.updateEmpresa("nome", cnpj, nome);
         
-        this.empresa = daoEmpresa.readOnEmpresa(this.empresa.getCnpj());
+        //empresa = daoEmpresa.readOnEmpresa(this.empresa.getCnpj());
         
         iniciaTabela();
     }//GEN-LAST:event_nomeAlterButtonActionPerformed
@@ -345,7 +346,28 @@ public class MenuDono_AdmEmpresa extends javax.swing.JFrame {
     }//GEN-LAST:event_orcamentoTextFieldActionPerformed
 
     private void orcamentoAlterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orcamentoAlterButtonActionPerformed
+        boolean error = false;
+        String orcamento = orcamentoTextField.getText();
         
+        if(orcamento.length() == 0){
+            errorMessage.setText("O campo nome da empresa não pode estar vazio");
+            error = true;
+        }
+        
+        if(!error){
+            errorMessage.setText("");
+        }
+        
+        if(error){
+            return;
+        }
+        
+        DAOEmpresa daoEmpresa = new DAOEmpresa();
+        daoEmpresa.updateEmpresa("orcamento", this.empresa.getCnpj(), orcamento);
+        
+        //this.empresa = daoEmpresa.readOnEmpresa(this.empresa.getCnpj());
+        
+        iniciaTabela();
     }//GEN-LAST:event_orcamentoAlterButtonActionPerformed
 
     /**
