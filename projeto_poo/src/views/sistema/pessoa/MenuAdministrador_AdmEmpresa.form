@@ -165,6 +165,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Alterar Or&#xe7;amento da Empresa"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="alterOrcamentoButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="backButton">
       <Properties>

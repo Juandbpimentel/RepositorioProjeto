@@ -74,6 +74,11 @@ public class MenuAdministrador_AdmEmpresa extends javax.swing.JFrame {
 
         alterOrcamentoButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         alterOrcamentoButton.setText("Alterar Orçamento da Empresa");
+        alterOrcamentoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                alterOrcamentoButtonActionPerformed(evt);
+            }
+        });
 
         backButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         backButton.setText("Voltar");
@@ -270,6 +275,10 @@ public class MenuAdministrador_AdmEmpresa extends javax.swing.JFrame {
         dono.administrarDiretores();
         this.dispose();
     }//GEN-LAST:event_admDiretoresButtonActionPerformed
+
+    private void alterOrcamentoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterOrcamentoButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_alterOrcamentoButtonActionPerformed
 
     /**
      * @param args the command line arguments
