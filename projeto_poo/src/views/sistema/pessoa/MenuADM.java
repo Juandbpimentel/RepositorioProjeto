@@ -17,12 +17,12 @@ import javax.swing.JFrame;
 import dao.usuarios.DAOPessoa;
 import views.sistema.menulogin.MenuLogin;
 
-public class MenuPessoa extends javax.swing.JFrame {
+public class MenuADM extends javax.swing.JFrame {
     private Pessoa pessoa;
     /**
      * Creates new form MenuPessoa
      */
-    public MenuPessoa(String cpf) {
+    public MenuADM(String cpf) {
         this.pessoa = new DAOPessoa().readOnePessoa(cpf);
         initComponents();
     }
@@ -96,6 +96,7 @@ public class MenuPessoa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbuttonActionPerformed
+        
         MenuLogin telaLogin = new MenuLogin();
 
         telaLogin.setVisible(true);
@@ -104,9 +105,11 @@ public class MenuPessoa extends javax.swing.JFrame {
         telaLogin.setDefaultCloseOperation(JFrame .EXIT_ON_CLOSE);
 
         this.dispose();
+
     }//GEN-LAST:event_backbuttonActionPerformed
 
     private void consultarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarDadosActionPerformed
+        
         pessoa.consultarDadosPessoais();
         this.dispose();
         
@@ -129,14 +132,15 @@ public class MenuPessoa extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuPessoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuADM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuPessoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuADM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuPessoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuADM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuPessoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuADM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

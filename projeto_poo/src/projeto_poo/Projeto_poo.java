@@ -7,8 +7,11 @@ package projeto_poo;
 
 import javax.swing.JFrame;
 
+import dao.usuarios.DAOPessoa;
+import modelos.usuarios.Pessoa;
 import sistema.Conexao;
 import views.sistema.menulogin.MenuLogin;
+import views.sistema.pessoa.MenuRegistroADM;
 /**
  *
  * @author juand
@@ -26,8 +29,24 @@ public class Projeto_poo {
             //Conexao.createTriggers();
             Conexao.insertData();
         }
-        System.out.println("teste");
-        main.menu();
+
+        Pessoa ADM = new DAOPessoa().readOneADM();
+        
+        if (ADM == null) {
+            
+            MenuRegistroADM menu = new MenuRegistroADM();
+            
+            menu.setVisible(true);
+            menu.pack();
+            menu.setLocationRelativeTo(null);
+            menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            
+        }else{
+            System.out.println(ADM.getCpf());
+            System.out.println("teste");
+            main.menu();
+        
+        }
     }
     
     private void menu(){

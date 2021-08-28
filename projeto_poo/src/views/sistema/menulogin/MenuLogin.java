@@ -43,7 +43,6 @@ public class MenuLogin extends javax.swing.JFrame {
         passwordLabel = new javax.swing.JLabel();
         errorPasswordLabel = new javax.swing.JLabel();
         loginButton = new javax.swing.JButton();
-        registerButtonLabel = new javax.swing.JLabel();
         passwordField = new javax.swing.JPasswordField();
         jPanel2 = new javax.swing.JPanel();
         closeButton = new javax.swing.JButton();
@@ -83,14 +82,6 @@ public class MenuLogin extends javax.swing.JFrame {
             }
         });
 
-        registerButtonLabel.setForeground(new java.awt.Color(246, 146, 84));
-        registerButtonLabel.setText("Fazer Registro");
-        registerButtonLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                registerButtonLabelMouseClicked(evt);
-            }
-        });
-
         passwordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passwordFieldActionPerformed(evt);
@@ -103,9 +94,7 @@ public class MenuLogin extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(110, 110, 110)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(registerButtonLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(loginButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(120, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(53, 53, 53)
@@ -137,9 +126,7 @@ public class MenuLogin extends javax.swing.JFrame {
                 .addComponent(errorPasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(loginButton)
-                .addGap(18, 18, 18)
-                .addComponent(registerButtonLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(31, 31, 31))
+                .addGap(65, 65, 65))
         );
 
         jPanel2.setBackground(new java.awt.Color(59, 38, 74));
@@ -213,7 +200,7 @@ public class MenuLogin extends javax.swing.JFrame {
     
     //função que valida login 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        boolean errorLogin = false, errorPassword = false;
+        boolean errorLogin = false, errorPassword = false, errorDemitido = false, errorImportPessoa = false;
 
         String login = loginTextField.getText();
 
@@ -250,7 +237,22 @@ public class MenuLogin extends javax.swing.JFrame {
 
         if(pessoaAux == null){
             errorImportPessoaLabel.setText("O Usuário Não Foi Encontrado Ou a Senha Está Incorreta");
+            errorImportPessoa = true;
             return;
+        }
+
+        if(errorImportPessoa == false){
+            errorImportPessoaLabel.setText("");
+        }
+        
+        if(pessoaAux.getTipo().equals("DEM")){
+            errorImportPessoaLabel.setText("O Funcionário que você foi acesar foi demitido");
+            errorDemitido = true;
+            return;
+        }
+
+        if(errorDemitido == false){
+            errorImportPessoaLabel.setText("");
         }
         
         pessoaAux.mostrarMenu();
@@ -262,18 +264,7 @@ public class MenuLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_loginTextFieldActionPerformed
     
     private static Object lock2 = new Object();
-    private void registerButtonLabelMouseClicked(java.awt.event.MouseEvent evt) {
-        //GEN-FIRST:event_registerButtonLabelMouseClicked
-        MenuLogin_Registro telaRegistro = new MenuLogin_Registro();
-        
-        telaRegistro.setVisible(true);
-        telaRegistro.pack();
-        telaRegistro.setLocationRelativeTo(null);
-        telaRegistro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        this.dispose();
-    }//GEN-LAST:event_registerButtonLabelMouseClicked
-    //fecha o menu login
+   //fecha o menu login
     private void closeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeButtonMouseClicked
         System.exit(0);
     }//GEN-LAST:event_closeButtonMouseClicked
@@ -343,6 +334,5 @@ public class MenuLogin extends javax.swing.JFrame {
     private javax.swing.JTextField loginTextField;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel passwordLabel;
-    private javax.swing.JLabel registerButtonLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -10,7 +10,6 @@ import dao.usuarios.DAOPessoa;
 import modelos.usuarios.Diretor;
 import modelos.usuarios.Dono;
 import modelos.usuarios.Pessoa;
-import views.sistema.menulogin.MenuLogin_Registro;
 
 
 /**
@@ -227,17 +226,15 @@ public class CadastrarCategoria extends javax.swing.JFrame {
                 diretor.administrarSetores();
                 this.dispose();
                 break;
+                
+            case "ADM":
+                pessoa.administrarEmpresa();
+                this.dispose();
+                break;
 
             case "DON":
                 Dono dono = (Dono) pessoa;
                 dono.administrarEmpresa();
-                this.dispose();
-                break;
-            default:
-                MenuLogin_Registro menuReg = new MenuLogin_Registro();
-                menuReg.setVisible(true);
-                menuReg.pack();
-                menuReg.setLocationRelativeTo(null);
                 this.dispose();
                 break;
         }

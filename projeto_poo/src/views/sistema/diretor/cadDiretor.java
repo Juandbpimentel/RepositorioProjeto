@@ -8,8 +8,13 @@ package views.sistema.diretor;
 import javax.swing.JFrame;
 
 import dao.usuarios.DAOPessoa;
+import modelos.usuarios.Diretor;
+import modelos.usuarios.Dono;
+import modelos.usuarios.Estagiario;
+import modelos.usuarios.Funcionario;
+import modelos.usuarios.Gerente;
 import modelos.usuarios.Pessoa;
-import views.sistema.menulogin.MenuLogin_Registro;
+import views.sistema.pessoa.MenuRegistroADM;
 
 /**
  *
@@ -283,14 +288,23 @@ public class CadDiretor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        MenuLogin_Registro telaRegistro = new MenuLogin_Registro();
-        
-        telaRegistro.setVisible(true);
-        telaRegistro.pack();
-        telaRegistro.setLocationRelativeTo(null);
-        telaRegistro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        this.dispose();
+        if(pessoa == null){
+            this.dispose();
+            return;
+        }
+        switch (pessoa.getTipo()) {
+
+            case "DON":
+                Dono dono = (Dono) pessoa;
+                dono.administrarEmpresa();
+                this.dispose();
+                return;
+
+            case "ADM":
+                pessoa.administrarEmpresa();
+                this.dispose();
+                return;
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

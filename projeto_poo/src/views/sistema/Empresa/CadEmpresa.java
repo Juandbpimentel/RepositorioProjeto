@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 
 import dao.usuarios.DAOPessoa;
 import modelos.usuarios.Pessoa;
-import views.sistema.menulogin.MenuLogin_Registro;
+import views.sistema.pessoa.MenuAdministrador_AdmEmpresa;
 
 /**
  *
@@ -188,7 +188,7 @@ public class CadEmpresa extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         System.out.println("Registro clicado");
-        MenuLogin_Registro telaRegistro = new MenuLogin_Registro();
+        MenuAdministrador_AdmEmpresa telaRegistro = new MenuAdministrador_AdmEmpresa(pessoa.getCpf());
         telaRegistro.setVisible(true);
         telaRegistro.pack();
         telaRegistro.setLocationRelativeTo(null);

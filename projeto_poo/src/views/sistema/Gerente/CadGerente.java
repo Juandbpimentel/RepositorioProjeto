@@ -3,8 +3,13 @@ package views.sistema.gerente;
 import javax.swing.JFrame;
 
 import dao.usuarios.DAOPessoa;
+import modelos.usuarios.Diretor;
+import modelos.usuarios.Dono;
+import modelos.usuarios.Estagiario;
+import modelos.usuarios.Funcionario;
+import modelos.usuarios.Gerente;
 import modelos.usuarios.Pessoa;
-import views.sistema.menulogin.MenuLogin_Registro;
+import views.sistema.pessoa.MenuRegistroADM;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -294,14 +299,32 @@ public class CadGerente extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        MenuLogin_Registro telaRegistro = new MenuLogin_Registro();
-        
-        telaRegistro.setVisible(true);
-        telaRegistro.pack();
-        telaRegistro.setLocationRelativeTo(null);
-        telaRegistro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        this.dispose();
+        if(pessoa == null){
+            MenuRegistroADM menuReg = new MenuRegistroADM();
+            menuReg.setVisible(true);
+            menuReg.pack();
+            menuReg.setLocationRelativeTo(null);
+            this.dispose();
+            return;
+        }
+        switch (pessoa.getTipo()) {
+            case "DIR":
+                Diretor diretor =(Diretor) pessoa;
+                diretor.administrarSetores();
+                this.dispose();
+                break;
+
+            case "DON":
+                Dono dono = (Dono) pessoa;
+                dono.adicionarSetores();
+                this.dispose();
+                break;
+
+            case "ADM":
+                pessoa.administrarSetores();
+                this.dispose();
+                break;
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed

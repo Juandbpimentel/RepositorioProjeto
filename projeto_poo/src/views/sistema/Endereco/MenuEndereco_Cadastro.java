@@ -11,7 +11,7 @@ import modelos.usuarios.Estagiario;
 import modelos.usuarios.Funcionario;
 import modelos.usuarios.Gerente;
 import modelos.usuarios.Pessoa;
-import views.sistema.menulogin.MenuLogin_Registro;
+import views.sistema.pessoa.MenuRegistroADM;
 /**
  *
  * @author Ana Beatriz
@@ -193,7 +193,7 @@ public class MenuEndereco_Cadastro extends javax.swing.JFrame {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         if(pessoa == null){
-            MenuLogin_Registro menuReg = new MenuLogin_Registro();
+            MenuRegistroADM menuReg = new MenuRegistroADM();
             menuReg.setVisible(true);
             menuReg.pack();
             menuReg.setLocationRelativeTo(null);
@@ -226,6 +226,10 @@ public class MenuEndereco_Cadastro extends javax.swing.JFrame {
             case "FUN":
                 Funcionario funcionario =(Funcionario) pessoa;
                 funcionario.consultarDadosPessoais();
+                this.dispose();
+                break;
+            case "ADM":
+                pessoa.consultarDadosPessoais();
                 this.dispose();
                 break;
         }

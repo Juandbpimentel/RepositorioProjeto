@@ -12,7 +12,6 @@ import modelos.usuarios.Pessoa;
 import dao.usuarios.DAODono;
 import java.util.ArrayList;
 import modelos.empresa.Empresa;
-import views.sistema.menulogin.MenuLogin_Registro;
 import views.sistema.menulogin.MenuLogin;
 import dao.usuarios.DAODono;
 /**

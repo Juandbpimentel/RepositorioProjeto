@@ -53,14 +53,14 @@ create table if not exists pessoa(
 	login varchar(28) not null unique, 
 	senha varchar(30) not null,
 	tipo varchar (3) not null, 
-	id_endereco integer not null, 
+	id_endereco integer, 
 	--valores padrao tipo 
 	constraint tipo_check check (tipo in ('FUN', 'EST', 'GER', 'ADM', 'DIR', 'DON','DEM','PES')),
 	--chave primária
 	constraint pessoa_pkey primary key (cpf),
 	--chave estrangeira 
 	constraint endereco_fkey foreign key (id_endereco)
-	references endereco (id) ON UPDATE CASCADE ON DELETE CASCADE
+	references endereco (id) ON UPDATE CASCADE ON DELETE SET NULL
 	
 );
 
@@ -186,10 +186,10 @@ create table if not exists estagiario(
 	references pessoa (cpf) ON UPDATE CASCADE ON DELETE CASCADE, 
 	
 	constraint categoria_fkey foreign key (id_categoria)
-	references categoria (id) ON UPDATE CASCADE ON DELETE CASCADE, 
+	references categoria (id)ON UPDATE CASCADE ON DELETE CASCADE, 
 	
 	constraint setor_fkey foreign key (id_setor)
-	references setor (id) ON UPDATE CASCADE ON DELETE CASCADE
+	references setor (id)ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 create table if not exists treina (
@@ -228,7 +228,7 @@ create table if not exists gerencia (
 	constraint gerencia_pkey primary key (gerente_cpf, id_setor), 
 	--chave estrangeira
 	constraint setor_fkey foreign key (id_setor)
-	references setor (id) ON UPDATE CASCADE ON DELETE CASCADE,
+	references setor (id)ON UPDATE CASCADE ON DELETE CASCADE,
 	
 	constraint gerente_fkey foreign key (gerente_cpf)
 	references gerente (cpf) ON UPDATE CASCADE ON DELETE CASCADE

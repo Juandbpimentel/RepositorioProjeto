@@ -25,7 +25,6 @@ import modelos.usuarios.Funcionario;
 import modelos.usuarios.Gerente;
 import modelos.usuarios.Pessoa;
 import sistema.Conexao;
-import views.sistema.menulogin.MenuLogin_Registro;
 import views.sistema.endereco.MenuEndereco_Cadastro;
 import views.sistema.menulogin.MenuLogin;
 
@@ -363,14 +362,6 @@ public class CadFuncionario extends javax.swing.JFrame {
 
     private void backbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbuttonActionPerformed
         
-        if(pessoa == null){
-            MenuLogin_Registro menuReg = new MenuLogin_Registro();
-            menuReg.setVisible(true);
-            menuReg.pack();
-            menuReg.setLocationRelativeTo(null);
-            this.dispose();
-            return;
-        }
         switch (pessoa.getTipo()) {
             case "DIR":
                 Diretor diretor = new DAODiretor().readOneDiretor(pessoa.getCpf());
@@ -387,6 +378,10 @@ public class CadFuncionario extends javax.swing.JFrame {
             case "GER":
                 Gerente gerente = new DAOGerente().readOneGerente(pessoa.getCpf());
                 gerente.administrarFuncionarios();
+                this.dispose();
+                break;
+            case "ADM":
+                pessoa.administrarFuncionarios();
                 this.dispose();
                 break;
         }

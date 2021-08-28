@@ -9,8 +9,8 @@ import javax.swing.JFrame;
 
 import dao.usuarios.DAOPessoa;
 import modelos.usuarios.Pessoa;
-import views.sistema.menulogin.MenuLogin_Registro;
 import views.sistema.menulogin.MenuLogin;
+import views.sistema.pessoa.MenuAdministrador;
 /**
  *
  * @author Yara
@@ -229,16 +229,11 @@ public class CadDono extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        MenuLogin_Registro telaRegistro = new MenuLogin_Registro();
         
-        telaRegistro.setVisible(true);
-        telaRegistro.pack();
-        telaRegistro.setLocationRelativeTo(null);
-        telaRegistro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        pessoa.mostrarMenu();
         
         this.dispose();
-
-        super.dispose();
+        
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed

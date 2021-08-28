@@ -12,18 +12,17 @@ import modelos.usuarios.Diretor;
 import modelos.usuarios.Dono;
 import modelos.usuarios.Pessoa;
 import views.sistema.diretor.*;
-import views.sistema.menulogin.MenuLogin_Registro;
 
 /**
  *
  * @author Yara
  */
-public class MenuDono_AdmFuncionario extends javax.swing.JFrame {
+public class MenuAdministrador_AdmFuncionario extends javax.swing.JFrame {
     private Dono dono;
     /**
      * Creates new form AdmitirFuncionario
      */
-    public MenuDono_AdmFuncionario(String cpf) {
+    public MenuAdministrador_AdmFuncionario(String cpf) {
         if(cpf != null){
             this.dono = new DAODono().readOneDono(cpf);
             initComponents();
@@ -273,14 +272,22 @@ public class MenuDono_AdmFuncionario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuDono_AdmFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuAdministrador_AdmFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuDono_AdmFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuAdministrador_AdmFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuDono_AdmFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuAdministrador_AdmFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuDono_AdmFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuAdministrador_AdmFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -293,7 +300,7 @@ public class MenuDono_AdmFuncionario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuDono_AdmFuncionario(null).setVisible(true);
+                new MenuAdministrador_AdmFuncionario(null).setVisible(true);
             }
         });
     }

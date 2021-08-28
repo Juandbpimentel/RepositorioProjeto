@@ -12,12 +12,12 @@ import modelos.usuarios.Dono;
  *
  * @author sarah
  */
-public class MenuDono_AdmSetor extends javax.swing.JFrame {
+public class MenuAdministrador_AdmSetor extends javax.swing.JFrame {
     private Dono dono;
     /**
      * Creates new form AlterarDadosSetorDono
      */
-    public MenuDono_AdmSetor(String cpf) {
+    public MenuAdministrador_AdmSetor(String cpf) {
         if(cpf != null){
             this.dono = new DAODono().readOneDono(cpf);
             initComponents();
@@ -303,21 +303,23 @@ public class MenuDono_AdmSetor extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuDono_AdmSetor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuAdministrador_AdmSetor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuDono_AdmSetor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuAdministrador_AdmSetor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuDono_AdmSetor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuAdministrador_AdmSetor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuDono_AdmSetor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuAdministrador_AdmSetor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuDono_AdmSetor(null).setVisible(true);
+                new MenuAdministrador_AdmSetor(null).setVisible(true);
             }
         });
     }

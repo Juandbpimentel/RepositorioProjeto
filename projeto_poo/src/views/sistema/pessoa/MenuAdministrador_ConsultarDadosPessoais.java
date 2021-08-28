@@ -13,12 +13,12 @@ import views.sistema.diretor.*;
  *
  * @author Ana Beatriz
  */
-public class MenuDono_ConsultarDadosPessoais extends javax.swing.JFrame {
+public class MenuAdministrador_ConsultarDadosPessoais extends javax.swing.JFrame {
     private Dono dono;
     /**
      * Creates new form MenuDiretor_AltererDads
      */
-    public MenuDono_ConsultarDadosPessoais(String cpf) {
+    public MenuAdministrador_ConsultarDadosPessoais(String cpf) {
         if(cpf != null){
             this.dono = new DAODono().readOneDono(cpf);
             initComponents();
@@ -274,14 +274,18 @@ public class MenuDono_ConsultarDadosPessoais extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuDono_ConsultarDadosPessoais.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuAdministrador_ConsultarDadosPessoais.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuDono_ConsultarDadosPessoais.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuAdministrador_ConsultarDadosPessoais.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuDono_ConsultarDadosPessoais.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuAdministrador_ConsultarDadosPessoais.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuDono_ConsultarDadosPessoais.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuAdministrador_ConsultarDadosPessoais.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -290,7 +294,7 @@ public class MenuDono_ConsultarDadosPessoais extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuDono_ConsultarDadosPessoais(null).setVisible(true);
+                new MenuAdministrador_ConsultarDadosPessoais(null).setVisible(true);
             }
         });
     }

@@ -12,7 +12,7 @@ import modelos.usuarios.Diretor;
 import modelos.usuarios.Dono;
 import modelos.usuarios.Gerente;
 import modelos.usuarios.Pessoa;
-import views.sistema.menulogin.MenuLogin_Registro;
+import views.sistema.pessoa.MenuRegistroADM;
 
 /**
  *
@@ -293,14 +293,7 @@ public class CadEstagiario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        if(pessoa == null){
-            MenuLogin_Registro menuReg = new MenuLogin_Registro();
-            menuReg.setVisible(true);
-            menuReg.pack();
-            menuReg.setLocationRelativeTo(null);
-            this.dispose();
-            return;
-        }
+
         switch (pessoa.getTipo()) {
             case "DIR":
                 Diretor diretor =(Diretor) pessoa;
@@ -319,6 +312,10 @@ public class CadEstagiario extends javax.swing.JFrame {
                 gerente.administrarEstagiarios();
                 this.dispose();
                 break;
+            case "ADM":
+                pessoa.administrarEstagiarios();
+                this.dispose();
+                break;    
         }
     }//GEN-LAST:event_backButtonActionPerformed
 

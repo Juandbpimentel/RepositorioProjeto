@@ -186,10 +186,10 @@ create table if not exists estagiario(
 	references pessoa (cpf) ON UPDATE CASCADE ON DELETE CASCADE, 
 	
 	constraint categoria_fkey foreign key (id_categoria)
-	references categoria (id) ON UPDATE CASCADE ON DELETE CASCADE, 
+	references categoria (id)ON UPDATE CASCADE ON DELETE CASCADE, 
 	
 	constraint setor_fkey foreign key (id_setor)
-	references setor (id) ON UPDATE CASCADE ON DELETE CASCADE
+	references setor (id)ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 create table if not exists treina (
@@ -228,7 +228,7 @@ create table if not exists gerencia (
 	constraint gerencia_pkey primary key (gerente_cpf, id_setor), 
 	--chave estrangeira
 	constraint setor_fkey foreign key (id_setor)
-	references setor (id) ON UPDATE CASCADE ON DELETE CASCADE,
+	references setor (id)ON UPDATE CASCADE ON DELETE CASCADE,
 	
 	constraint gerente_fkey foreign key (gerente_cpf)
 	references gerente (cpf) ON UPDATE CASCADE ON DELETE CASCADE

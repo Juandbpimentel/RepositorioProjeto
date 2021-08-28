@@ -1,7 +1,8 @@
 package modelos.usuarios;
 
 import modelos.lugar.Endereco;
-import views.sistema.pessoa.MenuPessoa;
+import views.sistema.pessoa.MenuAdministrador;
+import views.sistema.pessoa.MenuADM;
 
 import java.time.LocalDate;
 
@@ -9,8 +10,14 @@ import javax.swing.JFrame;
 
 import interfaces.alterDB.PessoaAlterDB;
 import interfaces.gui.PessoaGUI;
-import views.sistema.pessoa.MenuPessoa_ConsultarDados;
+import views.sistema.dono.CadDono;
+import views.sistema.dono.MenuDono_AdmSetor;
+import views.sistema.pessoa.MenuAdministrador_ConsultarDados;
 import views.sistema.endereco.MenuEndereco_Cadastro;
+import views.sistema.pessoa.MenuAdministrador_AdmEmpresa;
+import views.sistema.pessoa.MenuAdministrador_AdmEstagiario;
+import views.sistema.pessoa.MenuAdministrador_AdmFuncionario;
+import views.sistema.pessoa.MenuAdministrador_AdmSetor;
 
 public class Pessoa implements PessoaGUI, PessoaAlterDB {
     protected String nome;
@@ -106,7 +113,7 @@ public class Pessoa implements PessoaGUI, PessoaAlterDB {
 */
     @Override
     public void consultarDadosPessoais() {      
-        MenuPessoa_ConsultarDados consultarDados = new MenuPessoa_ConsultarDados(this.getCpf());
+        MenuAdministrador_ConsultarDados consultarDados = new MenuAdministrador_ConsultarDados(this.getCpf());
         
         consultarDados.setVisible(true);
         consultarDados.pack();
@@ -121,8 +128,19 @@ public class Pessoa implements PessoaGUI, PessoaAlterDB {
 
     @Override
     public void mostrarMenu() {
-        MenuPessoa menu = new MenuPessoa(this.getCpf()); 
-        
+        if(this.getTipo().equals("ADM")){
+            MenuAdministrador menu = new MenuAdministrador(this.getCpf()); 
+            
+            menu.setVisible(true);
+            menu.pack();
+            menu.setLocationRelativeTo(null);
+            menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        }
+    }
+
+    public void administrarEstagiarios(){
+        MenuAdministrador_AdmEstagiario menu = new MenuAdministrador_AdmEstagiario(this.getCpf());
+
         menu.setVisible(true);
         menu.pack();
         menu.setLocationRelativeTo(null);
@@ -137,6 +155,44 @@ public class Pessoa implements PessoaGUI, PessoaAlterDB {
         enderecoCadastro.pack();
         enderecoCadastro.setLocationRelativeTo(null);
         enderecoCadastro.setDefaultCloseOperation(JFrame .EXIT_ON_CLOSE);
+    }
+    
+    public void administrarEmpresa(){
+        MenuAdministrador_AdmEmpresa telaRegistro = new MenuAdministrador_AdmEmpresa(this.getCpf());
+        
+        telaRegistro.setVisible(true);
+        telaRegistro.pack();
+        telaRegistro.setLocationRelativeTo(null);
+        telaRegistro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    
+    public void criarDono(){
+        CadDono telaRegistro = new CadDono(this.getCpf());
+        
+        telaRegistro.setVisible(true);
+        telaRegistro.pack();
+        telaRegistro.setLocationRelativeTo(null);
+        telaRegistro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    public void administrarFuncionarios(){
+        MenuAdministrador_AdmFuncionario menu = new MenuAdministrador_AdmFuncionario(this.getCpf());
+
+        menu.setVisible(true);
+        menu.pack();
+        menu.setLocationRelativeTo(null);
+        menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    
+    public void administrarSetores(){
+    
+        MenuAdministrador_AdmSetor menu = new MenuAdministrador_AdmSetor(this.cpf); 
+        
+        menu.setVisible(true);
+        menu.pack();
+        menu.setLocationRelativeTo(null);
+        menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
     }
 
     @Override

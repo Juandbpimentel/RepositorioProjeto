@@ -8,7 +8,7 @@ values ('Rio de Janeiro','RJ'), ('Fortaleza','CE'), ('Belem','PA'), ('Teresina',
 
 --TABELA BAIRRO
 insert into bairro (nome, id_cidade)
-values ('Pavuna', 1), ('Parque Araxa', 2), ('CentroB', 3), ('CentroT', 4), ('CentroRB', 5);
+values ('Pavuna', 1), ('Parque Araxa', 2), ('CentroB', 3), ('CentroT', 4), ('CentroRB', 5),('Vilar Carioca', 1);
 
 --TABELA ENDERECO
 insert into endereco (numero, cep, rua, complemento, id_bairro)
@@ -16,7 +16,8 @@ values  ( 13, '13112-001', 'Av Brasil', 'Apto', 1),
         ( 23, '23012-002', 'Av Monsenhor Tabosa', 'Apto', 2), 
         ( 33, '33333-333', 'Rua belem do para', 'casa', 3), 
         ( 44, '4444-444', 'Rua Whindersson Nunes', 'casa', 4), 
-        ( 55, '55555-555', 'Rua dos Dinossauros', 'Apto', 5);
+        ( 55, '55555-555', 'Rua dos Dinossauros', 'Apto', 5),
+        ( 66, '66666-666', 'Rua 7 de Setembro', 'Casa', 6);
 
 --TABELA PESSOA
 insert into pessoa (nome, data_nasc, cpf, login, senha, tipo, id_endereco)
@@ -24,7 +25,8 @@ values('Juan Pimentel', '2001-11-13', '111111111-11', 'juanpimentel', '12345', '
         ('Sarah Soares', '2002-01-23', '22222222-22', 'sarahsoares', '122333', 'DIR', 2), 
         ('Marcus Queiros', '2002-10-17', '3333333-33', 'marcusqueiros', '3333333', 'GER', 3), 
         ('Ana Beatriz', '2002-03-11', '44444444-44', 'anabeatriz', '444444', 'FUN', 4), 
-        ('Yara Paula', '2002-06-09', '55555555-55', 'yarapaula', '555555', 'EST', 5);
+        ('Yara Paula', '2002-06-09', '55555555-55', 'yarapaula', '555555', 'EST', 5),
+        ('Juan ADM', '2002-06-09', '66666666-66', 'admin', 'admin', 'ADM', 6);
 
 --TABELA LOG INTERACAO
 insert into log_interacao (data, tipo, codigo, mensagem, login_pessoa)

@@ -17,12 +17,12 @@ import views.sistema.dono.MenuDono;
  *
  * @author sarah
  */
-public class MenuDono_AdmEmpresa extends javax.swing.JFrame {
+public class MenuAdministrador_AdmEmpresa extends javax.swing.JFrame {
     private Dono dono;
     /**
      * Creates new form AlterarDadosEmpresaDono
      */
-    public MenuDono_AdmEmpresa(String cpf) {
+    public MenuAdministrador_AdmEmpresa(String cpf) {
         if(cpf != null){
             this.dono = new DAODono().readOneDono(cpf);
             initComponents();
@@ -288,21 +288,23 @@ public class MenuDono_AdmEmpresa extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuDono_AdmEmpresa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuAdministrador_AdmEmpresa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuDono_AdmEmpresa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuAdministrador_AdmEmpresa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuDono_AdmEmpresa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuAdministrador_AdmEmpresa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuDono_AdmEmpresa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuAdministrador_AdmEmpresa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuDono_AdmEmpresa(null).setVisible(true);
+                new MenuAdministrador_AdmEmpresa(null).setVisible(true);
             }
         });
     }

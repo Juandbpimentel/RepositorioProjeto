@@ -12,19 +12,18 @@ import modelos.usuarios.Pessoa;
 import dao.usuarios.DAODono;
 import java.util.ArrayList;
 import modelos.empresa.Empresa;
-import views.sistema.menulogin.MenuLogin_Registro;
 import views.sistema.menulogin.MenuLogin;
 import dao.usuarios.DAODono;
 /**
  *
  * @author sarah
  */
-public class MenuDono extends javax.swing.JFrame {
+public class MenuAdministrador extends javax.swing.JFrame {
     private Dono dono;
     /**
      * Creates new form MenuDono
      */
-    public MenuDono(String cpf) {
+    public MenuAdministrador(String cpf) {
         if(cpf != null){
             this.dono = new DAODono().readOneDono(cpf);
             initComponents();
@@ -143,20 +142,21 @@ public class MenuDono extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuDono.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuDono.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuDono.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuDono.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuDono(null).setVisible(true);
+                new MenuAdministrador(null).setVisible(true);
             }
         });
     }

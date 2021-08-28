@@ -273,6 +273,33 @@ public class DAOPessoa{
         }
     }
 
+    public Pessoa readOneADM(){
+        try {
+            String tipo = "ADM";
+            conexao.conect();
+            String sqlQueryPessoa = "SELECT * FROM PESSOA WHERE tipo = \'"+tipo+"\'";
+            ResultSet resultadoQueryPessoa = conexao.executaQuery(sqlQueryPessoa);
+            if (!resultadoQueryPessoa.next()) {
+                throw new NullPointerException("A pessoa que você está procurando não foi encontrado, retornou nulo");
+            }else{
+                String nome = resultadoQueryPessoa.getString("nome"), cpf = resultadoQueryPessoa.getString("cpf"), login = resultadoQueryPessoa.getString("login"), senha = resultadoQueryPessoa.getString("senha");
+                int id_endereco = resultadoQueryPessoa.getInt("id_endereco");
+                Date data_nasc = resultadoQueryPessoa.getDate("data_nasc");
+                Pessoa pessoa = new Pessoa(nome,login,senha,tipo,cpf,data_nasc.toLocalDate(),id_endereco);
+                conexao.disconect();
+                return pessoa;
+            }
+        } catch (SQLException SQLError) {
+            System.err.println("Ocorreu um erro durante a busca no Banco de Dados: " + SQLError);
+            conexao.disconect();
+            return null;
+        } catch (Exception geralError) {
+            System.err.println("Ocorreu um erro geral: " + geralError);
+            conexao.disconect();
+            return null;
+        }
+    }
+
     public boolean insertPessoa(Pessoa pessoa){
         try{
             conexao.conect();

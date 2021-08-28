@@ -12,7 +12,6 @@ import modelos.usuarios.Diretor;
 import modelos.usuarios.Dono;
 import modelos.usuarios.Pessoa;
 import views.sistema.diretor.*;
-import views.sistema.menulogin.MenuLogin_Registro;
 
 /**
  *
@@ -251,8 +250,25 @@ public class MenuDono_AdmFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        dono.administrarSetores();
-        this.dispose();
+        if(dono == null){
+            this.dispose();
+            return;
+        }
+        
+        switch (dono.getTipo()) {
+
+            case "DON":
+                dono.administrarSetores();
+                this.dispose();
+                return;
+
+            case "ADM":
+                Pessoa pessoa = (Pessoa) this.dono;
+                pessoa.administrarSetores();
+                this.dispose();
+                return;
+                
+        }
         
     }//GEN-LAST:event_backButtonActionPerformed
 
