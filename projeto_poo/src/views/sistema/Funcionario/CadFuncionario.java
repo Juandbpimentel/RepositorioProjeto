@@ -12,6 +12,7 @@ import dao.usuarios.DAOPessoa;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import modelos.empresa.Categoria;
@@ -48,7 +49,8 @@ public class CadFuncionario extends javax.swing.JFrame {
         
         if(cpf != null && id != -1){
             this.pessoa = new DAOPessoa().readOnePessoa(cpf);
-            this.setor = new DAOSetor().readOnSetor(id);
+            String idstr = "" + id;
+            this.setor = new DAOSetor().readOnSetor("id",idstr);
             initComponents();
             populaComboCategoria();
             populaComboEndereco();
@@ -79,7 +81,7 @@ public class CadFuncionario extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         cpfField = new javax.swing.JTextField();
-        dataNAscimento = new javax.swing.JTextField();
+        dataNascimentoField = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -94,15 +96,15 @@ public class CadFuncionario extends javax.swing.JFrame {
         comboBoxEndereco = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jToggleButton1 = new javax.swing.JToggleButton();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
+        errorLabelCpf = new javax.swing.JLabel();
+        errorLabelDataNasc = new javax.swing.JLabel();
+        errorLabelLogin = new javax.swing.JLabel();
+        errorLabelDataInicio = new javax.swing.JLabel();
+        errorLabelNome = new javax.swing.JLabel();
+        errorLabelSenha = new javax.swing.JLabel();
+        errorLabelDiaPagamento = new javax.swing.JLabel();
+        errorLabelEndereco = new javax.swing.JLabel();
+        errorLabelCategoria = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(102, 0, 102));
@@ -156,10 +158,10 @@ public class CadFuncionario extends javax.swing.JFrame {
             }
         });
 
-        dataNAscimento.setToolTipText("");
-        dataNAscimento.addActionListener(new java.awt.event.ActionListener() {
+        dataNascimentoField.setToolTipText("");
+        dataNascimentoField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dataNAscimentoActionPerformed(evt);
+                dataNascimentoFieldActionPerformed(evt);
             }
         });
 
@@ -241,14 +243,6 @@ public class CadFuncionario extends javax.swing.JFrame {
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(loginField))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dataNAscimento, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -265,21 +259,28 @@ public class CadFuncionario extends javax.swing.JFrame {
                         .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(finalizarField)
-                        .addGap(49, 49, 49)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(50, 50, 50)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cpfField))
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(errorLabelDataNasc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(errorLabelCpf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(errorLabelLogin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(errorLabelDataInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(errorLabelNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(errorLabelSenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(errorLabelDiaPagamento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(errorLabelEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(errorLabelCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dataNascimentoField)))
                 .addGap(71, 71, 71))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -304,55 +305,55 @@ public class CadFuncionario extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(nomeField, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(errorLabelNome, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(cpfField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(errorLabelCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dataNAscimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dataNascimentoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(errorLabelDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(loginField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(8, 8, 8)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(errorLabelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
                     .addComponent(senhaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(errorLabelSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(dataInicioField, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(errorLabelDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(diaPAgamentoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(errorLabelDiaPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comboBoxEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(5, 5, 5)
-                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(errorLabelEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(comboBoxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(errorLabelCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(finalizarField)
@@ -372,9 +373,9 @@ public class CadFuncionario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cpfFieldActionPerformed
 
-    private void dataNAscimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataNAscimentoActionPerformed
+    private void dataNascimentoFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataNascimentoFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_dataNAscimentoActionPerformed
+    }//GEN-LAST:event_dataNascimentoFieldActionPerformed
 
     private void backbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbuttonActionPerformed
         
@@ -440,12 +441,12 @@ public class CadFuncionario extends javax.swing.JFrame {
         comboBoxEndereco.removeAllItems();
         
         if(!enderecos.isEmpty()){
-            comboBoxEndereco.addItem("Selecione uma categoria");
+            comboBoxEndereco.addItem("Selecione um endereço");
             for (Endereco endereco : enderecos) {
                 comboBoxEndereco.addItem(endereco.getRua()+","+endereco.getId());  
             }
         }else{
-            comboBoxEndereco.addItem("Ainda não há nenhuma endereco criado");
+            comboBoxEndereco.addItem("Ainda não há nenhum endereco criado");
         }
     }
 
@@ -456,7 +457,15 @@ public class CadFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_loginFieldActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        nomeField.setText("");
+        cpfField.setText("");
+        loginField.setText("");
+        senhaField.setText("");
+        dataNascimentoField.setText("");
+        dataInicioField.setText("");
+        diaPAgamentoField.setText("");
+        comboBoxEndereco.setSelectedIndex(0);
+        comboBoxCategoria.setSelectedIndex(0);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
@@ -465,9 +474,187 @@ public class CadFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void finalizarFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizarFieldActionPerformed
-       
-    }//GEN-LAST:event_finalizarFieldActionPerformed
+       boolean erroNome = false, erroCpf= false, erroDataNasc= false,erroDiaPagemento = false, erroCategoria = false, erroDataInicio = false,erroEndereco= false, erroLogin= false, erroSenha= false;
 
+        if(nomeField.getText().length() == 0){
+            errorLabelNome.setText("O campo nome não pode estar vazio");
+            erroNome = true;
+        }else{
+            errorLabelNome.setText("");
+        }
+        
+        if(diaPAgamentoField.getText().length() == 0){
+            errorLabelNome.setText("O campo Dia do Pagamento não pode estar vazio");
+            erroDiaPagemento = true;
+        }else{
+            errorLabelNome.setText("");
+        }
+
+        if(senhaField.getText().length() == 0){
+            errorLabelSenha.setText("O campo senha não pode estar vazio");
+            erroCpf = true;
+        }else{
+            errorLabelSenha.setText("");
+        }
+
+        if(loginField.getText().length() == 0){
+            errorLabelLogin.setText("O campo login não pode estar vazio");
+            erroLogin = true;
+        }else{
+            errorLabelLogin.setText("");
+        }
+
+        if(cpfField.getText().length() == 0){
+            errorLabelCpf.setText("O campo cpf não pode estar vazio");
+            erroCpf = true;
+        }else{
+            if( !(cpfField.getText().contains(".") && (cpfField.getText().contains("-"))) ){
+                errorLabelCpf.setText("O campo cpf está no formato errado");
+                erroCpf = true;
+            }else{
+                errorLabelCpf.setText("");
+            }
+        }
+        
+        if(comboBoxEndereco.getSelectedItem().equals("Selecione um endereço") || comboBoxEndereco.getSelectedItem().equals("Ainda não há nenhum endereco criado")){
+            errorLabelEndereco.setText("Você precisa selecionar ou cadastrar um novo endereço");
+            erroEndereco = true;
+        }else{
+            errorLabelEndereco.setText("Você precisa selecionar ou cadastrar um novo endereco");
+        }
+        
+        if(comboBoxCategoria.getSelectedItem().equals("Selecione uma categoria") || comboBoxEndereco.getSelectedItem().equals("Ainda não há nenhuma categoria criada")){
+            errorLabelCategoria.setText("Você precisa selecionar ou cadastrar uma nova categoria");
+            erroCategoria = true;
+        }else{
+            errorLabelEndereco.setText("");
+        }
+        
+        erroDataNasc = checaErroDataNasc();
+        erroDataInicio = checaErroDataInicio();
+        
+        
+        if(erroNome|| erroCpf||erroDiaPagemento|| erroDataNasc|| erroEndereco|| erroDataInicio || erroEndereco|| erroLogin|| erroSenha){
+            System.out.println("Deu erro e não rodou");
+            return;
+        }
+        String nome = nomeField.getText(), login = loginField.getText(),data_nascStr = dataNascimentoField.getText(), data_inicioStr = dataInicioField.getText(), senha = senhaField.getText() , cpf = cpfField.getText();
+        
+        String[] enderecoSplit = comboBoxEndereco.getSelectedItem().toString().split(",");
+        String[] categoriaSplit = comboBoxEndereco.getSelectedItem().toString().split(",");
+        
+        int id_endereco  = Integer.parseInt(enderecoSplit[2]),
+            id_categoria = Integer.parseInt(categoriaSplit[2]),
+            dia_pagamento = Integer.parseInt(diaPAgamentoField.getText());
+        if(data_nascStr.contains("/")){
+            
+            String[] data_nascVet = data_nascStr.split("/");
+            String[] data_inicioVet = data_inicioStr.split("/");
+            
+            LocalDate data_nasc = LocalDate.of(Integer.parseInt(data_nascVet[2]), Integer.parseInt(data_nascVet[1]), Integer.parseInt(data_nascVet[0]));
+            LocalDate data_inicio = LocalDate.of(Integer.parseInt(data_inicioVet[2]), Integer.parseInt(data_inicioVet[1]), Integer.parseInt(data_inicioVet[0]));
+            
+            Pessoa pessoaAux = new Pessoa(nome, login, senha, "FUN", cpf, data_nasc , id_endereco );
+            if(new DAOPessoa().insertPessoa(pessoaAux)){
+                
+                if(new DAOFuncionario().insertFuncionario(new Funcionario(nome, login, senha, "FUN", cpf, data_nasc, id_endereco, 0, id_categoria, setor.getId(), dia_pagamento, data_inicio))){
+                    pessoa.mostrarMenu();
+
+                    this.dispose();
+                }    
+            }
+        }else{
+            
+            String[] data_nascVet = data_nascStr.split("-");
+            String[] data_inicioVet = data_inicioStr.split("-");
+            
+            LocalDate data_nasc = LocalDate.of(Integer.parseInt(data_nascVet[2]), Integer.parseInt(data_nascVet[1]), Integer.parseInt(data_nascVet[0]));
+            LocalDate data_inicio = LocalDate.of(Integer.parseInt(data_inicioVet[2]), Integer.parseInt(data_inicioVet[1]), Integer.parseInt(data_inicioVet[0]));
+            
+            Pessoa pessoaAux = new Pessoa(nome, login, senha, "FUN", cpf, data_nasc , id_endereco );
+            if(new DAOPessoa().insertPessoa(pessoaAux)){
+                
+                if(new DAOFuncionario().insertFuncionario(new Funcionario(nome, login, senha, "FUN", cpf, data_nasc, id_endereco, 0, id_categoria, setor.getId(), dia_pagamento, data_inicio))){
+                    pessoa.mostrarMenu();
+
+                    this.dispose();
+                }
+                
+            }
+        }
+    }//GEN-LAST:event_finalizarFieldActionPerformed
+    
+    
+    private boolean checaErroDataNasc(){
+        boolean erroDataNasc = false;
+        if(dataNascimentoField.getText().length() == 0){
+            errorLabelDataNasc.setText("O campo data de nascimento não pode estar vazio");
+            erroDataNasc = true;
+        }else{
+            try{
+                if(!(dataNascimentoField.getText().contains("/") || dataNascimentoField.getText().contains("-"))){
+                    errorLabelDataNasc.setText("Data escrita no formato incorreto");
+                    erroDataNasc = true;
+                } else if(dataNascimentoField.getText().contains("/")){
+                    String [] dataAux = dataNascimentoField.getText().split("/");
+                    if(Integer.parseInt(dataAux[0])<=0 || Integer.parseInt(dataAux[1])<=0||Integer.parseInt(dataAux[2])<=0){
+                        errorLabelDataNasc.setText("Datas não podem ter valores iguais ou menores que zero");
+                        erroDataNasc = true;
+                    }else{
+                        errorLabelDataNasc.setText("");
+                    }
+                } else if(dataNascimentoField.getText().contains("-")){
+                    String [] dataAux = dataNascimentoField.getText().split("-");
+                    if(Integer.parseInt(dataAux[0])<=0 || Integer.parseInt(dataAux[1])<=0||Integer.parseInt(dataAux[2])<=0){
+                        errorLabelDataNasc.setText("Datas não podem ter valores iguais ou menores que zero");
+                        erroDataNasc = true;
+                    }else{
+                        errorLabelDataNasc.setText("");
+                    }
+                }
+            }catch(Exception e){
+                System.err.print("Houve um erro na inserção da data: "+e);
+                errorLabelDataNasc.setText("Não é permitida a inserção de palavras em datas");
+            }
+        }
+        return erroDataNasc;
+    }
+    
+    private boolean checaErroDataInicio(){
+        boolean erroDataInicio = false;
+        if(dataInicioField.getText().length() == 0){
+            errorLabelDataInicio.setText("O campo data de nascimento não pode estar vazio");
+            erroDataInicio = true;
+        }else{
+            try{
+                if(!(dataInicioField.getText().contains("/") || dataInicioField.getText().contains("-"))){
+                    errorLabelDataInicio.setText("Data escrita no formato incorreto");
+                    erroDataInicio = true;
+                } else if(dataInicioField.getText().contains("/")){
+                    String [] dataAux = dataInicioField.getText().split("/");
+                    if(Integer.parseInt(dataAux[0])<=0 || Integer.parseInt(dataAux[1])<=0||Integer.parseInt(dataAux[2])<=0){
+                        errorLabelDataInicio.setText("Datas não podem ter valores iguais ou menores que zero");
+                        erroDataInicio = true;
+                    }else{
+                        errorLabelDataInicio.setText("");
+                    }
+                } else if(dataInicioField.getText().contains("-")){
+                    String [] dataAux = dataInicioField.getText().split("-");
+                    if(Integer.parseInt(dataAux[0])<=0 || Integer.parseInt(dataAux[1])<=0||Integer.parseInt(dataAux[2])<=0){
+                        errorLabelDataInicio.setText("Datas não podem ter valores iguais ou menores que zero");
+                        erroDataInicio = true;
+                    }else{
+                        errorLabelDataInicio.setText("");
+                    }
+                }
+            }catch(Exception e){
+                System.err.print("Houve um erro na inserção da data: "+e);
+                errorLabelDataInicio.setText("Não é permitida a inserção de palavras em datas");
+            }
+        }
+        return erroDataInicio;
+    }
+    
     private void diaPAgamentoFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diaPAgamentoFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_diaPAgamentoFieldActionPerformed
@@ -522,30 +709,30 @@ public class CadFuncionario extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboBoxEndereco;
     private javax.swing.JTextField cpfField;
     private javax.swing.JTextField dataInicioField;
-    private javax.swing.JTextField dataNAscimento;
+    private javax.swing.JTextField dataNascimentoField;
     private javax.swing.JTextField diaPAgamentoField;
+    private javax.swing.JLabel errorLabelCategoria;
+    private javax.swing.JLabel errorLabelCpf;
+    private javax.swing.JLabel errorLabelDataInicio;
+    private javax.swing.JLabel errorLabelDataNasc;
+    private javax.swing.JLabel errorLabelDiaPagamento;
+    private javax.swing.JLabel errorLabelEndereco;
+    private javax.swing.JLabel errorLabelLogin;
+    private javax.swing.JLabel errorLabelNome;
+    private javax.swing.JLabel errorLabelSenha;
     private javax.swing.JButton finalizarField;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JTextField loginField;
     private javax.swing.JTextField nomeField;

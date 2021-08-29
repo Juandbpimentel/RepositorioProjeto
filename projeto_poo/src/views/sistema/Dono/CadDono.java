@@ -86,6 +86,11 @@ public class CadDono extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jButton2.setText("Limpar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         backButton.setText("Voltar");
         backButton.addActionListener(new java.awt.event.ActionListener() {
@@ -350,7 +355,7 @@ public class CadDono extends javax.swing.JFrame {
             errorLabelEndereco.setText("");
         }
         
-        erroDataNasc = checaErroDataNasc();
+        erroDataNasc = checaErroData();
         
         
         if(erroNome|| erroCpf|| erroDataNasc|| erroEndereco|| erroLogin|| erroSenha){
@@ -393,9 +398,13 @@ public class CadDono extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_finalizarButtonActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
     
     
-    private boolean checaErroDataNasc(){
+    private boolean checaErroData(){
         boolean erroDataNasc = false;
         if(dataNascField.getText().length() == 0){
             errorLabelDataNasc.setText("O campo data de nascimento não pode estar vazio");

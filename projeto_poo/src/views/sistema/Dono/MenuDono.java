@@ -44,6 +44,7 @@ public class MenuDono extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         admEmpresaButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
+        admConsultarDados = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,6 +73,19 @@ public class MenuDono extends javax.swing.JFrame {
             }
         });
 
+        admConsultarDados.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        admConsultarDados.setText("Consultar Dados");
+        admConsultarDados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                admConsultarDadosMouseClicked(evt);
+            }
+        });
+        admConsultarDados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                admConsultarDadosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -87,7 +101,9 @@ public class MenuDono extends javax.swing.JFrame {
                 .addContainerGap(84, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(admEmpresaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(admConsultarDados, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(admEmpresaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37))
         );
         layout.setVerticalGroup(
@@ -95,9 +111,11 @@ public class MenuDono extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addGap(18, 18, 18)
                 .addComponent(admEmpresaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(admConsultarDados, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -124,6 +142,15 @@ public class MenuDono extends javax.swing.JFrame {
 
         super.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void admConsultarDadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admConsultarDadosMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_admConsultarDadosMouseClicked
+
+    private void admConsultarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admConsultarDadosActionPerformed
+        dono.consultarDadosPessoais();
+        this.dispose();
+    }//GEN-LAST:event_admConsultarDadosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -161,6 +188,7 @@ public class MenuDono extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton admConsultarDados;
     private javax.swing.JButton admEmpresaButton;
     private javax.swing.JButton backButton;
     private javax.swing.JLabel jLabel1;

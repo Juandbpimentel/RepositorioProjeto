@@ -77,6 +77,11 @@ public class MenuRegistroADM extends javax.swing.JFrame {
 
         limparButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         limparButton.setText("Limpar");
+        limparButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limparButtonActionPerformed(evt);
+            }
+        });
 
         closeButton.setText("Sair");
         closeButton.addActionListener(new java.awt.event.ActionListener() {
@@ -388,6 +393,15 @@ public class MenuRegistroADM extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_finalizarButtonActionPerformed
+
+    private void limparButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limparButtonActionPerformed
+        nomeField.setText("");
+        cpfField.setText("");
+        loginField.setText("");
+        senhaField.setText("");
+        dataNascField.setText("");
+        comboboxEndereco.setSelectedIndex(0);
+    }//GEN-LAST:event_limparButtonActionPerformed
     
     
     private boolean checaErroDataNasc(){

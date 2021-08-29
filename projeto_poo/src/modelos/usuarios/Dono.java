@@ -13,6 +13,7 @@ import views.sistema.dono.MenuDono_AdmEmpresa;
 import views.sistema.dono.MenuDono_AdmEstagiario;
 import views.sistema.dono.MenuDono_AdmFuncionario;
 import views.sistema.dono.MenuDono_AdmSetor;
+import views.sistema.dono.consultarDadosPessoaisDono;
 import views.sistema.endereco.MenuEndereco_Cadastro;
 import views.sistema.estagiario.CadEstagiario;
 import views.sistema.funcionario.CadFuncionario;
@@ -177,7 +178,13 @@ public class Dono extends Pessoa implements DonoGUI,DonoAlterDB {
     }
     @Override
     public void consultarDadosPessoais(){
-
+        System.out.println(this.cpf);
+        consultarDadosPessoaisDono menu = new consultarDadosPessoaisDono(this.getCpf()); 
+        
+        menu.setVisible(true);
+        menu.pack();
+        menu.setLocationRelativeTo(null);
+        menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
     @Override
