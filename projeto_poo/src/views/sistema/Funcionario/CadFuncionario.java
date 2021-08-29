@@ -40,7 +40,7 @@ import views.sistema.menulogin.MenuLogin;
  * @author Ana Beatriz
  */
 public class CadFuncionario extends javax.swing.JFrame {
-    private Pessoa pessoa;
+    private Dono dono;
     private Setor setor;
     /**
      * Creates new form FrameTest
@@ -48,7 +48,7 @@ public class CadFuncionario extends javax.swing.JFrame {
     public CadFuncionario(String cpf, int id) {
         
         if(cpf != null && id != -1){
-            this.pessoa = new DAOPessoa().readOnePessoa(cpf);
+            this.dono = new DAODono().readOneDono(cpf);
             String idstr = "" + id;
             this.setor = new DAOSetor().readOnSetor("id",idstr);
             initComponents();
@@ -379,21 +379,21 @@ public class CadFuncionario extends javax.swing.JFrame {
 
     private void backbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbuttonActionPerformed
         
-        switch (pessoa.getTipo()) {
+        switch (dono.getTipo()) {
             case "DIR":
-                Diretor diretor = new DAODiretor().readOneDiretor(pessoa.getCpf());
+                Diretor diretor = new DAODiretor().readOneDiretor(dono.getCpf());
                 diretor.administrarFuncionarios();
                 this.dispose();
                 break;
 
             case "DON":
-                Dono dono = new DAODono().readOneDono(pessoa.getCpf());
-                dono.administrarFuncionarios(setor.getId());
+                String id = setor.getId()+"";
+                dono.administrarFuncionarios(id);
                 this.dispose();
                 break;
 
             case "GER":
-                Gerente gerente = new DAOGerente().readOneGerente(pessoa.getCpf());
+                Gerente gerente = new DAOGerente().readOneGerente(dono.getCpf());
                 gerente.administrarFuncionarios();
                 this.dispose();
                 break;
@@ -469,7 +469,7 @@ public class CadFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        this.pessoa.criarNovoEndereco("CadFuncionario",setor.getId());
+        this.dono.criarNovoEndereco("CadFuncionario",setor.getId());
         this.dispose();
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
@@ -541,11 +541,13 @@ public class CadFuncionario extends javax.swing.JFrame {
         String nome = nomeField.getText(), login = loginField.getText(),data_nascStr = dataNascimentoField.getText(), data_inicioStr = dataInicioField.getText(), senha = senhaField.getText() , cpf = cpfField.getText();
         
         String[] enderecoSplit = comboBoxEndereco.getSelectedItem().toString().split(",");
-        String[] categoriaSplit = comboBoxEndereco.getSelectedItem().toString().split(",");
+        String[] categoriaSplit = comboBoxCategoria.getSelectedItem().toString().split(",");
         
-        int id_endereco  = Integer.parseInt(enderecoSplit[2]),
-            id_categoria = Integer.parseInt(categoriaSplit[2]),
+        
+        int id_endereco  = Integer.parseInt(enderecoSplit[1]),
+            id_categoria = Integer.parseInt(categoriaSplit[1]),
             dia_pagamento = Integer.parseInt(diaPAgamentoField.getText());
+            System.out.println(id_categoria);
         if(data_nascStr.contains("/")){
             
             String[] data_nascVet = data_nascStr.split("/");
@@ -558,8 +560,8 @@ public class CadFuncionario extends javax.swing.JFrame {
             if(new DAOPessoa().insertPessoa(pessoaAux)){
                 
                 if(new DAOFuncionario().insertFuncionario(new Funcionario(nome, login, senha, "FUN", cpf, data_nasc, id_endereco, 0, id_categoria, setor.getId(), dia_pagamento, data_inicio))){
-                    pessoa.mostrarMenu();
-
+                    String id = setor.getId()+"";
+                    dono.administrarFuncionarios(id);
                     this.dispose();
                 }    
             }
@@ -575,8 +577,8 @@ public class CadFuncionario extends javax.swing.JFrame {
             if(new DAOPessoa().insertPessoa(pessoaAux)){
                 
                 if(new DAOFuncionario().insertFuncionario(new Funcionario(nome, login, senha, "FUN", cpf, data_nasc, id_endereco, 0, id_categoria, setor.getId(), dia_pagamento, data_inicio))){
-                    pessoa.mostrarMenu();
-
+                    String id = setor.getId()+"";
+                    dono.administrarFuncionarios(id);
                     this.dispose();
                 }
                 

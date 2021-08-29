@@ -136,7 +136,7 @@ public class Dono extends Pessoa implements DonoGUI,DonoAlterDB {
     }
 
     @Override
-    public void administrarFuncionarios(int id) {
+    public void administrarFuncionarios(String id) {
         MenuDono_AdmFuncionario menu = new MenuDono_AdmFuncionario(this.cpf, id); 
         
         menu.setVisible(true);

@@ -310,7 +310,10 @@ public class MenuDono_AdmSetor extends javax.swing.JFrame {
     }//GEN-LAST:event_nomeAlterButtonActionPerformed
 
     private void admFuncionariosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admFuncionariosButtonActionPerformed
-        dono.administrarFuncionarios();
+        int column = 0;
+        int row = tabelaDados.getSelectedRow();
+        String id = tabelaDados.getModel().getValueAt(row, column).toString();
+        dono.administrarFuncionarios(id);
         this.dispose();
     }//GEN-LAST:event_admFuncionariosButtonActionPerformed
 

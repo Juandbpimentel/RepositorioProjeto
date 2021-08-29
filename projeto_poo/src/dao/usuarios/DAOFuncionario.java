@@ -41,7 +41,7 @@ public class DAOFuncionario {
                     cpf = resultado.getString("cpf");
                     data_inicio = resultado.getDate("data_inicio");
                 
-                    String sqlQueryPessoa = "Select * from pessoa where cpf = " +cpf;
+                    String sqlQueryPessoa = "Select * from pessoa where cpf = \'" +cpf+"\';";
                     ResultSet resultQueryPessoa = conexao.executaQuery(sqlQueryPessoa);
                             
                     String nome = "", 
@@ -60,7 +60,7 @@ public class DAOFuncionario {
                             senha = resultQueryPessoa.getString("senha");
                             tipo = resultQueryPessoa.getString("tipo");
                             id_endereco = resultQueryPessoa.getInt("id_endereco");
-                            data_nasc = resultQueryPessoa.getDate("data_nasc");
+                            data_nasc = resultQueryPessoa.getInt("data_nasc");
                             id_endereco = resultQueryPessoa.getInt(id_endereco);                		
                         }
                         while(resultQueryPessoa.next());
