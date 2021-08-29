@@ -92,10 +92,6 @@ public class Estagiario extends Pessoa implements EstagiarioGUI {
     }
     
     //CRIAR
-    @Override
-    public void criarNovoEndereco(){
-
-    }
 
     @Override
     public void consultarDadosPessoais() {

@@ -48,7 +48,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
         jLabel1.setText("Menu de Administrador");
 
         createDonoEmpresaButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        createDonoEmpresaButton.setText("Criar Dono e Empresa");
+        createDonoEmpresaButton.setText("Criar Dono");
         createDonoEmpresaButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 createDonoEmpresaButtonMouseClicked(evt);

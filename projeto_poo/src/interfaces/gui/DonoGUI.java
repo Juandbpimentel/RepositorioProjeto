@@ -6,4 +6,5 @@ public interface DonoGUI extends PessoaGUI{
     public abstract void administrarFuncionarios();
     public abstract void administrarEstagiarios();
     public abstract void administrarSetores(String cnpjEmpresa);
-    public abstract void criarNovoEndereco();
+
+}

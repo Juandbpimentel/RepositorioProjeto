@@ -10,7 +10,7 @@ public interface DonoAlterDB {
     public abstract void alterarOrcamentoSetor();
     public abstract void demitirFuncionario();
     public abstract void bonificarFuncionario();
-    public abstract void admitirFuncionario();
+    public abstract void admitirFuncionario(int setor);
     public abstract void admitirEstagiario();
     public abstract void dispensarEstagiario();
     public abstract void trocarEstagiarioSetor();

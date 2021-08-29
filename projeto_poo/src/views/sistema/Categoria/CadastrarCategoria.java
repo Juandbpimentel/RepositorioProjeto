@@ -7,6 +7,7 @@ package views.sistema.categoria;
 
 
 import dao.empresa.DAOCategoria;
+import dao.empresa.DAOEmpresa;
 import dao.usuarios.DAODono;
 import dao.usuarios.DAOPessoa;
 import modelos.empresa.Categoria;
@@ -15,6 +16,7 @@ import modelos.usuarios.Pessoa;
 import dao.usuarios.DAODono;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import modelos.empresa.Empresa;
 
 
 /**
@@ -23,13 +25,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CadastrarCategoria extends javax.swing.JFrame {
     private Pessoa pessoa;
-    private Categoria categoria;
+    private Empresa empresa;
     /**
      * Creates new form CadastrarCategoria
      */
-    public CadastrarCategoria(String cpf) {
+    public CadastrarCategoria(String cpf, String cnpj) {
         if(cpf != null){
             this.pessoa = new DAOPessoa().readOnePessoa(cpf);
+            this.empresa = new DAOEmpresa().readOnEmpresa(cnpj,"cnpj");
             initComponents();
         }else{
             initComponents();
@@ -322,7 +325,7 @@ public class CadastrarCategoria extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadastrarCategoria(null).setVisible(true);
+                new CadastrarCategoria(null,null).setVisible(true);
             }
         });
     }

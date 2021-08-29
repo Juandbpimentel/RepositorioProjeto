@@ -13,6 +13,7 @@ import views.sistema.dono.MenuDono_AdmEmpresa;
 import views.sistema.dono.MenuDono_AdmEstagiario;
 import views.sistema.dono.MenuDono_AdmFuncionario;
 import views.sistema.dono.MenuDono_AdmSetor;
+import views.sistema.endereco.MenuEndereco_Cadastro;
 import views.sistema.estagiario.CadEstagiario;
 import views.sistema.funcionario.CadFuncionario;
 
@@ -92,8 +93,8 @@ public class Dono extends Pessoa implements DonoGUI,DonoAlterDB {
     }
 
     @Override
-    public void admitirFuncionario() {
-        CadFuncionario menu = new CadFuncionario(this.cpf); 
+    public void admitirFuncionario(int id_setor) {
+        CadFuncionario menu = new CadFuncionario(this.cpf,id_setor); 
         
         menu.setVisible(true);
         menu.pack();
@@ -166,7 +167,8 @@ public class Dono extends Pessoa implements DonoGUI,DonoAlterDB {
     
     @Override
     public void mostrarMenu() {
-        MenuDono menu = new MenuDono(this.cpf); 
+        System.out.println(this.cpf);
+        MenuDono menu = new MenuDono(this.getCpf()); 
         
         menu.setVisible(true);
         menu.pack();
@@ -182,10 +184,15 @@ public class Dono extends Pessoa implements DonoGUI,DonoAlterDB {
     public void consultarLogs(){
 
     }
-    
-    @Override
-    public void criarNovoEndereco(){
 
+    @Override
+    public void criarNovoEndereco(String opt,int setor) {
+        MenuEndereco_Cadastro enderecoCadastro = new MenuEndereco_Cadastro(this.getCpf(), opt, setor);
+        
+        enderecoCadastro.setVisible(true);
+        enderecoCadastro.pack();
+        enderecoCadastro.setLocationRelativeTo(null);
+        enderecoCadastro.setDefaultCloseOperation(JFrame .EXIT_ON_CLOSE);
     }
 
 

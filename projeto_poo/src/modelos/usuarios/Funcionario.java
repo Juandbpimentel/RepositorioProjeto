@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
+import views.sistema.endereco.MenuEndereco_Cadastro;
 
 public class Funcionario extends Pessoa implements FuncionarioGUI {
     protected double bonificacao;
@@ -101,12 +102,6 @@ public class Funcionario extends Pessoa implements FuncionarioGUI {
 
     //CRIAR
 
-    
-    @Override
-    public void criarNovoEndereco(){
-
-    }
-
     @Override
     public void consultarDadosPessoais() {
         consultarDadosPessoaisFuncionario consultarDados = new consultarDadosPessoaisFuncionario(this.cpf);
@@ -141,6 +136,16 @@ public class Funcionario extends Pessoa implements FuncionarioGUI {
     @Override
     public String toString(){
         return super.toString()+" ( bonificacao : \'"+bonificacao+"\', cpf : \'"+cpf+"\', id_categoria : "+id_categoria+", id_setor : "+id_setor+", dia_pagamento : "+dia_pagamento+", data_inicio \'"+data_inicio+"\' )";
+    }
+    
+    @Override
+    public void criarNovoEndereco(String opt,int setor) {
+        MenuEndereco_Cadastro enderecoCadastro = new MenuEndereco_Cadastro(this.getCpf(), opt, setor);
+        
+        enderecoCadastro.setVisible(true);
+        enderecoCadastro.pack();
+        enderecoCadastro.setLocationRelativeTo(null);
+        enderecoCadastro.setDefaultCloseOperation(JFrame .EXIT_ON_CLOSE);
     }
 
 }

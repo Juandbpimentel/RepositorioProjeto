@@ -7,6 +7,7 @@ import views.sistema.diretor.MenuDiretor;
 import java.time.LocalDate;
 
 import javax.swing.JFrame;
+import views.sistema.endereco.MenuEndereco_Cadastro;
 
 public class Diretor extends Pessoa implements DiretorGUI, DiretorAlterDB {
     private String cnpj_empresa;
@@ -118,11 +119,6 @@ public class Diretor extends Pessoa implements DiretorGUI, DiretorAlterDB {
     public void consultarLogs(){
 
     }
-    
-    @Override
-    public void criarNovoEndereco(){
-
-    }
 
     @Override
     public void mostrarMenu() {
@@ -132,6 +128,16 @@ public class Diretor extends Pessoa implements DiretorGUI, DiretorAlterDB {
         menu.pack();
         menu.setLocationRelativeTo(null);
         menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    @Override
+    public void criarNovoEndereco(String opt, int setor) {
+        MenuEndereco_Cadastro enderecoCadastro = new MenuEndereco_Cadastro(this.getCpf(), opt, setor);
+        
+        enderecoCadastro.setVisible(true);
+        enderecoCadastro.pack();
+        enderecoCadastro.setLocationRelativeTo(null);
+        enderecoCadastro.setDefaultCloseOperation(JFrame .EXIT_ON_CLOSE);
     }
 
 }

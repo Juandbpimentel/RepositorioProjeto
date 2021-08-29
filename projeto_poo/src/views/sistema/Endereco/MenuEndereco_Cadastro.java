@@ -8,6 +8,8 @@ import dao.lugar.DAOBairro;
 import dao.lugar.DAOCidade;
 import dao.lugar.DAOEndereco;
 import dao.lugar.DAOEstado;
+import dao.usuarios.DAODono;
+import dao.usuarios.DAOFuncionario;
 import dao.usuarios.DAOPessoa;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -30,14 +32,16 @@ import views.sistema.pessoa.MenuRegistroADM;
  */
 public class MenuEndereco_Cadastro extends javax.swing.JFrame {
     private Pessoa pessoa;
-    String opt;
+    private String opt;
+    private int id_setor;
     /**
      * Creates new form MenuEndereco_Cadastro
      */
-    public MenuEndereco_Cadastro(String cpf, String opt) {
+    public MenuEndereco_Cadastro(String cpf, String opt, int id_setor) {
         if(cpf != null){
             this.opt = opt;
             this.pessoa = new DAOPessoa().readOnePessoa(cpf);
+            this.id_setor = id_setor;
             initComponents();
             populaComboEndereco();
         }else{
@@ -475,7 +479,15 @@ public class MenuEndereco_Cadastro extends javax.swing.JFrame {
                 break;
 
             case "DON":
-                Dono dono = (Dono) pessoa;
+                if(opt!= null){
+                    if(opt.equals("CadFuncionario") && id_setor != -1){
+                        Dono dono = new DAODono().readOneDono(pessoa.getCpf());
+                        dono.admitirFuncionario(id_setor);
+                        this.dispose();
+                        break;
+                    }
+                }
+                Dono dono = new DAODono().readOneDono(pessoa.getCpf());
                 dono.consultarDadosPessoais();
                 this.dispose();
                 break;
@@ -491,7 +503,7 @@ public class MenuEndereco_Cadastro extends javax.swing.JFrame {
                 this.dispose();
                 break;
             case "FUN":
-                Funcionario funcionario =(Funcionario) pessoa;
+                Funcionario funcionario = new DAOFuncionario().readOneFuncionario(pessoa.getCpf());
                 funcionario.consultarDadosPessoais();
                 this.dispose();
                 break;
@@ -579,7 +591,7 @@ public class MenuEndereco_Cadastro extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuEndereco_Cadastro(null,null).setVisible(true);
+                new MenuEndereco_Cadastro(null,null,-1).setVisible(true);
             }
         });
     }

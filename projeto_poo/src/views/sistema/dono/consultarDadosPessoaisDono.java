@@ -3,29 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package views.sistema.pessoa;
+package views.sistema.dono;
 
+import views.sistema.pessoa.*;
 import dao.lugar.DAOEndereco;
+import dao.usuarios.DAODono;
 import modelos.usuarios.Pessoa;
 import dao.usuarios.DAOPessoa;
 import dao.usuarios.DAOPessoa;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import modelos.lugar.Endereco;
+import modelos.usuarios.Dono;
 import modelos.usuarios.Pessoa;
 import sistema.Conexao;
 /**
  *
  * @author Yara
  */
-public class consultarDadosPessoaisAdministrador extends javax.swing.JFrame {
-    private Pessoa pessoa;
+public class consultarDadosPessoaisDono extends javax.swing.JFrame {
+    private Dono dono;
     /**
      * Creates new form ConsultarDadosEmprego
      */
-    public consultarDadosPessoaisAdministrador(String cpf) {
+    public consultarDadosPessoaisDono(String cpf) {
         if(cpf != null){
-            this.pessoa = new DAOPessoa().readOnePessoa(cpf);
+            this.dono = new DAODono().readOneDono(cpf);
             initComponents();
             iniciaTabela();
             populaComboEndereco();
@@ -35,7 +38,7 @@ public class consultarDadosPessoaisAdministrador extends javax.swing.JFrame {
     }
         
     public void iniciaTabela(){
-        Pessoa resultado = new DAOPessoa().readOnePessoa(pessoa.getCpf());
+        Dono resultado = new DAODono().readOneDono(dono.getCpf());
 
            DefaultTableModel testetabela = (DefaultTableModel) tabelaDados.getModel();
            Object[] colunas = {"Nome","Senha","Login"};
@@ -107,7 +110,8 @@ public class consultarDadosPessoaisAdministrador extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Poppins", 3, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 153, 0));
-        jLabel1.setText("Consultar Dados - Administrador");
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Consultar Dados - Dono");
 
         tabelaDados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -214,8 +218,8 @@ public class consultarDadosPessoaisAdministrador extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(backButton)
-                        .addGap(105, 105, 105)
-                        .addComponent(jLabel1))
+                        .addGap(123, 123, 123)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(48, 48, 48)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -292,7 +296,7 @@ public class consultarDadosPessoaisAdministrador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        pessoa.mostrarMenu();
+        dono.mostrarMenu();
         this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
 
@@ -309,7 +313,7 @@ public class consultarDadosPessoaisAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_loginTextFieldActionPerformed
 
     private void criarEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarEnderecoActionPerformed
-        pessoa.criarNovoEndereco("Consultar",-1);
+        dono.criarNovoEndereco("Consultar",-1);
         this.dispose();
     }//GEN-LAST:event_criarEnderecoActionPerformed
 
@@ -330,10 +334,10 @@ public class consultarDadosPessoaisAdministrador extends javax.swing.JFrame {
             return;
         }
         
-        DAOPessoa daoPessoa = new DAOPessoa();
-        daoPessoa.updatePessoa("login", this.pessoa.getCpf(), login);
+        DAODono daoDono = new DAODono();
+        daoDono.updateDono("login", this.dono.getCpf(), login);
         
-        this.pessoa = daoPessoa.readOnePessoa(this.pessoa.getCpf());
+        this.dono = daoDono.readOneDono(this.dono.getCpf());
         
         iniciaTabela();
     }//GEN-LAST:event_loginAlterButtonActionPerformed
@@ -355,10 +359,10 @@ public class consultarDadosPessoaisAdministrador extends javax.swing.JFrame {
             return;
         }
         
-        DAOPessoa daoPessoa = new DAOPessoa();
-        daoPessoa.updatePessoa("nome", this.pessoa.getCpf(), nome);
+        DAODono daoDono = new DAODono();
+        daoDono.updateDono("nome", this.dono.getCpf(), nome);
         
-        this.pessoa = daoPessoa.readOnePessoa(this.pessoa.getCpf());
+        this.dono = daoDono.readOneDono(this.dono.getCpf());
         
         iniciaTabela();
     }//GEN-LAST:event_nameAlterButtonActionPerformed
@@ -380,10 +384,10 @@ public class consultarDadosPessoaisAdministrador extends javax.swing.JFrame {
             return;
         }
         
-        DAOPessoa daoPessoa = new DAOPessoa();
-        daoPessoa.updatePessoa("senha", this.pessoa.getCpf(), password);
+        DAODono daoDono = new DAODono();
+        daoDono.updateDono("senha", this.dono.getCpf(), password);
         
-        this.pessoa = daoPessoa.readOnePessoa(this.pessoa.getCpf());
+        this.dono = daoDono.readOneDono(this.dono.getCpf());
         
         iniciaTabela();
     }//GEN-LAST:event_passwordAlterButtonActionPerformed
@@ -409,21 +413,23 @@ public class consultarDadosPessoaisAdministrador extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(consultarDadosPessoaisAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(consultarDadosPessoaisDono.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(consultarDadosPessoaisAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(consultarDadosPessoaisDono.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(consultarDadosPessoaisAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(consultarDadosPessoaisDono.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(consultarDadosPessoaisAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(consultarDadosPessoaisDono.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new consultarDadosPessoaisAdministrador(null).setVisible(true);
+                new consultarDadosPessoaisDono(null).setVisible(true);
             }
         });
     }

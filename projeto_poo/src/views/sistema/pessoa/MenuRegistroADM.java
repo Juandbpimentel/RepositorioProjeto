@@ -297,7 +297,7 @@ public class MenuRegistroADM extends javax.swing.JFrame {
     }//GEN-LAST:event_loginFieldActionPerformed
 
     private void cadastrarEnderecoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarEnderecoButtonActionPerformed
-        MenuEndereco_Cadastro enderecoCadastro = new MenuEndereco_Cadastro(null,"");
+        MenuEndereco_Cadastro enderecoCadastro = new MenuEndereco_Cadastro(null,"",-1);
         
         enderecoCadastro.setVisible(true);
         enderecoCadastro.pack();

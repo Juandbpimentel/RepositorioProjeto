@@ -6,12 +6,14 @@
 package views.sistema.dono;
 
 import dao.lugar.DAOEndereco;
+import dao.usuarios.DAODono;
 import javax.swing.JFrame;
 
 import dao.usuarios.DAOPessoa;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import modelos.lugar.Endereco;
+import modelos.usuarios.Dono;
 import modelos.usuarios.Pessoa;
 import sistema.Conexao;
 import views.sistema.menulogin.MenuLogin;
@@ -301,7 +303,7 @@ public class CadDono extends javax.swing.JFrame {
     }//GEN-LAST:event_loginFieldActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        pessoa.criarNovoEndereco("CadDono");
+        pessoa.criarNovoEndereco("CadDono",-1);
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -355,36 +357,39 @@ public class CadDono extends javax.swing.JFrame {
             System.out.println("Deu erro e não rodou");
             return;
         }
-        String nome = nomeField.getText(), login = loginField.getText(),data_nasc = dataNascField.getText(), senha = senhaField.getText() , cpf = cpfField.getText();
+        String nome = nomeField.getText(), login = loginField.getText(),data_nascStr = dataNascField.getText(), senha = senhaField.getText() , cpf = cpfField.getText();
         
         String[] endereco = comboboxEndereco.getSelectedItem().toString().split(",");
         
         int id_endereco = Integer.parseInt(endereco[2]);
-        if(data_nasc.contains("/")){
-            String[] data_nascVet = data_nasc.split("/");
-            Pessoa pessoaAux = new Pessoa(nome, login, senha, "DON", cpf, LocalDate.of(Integer.parseInt(data_nascVet[2]), Integer.parseInt(data_nascVet[1]), Integer.parseInt(data_nascVet[0])) , id_endereco );
+        if(data_nascStr.contains("/")){
+            
+            String[] data_nascVet = data_nascStr.split("/");
+            
+            LocalDate data_nasc = LocalDate.of(Integer.parseInt(data_nascVet[2]), Integer.parseInt(data_nascVet[1]), Integer.parseInt(data_nascVet[0]));
+            
+            Pessoa pessoaAux = new Pessoa(nome, login, senha, "DON", cpf, data_nasc , id_endereco );
             if(new DAOPessoa().insertPessoa(pessoaAux)){
-                MenuLogin telaLogin = new MenuLogin();
+                
+                if(new DAODono().insertDono(new Dono(nome, login, senha, cpf, cpf,data_nasc , id_endereco))){
+                    pessoa.mostrarMenu();
 
-                telaLogin.setVisible(true);
-                telaLogin.pack();
-                telaLogin.setLocationRelativeTo(null);
-                telaLogin.setDefaultCloseOperation(JFrame .EXIT_ON_CLOSE);
-
-                this.dispose();
+                    this.dispose();
+                }
+                
             }
         }else{
-            String[] data_nascVet = data_nasc.split("-");
-            Pessoa pessoaAux = new Pessoa(nome, login, senha, "DON", cpf, LocalDate.of(Integer.parseInt(data_nascVet[2]), Integer.parseInt(data_nascVet[1]), Integer.parseInt(data_nascVet[0])) , id_endereco );     
+            
+            String[] data_nascVet = data_nascStr.split("-");
+            
+            LocalDate data_nasc= LocalDate.of(Integer.parseInt(data_nascVet[2]), Integer.parseInt(data_nascVet[1]), Integer.parseInt(data_nascVet[0]));
+            
+            Pessoa pessoaAux = new Pessoa(nome, login, senha, "DON", cpf, data_nasc, id_endereco );     
             if(new DAOPessoa().insertPessoa(pessoaAux)){
-                MenuLogin telaLogin = new MenuLogin();
-
-                telaLogin.setVisible(true);
-                telaLogin.pack();
-                telaLogin.setLocationRelativeTo(null);
-                telaLogin.setDefaultCloseOperation(JFrame .EXIT_ON_CLOSE);
-
-                this.dispose();
+                if(new DAODono().insertDono(new Dono(nome, login, senha, cpf, cpf,data_nasc , id_endereco))){
+                    pessoa.mostrarMenu();
+                    this.dispose();
+                }
             }
         }
     }//GEN-LAST:event_finalizarButtonActionPerformed

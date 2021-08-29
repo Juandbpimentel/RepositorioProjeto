@@ -5,10 +5,12 @@
  */
 package views.sistema.empresa;
 
+import dao.empresa.DAOEmpresa;
 import dao.usuarios.DAODono;
 import javax.swing.JFrame;
 
 import dao.usuarios.DAOPessoa;
+import modelos.empresa.Empresa;
 import modelos.usuarios.Dono;
 import modelos.usuarios.Pessoa;
 import views.sistema.dono.CadDono;
@@ -19,14 +21,15 @@ import views.sistema.dono.MenuDono_AdmEmpresa;
  * @author Yara
  */
 public class CadEmpresa extends javax.swing.JFrame {
-    private Pessoa pessoa;
     private Dono dono;
+    private Empresa empresa;
     /**
      * Creates new form Empresa
      */
-    public CadEmpresa(String cpf,String cpf_dono) {
+    public CadEmpresa(String cpf, String cnpj) {
         if(cpf != null){
-            this.pessoa = new DAOPessoa().readOnePessoa(cpf);
+            this.dono = new DAODono().readOneDono(cpf);
+            this.empresa = new DAOEmpresa().readOnEmpresa(cnpj,"cnpj");
             initComponents();
         }else{
             initComponents();
@@ -191,28 +194,11 @@ public class CadEmpresa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        if(pessoa.getTipo().equals("ADM") && dono != null){
-            
-            new DAODono().deleteDono(dono.getCpf());
-            
-            CadDono telaRegistroADM = new CadDono(pessoa.getCpf());
-            telaRegistroADM.setVisible(true);
-            telaRegistroADM.pack();
-            telaRegistroADM.setLocationRelativeTo(null);
-            telaRegistroADM.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            this.dispose();
-        }else if(pessoa.getTipo().equals("DON")){
-            MenuDono_AdmEmpresa telaRegistroADM = new MenuDono_AdmEmpresa(pessoa.getCpf());
-            telaRegistroADM.setVisible(true);
-            telaRegistroADM.pack();
-            telaRegistroADM.setLocationRelativeTo(null);
-            telaRegistroADM.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            this.dispose();
-        }
+
         
-        switch(pessoa.getTipo()){
+        switch(dono.getTipo()){
             case "DON":
-                MenuDono_AdmEmpresa telaRegistro = new MenuDono_AdmEmpresa(pessoa.getCpf());
+                MenuDono_AdmEmpresa telaRegistro = new MenuDono_AdmEmpresa(dono.getCpf());
                 telaRegistro.setVisible(true);
                 telaRegistro.pack();
                 telaRegistro.setLocationRelativeTo(null);
