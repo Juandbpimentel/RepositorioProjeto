@@ -93,7 +93,7 @@ public class DAOSetor {
             return false;
         }
     }
-
+    
     public Setor readOnSetor(String opt, String pk) {
         try {
             if(opt == "id"){
@@ -134,6 +134,35 @@ public class DAOSetor {
             }
             conexao.disconect();
             return null;
+        } catch (SQLException SQLError) {
+            System.err.println("Ocorreu um erro na leitura do Banco de Dados: " + SQLError);
+            conexao.disconect();
+            return null;
+        } catch (Exception geralError) {
+            System.err.println("Ocorreu um erro geral: " + geralError);
+            conexao.disconect();
+            return null;
+        }
+    }
+
+    public Setor readOneSetor(int id) {
+        try {
+            
+            Setor setor;
+
+            conexao.conect();
+
+            String querySetor = "SELECT * FROM Setor WHERE id = " + id;
+            ResultSet resultadoQuery = conexao.executaQuery(querySetor);
+            if (!resultadoQuery.next()) {
+                throw new NullPointerException("Não foi possível achar o setor");
+            } else {
+                String nome = resultadoQuery.getString("nome"), cnpj_empresa = resultadoQuery.getString("cnpj_empresa");
+                Double orcamento = resultadoQuery.getDouble("orcamento");
+                setor = new Setor(orcamento, nome, id, cnpj_empresa);
+            }
+            conexao.disconect();
+            return setor;
         } catch (SQLException SQLError) {
             System.err.println("Ocorreu um erro na leitura do Banco de Dados: " + SQLError);
             conexao.disconect();

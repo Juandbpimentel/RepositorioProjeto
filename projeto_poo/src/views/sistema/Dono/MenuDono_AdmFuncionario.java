@@ -5,9 +5,11 @@
  */
 package views.sistema.dono;
 
+import dao.empresa.DAOSetor;
 import javax.swing.JFrame;
 
 import dao.usuarios.DAODono;
+import modelos.empresa.Setor;
 import modelos.usuarios.Diretor;
 import modelos.usuarios.Dono;
 import modelos.usuarios.Pessoa;
@@ -19,12 +21,14 @@ import views.sistema.diretor.*;
  */
 public class MenuDono_AdmFuncionario extends javax.swing.JFrame {
     private Dono dono;
+    private Setor setor;
     /**
      * Creates new form AdmitirFuncionario
      */
-    public MenuDono_AdmFuncionario(String cpf) {
-        if(cpf != null){
+    public MenuDono_AdmFuncionario(String cpf, int id) {
+        if(cpf != null && id >= 0){
             this.dono = new DAODono().readOneDono(cpf);
+            this.setor = new DAOSetor().readOneSetor(id);
             initComponents();
         }else{
             initComponents();
@@ -241,6 +245,7 @@ public class MenuDono_AdmFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // PASSAR O ID_SETOR AQUI COMO PARAMETRO
         dono.admitirFuncionario();
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -258,6 +263,7 @@ public class MenuDono_AdmFuncionario extends javax.swing.JFrame {
         switch (dono.getTipo()) {
 
             case "DON":
+                // PASSAR CNPJ COMO PARAMETRO
                 dono.administrarSetores();
                 this.dispose();
                 return;
