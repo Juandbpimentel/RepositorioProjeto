@@ -313,12 +313,6 @@ public class CadGerente extends javax.swing.JFrame {
                 diretor.administrarSetores();
                 this.dispose();
                 break;
-
-            case "DON":
-                Dono dono = (Dono) pessoa;
-                dono.adicionarSetores();
-                this.dispose();
-                break;
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
