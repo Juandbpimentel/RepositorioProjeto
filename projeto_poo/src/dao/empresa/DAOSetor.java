@@ -78,7 +78,7 @@ public class DAOSetor {
             conexao.conect();
 
             String sqlInsertion = "Insert into public Setor(orcamento, nome, cnpj_empresa)"
-                                + "values " + "(" + setor + ")";
+                                + "values " + "(" + setor.getOrcamento()+", \'"+setor.getNome()+"\' , \'"+setor.getCnpj_empresa()+"\' );";
             boolean resultado = conexao.executaSql(sqlInsertion);
 
             if(!resultado){
@@ -162,7 +162,8 @@ public class DAOSetor {
             } else {
                 String nome = resultadoQuery.getString("nome"), cnpj_empresa = resultadoQuery.getString("cnpj_empresa");
                 Double orcamento = resultadoQuery.getDouble("orcamento");
-                setor = new Setor(orcamento, nome, id, cnpj_empresa);
+                setor = new Setor(orcamento, nome, cnpj_empresa);
+                setor.setId(id);
             }
             conexao.disconect();
             return setor;
