@@ -14,12 +14,12 @@ import modelos.usuarios.Dono;
  *
  * @author juand
  */
-public class CadSetor extends javax.swing.JFrame {
+public class cadSetor extends javax.swing.JFrame {
     private String cnpj, cpf;
     /**
      * Creates new form CadSetoor
      */
-    public CadSetor(String cnpj, String cpf) {
+    public cadSetor(String cnpj, String cpf) {
         this.cnpj = cnpj;
         this.cpf = cpf;
         initComponents();
@@ -165,21 +165,23 @@ public class CadSetor extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadSetor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(cadSetor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadSetor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(cadSetor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadSetor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(cadSetor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadSetor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(cadSetor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadSetor(null,null).setVisible(true);
+                new cadSetor(null,null).setVisible(true);
             }
         });
     }

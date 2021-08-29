@@ -87,7 +87,12 @@ public class Dono extends Pessoa implements DonoGUI,DonoAlterDB {
     
     @Override
     public void adicionarSetores() {
+         menu = new MenuDono_AdmSetor(cnpj, this.cpf); 
         
+        menu.setVisible(true);
+        menu.pack();
+        menu.setLocationRelativeTo(null);
+        menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
     @Override
