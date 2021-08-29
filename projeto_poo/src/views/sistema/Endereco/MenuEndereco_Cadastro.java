@@ -5,6 +5,7 @@
  */
 package views.sistema.endereco;
 import dao.usuarios.DAOPessoa;
+import java.time.LocalDate;
 import modelos.usuarios.Diretor;
 import modelos.usuarios.Dono;
 import modelos.usuarios.Estagiario;
@@ -45,14 +46,22 @@ public class MenuEndereco_Cadastro extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        registerButton = new javax.swing.JButton();
-        clearLabels = new javax.swing.JButton();
+        estadoField = new javax.swing.JTextField();
+        cidadeField = new javax.swing.JTextField();
+        ruaField = new javax.swing.JTextField();
+        numeroCasaField = new javax.swing.JTextField();
+        complementoField = new javax.swing.JTextField();
+        cadastrarButton = new javax.swing.JButton();
+        limparLabels = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
+        errorLabelCidade = new javax.swing.JLabel();
+        errorLabelEstado = new javax.swing.JLabel();
+        errorLabelNumero = new javax.swing.JLabel();
+        errorLabelRua = new javax.swing.JLabel();
+        errorLabelComplemento = new javax.swing.JLabel();
+        errorLabelBairro = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        bairroField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,26 +84,31 @@ public class MenuEndereco_Cadastro extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jLabel6.setText("Complemento (opcional):");
 
-        jTextField1.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        estadoField.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
 
-        jTextField2.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        cidadeField.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
 
-        jTextField3.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        ruaField.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
 
-        jTextField4.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        numeroCasaField.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
 
-        jTextField5.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        complementoField.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
 
-        registerButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        registerButton.setText("Cadastrar");
-        registerButton.addActionListener(new java.awt.event.ActionListener() {
+        cadastrarButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        cadastrarButton.setText("Cadastrar");
+        cadastrarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registerButtonActionPerformed(evt);
+                cadastrarButtonActionPerformed(evt);
             }
         });
 
-        clearLabels.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        clearLabels.setText("Limpar");
+        limparLabels.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        limparLabels.setText("Limpar");
+        limparLabels.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limparLabelsActionPerformed(evt);
+            }
+        });
 
         backButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         backButton.setText("Voltar");
@@ -103,6 +117,29 @@ public class MenuEndereco_Cadastro extends javax.swing.JFrame {
                 backButtonActionPerformed(evt);
             }
         });
+
+        errorLabelCidade.setForeground(new java.awt.Color(255, 51, 51));
+        errorLabelCidade.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        errorLabelEstado.setForeground(new java.awt.Color(255, 51, 51));
+        errorLabelEstado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        errorLabelNumero.setForeground(new java.awt.Color(255, 51, 51));
+        errorLabelNumero.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        errorLabelRua.setForeground(new java.awt.Color(255, 51, 51));
+        errorLabelRua.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        errorLabelComplemento.setForeground(new java.awt.Color(255, 51, 51));
+        errorLabelComplemento.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        errorLabelBairro.setForeground(new java.awt.Color(255, 51, 51));
+        errorLabelBairro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        jLabel7.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        jLabel7.setText("Bairro:");
+
+        bairroField.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -113,39 +150,49 @@ public class MenuEndereco_Cadastro extends javax.swing.JFrame {
                 .addComponent(backButton)
                 .addGap(78, 78, 78)
                 .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 145, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(registerButton)
-                            .addComponent(jLabel6))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(122, 122, 122)
+                        .addComponent(cadastrarButton)
+                        .addGap(50, 50, 50)
+                        .addComponent(limparLabels, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(errorLabelNumero, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(errorLabelBairro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(50, 50, 50)
-                                .addComponent(clearLabels, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField5))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField1)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField4)))
-                .addGap(49, 49, 49))
+                                .addComponent(cidadeField))
+                            .addComponent(errorLabelEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(estadoField))
+                            .addComponent(errorLabelRua, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ruaField))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bairroField))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(numeroCasaField))
+                            .addComponent(errorLabelCidade, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(complementoField))
+                            .addComponent(errorLabelComplemento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(60, 60, 60))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,49 +201,104 @@ public class MenuEndereco_Cadastro extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(backButton))
-                .addGap(106, 106, 106)
+                .addGap(59, 59, 59)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1))
-                .addGap(27, 27, 27)
+                    .addComponent(estadoField))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(errorLabelEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField2))
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField3))
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField4)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel7)
+                    .addComponent(bairroField))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(errorLabelBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                    .addComponent(jLabel3)
+                    .addComponent(cidadeField))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(errorLabelCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(registerButton)
-                    .addComponent(clearLabels))
+                    .addComponent(jLabel4)
+                    .addComponent(ruaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(errorLabelRua, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(numeroCasaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(errorLabelNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(complementoField))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(errorLabelComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cadastrarButton)
+                    .addComponent(limparLabels))
                 .addGap(32, 32, 32))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_registerButtonActionPerformed
+    private void cadastrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarButtonActionPerformed
+        boolean erroEstado = false, erroCidade= false, erroRua= false, erroNumero= false, erroComplemento= false, erroBairro = false;
 
-    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        if(pessoa == null){
-            MenuRegistroADM menuReg = new MenuRegistroADM();
-            menuReg.setVisible(true);
-            menuReg.pack();
-            menuReg.setLocationRelativeTo(null);
-            this.dispose();
+        if(estadoField.getText().length() == 0){
+            errorLabelEstado.setText("O campo estado não pode estar vazio");
+            erroEstado = true;
+        }else{
+            errorLabelEstado.setText("");
+        }
+        
+        if(cidadeField.getText().length() == 0){
+            errorLabelCidade.setText("O campo cidade não pode estar vazio");
+            erroCidade = true;
+        }else{
+            errorLabelCidade.setText("");
+        }
+        
+        if(bairroField.getText().length() == 0){
+            errorLabelBairro.setText("O campo bairro não pode estar vazio");
+            erroBairro = true;
+        }else{
+            errorLabelBairro.setText("");
+        }
+
+        if(ruaField.getText().length() == 0){
+            errorLabelRua.setText("O campo rua não pode estar vazio");
+            erroRua = true;
+        }else{
+            errorLabelRua.setText("");
+        }
+
+        if(numeroCasaField.getText().length() == 0){
+            errorLabelNumero.setText("O campo numero não pode estar vazio");
+            erroNumero = true;
+        }else{
+                errorLabelNumero.setText("");
+        }
+        
+        if(complementoField.getText().length() == 0){
+            errorLabelComplemento.setText("O campo complemento não pode estar vazio");
+            erroComplemento = true;
+        }
+        
+        if(erroEstado|| erroCidade|| erroRua|| erroNumero|| erroComplemento){
+            System.out.println("Deu erro e não rodou");
             return;
         }
+        
+        
+    }//GEN-LAST:event_cadastrarButtonActionPerformed
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         switch (pessoa.getTipo()) {
             case "DIR":
                 Diretor diretor =(Diretor) pessoa;
@@ -231,6 +333,15 @@ public class MenuEndereco_Cadastro extends javax.swing.JFrame {
                 break;
         }
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void limparLabelsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limparLabelsActionPerformed
+        errorLabelEstado.setText("");
+        errorLabelCidade.setText("");
+        errorLabelBairro.setText("");
+        errorLabelRua.setText("");
+        errorLabelNumero.setText("");
+        errorLabelComplemento.setText("");// TODO add your handling code here:
+    }//GEN-LAST:event_limparLabelsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -269,18 +380,26 @@ public class MenuEndereco_Cadastro extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
-    private javax.swing.JButton clearLabels;
+    private javax.swing.JTextField bairroField;
+    private javax.swing.JButton cadastrarButton;
+    private javax.swing.JTextField cidadeField;
+    private javax.swing.JTextField complementoField;
+    private javax.swing.JLabel errorLabelBairro;
+    private javax.swing.JLabel errorLabelCidade;
+    private javax.swing.JLabel errorLabelComplemento;
+    private javax.swing.JLabel errorLabelEstado;
+    private javax.swing.JLabel errorLabelNumero;
+    private javax.swing.JLabel errorLabelRua;
+    private javax.swing.JTextField estadoField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JButton registerButton;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JButton limparLabels;
+    private javax.swing.JTextField numeroCasaField;
+    private javax.swing.JTextField ruaField;
     // End of variables declaration//GEN-END:variables
 }
