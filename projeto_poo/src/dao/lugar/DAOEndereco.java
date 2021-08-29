@@ -34,7 +34,8 @@ public class DAOEndereco {
                     id_bairro = resultado.getInt("id_bairro");
                     numero = resultado.getInt("numero");
 
-                    Endereco endereco = new Endereco(id, numero, cep, rua, complemento, id_bairro);
+                    Endereco endereco = new Endereco( numero, cep, rua, complemento, id_bairro);
+                    endereco.setId(id);
                     arrayEnderecos.add(endereco);
                 }while(resultado.next());
             }
@@ -104,7 +105,8 @@ public class DAOEndereco {
             } else {
                 String cep = resultadoQuery.getString("cep"), rua = resultadoQuery.getString("rua"), complemento = resultadoQuery.getString("complemento");
                 int numero = resultadoQuery.getInt("numero"), idbairro = resultadoQuery.getInt("id_bairro");
-                endereco = new Endereco(id, numero, cep, rua, complemento, idbairro);
+                endereco = new Endereco( numero, cep, rua, complemento, idbairro);
+                endereco.setId(id);
             }
             conexao.disconect();
             return endereco;

@@ -1,5 +1,6 @@
 package modelos.lugar;
 
+import dao.lugar.DAOCidade;
 import java.util.ArrayList;
 
 public class Cidade {
@@ -7,11 +8,10 @@ public class Cidade {
     private String nome, uf;
     ArrayList<Bairro> bairros;
 
-    public Cidade(int id, String nome, String uf) {
-        this.id = id;
+    public Cidade( String nome, String uf) {
         this.nome = nome;
         this.uf = uf;
-        //this.bairros = bairros;
+        DAOCidade dao = new DAOCidade();
     }
 
 

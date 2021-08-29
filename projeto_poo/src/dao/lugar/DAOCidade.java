@@ -60,7 +60,8 @@ public class DAOCidade {
                 throw new NullPointerException("Não foi possível achar nenhuma cidade");
             } else {
                 String nome = resultadoQuery.getString("nome"), uf = resultadoQuery.getString("uf");
-                cidade = new Cidade(id, nome, uf);
+                cidade = new Cidade( nome, uf);
+                cidade.getId();s
             }
             conexao.disconect();
             return cidade;
@@ -101,7 +102,7 @@ public class DAOCidade {
             conexao.conect();
 
             String sqlInsertion = "Insert into public Cidade(nome, uf)"
-                                + "values "+ cidade;
+                                + "values (\'"+ cidade.getNome()+"\' , (\'"+cidade.getUf()+"\')";
             boolean resultado = conexao.executaSql(sqlInsertion);
 
             if(resultado){
