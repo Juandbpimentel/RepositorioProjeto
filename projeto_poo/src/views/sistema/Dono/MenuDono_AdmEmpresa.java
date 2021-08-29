@@ -41,7 +41,10 @@ public class MenuDono_AdmEmpresa extends javax.swing.JFrame {
     public void iniciaTabela(){
 
         this.empresa = new DAOEmpresa().readOnEmpresa(dono.getCpf(), "cpf");
-
+        if(empresa == null){
+               return;
+        }
+        
         DefaultTableModel testetabela = (DefaultTableModel) tabelaDados.getModel();
         Object[] colunas = {"nome","cnpj","orcamento"};
         final Object[] entrada = new Object[4];
@@ -82,7 +85,7 @@ public class MenuDono_AdmEmpresa extends javax.swing.JFrame {
         admSetoresButton = new javax.swing.JButton();
         admDiretoresButton = new javax.swing.JButton();
         errorMessage = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        adicionarEmpresaButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -207,10 +210,10 @@ public class MenuDono_AdmEmpresa extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Adicionar Empresa");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        adicionarEmpresaButton.setText("Adicionar Empresa");
+        adicionarEmpresaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                adicionarEmpresaButtonActionPerformed(evt);
             }
         });
 
@@ -249,7 +252,7 @@ public class MenuDono_AdmEmpresa extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(criarCatButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(adicionarEmpresaButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGap(263, 263, 263)
                                     .addComponent(deleteCheckBox))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -293,7 +296,7 @@ public class MenuDono_AdmEmpresa extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(admDiretoresButton)
-                    .addComponent(jButton1))
+                    .addComponent(adicionarEmpresaButton))
                 .addGap(0, 24, Short.MAX_VALUE))
         );
 
@@ -327,10 +330,10 @@ public class MenuDono_AdmEmpresa extends javax.swing.JFrame {
     }//GEN-LAST:event_nomeAlterButtonActionPerformed
 
     private void criarCatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarCatButtonActionPerformed
-        CadastrarCategoria menuCadCategoria = new CadastrarCategoria( dono.getCpf());
-        menuCadCategoria.setVisible(true);
-        menuCadCategoria.pack();
-        menuCadCategoria.setLocationRelativeTo(null);
+        int column = 1;
+        int row = tabelaDados.getSelectedRow();
+        String cnpj = tabelaDados.getModel().getValueAt(row, column).toString();
+        dono.criarCategoria(cnpj);
         this.dispose();
     }//GEN-LAST:event_criarCatButtonActionPerformed
 
@@ -420,15 +423,17 @@ public class MenuDono_AdmEmpresa extends javax.swing.JFrame {
         
     }//GEN-LAST:event_deleteButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void adicionarEmpresaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarEmpresaButtonActionPerformed
         Empresa empresa = new DAOEmpresa().readOnEmpresa(dono.getCpf(), "cpf");
         if(empresa != null){
             errorMessage.setText("Você não pode ter mais de uma empresa.");
             return;
         } else{
-
+            dono.adicionarEmpresa();
+            System.out.println("DEU CERTO POLLA!");
+            this.dispose();
         } 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_adicionarEmpresaButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -467,6 +472,7 @@ public class MenuDono_AdmEmpresa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton adicionarEmpresaButton;
     private javax.swing.JButton admDiretoresButton;
     private javax.swing.JButton admSetoresButton;
     private javax.swing.JButton backButton;
@@ -475,7 +481,6 @@ public class MenuDono_AdmEmpresa extends javax.swing.JFrame {
     private javax.swing.JButton deleteButton;
     private javax.swing.JCheckBox deleteCheckBox;
     private javax.swing.JLabel errorMessage;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
