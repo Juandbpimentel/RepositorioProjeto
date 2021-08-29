@@ -34,7 +34,8 @@ public class DAOEndereco {
                     id_bairro = resultado.getInt("id_bairro");
                     numero = resultado.getInt("numero");
 
-                    Endereco endereco = new Endereco(id, numero, cep, rua, complemento, id_bairro);
+                    Endereco endereco = new Endereco( numero, cep, rua, complemento, id_bairro);
+                    endereco.setId(id);
                     arrayEnderecos.add(endereco);
                 }while(resultado.next());
             }
@@ -75,14 +76,15 @@ public class DAOEndereco {
     public boolean insertEndereco(Endereco endereco){
         try{
             conexao.conect();
-            String sqlInsertion = "Insert into public Endereco(numero, cep, rua, complemento, id_bairro)"
-                                + "values " + "(" + endereco + ")";
+            String sqlInsertion = "Insert into Endereco(numero, cep, rua, complemento, id_bairro)"
+                                + "values " + "("+endereco.getNumero()+" , \'" + endereco.getCep() +"\' , \'"+endereco.getRua()+"\' , \'"+endereco.getComplemento()+"\',"+endereco.getId_bairro()+")";
                 boolean resultado = conexao.executaSql(sqlInsertion);
 
                 if(!resultado){
                 conexao.disconect();
                 return false;
             }
+                System.out.println("Deu certo Endereco");
             conexao.disconect();
             return true;
         } catch(Exception geralError){
@@ -104,7 +106,8 @@ public class DAOEndereco {
             } else {
                 String cep = resultadoQuery.getString("cep"), rua = resultadoQuery.getString("rua"), complemento = resultadoQuery.getString("complemento");
                 int numero = resultadoQuery.getInt("numero"), idbairro = resultadoQuery.getInt("id_bairro");
-                endereco = new Endereco(id, numero, cep, rua, complemento, idbairro);
+                endereco = new Endereco( numero, cep, rua, complemento, idbairro);
+                endereco.setId(id);
             }
             conexao.disconect();
             return endereco;

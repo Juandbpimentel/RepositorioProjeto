@@ -52,8 +52,8 @@ public class DAOEstado {
     public boolean insertEstado(Estado estado){
         try {
             conexao.conect();
-            String sqlInsertion = "Insert into public Estado(uf,nome)"+
-                                  "Values "+"("+estado+")";
+            String sqlInsertion = "Insert into Estado(uf,nome)"+
+                                  "Values "+"(\'"+estado.getUf()+"\',\'" +estado.getNome()+"\')";
             boolean resultado = conexao.executaSql(sqlInsertion);
 
             if(!resultado){

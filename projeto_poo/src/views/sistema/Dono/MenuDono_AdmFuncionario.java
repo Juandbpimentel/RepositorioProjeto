@@ -261,12 +261,6 @@ public class MenuDono_AdmFuncionario extends javax.swing.JFrame {
                 dono.administrarSetores();
                 this.dispose();
                 return;
-
-            case "ADM":
-                Pessoa pessoa = (Pessoa) this.dono;
-                pessoa.administrarSetores();
-                this.dispose();
-                return;
                 
         }
         

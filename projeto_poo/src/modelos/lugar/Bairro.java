@@ -8,8 +8,7 @@ public class Bairro {
     private int id_cidade;
     ArrayList<Endereco> enderecos;
 
-    public Bairro(int id, String nome, int id_cidade) {
-        this.id = id;
+    public Bairro( String nome, int id_cidade) {
         this.nome = nome;
         this.id_cidade = id_cidade;
         //this.enderecos = enderecos;

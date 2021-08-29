@@ -27,11 +27,12 @@ public class DAOCidade {
             }else{
                 do{
                     int id;
-                    String est, nome;
+                    String uf, nome;
                     id = resultado.getInt("id");
-                    est = resultado.getString("id_estado");
+                    uf = resultado.getString("uf");
                     nome = resultado.getString("nome");
-                    Cidade cidade = new Cidade(id, nome, est);
+                    Cidade cidade = new Cidade( nome, uf);
+                    cidade.setId(id);
                     arrayCidade.add(cidade);
                 }while (resultado.next());
             }
@@ -60,7 +61,8 @@ public class DAOCidade {
                 throw new NullPointerException("Não foi possível achar nenhuma cidade");
             } else {
                 String nome = resultadoQuery.getString("nome"), uf = resultadoQuery.getString("uf");
-                cidade = new Cidade(id, nome, uf);
+                cidade = new Cidade( nome, uf);
+                cidade.setId(id);
             }
             conexao.disconect();
             return cidade;
@@ -100,11 +102,12 @@ public class DAOCidade {
         try{
             conexao.conect();
 
-            String sqlInsertion = "Insert into public Cidade(nome, uf)"
-                                + "values "+ cidade;
+            String sqlInsertion = "Insert into Cidade(nome, uf)"
+                                + "values (\'"+ cidade.getNome()+"\' , \'"+cidade.getUf()+"\')";
             boolean resultado = conexao.executaSql(sqlInsertion);
 
             if(resultado){
+                System.out.println("Deu certo Cidade");
                 conexao.disconect();
                 return true;
             }

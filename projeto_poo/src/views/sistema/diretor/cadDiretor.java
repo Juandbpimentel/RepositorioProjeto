@@ -299,11 +299,6 @@ public class CadDiretor extends javax.swing.JFrame {
                 dono.administrarEmpresa();
                 this.dispose();
                 return;
-
-            case "ADM":
-                pessoa.administrarEmpresa();
-                this.dispose();
-                return;
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 

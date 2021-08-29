@@ -132,13 +132,15 @@ public class Pessoa implements PessoaGUI, PessoaAlterDB {
     }
     
     @Override
-    public void criarNovoEndereco(){
-        MenuEndereco_Cadastro enderecoCadastro = new MenuEndereco_Cadastro(this.getCpf());
+    public void criarNovoEndereco(String opt){
+        
+        MenuEndereco_Cadastro enderecoCadastro = new MenuEndereco_Cadastro(this.getCpf(), opt);
         
         enderecoCadastro.setVisible(true);
         enderecoCadastro.pack();
         enderecoCadastro.setLocationRelativeTo(null);
         enderecoCadastro.setDefaultCloseOperation(JFrame .EXIT_ON_CLOSE);
+        
     }
     
     public void criarDono(){

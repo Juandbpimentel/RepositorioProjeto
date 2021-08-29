@@ -41,18 +41,20 @@ public class CadastrarCategoria extends javax.swing.JFrame {
         ArrayList<Categoria> categorias = new DAOCategoria().readAll();
 
         DefaultTableModel testetabela = (DefaultTableModel) tabelaDados.getModel();
-        Object[] colunas = {"nome","cnpj","orcamento"};
-        for(int i = 0; i < categorias.size(); i++){
-            final Object[] entrada = new Object[3];
-            entrada[0] = categorias.getNome(); 
-            entrada[1] = categorias.getCnpj();
-            entrada[2] = categorias.getOrcamento();
-        }
-        if(testetabela.getRowCount() > 0){
+        Object[] colunas = {"nome","cnpj","salario"};
+        testetabela.setColumnIdentifiers(colunas);
+        
+        while(testetabela.getRowCount() > 0){
             testetabela.removeRow(testetabela.getRowCount()-1);
         }
-        testetabela.setColumnIdentifiers(colunas);
-        testetabela.addRow(entrada);
+        
+        for(int i = 0; i < categorias.size(); i++){
+            final Object[] entrada = new Object[3];
+            entrada[0] = categorias.get(i).getNome(); 
+            entrada[1] = categorias.get(i).getCnpj_empresa();
+            entrada[2] = categorias.get(i).getSalario();
+            testetabela.addRow(entrada);
+        }
         tabelaDados.setModel(testetabela);
     }
     
