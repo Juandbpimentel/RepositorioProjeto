@@ -217,7 +217,8 @@ public class CadastrarCategoria extends javax.swing.JFrame {
         Categoria categoria = new Categoria(cargaHoraria, nome, descricao, salario, cnpj);
         new DAOCategoria().insertCategoria(categoria);
         System.out.println("Deu certo categoria");
-        
+        dono.administrarEmpresa();
+        this.dispose();
         
         
     }//GEN-LAST:event_jButton1ActionPerformed

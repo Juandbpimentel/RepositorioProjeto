@@ -388,7 +388,7 @@ public class CadFuncionario extends javax.swing.JFrame {
 
             case "DON":
                 Dono dono = new DAODono().readOneDono(pessoa.getCpf());
-                dono.administrarFuncionarios();
+                dono.administrarFuncionarios(setor.getId());
                 this.dispose();
                 break;
 
