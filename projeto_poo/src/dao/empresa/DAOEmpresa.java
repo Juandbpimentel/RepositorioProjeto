@@ -98,12 +98,10 @@ public class DAOEmpresa {
     public Empresa readOnEmpresa(String pk, String opt) {
         try {
             conexao.conect();
-
-            Empresa empresa;
             String queryEmpresa;
             System.out.println("Ola ola");
             if(opt == "cnpj"){
-                queryEmpresa = "SELECT * FROM Empresa WHERE cnpj = " + pk;
+                queryEmpresa = "SELECT * FROM Empresa WHERE cnpj = \'" + pk+"\'";
                 ResultSet resultadoQuery = conexao.executaQuery(queryEmpresa);
                 
                 if (!resultadoQuery.next()) {
@@ -111,11 +109,13 @@ public class DAOEmpresa {
                 } else {
                     String nome = resultadoQuery.getString("nome"), cpf_dono = resultadoQuery.getString("cpf_dono"), cnpj = resultadoQuery.getString("cnpj");
                     Double orcamento = resultadoQuery.getDouble("orcamento");
-                    empresa = new Empresa(nome, orcamento, cnpj, cpf_dono);
+                    Empresa empresa = new Empresa(nome, orcamento, cnpj, cpf_dono);
+                    conexao.disconect();
+                    return empresa;
                 }
             }
             else if(opt == "cpf"){
-                queryEmpresa = "SELECT * FROM Empresa WHERE cpf_dono = " + pk;
+                queryEmpresa = "SELECT * FROM Empresa WHERE cpf_dono = \'" + pk+"\'";
                 ResultSet resultadoQuery = conexao.executaQuery(queryEmpresa);
                             
                 if (!resultadoQuery.next()) {
@@ -123,12 +123,14 @@ public class DAOEmpresa {
                 } else {
                     String nome = resultadoQuery.getString("nome"), cpf_dono = resultadoQuery.getString("cpf_dono"), cnpj = resultadoQuery.getString("cnpj");
                     Double orcamento = resultadoQuery.getDouble("orcamento");
-                    empresa = new Empresa(nome, orcamento, cnpj, cpf_dono);
+                    Empresa empresa = new Empresa(nome, orcamento, cnpj, cpf_dono);
+                    conexao.disconect();
+                    return empresa;
                 }
             }
             
             conexao.disconect();
-            return empresa;
+            return null;
         } catch (SQLException SQLError) {
             System.err.println("Ocorreu um erro na leitura do Banco de Dados: " + SQLError);
             conexao.disconect();

@@ -40,7 +40,7 @@ public class MenuDono_AdmEmpresa extends javax.swing.JFrame {
     
     public void iniciaTabela(){
 
-        empresa = new DAOEmpresa().readOnEmpresa(dono.getCpf(), "cpf");
+        this.empresa = new DAOEmpresa().readOnEmpresa(dono.getCpf(), "cpf");
 
         DefaultTableModel testetabela = (DefaultTableModel) tabelaDados.getModel();
         Object[] colunas = {"nome","orcamento"};
