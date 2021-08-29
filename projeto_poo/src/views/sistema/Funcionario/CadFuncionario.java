@@ -444,7 +444,7 @@ public class CadFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        MenuEndereco_Cadastro enderecoCadastro = new MenuEndereco_Cadastro(this.pessoa.getCpf());
+        MenuEndereco_Cadastro enderecoCadastro = new MenuEndereco_Cadastro(this.pessoa.getCpf(),"");
         
         enderecoCadastro.setVisible(true);
         enderecoCadastro.pack();

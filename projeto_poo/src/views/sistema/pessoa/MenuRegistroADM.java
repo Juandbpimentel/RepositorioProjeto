@@ -15,12 +15,14 @@ import sistema.Conexao;
 import views.sistema.endereco.MenuEndereco_Cadastro;
 import dao.usuarios.DAOPessoa;
 import java.time.LocalDate;
+import views.sistema.menulogin.MenuLogin;
 /**
  *
  * @author Yara
  */
 public class MenuRegistroADM extends javax.swing.JFrame {
     private Pessoa pessoa;
+    private String cnpj;
     public MenuRegistroADM() {
         initComponents();
         populaComboEndereco();
@@ -177,10 +179,10 @@ public class MenuRegistroADM extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(finalizarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(finalizarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(limparButton))
+                                .addComponent(limparButton, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -211,11 +213,11 @@ public class MenuRegistroADM extends javax.swing.JFrame {
                             .addComponent(errorLabelEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(errorLabelLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(errorLabelSenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 128, Short.MAX_VALUE)
                 .addComponent(cadastrarEnderecoButton)
-                .addGap(122, 122, 122))
+                .addGap(128, 128, 128))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,9 +264,9 @@ public class MenuRegistroADM extends javax.swing.JFrame {
                     .addComponent(senhaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errorLabelSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(cadastrarEnderecoButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cadastrarEnderecoButton)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(finalizarButton)
                     .addComponent(limparButton))
@@ -295,7 +297,7 @@ public class MenuRegistroADM extends javax.swing.JFrame {
     }//GEN-LAST:event_loginFieldActionPerformed
 
     private void cadastrarEnderecoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarEnderecoButtonActionPerformed
-        MenuEndereco_Cadastro enderecoCadastro = new MenuEndereco_Cadastro(null);
+        MenuEndereco_Cadastro enderecoCadastro = new MenuEndereco_Cadastro(null,"");
         
         enderecoCadastro.setVisible(true);
         enderecoCadastro.pack();
@@ -360,11 +362,29 @@ public class MenuRegistroADM extends javax.swing.JFrame {
         if(data_nasc.contains("/")){
             String[] data_nascVet = data_nasc.split("/");
             Pessoa pessoaAux = new Pessoa(nome, login, senha, "ADM", cpf, LocalDate.of(Integer.parseInt(data_nascVet[2]), Integer.parseInt(data_nascVet[1]), Integer.parseInt(data_nascVet[0])) , id_endereco );
-            new DAOPessoa().insertPessoa(pessoaAux);
+            if(new DAOPessoa().insertPessoa(pessoaAux)){
+                MenuLogin telaLogin = new MenuLogin();
+
+                telaLogin.setVisible(true);
+                telaLogin.pack();
+                telaLogin.setLocationRelativeTo(null);
+                telaLogin.setDefaultCloseOperation(JFrame .EXIT_ON_CLOSE);
+
+                this.dispose();
+            }
         }else{
             String[] data_nascVet = data_nasc.split("-");
             Pessoa pessoaAux = new Pessoa(nome, login, senha, "ADM", cpf, LocalDate.of(Integer.parseInt(data_nascVet[2]), Integer.parseInt(data_nascVet[1]), Integer.parseInt(data_nascVet[0])) , id_endereco );     
-            new DAOPessoa().insertPessoa(pessoaAux);
+            if(new DAOPessoa().insertPessoa(pessoaAux)){
+                MenuLogin telaLogin = new MenuLogin();
+
+                telaLogin.setVisible(true);
+                telaLogin.pack();
+                telaLogin.setLocationRelativeTo(null);
+                telaLogin.setDefaultCloseOperation(JFrame .EXIT_ON_CLOSE);
+
+                this.dispose();
+            }
         }
         
     }//GEN-LAST:event_finalizarButtonActionPerformed
@@ -421,7 +441,7 @@ public class MenuRegistroADM extends javax.swing.JFrame {
         }else{
             if(comboboxEndereco.getComponentCount() > 0){
                 comboboxEndereco.removeAllItems();
-                comboboxEndereco.addItem("Não há nenhum endereço criado");  
+                comboboxEndereco.addItem("Não há nenhum endereço cadastrado");  
             }
         }
     }

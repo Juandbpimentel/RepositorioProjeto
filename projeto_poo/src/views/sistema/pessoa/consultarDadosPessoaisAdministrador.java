@@ -28,6 +28,7 @@ public class consultarDadosPessoaisAdministrador extends javax.swing.JFrame {
             this.pessoa = new DAOPessoa().readOnePessoa(cpf);
             initComponents();
             iniciaTabela();
+            populaComboEndereco();
         }else{
             initComponents();
         }
@@ -308,7 +309,7 @@ public class consultarDadosPessoaisAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_loginTextFieldActionPerformed
 
     private void criarEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarEnderecoActionPerformed
-        pessoa.criarNovoEndereco();
+        pessoa.criarNovoEndereco("Consultar");
         this.dispose();
     }//GEN-LAST:event_criarEnderecoActionPerformed
 

@@ -4,5 +4,5 @@ public interface PessoaGUI{
      public abstract void consultarDadosPessoais();
      public abstract void consultarLogs();
      public abstract void mostrarMenu();
-     public abstract void criarNovoEndereco();
+     public abstract void criarNovoEndereco(String opt);
 }

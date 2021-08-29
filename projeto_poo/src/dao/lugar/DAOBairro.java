@@ -31,7 +31,8 @@ public class DAOBairro {
                     id = resultado.getInt("id");
                     cid = resultado.getInt("id_cidade");
                     nome = resultado.getString("nome");
-                    Bairro bairro = new Bairro(id, nome, cid);
+                    Bairro bairro = new Bairro( nome, cid);
+                    bairro.setId(id);
                     arrayBairro.add(bairro);
                 }while(resultado.next());
             }
@@ -61,7 +62,8 @@ public class DAOBairro {
             } else{
                 String nome = resultadoQuery.getString("nome");
                 int id_cidade = resultadoQuery.getInt("id_cidade");
-                bairro = new Bairro(id, nome, id_cidade);
+                bairro = new Bairro( nome, id_cidade);
+                bairro.setId(id);
             }
             conexao.disconect();
             return bairro;
@@ -101,14 +103,15 @@ public class DAOBairro {
         try{
             conexao = new Conexao();
             conexao.conect();
-            String sqlInsertion = "Insert into public Bairro(nome, id_cidade)"
-                                + "values " + "(" + bairro + ")";
+            String sqlInsertion = "Insert into Bairro(nome, id_cidade)"
+                                + "values " + "(\'" + bairro.getNome()+"\', \'"+bairro.getId_cidade()+ "\')";
             boolean resultado = conexao.executaSql(sqlInsertion);
 
             if(!resultado){
                 conexao.disconect();
                 return false;
             }
+            System.out.println("Deu certo Bairro");
             conexao.disconect();
             return true;
             

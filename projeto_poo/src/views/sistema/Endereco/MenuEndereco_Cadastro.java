@@ -11,6 +11,7 @@ import dao.lugar.DAOEstado;
 import dao.usuarios.DAOPessoa;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 import modelos.lugar.Bairro;
 import modelos.lugar.Cidade;
 import modelos.lugar.Endereco;
@@ -29,11 +30,13 @@ import views.sistema.pessoa.MenuRegistroADM;
  */
 public class MenuEndereco_Cadastro extends javax.swing.JFrame {
     private Pessoa pessoa;
+    String opt;
     /**
      * Creates new form MenuEndereco_Cadastro
      */
-    public MenuEndereco_Cadastro(String cpf) {
+    public MenuEndereco_Cadastro(String cpf, String opt) {
         if(cpf != null){
+            this.opt = opt;
             this.pessoa = new DAOPessoa().readOnePessoa(cpf);
             initComponents();
             populaComboEndereco();
@@ -360,15 +363,18 @@ public class MenuEndereco_Cadastro extends javax.swing.JFrame {
         Cidade cidade = new Cidade( cidadeField.getText(), estadoSplit[1]);
         DAOCidade daoCidade = new DAOCidade();
         daoCidade.insertCidade(cidade);
+        
         ArrayList<Cidade> cidades = daoCidade.readAll();
         
         int id_cidade = 0;
         
         for (Cidade cidade1 : cidades) {
-            if(cidade1.equals(cidade.getNome()) && cidade1.equals(cidade.getUf())){
+            if(cidade1.getNome().equals(cidade.getNome()) && cidade1.getUf().equals(cidade.getUf())){
                 id_cidade = cidade1.getId();
             }
         }
+        
+        System.out.println(id_cidade);
         
         Bairro bairro = new Bairro( cidadeField.getText(), id_cidade);
         DAOBairro daoBairro = new DAOBairro();
@@ -378,10 +384,13 @@ public class MenuEndereco_Cadastro extends javax.swing.JFrame {
         int id_bairro = 0;
         
         for (Bairro bairro1 : bairros) {
+            System.out.println("teste");
             if(bairro1.getNome().equals(bairro.getNome()) && bairro1.getId_cidade() == bairro.getId_cidade() ){
+                System.out.println(bairro1.getId());
                 id_bairro = bairro1.getId();
             }
         }
+        
         
         String rua = ruaField.getText(),
                complemento = complementoField.getText(),
@@ -391,10 +400,73 @@ public class MenuEndereco_Cadastro extends javax.swing.JFrame {
         
         Endereco endereco = new Endereco(numero, cep, rua, complemento, id_bairro);    
         DAOEndereco dao = new DAOEndereco();
-        dao.insertEndereco(endereco);    
+        if(dao.insertEndereco(endereco)){
+            if(pessoa == null){
+                MenuRegistroADM menu = new MenuRegistroADM();
+
+                menu.setVisible(true);
+                menu.pack();
+                menu.setLocationRelativeTo(null);
+                menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                this.dispose();
+                return;
+            }
+
+            switch (pessoa.getTipo()) {
+                case "DIR":
+                    Diretor diretor =(Diretor) pessoa;
+                    diretor.consultarDadosPessoais();
+                    this.dispose();
+                    break;
+
+                case "DON":
+                    Dono dono = (Dono) pessoa;
+                    dono.consultarDadosPessoais();
+                    this.dispose();
+                    break;
+
+                case "GER":
+                    Gerente gerente = (Gerente) pessoa;
+                    gerente.consultarDadosPessoais();
+                    this.dispose();
+                    break;
+                case "EST":
+                    Estagiario estagiario = (Estagiario) pessoa;
+                    estagiario.consultarDadosPessoais();
+                    this.dispose();
+                    break;
+                case "FUN":
+                    Funcionario funcionario =(Funcionario) pessoa;
+                    funcionario.consultarDadosPessoais();
+                    this.dispose();
+                    break;
+                case "ADM":
+                    if(opt.equals("CadDono")){
+                        pessoa.criarDono();
+                        this.dispose();
+                        break;
+                    }else{
+                        pessoa.consultarDadosPessoais();
+                        this.dispose();
+                        break;
+                    }
+            }
+        }
+        
     }//GEN-LAST:event_cadastrarButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        if(pessoa == null){
+                MenuRegistroADM menu = new MenuRegistroADM();
+
+                menu.setVisible(true);
+                menu.pack();
+                menu.setLocationRelativeTo(null);
+                menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                this.dispose();
+                return;
+        }
+
         switch (pessoa.getTipo()) {
             case "DIR":
                 Diretor diretor =(Diretor) pessoa;
@@ -424,8 +496,14 @@ public class MenuEndereco_Cadastro extends javax.swing.JFrame {
                 this.dispose();
                 break;
             case "ADM":
-                pessoa.consultarDadosPessoais();
-                this.dispose();
+                if(opt.equals("CadDono")){
+                    pessoa.criarDono();
+                    this.dispose();
+                    break;
+                }else{
+                    pessoa.consultarDadosPessoais();
+                    this.dispose();
+                }
                 break;
         }
     }//GEN-LAST:event_backButtonActionPerformed
@@ -501,7 +579,7 @@ public class MenuEndereco_Cadastro extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuEndereco_Cadastro(null).setVisible(true);
+                new MenuEndereco_Cadastro(null,null).setVisible(true);
             }
         });
     }
