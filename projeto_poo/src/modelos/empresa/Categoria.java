@@ -5,8 +5,7 @@ public class Categoria {
     private String nome,descricao, cnpj_empresa;
     private Double salario;
 
-    public Categoria(int id, int carga, String nome, String descricao, double salario, String cnpj) {
-        this.id = id;
+    public Categoria( int carga, String nome, String descricao, double salario, String cnpj) {
         this.carga_horaria = carga;
         this.nome = nome;
         this.descricao = descricao;

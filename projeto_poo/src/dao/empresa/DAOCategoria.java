@@ -40,7 +40,8 @@ public class DAOCategoria {
 
                     salario = busca.getDouble("salario");
 
-                    Categoria categoria = new Categoria(id, carga_horaria, nome, descricao, salario, cnpj_empresa);
+                    Categoria categoria = new Categoria( carga_horaria, nome, descricao, salario, cnpj_empresa);
+                    categoria.setId(id);
                     arrayCategoria.add(categoria);
                     
                 } while (busca.next());
@@ -96,7 +97,8 @@ public class DAOCategoria {
             } else{
                 String nome = resultadoQuery.getString("nome"), descricao = resultadoQuery.getString("descricao"), cnpj = resultadoQuery.getString("cpnj_empresa");
                 int salario = resultadoQuery.getInt("salario"), carga = resultadoQuery.getInt("carga_horaria");
-                categoria = new Categoria(id, carga, nome, descricao, salario, cnpj);
+                categoria = new Categoria( carga, nome, descricao, salario, cnpj);
+                categoria.setId(id);
             }
             conexao.disconect();
             return categoria;
