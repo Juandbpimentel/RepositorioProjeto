@@ -259,7 +259,7 @@ public class MenuDono_AdmEstagiario extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        dono.administrarSetores();
+        dono.administrarSetores("0");
         this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
 
