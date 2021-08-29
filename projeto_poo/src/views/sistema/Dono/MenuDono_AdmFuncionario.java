@@ -49,7 +49,7 @@ public class MenuDono_AdmFuncionario extends javax.swing.JFrame {
             return;
         }
         DefaultTableModel testetabela = (DefaultTableModel) tabelaDados.getModel();
-        Object[] colunas = {"Nome","Id Categoria","Id Setor", "Dia do Pagamento", "Orçamento"};
+        Object[] colunas = {"Nome","Id Categoria","Id Setor", "Dia do Pagamento", "Bonificaçao"};
         testetabela.setColumnIdentifiers(colunas);
         while(testetabela.getRowCount() > 0){
             testetabela.removeRow(testetabela.getRowCount()-1);

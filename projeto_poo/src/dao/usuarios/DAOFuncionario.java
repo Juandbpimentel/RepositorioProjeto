@@ -60,8 +60,8 @@ public class DAOFuncionario {
                             senha = resultQueryPessoa.getString("senha");
                             tipo = resultQueryPessoa.getString("tipo");
                             id_endereco = resultQueryPessoa.getInt("id_endereco");
-                            data_nasc = resultQueryPessoa.getInt("data_nasc");
-                            id_endereco = resultQueryPessoa.getInt(id_endereco);                		
+                            data_nasc = resultQueryPessoa.getDate("data_nasc");
+                            id_endereco = resultQueryPessoa.getInt("id_endereco");                		
                         }
                         while(resultQueryPessoa.next());
                     }
