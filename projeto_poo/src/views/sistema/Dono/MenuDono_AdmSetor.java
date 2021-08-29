@@ -393,7 +393,8 @@ public class MenuDono_AdmSetor extends javax.swing.JFrame {
     }//GEN-LAST:event_backDonoButtonActionPerformed
 
     private void adicionarSetorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarSetorButtonActionPerformed
-        :
+        dono.adicionarSetores(this.empresa.getCnpj());
+        this.dispose();
     }//GEN-LAST:event_adicionarSetorButtonActionPerformed
 
     private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed

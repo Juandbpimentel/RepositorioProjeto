@@ -19,6 +19,7 @@ import views.sistema.empresa.CadEmpresa;
 import views.sistema.endereco.MenuEndereco_Cadastro;
 import views.sistema.estagiario.CadEstagiario;
 import views.sistema.funcionario.CadFuncionario;
+import views.sistema.setor.cadSetor;
 
 
 public class Dono extends Pessoa implements DonoGUI,DonoAlterDB {
@@ -86,13 +87,13 @@ public class Dono extends Pessoa implements DonoGUI,DonoAlterDB {
     //CRIAR ESSES
     
     @Override
-    public void adicionarSetores() {
-         menu = new MenuDono_AdmSetor(cnpj, this.cpf); 
+    public void adicionarSetores(String cnpj) {
+        cadSetor cadastrarSetor = new cadSetor(cnpj, this.cpf); 
         
-        menu.setVisible(true);
-        menu.pack();
-        menu.setLocationRelativeTo(null);
-        menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        cadastrarSetor.setVisible(true);
+        cadastrarSetor.pack();
+        cadastrarSetor.setLocationRelativeTo(null);
+        cadastrarSetor.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
     @Override
@@ -224,7 +225,5 @@ public class Dono extends Pessoa implements DonoGUI,DonoAlterDB {
         menu.setLocationRelativeTo(null);
         menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-
-
 
 }

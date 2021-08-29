@@ -5,7 +5,7 @@ public interface DonoAlterDB {
     public abstract void demitirDiretor();
     public abstract void alterarNomeEmpresa();
     public abstract void alterarOrcamentoEmpresa();
-    public abstract void adicionarSetores();
+    public abstract void adicionarSetores(String cnpj);
     public abstract void alterarNomeSetor();
     public abstract void alterarOrcamentoSetor();
     public abstract void demitirFuncionario();
