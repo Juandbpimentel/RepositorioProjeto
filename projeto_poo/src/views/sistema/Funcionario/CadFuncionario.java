@@ -380,10 +380,6 @@ public class CadFuncionario extends javax.swing.JFrame {
                 gerente.administrarFuncionarios();
                 this.dispose();
                 break;
-            case "ADM":
-                pessoa.administrarFuncionarios();
-                this.dispose();
-                break;
         }
         
     }//GEN-LAST:event_backbuttonActionPerformed

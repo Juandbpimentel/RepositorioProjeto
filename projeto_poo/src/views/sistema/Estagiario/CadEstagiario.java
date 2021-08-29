@@ -311,11 +311,7 @@ public class CadEstagiario extends javax.swing.JFrame {
                 Gerente gerente = (Gerente) pessoa;
                 gerente.administrarEstagiarios();
                 this.dispose();
-                break;
-            case "ADM":
-                pessoa.administrarEstagiarios();
-                this.dispose();
-                break;    
+                break; 
         }
     }//GEN-LAST:event_backButtonActionPerformed
 

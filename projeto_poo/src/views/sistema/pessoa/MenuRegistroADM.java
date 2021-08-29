@@ -8,13 +8,11 @@ package views.sistema.pessoa;
 import dao.lugar.DAOEndereco;
 import javax.swing.JFrame;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import modelos.lugar.Endereco;
 import modelos.usuarios.Pessoa;
 import sistema.Conexao;
 import views.sistema.endereco.MenuEndereco_Cadastro;
-import java.util.Date;
 import dao.usuarios.DAOPessoa;
 import java.time.LocalDate;
 /**

@@ -5,27 +5,22 @@
  */
 package views.sistema.pessoa;
 
-import dao.empresa.DAOEmpresa;
 import javax.swing.JFrame;
-import modelos.usuarios.Dono;
 import modelos.usuarios.Pessoa;
-import dao.usuarios.DAODono;
-import java.util.ArrayList;
-import modelos.empresa.Empresa;
 import views.sistema.menulogin.MenuLogin;
-import dao.usuarios.DAODono;
+import dao.usuarios.DAOPessoa;
 /**
  *
  * @author sarah
  */
 public class MenuAdministrador extends javax.swing.JFrame {
-    private Dono dono;
+    private Pessoa pessoa;
     /**
      * Creates new form MenuDono
      */
     public MenuAdministrador(String cpf) {
         if(cpf != null){
-            this.dono = new DAODono().readOneDono(cpf);
+            this.pessoa = new DAOPessoa().readOnePessoa(cpf);
             initComponents();
         }else{
             initComponents();
@@ -42,25 +37,26 @@ public class MenuAdministrador extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        admEmpresaButton = new javax.swing.JButton();
+        createDonoEmpresaButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
+        consultarDadosButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Poppins", 3, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 153, 0));
-        jLabel1.setText("Menu do Dono");
+        jLabel1.setText("Menu de Administrador");
 
-        admEmpresaButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        admEmpresaButton.setText("Administrar Empresa");
-        admEmpresaButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        createDonoEmpresaButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        createDonoEmpresaButton.setText("Criar Dono e Empresa");
+        createDonoEmpresaButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                admEmpresaButtonMouseClicked(evt);
+                createDonoEmpresaButtonMouseClicked(evt);
             }
         });
-        admEmpresaButton.addActionListener(new java.awt.event.ActionListener() {
+        createDonoEmpresaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                admEmpresaButtonActionPerformed(evt);
+                createDonoEmpresaButtonActionPerformed(evt);
             }
         });
 
@@ -72,47 +68,61 @@ public class MenuAdministrador extends javax.swing.JFrame {
             }
         });
 
+        consultarDadosButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        consultarDadosButton.setText("Consultar Dados Pessoais");
+        consultarDadosButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                consultarDadosButtonMouseClicked(evt);
+            }
+        });
+        consultarDadosButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultarDadosButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(0, 49, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(107, 107, 107)
-                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addComponent(jLabel1)))
-                .addContainerGap(84, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(admEmpresaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(108, 108, 108))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(createDonoEmpresaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(consultarDadosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(admEmpresaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(consultarDadosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(createDonoEmpresaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(12, 12, 12))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void admEmpresaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admEmpresaButtonActionPerformed
+    private void createDonoEmpresaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createDonoEmpresaButtonActionPerformed
         
-    }//GEN-LAST:event_admEmpresaButtonActionPerformed
+    }//GEN-LAST:event_createDonoEmpresaButtonActionPerformed
 
-    private void admEmpresaButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admEmpresaButtonMouseClicked
-        dono.administrarEmpresa();
+    private void createDonoEmpresaButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createDonoEmpresaButtonMouseClicked
+        pessoa.criarDono();
         this.dispose();
-    }//GEN-LAST:event_admEmpresaButtonMouseClicked
+    }//GEN-LAST:event_createDonoEmpresaButtonMouseClicked
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         MenuLogin telaLogin = new MenuLogin();
@@ -122,8 +132,17 @@ public class MenuAdministrador extends javax.swing.JFrame {
         telaLogin.setLocationRelativeTo(null);
         telaLogin.setDefaultCloseOperation(JFrame .EXIT_ON_CLOSE);
 
-        super.dispose();
+        this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void consultarDadosButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_consultarDadosButtonMouseClicked
+        pessoa.consultarDadosPessoais();
+        this.dispose();
+    }//GEN-LAST:event_consultarDadosButtonMouseClicked
+
+    private void consultarDadosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarDadosButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_consultarDadosButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,8 +181,9 @@ public class MenuAdministrador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton admEmpresaButton;
     private javax.swing.JButton backButton;
+    private javax.swing.JButton consultarDadosButton;
+    private javax.swing.JButton createDonoEmpresaButton;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

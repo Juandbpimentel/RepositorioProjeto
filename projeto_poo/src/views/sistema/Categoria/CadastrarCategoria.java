@@ -6,6 +6,8 @@
 package views.sistema.categoria;
 
 
+import dao.usuarios.DAODiretor;
+import dao.usuarios.DAODono;
 import dao.usuarios.DAOPessoa;
 import modelos.usuarios.Diretor;
 import modelos.usuarios.Dono;
@@ -222,17 +224,18 @@ public class CadastrarCategoria extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         switch (pessoa.getTipo()) {
-            /*case "DIR":
-                Diretor diretor = (Diretor) pessoa;
+            /*
+            case "DIR":
+                Diretor diretor = new DAODiretor().readOneDiretor(pessoa.getCpf());
                 diretor.administrarSetores();
                 this.dispose();
                 break;
-             */
+            */
             case "ADM":
                 pessoa.administrarEmpresa();
                 this.dispose();
                 break;
-
+            
             case "DON":
                 Dono dono = new DAODono().readOneDono(pessoa.getCpf());
                 dono.administrarEmpresa();
