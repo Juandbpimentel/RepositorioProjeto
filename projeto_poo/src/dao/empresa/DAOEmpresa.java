@@ -77,8 +77,8 @@ public class DAOEmpresa {
         try{
             conexao.conect();
 
-            String sqlInsertion = "Insert into public Empresa(nome, orcamento, cnpj, cpf_dono)"
-                                + "values " + "(" + empresa + ")";
+            String sqlInsertion = "Insert into Empresa(nome, orcamento, cnpj, cpf_dono)"
+                                + "values " + "(\'" + empresa.getNome() + "\' , "+empresa.getOrcamento()+",\'"+empresa.getCnpj()+"\',\'"+empresa.getCpf_dono()+"\')";
             boolean resultado = conexao.executaSql(sqlInsertion);
 
             if(!resultado){
