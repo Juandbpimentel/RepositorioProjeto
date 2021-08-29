@@ -16,7 +16,7 @@ public class DAOEstagiario{
 
     public ArrayList<Estagiario> ReadAll(){
         try {
-            ArrayList<Estagiario> arrayEstagiario = new ArrayList<Estagiario>();
+            ArrayList<Estagiario> arrayEstagiario = new ArrayList<>();
             conexao.conect();
 
             String sqlQueryEstagiario = "Select * from Estagiario";
@@ -71,15 +71,17 @@ public class DAOEstagiario{
                 arrayEstagiario.add(estagiario);
                 }while(resultQueryEstagiario.next());
             }
-
+            conexao.disconect();
             return arrayEstagiario;
         } 
         catch (SQLException sqlError) {
-            System.err.println("Ocorreu um erro durante a busca no banco de dados:" +sqlError);            
+            System.err.println("Ocorreu um erro durante a busca no banco de dados:" +sqlError);      
+            conexao.disconect();      
             return null; 
         } 
         catch (Exception geralError){
-            System.err.println("Ocorreu um erro geral:" +geralError);            
+            System.err.println("Ocorreu um erro geral:" +geralError);    
+            conexao.disconect();        
             return null;
         }
     }
@@ -112,16 +114,19 @@ public class DAOEstagiario{
                     int id_endereco = resultadoQueryPessoa.getInt("id_endereco");
 
                     Estagiario estagiario = new Estagiario(nome, login, senha, tipo, cpf, data_nasc.toLocalDate(), inicio_estagio.toLocalDate(), tempo_estagio, dia_pagamento, id_categoria, id_setor, id_endereco);
+                    conexao.disconect();
                     return estagiario;
                 }
             }
 
         }catch (SQLException sqlError) {
-            System.err.println("Ocorreu um erro durante a busca no banco de dados:" +sqlError);            
+            System.err.println("Ocorreu um erro durante a busca no banco de dados:" +sqlError);
+            conexao.disconect();            
             return null; 
         } 
         catch (Exception geralError){
-            System.err.println("Ocorreu um erro geral:" +geralError);            
+            System.err.println("Ocorreu um erro geral:" +geralError);
+            conexao.disconect();            
             return null;
         }
     }
@@ -132,25 +137,24 @@ public class DAOEstagiario{
             conexao.conect();
             String sqlInsertion = "Insert into public.Estagiario(cpf, inicio_estagio, tempo_estagio, dia_pagamento, id_categoria, id_setor, id_endereco)\n"
                                 +"values (\'"+estagiario.getCpf()+"\', "+estagiario.getInicio_estagio()+", \'"+estagiario.getTempo_estagio()+", "+estagiario.getDia_pagamento()+", "+estagiario.getId_categoria()+", "+estagiario.getId_setor()+", "+estagiario.getId_endereco()+")";
-            int resultado = conexao.executaSql(sqlInsertion);
-            return (resultado != 0);
-        }
-            catch(SQLException e){
-            System.err.println("Houve um erro durante a inserção no banco de dados: "+e);
-            return false;
+            boolean resultado = conexao.executaSql(sqlInsertion);
+
+            if(resultado){
+                conexao.disconect();
+                return true;
             }
-            catch(Exception e){
+            conexao.disconect();
+            return false;
+        } catch(Exception e){
             System.err.println("Houve um erro geral: "+e);
             return false;
-            }
+        }
         
     }
 
-    public boolean updateEstagiario(String opt, int cpf ,String dado){
+    public boolean updateEstagiario(String opt, String cpf ,String dado){
         try {
-            // 
-            //
-            
+
             String sqlUpdate;
 
             switch (opt) {
@@ -237,8 +241,9 @@ public class DAOEstagiario{
         try{
             conexao.conect();
             String codigoDelete = "delete from estagiario where cpf = "+ cpf;
-            int resultado = conexao.executaSql(codigoDelete);
-            if(resultado != 1){
+            boolean resultado = conexao.executaSql(codigoDelete);
+            
+            if(resultado){
                 System.out.println("Você teve sucesso em deletar o estagiario");
                 conexao.disconect();
                 return true;
@@ -247,10 +252,12 @@ public class DAOEstagiario{
             }
         }catch(SQLException SQLError){
             System.err.println("Houve um erro durante a exclusão do Banco de Dados: " +SQLError);
+            conexao.disconect();
             return false;
         }
         catch(Exception geralError){
             System.err.println("Houve um erro geral: " +geralError);
+            conexao.disconect();
             return false;
         }
         

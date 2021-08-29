@@ -31,7 +31,8 @@ public class DAOBairro {
                     id = resultado.getInt("id");
                     cid = resultado.getInt("id_cidade");
                     nome = resultado.getString("nome");
-                    Bairro bairro = new Bairro(id, nome, cid);
+                    Bairro bairro = new Bairro( nome, cid);
+                    bairro.setId(id);
                     arrayBairro.add(bairro);
                 }while(resultado.next());
             }
@@ -61,7 +62,8 @@ public class DAOBairro {
             } else{
                 String nome = resultadoQuery.getString("nome");
                 int id_cidade = resultadoQuery.getInt("id_cidade");
-                bairro = new Bairro(id, nome, id_cidade);
+                bairro = new Bairro( nome, id_cidade);
+                bairro.setId(id);
             }
             conexao.disconect();
             return bairro;
@@ -80,45 +82,39 @@ public class DAOBairro {
         try{
             conexao.conect();
             String codigoDelete = "delete from bairro where id = "+ id;
-            int resultado = conexao.executaSql(codigoDelete);
-            if(resultado != 1){
+            boolean resultado = conexao.executaSql(codigoDelete);
+            
+            if(resultado){
                 System.out.println("Você teve sucesso em deletar o Bairro");
                 conexao.disconect();
                 return true;
             }
-
-        }catch(SQLException e){
-            System.err.println("Houve um erro durante a exclusão do Banco de Dados: "+e);
+            
             conexao.disconect();
             return false;
-        }catch (Exception e){
+        } catch (Exception e){
             System.err.println("Houve um erro geral: "+e);
             conexao.disconect();
             return false;
         }
-        conexao.disconect();
-        return false;
     }
 
     public boolean insertBairro(Bairro bairro){
         try{
             conexao = new Conexao();
             conexao.conect();
-            String sqlInsertion = "Insert into public Bairro(nome, id_cidade)"
-                                + "values " + "(" + bairro + ")";
-            int resultado = conexao.executaSql(sqlInsertion);
-            
-            if(resultado != 0){
+            String sqlInsertion = "Insert into Bairro(nome, id_cidade)"
+                                + "values " + "(\'" + bairro.getNome()+"\', \'"+bairro.getId_cidade()+ "\')";
+            boolean resultado = conexao.executaSql(sqlInsertion);
+
+            if(!resultado){
                 conexao.disconect();
                 return false;
             }
+            System.out.println("Deu certo Bairro");
             conexao.disconect();
             return true;
             
-        } catch(SQLException SQLError){
-            System.err.println("Ocorreu um erro com Inserção no Banco de Dados: " + SQLError);
-            conexao.disconect();
-            return false;
         } catch(Exception geralError){
             System.err.println("Ocorreu um erro geral: " + geralError);
             conexao.disconect();
@@ -144,7 +140,7 @@ public class DAOBairro {
                     break;
 
                 case "id_cidade":
-                    sqlUpdate = "Update Categoria set id_cidade = \'"+dado+"\' where id = " + id;
+                    sqlUpdate = "Update Categoria set id_cidade = "+dado+" where id = " + id;
                     conexao.executaSql(sqlUpdate);
                     break;
 

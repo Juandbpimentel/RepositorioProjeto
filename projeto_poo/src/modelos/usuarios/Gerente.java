@@ -2,8 +2,13 @@ package modelos.usuarios;
 
 import interfaces.alterDB.GerenteAlterDB;
 import interfaces.gui.GerenteGUI;
+import views.sistema.gerente.MenuGerente;
+import views.sistema.gerente.MenuGerente_AdmEstagiario;
+import views.sistema.gerente.MenuGerente_AdmFuncionario;
 
 import java.time.LocalDate;
+
+import javax.swing.JFrame;
 
 public class Gerente extends Funcionario implements GerenteGUI,GerenteAlterDB {
     private double bonificacao_gerente;
@@ -38,29 +43,8 @@ public class Gerente extends Funcionario implements GerenteGUI,GerenteAlterDB {
     /*
         GUI
     */
-    @Override
-    public void administrarFuncionarios() {
 
-    }
-
-    @Override
-    public void administrarEstagiarios() {
-
-    }
-
-    @Override
-    public void consultarFuncionarios() {
-
-    }
-
-    @Override
-    public void consultarEstagiarios() {
-
-    }
-
-/*
-    AlterDB
-*/
+    //NÃO CRIAR MAIS
     @Override
     public void demitirFuncionario() {
 
@@ -71,15 +55,7 @@ public class Gerente extends Funcionario implements GerenteGUI,GerenteAlterDB {
 
     }
 
-    @Override
-    public void admitirFuncionario() {
-
-    }
-
-    @Override
-    public void admitirEstagiario() {
-
-    }
+    
 
     @Override
     public void dispensarEstagiario() {
@@ -91,6 +67,47 @@ public class Gerente extends Funcionario implements GerenteGUI,GerenteAlterDB {
 
     }
 
+    //CRIAR
+
+    @Override
+    public void administrarFuncionarios() {
+        MenuGerente_AdmFuncionario administrarFuncionario = new MenuGerente_AdmFuncionario(this.getCpf());
+        
+        administrarFuncionario.setVisible(true);
+        administrarFuncionario.pack();
+        administrarFuncionario.setLocationRelativeTo(null);
+        administrarFuncionario.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    
+    @Override
+    public void admitirFuncionario() {
+
+    }
+
+    @Override
+    public void admitirEstagiario() {
+
+    }
+
+    @Override
+    public void administrarEstagiarios() {
+        MenuGerente_AdmEstagiario administrarEstagiarios = new MenuGerente_AdmEstagiario(this.getCpf());
+        
+        administrarEstagiarios.setVisible(true);
+        administrarEstagiarios.pack();
+        administrarEstagiarios.setLocationRelativeTo(null);
+        administrarEstagiarios.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    @Override
+    public void mostrarMenu() {
+        MenuGerente menu = new MenuGerente(this.getCpf()); 
+        
+        menu.setVisible(true);
+        menu.pack();
+        menu.setLocationRelativeTo(null);
+        menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
 
 
 }

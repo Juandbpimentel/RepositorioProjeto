@@ -13,13 +13,13 @@ returns trigger as $BODY$
 							  login = new.login,
 							  senha = new.senha,
 							  tipo = new.tipo,
-							  id_endereco = new.tipo
+							  id_endereco = new.id_endereco
 			where cpf = old.cpf;
 			if not found then return null; end if;
 
-			new.last_updated = now();
+			NEW.last_updated = now();
 			
-			UPDATE LOG_INTERACAO SET login = NEW.login 
+			UPDATE LOG_INTERACAO SET login_pessoa = NEW.login 
 			where login_pessoa = old.login;
 			
 			return new;
@@ -27,7 +27,7 @@ returns trigger as $BODY$
 			DELETE FROM pessoa where cpf = old.cpf;
 			if not found then return null; end if;
 
-			old.last_updated = now();
+			OLD.last_updated = now();
 
 			delete from log_interacao
 			where login_pessoa = old.login;
@@ -50,11 +50,11 @@ returns trigger as $BODY$
 							  login = new.login,
 							  senha = new.senha,
 							  tipo = new.tipo,
-							  id_endereco = new.tipo
+							  id_endereco = new.id_endereco
 			where cpf = old.cpf;
 			if not found then return null; end if;
 
-			new.last_updated = now();
+			NEW.last_updated = now();
 			
 			update estagiario set cpf = new.cpf
 			where cpf = old.cpf;
@@ -64,7 +64,7 @@ returns trigger as $BODY$
 			DELETE FROM pessoa where cpf = old.cpf;
 			if not found then return null; end if;
 
-			old.last_updated = now();
+			OLD.last_updated = now();
 			
 			delete from estagiario where cpf = old.cpf;
 			return old;
@@ -86,11 +86,11 @@ returns trigger as $BODY$
 							  login = new.login,
 							  senha = new.senha,
 							  tipo = new.tipo,
-							  id_endereco = new.tipo
+							  id_endereco = new.id_endereco
 			where cpf = old.cpf;
 			if not found then return null; end if;
 
-			new.last_updated = now();
+			NEW.last_updated = now();
 			
 			update funcionario set cpf = new.cpf
 			where cpf = old.cpf;
@@ -99,7 +99,7 @@ returns trigger as $BODY$
 			DELETE FROM pessoa where cpf = old.cpf;
 			if not found then return null; end if;
 
-			old.last_updated = now();
+			OLD.last_updated = now();
 			
 			delete from funcionario where cpf = old.cpf;
 			
@@ -122,11 +122,11 @@ returns trigger as $BODY$
 							  login = new.login,
 							  senha = new.senha,
 							  tipo = new.tipo,
-							  id_endereco = new.tipo
+							  id_endereco = new.id_endereco
 			where cpf = old.cpf;
 			if not found then return null; end if;
 
-			new.last_updated = now();
+			NEW.last_updated = now();
 			
 			update dono set cpf = new.cpf
 			where cpf = old.cpf;
@@ -136,7 +136,7 @@ returns trigger as $BODY$
 			DELETE FROM pessoa where cpf = old.cpf;
 			if not found then return null; end if;
 
-			old.last_updated = now();
+			OLD.last_updated = now();
 			
 			delete from dono where cpf = old.cpf;
 			
@@ -158,11 +158,11 @@ returns trigger as $BODY$
 							  login = new.login,
 							  senha = new.senha,
 							  tipo = new.tipo,
-							  id_endereco = new.tipo
+							  id_endereco = new.id_endereco
 			where cpf = old.cpf;
 			if not found then return null; end if;
 
-			new.last_updated = now();
+			NEW.last_updated = now();
 			
 			if (new.id_endereco != old.id_endereco) then
 				delete from endereco
@@ -174,7 +174,7 @@ returns trigger as $BODY$
 			DELETE FROM pessoa where cpf = old.cpf;
 			if not found then return null; end if;
 
-			old.last_updated = now();
+			OLD.last_updated = now();
 			
 			delete from endereco where id = old.id_endereco;
 			
@@ -190,17 +190,15 @@ create or replace function empresa_categoria_func()
 returns trigger as $BODY$
 begin
 	if(TG_OP = 'UPDATE') then 
-		update empresa set cnpj = new.cnpj, 
-						   numero = new.numero,
-						   cep = new.cep,
-						   rua = new.rua,
-						   complemento = new.complemento,
-						   id_bairro = new.id_bairro
-		where cnpj = old.cnpj;
+		UPDATE empresa SET orcamento = new.orcamento,
+							  cnpj = new.cnpj,
+							  nome = new.nome,
+							  cpf_dono = new.cpf_dono
+		WHERE cnpj = OLD.cnpj;
 		
 		if not found then return null; end if;
 		
-		new.last_updated = now();
+		NEW.last_updated = now();
 		
 		update categoria set cnpj_empresa = new.cnpj
 		where cnpj_empresa = old.cnpj;
@@ -211,7 +209,7 @@ begin
 		
 		if not found then return null; end if;
 		
-		old.last_updated = now();
+		OLD.last_updated = now();
 		
 		delete from categoria
 		where cnpj_empresa = old.cnpj;
@@ -237,7 +235,7 @@ returns trigger as $BODY$
 
 			if not found then return null; end if;
 
-			new.last_updated = now();
+			NEW.last_updated = now();
 
 			update diretor set id_categoria = new.id
 			where id_categoria = old.id;
@@ -248,7 +246,7 @@ returns trigger as $BODY$
 			
 			if not found then return null; end if;
 		
-			old.last_updated = now();
+			OLD.last_updated = now();
 			
 			delete from diretor
 			where id_categoria = old.id;
@@ -276,7 +274,7 @@ returns trigger as $BODY$
 
 			if not found then return null; end if;
 
-			new.last_updated = now();
+			NEW.last_updated = now();
 
 			update estagiario set id_categoria = new.id
 			where id_categoria = old.id;
@@ -287,7 +285,7 @@ returns trigger as $BODY$
 			
 			if not found then return null; end if;
 		
-			old.last_updated = now();
+			OLD.last_updated = now();
 			
 			delete from estagiario
 			where id_categoria = old.id;
@@ -312,7 +310,7 @@ returns trigger as $BODY$
 
 			if not found then return null; end if;
 
-			new.last_updated = now();
+			NEW.last_updated = now();
 
 			update funcionario set id_categoria = new.id
 			where id_categoria = old.id;
@@ -325,7 +323,7 @@ returns trigger as $BODY$
 			
 			if not found then return null; end if;
 		
-			old.last_updated = now();
+			OLD.last_updated = now();
 			
 			delete from funcionario
 			where id_categoria = old.id;
@@ -348,7 +346,7 @@ returns trigger as $BODY$
 
 			if not found then return null; end if;
 
-			new.last_updated = now();
+			NEW.last_updated = now();
 
 			update endereco set id_bairro = new.id
 			where id_bairro = old.id;
@@ -359,7 +357,7 @@ returns trigger as $BODY$
 			
 			if not found then return null; end if;
 		
-			old.last_updated = now();
+			OLD.last_updated = now();
 			
 			delete from endereco
 			where id_bairro = old.id;
@@ -383,7 +381,7 @@ returns trigger as $BODY$
 
 			if not found then return null; end if;
 
-			new.last_updated = now();
+			NEW.last_updated = now();
 
 			update bairro set id_cidade = new.id
 			where id_cidade = old.id;
@@ -394,7 +392,7 @@ returns trigger as $BODY$
 			
 			if not found then return null; end if;
 		
-			old.last_updated = now();
+			OLD.last_updated = now();
 			
 			delete from bairro
 			where id_cidade = old.id;
@@ -424,7 +422,7 @@ $$
                             login = new.login,
                             senha = new.senha,
                             tipo = new.tipo,
-                            id_endereco = new.tipo
+                            id_endereco = new.id_endereco
             WHERE cpf = OLD.cpf;
             IF NOT FOUND THEN RETURN NULL; END IF;
 
@@ -572,7 +570,7 @@ LANGUAGE 'plpgsql';
 -- select * from setor
 -- empresa -> setor
 
-CREATE OR REPLACE FUNCTION EMPRESA_CATEGORIA_FUNC()
+CREATE OR REPLACE FUNCTION EMPRESA_SETOR_FUNC()
 RETURNS TRIGGER AS
 $$
 	BEGIN
@@ -707,7 +705,7 @@ $$
 
 			NEW.last_updated = now();
 
-			UPDATE gerente SET cpf = NEW.cpf
+			UPDATE gerencia SET cpf = NEW.cpf
 			WHERE cpf = OLD.cpf;
 			RETURN NEW;
 	
@@ -718,7 +716,7 @@ $$
 		
 			OLD.last_updated = now();
 			
-            DELETE FROM gerente WHERE cpf = OLD.cpf;
+            DELETE FROM gerencia WHERE cpf = OLD.cpf;
 			
 			return old;
 		END IF;
@@ -815,7 +813,6 @@ LANGUAGE 'plpgsql';
 CREATE CONSTRAINT TRIGGER pessoa_log_interacao
 after UPDATE OR DELETE ON Pessoa
 DEFERRABLE INITIALLY DEFERRED
-DEFERRABLE INITIALLY DEFERRED
 FOR EACH ROW EXECUTE PROCEDURE pessoa_log_interacao_func();
 
 
@@ -824,7 +821,6 @@ FOR EACH ROW EXECUTE PROCEDURE pessoa_log_interacao_func();
 CREATE CONSTRAINT TRIGGER pessoa_estagiario
 after UPDATE OR DELETE ON Pessoa
 DEFERRABLE INITIALLY DEFERRED
-DEFERRABLE INITIALLY DEFERRED
 FOR EACH ROW EXECUTE PROCEDURE pessoa_estagiario_func();
 
 
@@ -832,7 +828,6 @@ FOR EACH ROW EXECUTE PROCEDURE pessoa_estagiario_func();
 --Pessoa ->funcionario
 CREATE CONSTRAINT TRIGGER pessoa_funcionario
 after UPDATE OR DELETE ON Pessoa
-DEFERRABLE INITIALLY DEFERRED
 DEFERRABLE INITIALLY DEFERRED
 FOR EACH ROW EXECUTE PROCEDURE pessoa_funcionario_func();
 
@@ -852,7 +847,6 @@ FOR EACH ROW EXECUTE PROCEDURE pessoa_dono_func();
 CREATE CONSTRAINT TRIGGER pessoa_diretor
 after UPDATE OR DELETE ON Pessoa
 DEFERRABLE INITIALLY DEFERRED
-DEFERRABLE INITIALLY DEFERRED
 FOR EACH ROW EXECUTE PROCEDURE pessoa_diretor_func();
 
 
@@ -861,7 +855,6 @@ FOR EACH ROW EXECUTE PROCEDURE pessoa_diretor_func();
 -- Pessoa -> endereco
 CREATE CONSTRAINT TRIGGER pessoa_endereco
 after UPDATE OR DELETE ON Pessoa
-DEFERRABLE INITIALLY DEFERRED
 DEFERRABLE INITIALLY DEFERRED
 FOR EACH ROW EXECUTE PROCEDURE pessoa_endereco_func();
 
@@ -925,7 +918,7 @@ FOR EACH ROW EXECUTE PROCEDURE setor_funcionario_func();
 
 -- setor -> gerencia
 CREATE CONSTRAINT TRIGGER SETOR_GERENCIA_FUNC
-after UPDATE OR DELETE ON Pessoa
+after UPDATE OR DELETE ON setor
 DEFERRABLE INITIALLY DEFERRED
 FOR EACH ROW EXECUTE PROCEDURE SETOR_GERENCIA_FUNC();
 
@@ -933,7 +926,7 @@ FOR EACH ROW EXECUTE PROCEDURE SETOR_GERENCIA_FUNC();
 
 -- setor -> estagiario
 CREATE CONSTRAINT TRIGGER SETOR_ESTAGIARIO_FUNC
-after UPDATE OR DELETE ON Pessoa
+after UPDATE OR DELETE ON setor
 DEFERRABLE INITIALLY DEFERRED
 FOR EACH ROW EXECUTE PROCEDURE SETOR_ESTAGIARIO_FUNC();
 
@@ -941,11 +934,11 @@ FOR EACH ROW EXECUTE PROCEDURE SETOR_ESTAGIARIO_FUNC();
 
 
 -- empresa -> setor
-CREATE CONSTRAINT TRIGGER EMPRESA_CATEGORIA
-after UPDATE OR DELETE ON Pessoa
+CREATE CONSTRAINT TRIGGER EMPRESA_SETOR
+after UPDATE OR DELETE ON empresa
 DEFERRABLE INITIALLY DEFERRED
 DEFERRABLE INITIALLY DEFERRED
-FOR EACH ROW EXECUTE PROCEDURE EMPRESA_CATEGORIA_FUNC();
+FOR EACH ROW EXECUTE PROCEDURE EMPRESA_SETOR_FUNC();
 
 
 
@@ -961,7 +954,7 @@ FOR EACH ROW EXECUTE PROCEDURE empresa_categoria_func();
 
 -- funcionario -> treina
 CREATE CONSTRAINT TRIGGER FUNCIONARIO_TREINA
-after UPDATE OR DELETE ON Pessoa
+after UPDATE OR DELETE ON funcionario
 DEFERRABLE INITIALLY DEFERRED
 FOR EACH ROW EXECUTE PROCEDURE FUNCIONARIO_TREINA_FUNC();
 
@@ -970,7 +963,7 @@ FOR EACH ROW EXECUTE PROCEDURE FUNCIONARIO_TREINA_FUNC();
 
 -- funcionario -> gerente
 CREATE CONSTRAINT TRIGGER FUNCIONARIO_GERENTE
-after UPDATE OR DELETE ON Pessoa
+after UPDATE OR DELETE ON funcionario
 DEFERRABLE INITIALLY DEFERRED
 FOR EACH ROW EXECUTE PROCEDURE FUNCIONARIO_GERENTE_FUNC();
 
@@ -979,7 +972,7 @@ FOR EACH ROW EXECUTE PROCEDURE FUNCIONARIO_GERENTE_FUNC();
 
 -- estagiario -> treina
 CREATE CONSTRAINT TRIGGER ESTAGIARIO_TREINA
-after UPDATE OR DELETE ON Pessoa
+after UPDATE OR DELETE ON estagiario
 DEFERRABLE INITIALLY DEFERRED
 FOR EACH ROW EXECUTE PROCEDURE ESTAGIARIO_TREINA_FUNC();
 
@@ -988,6 +981,6 @@ FOR EACH ROW EXECUTE PROCEDURE ESTAGIARIO_TREINA_FUNC();
 
 -- estado -> cidade
 CREATE CONSTRAINT TRIGGER ESTADO_CIDADE
-after UPDATE OR DELETE ON Pessoa
+after UPDATE OR DELETE ON estado
 DEFERRABLE INITIALLY DEFERRED
 FOR EACH ROW EXECUTE PROCEDURE ESTADO_CIDADE_FUNC();

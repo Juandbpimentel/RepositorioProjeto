@@ -3,23 +3,34 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package views.sistema.Empresa;
+package views.sistema.empresa;
 
+import dao.usuarios.DAODono;
 import javax.swing.JFrame;
-import views.sistema.menulogin.MenuLogin_Registro;
+
+import dao.usuarios.DAOPessoa;
+import modelos.usuarios.Dono;
+import modelos.usuarios.Pessoa;
+import views.sistema.dono.CadDono;
+import views.sistema.dono.MenuDono_AdmEmpresa;
 
 /**
  *
  * @author Yara
  */
 public class CadEmpresa extends javax.swing.JFrame {
-
+    private Pessoa pessoa;
+    private Dono dono;
     /**
      * Creates new form Empresa
      */
-    public CadEmpresa() {
-        setUndecorated(true);
-        initComponents();
+    public CadEmpresa(String cpf,String cpf_dono) {
+        if(cpf != null){
+            this.pessoa = new DAOPessoa().readOnePessoa(cpf);
+            initComponents();
+        }else{
+            initComponents();
+        }
     }
 
     /**
@@ -180,29 +191,35 @@ public class CadEmpresa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        System.out.println("Registro clicado");
-        //chama a tela de registro como um pop up
-        /*MenuLogin_Registro.getObj().setVisible(true);
-        MenuLogin_Registro.getObj().setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        if(pessoa.getTipo().equals("ADM") && dono != null){
+            
+            new DAODono().deleteDono(dono.getCpf());
+            
+            CadDono telaRegistroADM = new CadDono(pessoa.getCpf());
+            telaRegistroADM.setVisible(true);
+            telaRegistroADM.pack();
+            telaRegistroADM.setLocationRelativeTo(null);
+            telaRegistroADM.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.dispose();
+        }else if(pessoa.getTipo().equals("DON")){
+            MenuDono_AdmEmpresa telaRegistroADM = new MenuDono_AdmEmpresa(pessoa.getCpf());
+            telaRegistroADM.setVisible(true);
+            telaRegistroADM.pack();
+            telaRegistroADM.setLocationRelativeTo(null);
+            telaRegistroADM.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.dispose();
+        }
         
-        MenuLogin_Registro.getObj().addWindowListener(new WindowAdapter() {
-    
-            @Override
-            public void windowClosing(WindowEvent arg0) {
-                synchronized (lock2) {
-                    MenuLogin_Registro.getObj().setVisible(false);
-                }
-            }
-    
-        });
-        /**/
-        //fecha a tela de registro e volta pro menu login
-        MenuLogin_Registro telaRegistro = new MenuLogin_Registro();
-        telaRegistro.setVisible(true);
-        telaRegistro.pack();
-        telaRegistro.setLocationRelativeTo(null);
-        telaRegistro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.dispose();
+        switch(pessoa.getTipo()){
+            case "DON":
+                MenuDono_AdmEmpresa telaRegistro = new MenuDono_AdmEmpresa(pessoa.getCpf());
+                telaRegistro.setVisible(true);
+                telaRegistro.pack();
+                telaRegistro.setLocationRelativeTo(null);
+                telaRegistro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                this.dispose();
+                break;
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -248,7 +265,7 @@ public class CadEmpresa extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadEmpresa().setVisible(true);
+                new CadEmpresa(null,null).setVisible(true);
             }
         });
     }

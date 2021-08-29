@@ -3,19 +3,35 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package views.sistema.Diretor;
+package views.sistema.diretor;
+
+import javax.swing.JFrame;
+
+import dao.usuarios.DAOPessoa;
+import modelos.usuarios.Diretor;
+import modelos.usuarios.Dono;
+import modelos.usuarios.Estagiario;
+import modelos.usuarios.Funcionario;
+import modelos.usuarios.Gerente;
+import modelos.usuarios.Pessoa;
+import views.sistema.pessoa.MenuRegistroADM;
 
 /**
  *
  * @author Yara
  */
 public class CadDiretor extends javax.swing.JFrame {
-
+    private Pessoa pessoa;
     /**
      * Creates new form Diretor
      */
-    public CadDiretor() {
-        initComponents();
+    public CadDiretor(String cpf) {
+        if(cpf != null){
+            this.pessoa = new DAOPessoa().readOnePessoa(cpf);
+            initComponents();
+        }else{
+            initComponents();
+        }
     }
 
     /**
@@ -145,7 +161,7 @@ public class CadDiretor extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 56, Short.MAX_VALUE)
+                .addGap(0, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -272,7 +288,18 @@ public class CadDiretor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        if(pessoa == null){
+            this.dispose();
+            return;
+        }
+        switch (pessoa.getTipo()) {
+
+            case "DON":
+                Dono dono = (Dono) pessoa;
+                dono.administrarEmpresa();
+                this.dispose();
+                return;
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -326,7 +353,7 @@ public class CadDiretor extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadDiretor().setVisible(true);
+                new CadDiretor(null).setVisible(true);
             }
         });
     }

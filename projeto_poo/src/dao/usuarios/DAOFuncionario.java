@@ -17,7 +17,7 @@ public class DAOFuncionario {
 
     public ArrayList<Funcionario> readAll(){
         try {
-            ArrayList<Funcionario> arrayFuncionario = new ArrayList<Funcionario>();
+            ArrayList<Funcionario> arrayFuncionario = new ArrayList<>();
             conexao = new Conexao();
             conexao.conect();
 
@@ -71,15 +71,17 @@ public class DAOFuncionario {
                     arrayFuncionario.add(funcionario); 
                 }while(resultado.next());
             }
-        
+            conexao.disconect();
             return arrayFuncionario;
         } 
         catch(SQLException SQLError){
             System.err.println("Ocorreu um erro na leitura do Banco de Dados: " + SQLError);
+            conexao.disconect();
             return null;
         }
         catch(Exception geralError){
             System.err.println("Ocorreu um erro geral: " + geralError);
+            conexao.disconect();
             return null;
         }
     }
@@ -88,22 +90,23 @@ public class DAOFuncionario {
         try{
             conexao.conect();
             String codigoDelete = "delete from Funcionario where cpf = "+ cpf;
-            int resultado = conexao.executaSql(codigoDelete);
-            if(resultado != 1){
+            boolean resultado = conexao.executaSql(codigoDelete);
+            
+            if(resultado){
                 System.out.println("Você teve sucesso em deletar o Funcionario");
+                conexao.disconect();
                 return true;
             }
 
 
 
-        }catch(SQLException e){
-            System.err.println("Houve um erro durante a exclusão do Banco de Dados: "+e);
+            conexao.disconect();
             return false;
         }catch (Exception e){
             System.err.println("Houve um erro geral: "+e);
+            conexao.disconect();
             return false;
         }
-        return false;
     }
     
     
@@ -131,14 +134,17 @@ public class DAOFuncionario {
                     int idendereco = resultadoQueryPessoa.getInt("id_endereco");
                     Date data = resultadoQueryPessoa.getDate("data_nasc");
                     Funcionario funcionario = new Funcionario(nome, login, senha, tipo, cpf, data.toLocalDate(), idendereco, bonificacao,idcat, idsetor, diapagamento, inicio.toLocalDate());
+                    conexao.disconect();
                     return funcionario;
                 }
             }
         } catch(SQLException e){
             System.err.println("Houve um erro durante a exclusão do Banco de Dados: "+e);
+            conexao.disconect();
             return null;
         }catch (Exception e){
             System.err.println("Houve um erro geral: "+e);
+            conexao.disconect();
             return null;
         }
     }
@@ -148,19 +154,23 @@ public class DAOFuncionario {
         try {
             conexao.conect();
             String sqlInsertFuncionario = "insert into public.Funcionario(bonificacao, cpf, id_categoria, id_setor, dia_pagamento, data_inicio)\n"
-            +"values ("+funcionario.getBonificacao()+" , \'"+funcionario.getCpf()+" , "+funcionario.getId_categoria()+" , "+funcionario.getId_setor()+" , "+funcionario.getDia_pagamento()+" , \'"+funcionario.getData_inicio()+"\')";
-            int resultado = conexao.executaSql(sqlInsertFuncionario);
-            return (resultado != 0);
-        } catch (SQLException e) {
-            System.err.println("Houve um erro durante a inserção no banco de dados: "+e);
+            +"values ("+funcionario.getBonificacao()+" , \'"+funcionario.getCpf()+"\' , "+funcionario.getId_categoria()+" , "+funcionario.getId_setor()+" , "+funcionario.getDia_pagamento()+" , \'"+funcionario.getData_inicio()+"\')";
+            boolean resultado = conexao.executaSql(sqlInsertFuncionario);
+            
+            if(resultado){
+                System.out.println("Deu certo funcionário");
+                conexao.disconect();
+                return true;
+            }
+            conexao.disconect();
             return false;
-        }catch(Exception e){
+        } catch(Exception e){
             System.err.println("Houve um erro geral: "+e);
             return false;
         }
     }
 
-    public boolean updateFuncionario(String opt, int cpf ,String dado){
+    public boolean updateFuncionario(String opt, String cpf ,String dado){
         try {
             conexao.conect();
             String sqlUpdate;
@@ -169,7 +179,7 @@ public class DAOFuncionario {
 
                 case "nome":
                 sqlUpdate = "Update Pessoa set nome = \'" + dado + "\' where cpf = \'" + cpf+"\';";
-
+                    System.out.println(sqlUpdate);
                     conexao.executaSql(sqlUpdate);
                     break;
 

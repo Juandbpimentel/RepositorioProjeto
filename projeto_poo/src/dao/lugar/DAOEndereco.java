@@ -34,7 +34,8 @@ public class DAOEndereco {
                     id_bairro = resultado.getInt("id_bairro");
                     numero = resultado.getInt("numero");
 
-                    Endereco endereco = new Endereco(id, numero, cep, rua, complemento, id_bairro);
+                    Endereco endereco = new Endereco( numero, cep, rua, complemento, id_bairro);
+                    endereco.setId(id);
                     arrayEnderecos.add(endereco);
                 }while(resultado.next());
             }
@@ -55,15 +56,14 @@ public class DAOEndereco {
             conexao.conect();
 
             String codigoDelete = "delete from endereco where id = "+ id;
-            int resultado = conexao.executaSql(codigoDelete);
-            if(resultado != 1){
+            boolean resultado = conexao.executaSql(codigoDelete);
+            
+            if(resultado){
                 System.out.println("Você teve sucesso em deletar o Endereco");
                 conexao.disconect();
                 return true;
             }
-
-        }catch(SQLException e){
-            System.err.println("Houve um erro durante a exclusão do Banco de Dados: "+e);
+            
             conexao.disconect();
             return false;
         }catch (Exception e){
@@ -71,23 +71,22 @@ public class DAOEndereco {
             conexao.disconect();
             return false;
         }
-        conexao.disconect();
-        return false;
     }
 
     public boolean insertEndereco(Endereco endereco){
         try{
             conexao.conect();
-            String sqlInsertion = "Insert into public Endereco(numero, cep, rua, complemento, id_bairro)"
-                                + "values " + "(" + endereco + ")";
-            int resultado = conexao.executaSql(sqlInsertion);
-            
+            String sqlInsertion = "Insert into Endereco(numero, cep, rua, complemento, id_bairro)"
+                                + "values " + "("+endereco.getNumero()+" , \'" + endereco.getCep() +"\' , \'"+endereco.getRua()+"\' , \'"+endereco.getComplemento()+"\',"+endereco.getId_bairro()+")";
+                boolean resultado = conexao.executaSql(sqlInsertion);
+
+                if(!resultado){
+                conexao.disconect();
+                return false;
+            }
+                System.out.println("Deu certo Endereco");
             conexao.disconect();
-            return (resultado != 0);
-        } catch(SQLException SQLError){
-            System.err.println("Ocorreu um erro com Inserção no Banco de Dados: " + SQLError);
-            conexao.disconect();
-            return false;
+            return true;
         } catch(Exception geralError){
             System.err.println("Ocorreu um erro geral: " + geralError);
             conexao.disconect();
@@ -107,7 +106,8 @@ public class DAOEndereco {
             } else {
                 String cep = resultadoQuery.getString("cep"), rua = resultadoQuery.getString("rua"), complemento = resultadoQuery.getString("complemento");
                 int numero = resultadoQuery.getInt("numero"), idbairro = resultadoQuery.getInt("id_bairro");
-                endereco = new Endereco(id, numero, cep, rua, complemento, idbairro);
+                endereco = new Endereco( numero, cep, rua, complemento, idbairro);
+                endereco.setId(id);
             }
             conexao.disconect();
             return endereco;

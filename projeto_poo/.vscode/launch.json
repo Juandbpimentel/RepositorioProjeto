@@ -6,6 +6,111 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch MenuGerente_AdmEstagiario",
+            "request": "launch",
+            "mainClass": "views.sistema.gerente.MenuGerente_AdmEstagiario",
+            "projectName": "projeto_poo_aee0547b"
+        },
+        {
+            "type": "java",
+            "name": "Launch FuncionarioConsultarEstagiario",
+            "request": "launch",
+            "mainClass": "views.sistema.funcionario.FuncionarioConsultarEstagiario",
+            "projectName": "projeto_poo_aee0547b"
+        },
+        {
+            "type": "java",
+            "name": "Launch FuncionarioConsultarDadosPessoais",
+            "request": "launch",
+            "mainClass": "views.sistema.funcionario.FuncionarioConsultarDadosPessoais",
+            "projectName": "projeto_poo_aee0547b"
+        },
+        {
+            "type": "java",
+            "name": "Launch CadFuncionario",
+            "request": "launch",
+            "mainClass": "views.sistema.funcionario.CadFuncionario",
+            "projectName": "projeto_poo_aee0547b"
+        },
+        {
+            "type": "java",
+            "name": "Launch MenuEstagiario_ConsultarDados",
+            "request": "launch",
+            "mainClass": "views.sistema.estagiario.MenuEstagiario_ConsultarDados",
+            "projectName": "projeto_poo_aee0547b"
+        },
+        {
+            "type": "java",
+            "name": "Launch CadEstagiario",
+            "request": "launch",
+            "mainClass": "views.sistema.estagiario.CadEstagiario",
+            "projectName": "projeto_poo_aee0547b"
+        },
+        {
+            "type": "java",
+            "name": "Launch MenuEndereco_Cadastro",
+            "request": "launch",
+            "mainClass": "views.sistema.endereco.MenuEndereco_Cadastro",
+            "projectName": "projeto_poo_aee0547b"
+        },
+        {
+            "type": "java",
+            "name": "Launch MenuDono_ConsultarDadosPessoais",
+            "request": "launch",
+            "mainClass": "views.sistema.dono.MenuDono_ConsultarDadosPessoais",
+            "projectName": "projeto_poo_aee0547b"
+        },
+        {
+            "type": "java",
+            "name": "Launch MenuDono_AdmEstagiario",
+            "request": "launch",
+            "mainClass": "views.sistema.dono.MenuDono_AdmEstagiario",
+            "projectName": "projeto_poo_aee0547b"
+        },
+        {
+            "type": "java",
+            "name": "Launch MenuDono_AdmEmpresa",
+            "request": "launch",
+            "mainClass": "views.sistema.dono.MenuDono_AdmEmpresa",
+            "projectName": "projeto_poo_aee0547b"
+        },
+        {
+            "type": "java",
+            "name": "Launch CadDono",
+            "request": "launch",
+            "mainClass": "views.sistema.dono.CadDono",
+            "projectName": "projeto_poo_aee0547b"
+        },
+        {
+            "type": "java",
+            "name": "Launch MenuDiretor",
+            "request": "launch",
+            "mainClass": "views.sistema.diretor.MenuDiretor",
+            "projectName": "projeto_poo_aee0547b"
+        },
+        {
+            "type": "java",
+            "name": "Launch MenuDiretor_ConsultarDadosPessoais",
+            "request": "launch",
+            "mainClass": "views.sistema.diretor.MenuDiretor_ConsultarDadosPessoais",
+            "projectName": "projeto_poo_aee0547b"
+        },
+        {
+            "type": "java",
+            "name": "Launch ConsultarDadosEmprego",
+            "request": "launch",
+            "mainClass": "views.sistema.Funcionario.ConsultarDadosEmprego",
+            "projectName": "projeto_poo_aee0547b"
+        },
+        {
+            "type": "java",
+            "name": "Launch MenuDono_AdmSetor",
+            "request": "launch",
+            "mainClass": "views.sistema.Dono.MenuDono_AdmSetor",
+            "projectName": "projeto_poo_aee0547b"
+        },
+        {
+            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}"

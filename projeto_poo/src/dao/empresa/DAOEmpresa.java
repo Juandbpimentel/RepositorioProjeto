@@ -39,7 +39,6 @@ public class DAOEmpresa {
             return arrayEmpresa;
         } 
         catch(SQLException SQLError){
-            System.err.println("Ocorreu um erro na leitura do Banco de Dados: " + SQLError);
             conexao.disconect();
             return null;
         }
@@ -54,27 +53,24 @@ public class DAOEmpresa {
         try{
             conexao.conect();
 
-            String codigoDelete = "delete from empresa where cnpj = "+ cnpj;
-            int resultado = conexao.executaSql(codigoDelete);
-            if(resultado != 1){
-                System.out.println("Você teve sucesso em deletar a Empresa");
+            String codigoDelete = "delete from empresa where cnpj = \'"+cnpj+"\'";
+            boolean resultado = conexao.executaSql(codigoDelete);
+            
+            if(!resultado){
                 conexao.disconect();
                 return true;
             }
 
-
-
-        }catch(SQLException e){
-            System.err.println("Houve um erro durante a exclusão do Banco de Dados: "+e);
+            
+            System.err.println("Houve um erro durante a exclusão do Banco de Dados: ");
             conexao.disconect();
             return false;
+
         }catch (Exception e){
             System.err.println("Houve um erro geral: "+e);
             conexao.disconect();
             return false;
         }
-        conexao.disconect();
-        return false;
     }
 
     public boolean insertEmpresa(Empresa empresa){
@@ -83,19 +79,15 @@ public class DAOEmpresa {
 
             String sqlInsertion = "Insert into public Empresa(nome, orcamento, cnpj, cpf_dono)"
                                 + "values " + "(" + empresa + ")";
-            int resultado = conexao.executaSql(sqlInsertion);
-            
-            if(resultado != 0){
+            boolean resultado = conexao.executaSql(sqlInsertion);
+
+            if(!resultado){
                 conexao.disconect();
                 return false;
             }
             conexao.disconect();
             return true;
 
-        } catch(SQLException SQLError){
-            System.err.println("Ocorreu um erro com Inserção no Banco de Dados: " + SQLError);
-            conexao.disconect();
-            return false;
         } catch(Exception geralError){
             System.err.println("Ocorreu um erro geral: " + geralError);
             conexao.disconect();
@@ -103,22 +95,42 @@ public class DAOEmpresa {
         }
     }
 
-    public Empresa readOnEmpresa(String cnpj) {
+    public Empresa readOnEmpresa(String pk, String opt) {
         try {
             conexao.conect();
-
-            Empresa empresa;
-            String queryEmpresa = "SELECT * FROM Empresa WHERE cnpj = " + cnpj;
-            ResultSet resultadoQuery = conexao.executaQuery(queryEmpresa);
-            if (!resultadoQuery.next()) {
-                throw new NullPointerException("Não foi possível achar a empresa");
-            } else {
-                String nome = resultadoQuery.getString("nome"), cpf_dono = resultadoQuery.getString("cpf_dono");
-                Double orcamento = resultadoQuery.getDouble("orcamento");
-                empresa = new Empresa(nome, orcamento, cnpj, cpf_dono);
+            String queryEmpresa;
+            System.out.println("Ola ola");
+            if(opt == "cnpj"){
+                queryEmpresa = "SELECT * FROM Empresa WHERE cnpj = \'" + pk+"\'";
+                ResultSet resultadoQuery = conexao.executaQuery(queryEmpresa);
+                
+                if (!resultadoQuery.next()) {
+                    throw new NullPointerException("Não foi possível achar a empresa");
+                } else {
+                    String nome = resultadoQuery.getString("nome"), cpf_dono = resultadoQuery.getString("cpf_dono"), cnpj = resultadoQuery.getString("cnpj");
+                    Double orcamento = resultadoQuery.getDouble("orcamento");
+                    Empresa empresa = new Empresa(nome, orcamento, cnpj, cpf_dono);
+                    conexao.disconect();
+                    return empresa;
+                }
             }
+            else if(opt == "cpf"){
+                queryEmpresa = "SELECT * FROM Empresa WHERE cpf_dono = \'" + pk+"\'";
+                ResultSet resultadoQuery = conexao.executaQuery(queryEmpresa);
+                            
+                if (!resultadoQuery.next()) {
+                    throw new NullPointerException("Não foi possível achar a empresa");
+                } else {
+                    String nome = resultadoQuery.getString("nome"), cpf_dono = resultadoQuery.getString("cpf_dono"), cnpj = resultadoQuery.getString("cnpj");
+                    Double orcamento = resultadoQuery.getDouble("orcamento");
+                    Empresa empresa = new Empresa(nome, orcamento, cnpj, cpf_dono);
+                    conexao.disconect();
+                    return empresa;
+                }
+            }
+            
             conexao.disconect();
-            return empresa;
+            return null;
         } catch (SQLException SQLError) {
             System.err.println("Ocorreu um erro na leitura do Banco de Dados: " + SQLError);
             conexao.disconect();
@@ -139,7 +151,7 @@ public class DAOEmpresa {
 
             switch (opt) {
                 case "orcamento":
-                    sqlUpdate = "Update Empresa set id = "+dado+" where cnpj = \'"+cnpj+"\'";
+                    sqlUpdate = "Update Empresa set orcamento = "+dado+" where cnpj = \'"+cnpj+"\'";
                     conexao.executaSql(sqlUpdate);
                     break;
     
@@ -171,6 +183,43 @@ public class DAOEmpresa {
             System.err.println("Ocorreu um erro geral: " + geralError);
             conexao.disconect();
             return false;
+        }
+    }
+    
+    public ArrayList<Empresa> readAll(String cpfDono){
+        try {
+            ArrayList<Empresa> arrayEmpresa = new ArrayList<Empresa>();
+            
+            conexao.conect();
+
+            String codBusca = "Select * from empresa where cpf_dono = \'"+cpfDono+"\'";
+            ResultSet resultado = conexao.executaQuery(codBusca);
+            if (!resultado.next()) {
+                throw new NullPointerException("Não foi possível achar nenhuma empresa");
+            }else{
+                do{
+                    Double orc;
+                    String cnpj, nome, cpf;
+                    orc = resultado.getDouble("orcamento");
+                    cnpj = resultado.getString("cnpj");
+                    nome = resultado.getString("nome");
+                    cpf = resultado.getString("cpf_dono");
+                    Empresa empresa = new Empresa(nome, orc, cnpj, cpf);
+                    arrayEmpresa.add(empresa);
+                }while(resultado.next());
+            }
+            conexao.disconect();
+            return arrayEmpresa;
+        } 
+        catch(SQLException SQLError){
+            System.err.println("Ocorreu um erro na leitura do Banco de Dados: " + SQLError);
+            conexao.disconect();
+            return null;
+        }
+        catch(Exception geralError){
+            System.err.println("Ocorreu um erro geral: " + geralError);
+            conexao.disconect();
+            return null;
         }
     }
 }

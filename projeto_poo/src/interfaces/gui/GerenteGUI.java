@@ -1,8 +1,7 @@
 package interfaces.gui;
 
-public interface GerenteGUI {
+public interface GerenteGUI extends PessoaGUI{
     public abstract void administrarFuncionarios();
     public abstract void administrarEstagiarios();
-    public abstract void consultarFuncionarios();
-    public abstract void consultarEstagiarios();
+    public abstract void criarNovoEndereco();
 }

@@ -1,4 +1,16 @@
-package views.sistema.Gerente;
+package views.sistema.gerente;
+
+import javax.swing.JFrame;
+
+import dao.usuarios.DAOPessoa;
+import modelos.usuarios.Diretor;
+import modelos.usuarios.Dono;
+import modelos.usuarios.Estagiario;
+import modelos.usuarios.Funcionario;
+import modelos.usuarios.Gerente;
+import modelos.usuarios.Pessoa;
+import views.sistema.pessoa.MenuRegistroADM;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,12 +22,17 @@ package views.sistema.Gerente;
  * @author Ana Beatriz
  */
 public class CadGerente extends javax.swing.JFrame {
-
+    private Pessoa pessoa;
     /**
      * Creates new form CadGerente
      */
-    public CadGerente() {
-        initComponents();
+    public CadGerente(String cpf) {
+        if(cpf != null){
+            this.pessoa = new DAOPessoa().readOnePessoa(cpf);
+            initComponents();
+        }else{
+            initComponents();
+        }
     }
 
     /**
@@ -282,7 +299,27 @@ public class CadGerente extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        if(pessoa == null){
+            MenuRegistroADM menuReg = new MenuRegistroADM();
+            menuReg.setVisible(true);
+            menuReg.pack();
+            menuReg.setLocationRelativeTo(null);
+            this.dispose();
+            return;
+        }
+        switch (pessoa.getTipo()) {
+            case "DIR":
+                Diretor diretor =(Diretor) pessoa;
+                diretor.administrarSetores();
+                this.dispose();
+                break;
+
+            case "DON":
+                Dono dono = (Dono) pessoa;
+                dono.adicionarSetores();
+                this.dispose();
+                break;
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
@@ -331,7 +368,7 @@ public class CadGerente extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadGerente().setVisible(true);
+                new CadGerente(null).setVisible(true);
             }
         });
     }

@@ -2,8 +2,11 @@ package modelos.usuarios;
 
 import interfaces.alterDB.DiretorAlterDB;
 import interfaces.gui.DiretorGUI;
+import views.sistema.diretor.MenuDiretor;
 
 import java.time.LocalDate;
+
+import javax.swing.JFrame;
 
 public class Diretor extends Pessoa implements DiretorGUI, DiretorAlterDB {
     private String cnpj_empresa;
@@ -41,6 +44,56 @@ public class Diretor extends Pessoa implements DiretorGUI, DiretorAlterDB {
 /*
      GUI
  */
+    
+    //Não criar mais
+    @Override
+    public void alterarNomeSetor() {
+
+    }
+    
+    @Override
+    public void alterarOrcamentoSetor() {
+
+    }
+
+    @Override
+    public void demitirFuncionario() {
+
+    }
+
+     @Override
+    public void bonificarFuncionario() {
+
+    }
+
+    @Override
+    public void dispensarEstagiario() {
+
+    }
+
+    @Override
+    public void trocarEstagiarioSetor() {
+
+    }
+
+
+    //Criar
+
+    @Override
+    public void adicionarSetores() {
+
+    }
+
+    @Override
+    public void admitirFuncionario() {
+
+    }
+
+    @Override
+    public void admitirEstagiario() {
+
+    }
+    
     @Override
     public void administrarFuncionarios() {
 
@@ -55,73 +108,30 @@ public class Diretor extends Pessoa implements DiretorGUI, DiretorAlterDB {
     public void administrarSetores() {
 
     }
-
+    
     @Override
-    public void consultarFuncionarios() {
+    public void consultarDadosPessoais(){
+
+    }
+    
+    @Override
+    public void consultarLogs(){
+
+    }
+    
+    @Override
+    public void criarNovoEndereco(){
 
     }
 
     @Override
-    public void consultarEstagiarios() {
-
-    }
-
-    @Override
-    public void consultarSetores() {
-
-    }
-
-/*
-    Alteração banco de dados
- */
-
-    @Override
-    public void adicionarSetores() {
-
-    }
-
-    @Override
-    public void alterarNomeSetor() {
-
-    }
-
-    @Override
-    public void alterarOrcamentoSetor() {
-
-    }
-
-    @Override
-    public void demitirFuncionario() {
-
-    }
-
-    @Override
-    public void bonificarFuncionario() {
-
-    }
-
-    @Override
-    public void admitirFuncionario() {
-
-    }
-
-    @Override
-    public void admitirEstagiario() {
-
-    }
-
-    @Override
-    public void dispensarEstagiario() {
-
-    }
-
-    @Override
-    public void trocarEstagiarioSetor() {
-
-    }
-
-    @Override
-    public void alterarDadosSetor() {
+    public void mostrarMenu() {
+        MenuDiretor menu = new MenuDiretor(this.cpf); 
         
+        menu.setVisible(true);
+        menu.pack();
+        menu.setLocationRelativeTo(null);
+        menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+
 }

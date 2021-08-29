@@ -56,14 +56,14 @@ public class Conexao {
         }
     }
 
-    public int executaSql(String sql) throws SQLException{
+    public boolean executaSql(String sql){
         try {
             int resultado = getStatement().executeUpdate(sql);
             System.out.println("\n<<<  Comando executado com sucesso  >>>\n");
-            return resultado;
+            return true;
         } catch(SQLException SQLError){
             System.out.println("Ocorreu um erro durante a tentativa de fazer uma alteração no banco de dados: "+SQLError);
-            throw SQLError;
+            return false;
         }
     }
 
@@ -159,7 +159,7 @@ public class Conexao {
         return statement;
     }
 
-    public void startDatabase(){
+    public static boolean startDatabase(){
         try{
             Conexao conexao = new Conexao("localhost", "5432", "postgres", "postgres", "postgres", "org.postgresql.Driver");
             conexao.conect();
@@ -169,25 +169,34 @@ public class Conexao {
                                                                 );
             StringBuilder sb = new StringBuilder();
             String linha;
+            
             while ((linha = leitorArquivoBanco.readLine()) != null){
                 sb.append(linha).append("\n");
             }
+            
             codigoSql = sb.toString();
-            conexao.executaSql(codigoSql);
+            boolean resultado = conexao.executaSql(codigoSql);
+            System.out.println(resultado);
+            if(!resultado){
+                conexao.disconect();
+                leitorArquivoBanco.close();
+                return false;
+            }
+
             conexao.disconect();
             leitorArquivoBanco.close();
+            return true;
         } catch (FileNotFoundException e){
             System.out.println("Ocorreu um erro, o arquivo para criação das tabelas não foi encontrado: "+e);
+            return false;
         }catch (IOException e){
             System.out.println("Ocorreu um erro, o stream de dados foi interrompido e causou a exceção: "+e);
-        }catch(SQLException e){
-            System.out.println("Ocorreu um erro durante a tentativa de fazer a alteração no banco de dados: "+e);
+            return false;
         }
     }
 
-    public void createTables(){
+    public static void createTables(){
         try{
-            
             Conexao conexao2 = new Conexao();
             conexao2.conect(); 
             
@@ -206,18 +215,16 @@ public class Conexao {
             codigoSql = sb.toString();
             conexao2.executaSql(codigoSql);
             leitorArquivoTabelas.close();
+            conexao2.disconect();
         } catch (FileNotFoundException e){
             System.out.println("Ocorreu um erro, o arquivo para criação das tabelas não foi encontrado: "+e);
         }catch (IOException e){
             System.out.println("Ocorreu um erro, o stream de dados foi interrompido e causou a exceção: "+e);
-        }catch(SQLException e){
-            System.out.println("Ocorreu um erro durante a tentativa de fazer a alteração no banco de dados: "+e);
         }
     }
 
-    public void insertData(){
+    public static void insertData(){
         try{
-            
             Conexao conexao2 = new Conexao();
             conexao2.conect(); 
             
@@ -236,18 +243,16 @@ public class Conexao {
             codigoSql = sb.toString();
             conexao2.executaSql(codigoSql);
             leitorArquivoTabelas.close();
+            conexao2.disconect();
         } catch (FileNotFoundException e){
             System.out.println("Ocorreu um erro, o arquivo para criação das tabelas não foi encontrado: "+e);
         }catch (IOException e){
             System.out.println("Ocorreu um erro, o stream de dados foi interrompido e causou a exceção: "+e);
-        }catch(SQLException e){
-            System.out.println("Ocorreu um erro durante a tentativa de fazer a alteração no banco de dados: "+e);
         }
     }
 
-    public void createTriggers(){
+    public static void createTriggers(){
         try{
-            
             Conexao conexao2 = new Conexao();
             conexao2.conect(); 
             
@@ -266,12 +271,11 @@ public class Conexao {
             codigoSql = sb.toString();
             conexao2.executaSql(codigoSql);
             leitorArquivoTabelas.close();
+            conexao2.disconect();
         } catch (FileNotFoundException e){
             System.out.println("Ocorreu um erro, o arquivo para criação das tabelas não foi encontrado: "+e);
         }catch (IOException e){
             System.out.println("Ocorreu um erro, o stream de dados foi interrompido e causou a exceção: "+e);
-        }catch(SQLException e){
-            System.out.println("Ocorreu um erro durante a tentativa de fazer a alteração no banco de dados: "+e);
         }
     }
 

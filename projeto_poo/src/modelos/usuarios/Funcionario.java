@@ -2,9 +2,14 @@ package modelos.usuarios;
 
 
 import modelos.empresa.Categoria;
+import views.sistema.funcionario.consultarDadosPessoaisFuncionario;
+import views.sistema.funcionario.consultarEstagiarioFuncionario;
+import views.sistema.funcionario.MenuFuncionario;
 import interfaces.gui.FuncionarioGUI;
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import javax.swing.JFrame;
 
 public class Funcionario extends Pessoa implements FuncionarioGUI {
     protected double bonificacao;
@@ -87,15 +92,50 @@ public class Funcionario extends Pessoa implements FuncionarioGUI {
     public void setEstagiarios(ArrayList<Estagiario> estagiarios) {
         this.estagiarios = estagiarios;
     }
-
+    
+    //NÃO CRIAR MAIS
     @Override
-    public void consultarDadosEmprego() {
+    public void consultarLogs(){
+
+    }
+
+    //CRIAR
+
+    
+    @Override
+    public void criarNovoEndereco(){
 
     }
 
     @Override
-    public void consultarEstagiarios() {
+    public void consultarDadosPessoais() {
+        consultarDadosPessoaisFuncionario consultarDados = new consultarDadosPessoaisFuncionario(this.cpf);
+        
+        consultarDados.setVisible(true);
+        consultarDados.pack();
+        consultarDados.setLocationRelativeTo(null);
+        consultarDados.setDefaultCloseOperation(JFrame .EXIT_ON_CLOSE);
+    }
 
+    @Override
+    public void consultarEstagiarios() {
+        System.out.println(cpf);
+        consultarEstagiarioFuncionario consultarEstagiarios = new consultarEstagiarioFuncionario(this.getCpf());
+        
+        consultarEstagiarios.setVisible(true);
+        consultarEstagiarios.pack();
+        consultarEstagiarios.setLocationRelativeTo(null);
+        consultarEstagiarios.setDefaultCloseOperation(JFrame .EXIT_ON_CLOSE);
+    }
+
+    @Override
+    public void mostrarMenu() {
+        MenuFuncionario menu = new MenuFuncionario(this.cpf); 
+        
+        menu.setVisible(true);
+        menu.pack();
+        menu.setLocationRelativeTo(null);
+        menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
     @Override

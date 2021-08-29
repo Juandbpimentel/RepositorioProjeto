@@ -50,7 +50,6 @@ public class DAOCategoria {
 
         } 
         catch (SQLException sqlError) {
-            System.err.println("Houve um erro na leitura do Banco de Dados: " + sqlError);
             conexao.disconect();
             return null;
         } 
@@ -66,24 +65,23 @@ public class DAOCategoria {
             conexao.conect();
 
             String codigoDelete = "delete from categoria where id = "+ id;
-            int resultado = conexao.executaSql(codigoDelete);
-            if(resultado != 1){
-                System.out.println("Você teve sucesso em deletar a Categoria");
+            boolean resultado = conexao.executaSql(codigoDelete);
+            
+            if(resultado){
                 conexao.disconect();
+                System.out.println("Você teve sucesso ao deletar setor");
                 return true;
             }
 
-        }catch(SQLException e){
-            System.err.println("Houve um erro durante a exclusão do Banco de Dados: "+e);
+            System.err.println("Houve um erro durante a exclusão do Banco de Dados: ");
             conexao.disconect();
             return false;
+
         }catch (Exception e){
             System.err.println("Houve um erro geral: "+e);
             conexao.disconect();
             return false;
         }
-        conexao.disconect();
-        return false;
     }
     
     public Categoria readOneCategoria(int id){
@@ -121,20 +119,16 @@ public class DAOCategoria {
             
             String sqlInsertion = "Insert into public Categoria(carga_horaria, nome, descricao, salario, cnpj_empresa)"
                                 + " values ( " + categoria.getCarga_horaria() +""  ;
-            int resultado = conexao.executaSql(sqlInsertion);
+            boolean resultado = conexao.executaSql(sqlInsertion);
             
-            if(resultado != 0){
+            if(!resultado){
                 conexao.disconect();
                 return false;
             }
             conexao.disconect();
             return true;
 
-        } catch(SQLException SQLError){
-            System.err.println("Ocorreu um erro com Inserção no Banco de Dados: " + SQLError);
-            conexao.disconect();
-            return false;
-        } catch(Exception geralError){
+        }catch(Exception geralError){
             System.err.println("Ocorreu um erro geral: " + geralError);
             conexao.disconect();
             return false;

@@ -3,21 +3,57 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package views.sistema.Gerente;
+package views.sistema.gerente;
+
+import dao.usuarios.DAOFuncionario;
+import dao.usuarios.DAOGerente;
+import modelos.usuarios.Funcionario;
+import modelos.usuarios.Gerente;
+import java.util.ArrayList;
+
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Ana Beatriz
  */
 public class MenuGerente_AdmFuncionario extends javax.swing.JFrame {
-
+    private Gerente gerente;
     /**
-     * Creates new form MenuGerente_AdmFuncionario
+     * Creates new form MenuGerente
      */
-    public MenuGerente_AdmFuncionario() {
-        initComponents();
+    public MenuGerente_AdmFuncionario(String cpf) {
+        if(cpf != null){
+            this.gerente = new DAOGerente().readOneGerente(cpf);
+            initComponents();
+        }else{
+            initComponents();
+        }
     }
+    
+    
+    public void iniciaTabela(){
+            ArrayList<Funcionario> resultado = new DAOFuncionario().readAll();
+            
+            for (Funcionario funcionario : resultado) {
+                
+                DefaultTableModel testetabela = (DefaultTableModel) tabelaDados.getModel();
 
+                Object[] colunas = {"Nome","Cpf","Senha","Login"};
+                final Object[] entrada = new Object[4];
+                
+                entrada[0] = funcionario.getNome(); 
+                entrada[1] = funcionario.getCpf();
+                entrada[2] = funcionario.getSenha();
+                entrada[3] = funcionario.getLogin();
+
+                testetabela.setColumnIdentifiers(colunas);
+                
+                tabelaDados.setModel(testetabela);
+                testetabela.addRow(entrada);     
+            
+            }  
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,10 +64,10 @@ public class MenuGerente_AdmFuncionario extends javax.swing.JFrame {
     private void initComponents() {
 
         jTextField2 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelaDados = new javax.swing.JTable();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
@@ -57,16 +93,21 @@ public class MenuGerente_AdmFuncionario extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jButton3.setText("Voltar");
+        backButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        backButton.setText("Voltar");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Poppins", 3, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 153, 0));
         jLabel1.setText("Administrar Dados - Funcionário");
 
-        jTable1.setBackground(new java.awt.Color(102, 102, 102));
-        jTable1.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaDados.setBackground(new java.awt.Color(102, 102, 102));
+        tabelaDados.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        tabelaDados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -74,10 +115,18 @@ public class MenuGerente_AdmFuncionario extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nome", "Cpf", "Login", "Senha"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tabelaDados);
 
         jComboBox1.setFont(new java.awt.Font("Poppins", 0, 10)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -199,7 +248,7 @@ public class MenuGerente_AdmFuncionario extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(10, 10, 10)
-                    .addComponent(jButton3)
+                    .addComponent(backButton)
                     .addContainerGap(438, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
@@ -243,7 +292,7 @@ public class MenuGerente_AdmFuncionario extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jButton3)
+                    .addComponent(backButton)
                     .addContainerGap(587, Short.MAX_VALUE)))
         );
 
@@ -269,6 +318,11 @@ public class MenuGerente_AdmFuncionario extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        gerente.mostrarMenu();
+        this.dispose();
+    }//GEN-LAST:event_backButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -300,15 +354,15 @@ public class MenuGerente_AdmFuncionario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuGerente_AdmFuncionario().setVisible(true);
+                new MenuGerente_AdmFuncionario(null).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton7;
@@ -323,7 +377,7 @@ public class MenuGerente_AdmFuncionario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tabelaDados;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables

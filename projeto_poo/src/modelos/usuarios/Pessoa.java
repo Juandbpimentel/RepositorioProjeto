@@ -1,14 +1,16 @@
 package modelos.usuarios;
 
 import modelos.lugar.Endereco;
-import views.sistema.Pessoa.MenuPessoa;
-
+import views.sistema.pessoa.MenuAdministrador;
 import java.time.LocalDate;
 
 import javax.swing.JFrame;
 
 import interfaces.alterDB.PessoaAlterDB;
 import interfaces.gui.PessoaGUI;
+import views.sistema.dono.CadDono;
+import views.sistema.endereco.MenuEndereco_Cadastro;
+import views.sistema.pessoa.consultarDadosPessoaisAdministrador;
 
 public class Pessoa implements PessoaGUI, PessoaAlterDB {
     protected String nome;
@@ -103,8 +105,13 @@ public class Pessoa implements PessoaGUI, PessoaAlterDB {
   GUI
 */
     @Override
-    public void consultarDadosPessoais() {
-
+    public void consultarDadosPessoais() {      
+        consultarDadosPessoaisAdministrador consultarDados = new consultarDadosPessoaisAdministrador(this.getCpf());
+        
+        consultarDados.setVisible(true);
+        consultarDados.pack();
+        consultarDados.setLocationRelativeTo(null);
+        consultarDados.setDefaultCloseOperation(JFrame .EXIT_ON_CLOSE);
     }
 
     @Override
@@ -114,35 +121,39 @@ public class Pessoa implements PessoaGUI, PessoaAlterDB {
 
     @Override
     public void mostrarMenu() {
-        MenuPessoa menu = new MenuPessoa(); 
-        
-        menu.setVisible(true);
-        menu.pack();
-        menu.setLocationRelativeTo(null);
-        menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        if(this.getTipo().equals("ADM")){
+            MenuAdministrador menu = new MenuAdministrador(this.getCpf()); 
+            
+            menu.setVisible(true);
+            menu.pack();
+            menu.setLocationRelativeTo(null);
+            menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        }
     }
-/*
-  AlterDB
-*/
+    
     @Override
-    public boolean alterarDadosPessoais() {
-        return true;
+    public void criarNovoEndereco(String opt){
+        
+        MenuEndereco_Cadastro enderecoCadastro = new MenuEndereco_Cadastro(this.getCpf(), opt);
+        
+        enderecoCadastro.setVisible(true);
+        enderecoCadastro.pack();
+        enderecoCadastro.setLocationRelativeTo(null);
+        enderecoCadastro.setDefaultCloseOperation(JFrame .EXIT_ON_CLOSE);
+        
+    }
+    
+    public void criarDono(){
+        CadDono telaRegistro = new CadDono(this.getCpf());
+        
+        telaRegistro.setVisible(true);
+        telaRegistro.pack();
+        telaRegistro.setLocationRelativeTo(null);
+        telaRegistro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
         return "( nome : \'"+nome+"\' , login: \'"+login+"\' , "+senha+"\' , "+tipo+"\' , "+cpf+"\' , "+data_nasc+"\' , "+id_endereco+"\' )";
-        
-        /*
-            protected String nome;
-            protected String login;
-            protected String senha;
-            protected String tipo;
-            protected String cpf;
-            protected LocalDate data_nasc;
-            protected int id_endereco;
-            protected Endereco endereco;
-        */
     }
 }

@@ -1,5 +1,5 @@
 package interfaces.gui;
 
-public interface EstagiarioGUI {
-    public abstract void consultaDadosEstagio();
+public interface EstagiarioGUI extends PessoaGUI{
+    public abstract void criarNovoEndereco();
 }
