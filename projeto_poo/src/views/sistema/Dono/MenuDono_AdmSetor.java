@@ -5,25 +5,57 @@
  */
 package views.sistema.dono;
 
+import dao.empresa.DAOEmpresa;
+import dao.empresa.DAOSetor;
 import dao.usuarios.DAODono;
+import javax.swing.table.DefaultTableModel;
 import modelos.usuarios.Dono;
+import modelos.empresa.Empresa;
+import modelos.empresa.Setor;
+import java.util.ArrayList;
 
 /**
  *
  * @author sarah
  */
 public class MenuDono_AdmSetor extends javax.swing.JFrame {
+    private Empresa empresa;
     private Dono dono;
     /**
      * Creates new form AlterarDadosSetorDono
      */
-    public MenuDono_AdmSetor(String cpf) {
-        if(cpf != null){
+    public MenuDono_AdmSetor(String cnpj, String cpf) {
+        if(cnpj != null && cpf != null){
+            this.empresa = new DAOEmpresa().readOnEmpresa(cnpj, "cnpj");
             this.dono = new DAODono().readOneDono(cpf);
             initComponents();
+            iniciaTabela();
         }else{
             initComponents();
         }
+    }  
+    
+    public void iniciaTabela(){
+
+        ArrayList<Setor> setores = new DAOSetor().readAll();
+
+        DefaultTableModel testetabela = (DefaultTableModel) tabelaDados.getModel();
+        Object[] colunas = {"id","nome","orcamento"};
+        testetabela.setColumnIdentifiers(colunas);
+        while(testetabela.getRowCount() > 0){
+            testetabela.removeRow(testetabela.getRowCount()-1);
+        }
+        for(int i = 0; i < setores.size(); i++){
+            if(setores.get(i).getCnpj_empresa().equals(empresa.getCnpj())){
+                final Object[] entrada = new Object[3];
+                entrada[0] = setores.get(i).getId();
+                entrada[1] = setores.get(i).getNome(); 
+                entrada[2] = setores.get(i).getOrcamento();
+                
+                testetabela.addRow(entrada);
+            }
+        }
+        tabelaDados.setModel(testetabela);
     }
 
     /**
@@ -35,62 +67,52 @@ public class MenuDono_AdmSetor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
-        saveSetorButton = new javax.swing.JButton();
+        nomeSetorTextField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        clearLabelsButton = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
+        clearButton = new javax.swing.JButton();
+        orcamentoTextField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        nomeAlterButton = new javax.swing.JButton();
+        orcamentoAlterButton = new javax.swing.JButton();
         backDonoButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelaDados = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
         admFuncionariosButton = new javax.swing.JButton();
         admEstagiariosButton = new javax.swing.JButton();
-        excludeSetorButton = new javax.swing.JButton();
+        deleteButton = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
+        errorMessage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextField1.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-
-        saveSetorButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        saveSetorButton.setText("Salvar");
-        saveSetorButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveSetorButtonActionPerformed(evt);
-            }
-        });
+        nomeSetorTextField.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jLabel3.setText("Orçamento:");
 
-        clearLabelsButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        clearLabelsButton.setText("Limpar");
+        clearButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        clearButton.setText("Limpar");
 
-        jTextField2.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        orcamentoTextField.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Poppins", 3, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 153, 0));
         jLabel1.setText("Administrar Dados - Setor");
 
-        jButton1.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jButton1.setText("Alterar Nome da Empresa");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        nomeAlterButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        nomeAlterButton.setText("Alterar Nome do Setor");
+        nomeAlterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                nomeAlterButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jButton2.setText("Alterar Orçamento da Empresa");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        orcamentoAlterButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        orcamentoAlterButton.setText("Alterar Orçamento do Setor");
+        orcamentoAlterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                orcamentoAlterButtonActionPerformed(evt);
             }
         });
 
@@ -102,27 +124,38 @@ public class MenuDono_AdmSetor extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaDados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Id", "Nome", "Orçamento"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tabelaDados);
+        if (tabelaDados.getColumnModel().getColumnCount() > 0) {
+            tabelaDados.getColumnModel().getColumn(0).setResizable(false);
+            tabelaDados.getColumnModel().getColumn(1).setResizable(false);
+            tabelaDados.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         jLabel2.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jLabel2.setText("Nome do Setor:");
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel6.setText("Selecione o setor para alterar:");
-
-        jComboBox2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         admFuncionariosButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         admFuncionariosButton.setText("Administrar Funcionários");
@@ -140,16 +173,16 @@ public class MenuDono_AdmSetor extends javax.swing.JFrame {
             }
         });
 
-        excludeSetorButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        excludeSetorButton.setText("Excluir Setor");
-        excludeSetorButton.addActionListener(new java.awt.event.ActionListener() {
+        deleteButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        deleteButton.setText("Excluir Setor");
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                excludeSetorButtonActionPerformed(evt);
+                deleteButtonActionPerformed(evt);
             }
         });
 
         jCheckBox1.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jCheckBox1.setText("Selecione para confirmar exclusão ");
+        jCheckBox1.setText("Confirmar exclusão ");
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox1ActionPerformed(evt);
@@ -160,55 +193,47 @@ public class MenuDono_AdmSetor extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jCheckBox1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(saveSetorButton)
-                        .addGap(109, 109, 109)
-                        .addComponent(clearLabelsButton)))
-                .addGap(197, 197, 197))
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(backDonoButton))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2)
-                                .addGap(26, 26, 26)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 556, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 12, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(backDonoButton)
+                                .addGap(127, 127, 127)
+                                .addComponent(jLabel1))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1))
+                                .addComponent(nomeSetorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nomeAlterButton, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+                                .addGap(1, 1, 1))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(excludeSetorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(admFuncionariosButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(admFuncionariosButton)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(admEstagiariosButton))
-                        .addGap(48, 48, 48))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jCheckBox1)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(48, 48, 48)
+                                        .addComponent(admEstagiariosButton))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(orcamentoTextField))
+                                    .addComponent(errorMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(clearButton)
+                                    .addComponent(orcamentoAlterButton))))
+                        .addContainerGap(47, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 556, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 12, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,55 +242,70 @@ public class MenuDono_AdmSetor extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backDonoButton)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(nomeSetorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nomeAlterButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(orcamentoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(jButton2))
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(excludeSetorButton)
-                    .addComponent(admFuncionariosButton)
-                    .addComponent(admEstagiariosButton))
-                .addGap(15, 15, 15)
-                .addComponent(jCheckBox1)
+                    .addComponent(orcamentoAlterButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(clearButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(errorMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(saveSetorButton)
-                    .addComponent(clearLabelsButton))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(admFuncionariosButton)
+                        .addComponent(admEstagiariosButton))
+                    .addComponent(deleteButton, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
+                .addComponent(jCheckBox1)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void saveSetorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveSetorButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_saveSetorButtonActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void nomeAlterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeAlterButtonActionPerformed
+        boolean error = false;
+        String nome = nomeSetorTextField.getText();
+        
+        if(nome.length() == 0){
+            errorMessage.setText("O campo nome da empresa não pode estar vazio");
+            error = true;
+        }
+        
+        if(!error){
+            errorMessage.setText("");
+        }
+        
+        if(error){
+            return;
+        }
+        
+        DAOEmpresa daoEmpresa = new DAOEmpresa();
+        String cnpj = daoEmpresa.readOnEmpresa(dono.getCpf(), "cpf").getCnpj();
+        daoEmpresa.updateEmpresa("nome", cnpj, nome);
+        
+        //empresa = daoEmpresa.readOnEmpresa(this.empresa.getCnpj());
+        
+        iniciaTabela();
+    }//GEN-LAST:event_nomeAlterButtonActionPerformed
 
     private void admFuncionariosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admFuncionariosButtonActionPerformed
         dono.administrarFuncionarios();
         this.dispose();
     }//GEN-LAST:event_admFuncionariosButtonActionPerformed
 
-    private void excludeSetorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excludeSetorButtonActionPerformed
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_excludeSetorButtonActionPerformed
+    }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void admEstagiariosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admEstagiariosButtonActionPerformed
         dono.administrarEstagiarios();
@@ -276,9 +316,30 @@ public class MenuDono_AdmSetor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void orcamentoAlterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orcamentoAlterButtonActionPerformed
+        boolean error = false;
+        String orcamento = orcamentoTextField.getText();
+        
+        if(orcamento.length() == 0){
+            errorMessage.setText("O campo orçamento da empresa não pode estar vazio");
+            error = true;
+        }
+        
+        if(!error){
+            errorMessage.setText("");
+        }
+        
+        if(error){
+            return;
+        }
+        
+        DAOEmpresa daoEmpresa = new DAOEmpresa();
+        daoEmpresa.updateEmpresa("orcamento", this.empresa.getCnpj(), orcamento);
+        
+        //this.empresa = daoEmpresa.readOnEmpresa(this.empresa.getCnpj());
+        
+        iniciaTabela();
+    }//GEN-LAST:event_orcamentoAlterButtonActionPerformed
 
     private void backDonoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backDonoButtonActionPerformed
         dono.administrarEmpresa();
@@ -317,7 +378,7 @@ public class MenuDono_AdmSetor extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuDono_AdmSetor(null).setVisible(true);
+                new MenuDono_AdmSetor(null, null).setVisible(true);
             }
         });
     }
@@ -326,20 +387,18 @@ public class MenuDono_AdmSetor extends javax.swing.JFrame {
     private javax.swing.JButton admEstagiariosButton;
     private javax.swing.JButton admFuncionariosButton;
     private javax.swing.JButton backDonoButton;
-    private javax.swing.JButton clearLabelsButton;
-    private javax.swing.JButton excludeSetorButton;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton clearButton;
+    private javax.swing.JButton deleteButton;
+    private javax.swing.JLabel errorMessage;
     private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JButton saveSetorButton;
+    private javax.swing.JButton nomeAlterButton;
+    private javax.swing.JTextField nomeSetorTextField;
+    private javax.swing.JButton orcamentoAlterButton;
+    private javax.swing.JTextField orcamentoTextField;
+    private javax.swing.JTable tabelaDados;
     // End of variables declaration//GEN-END:variables
 }

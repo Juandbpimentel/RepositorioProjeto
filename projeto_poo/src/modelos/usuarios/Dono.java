@@ -18,7 +18,7 @@ import views.sistema.funcionario.CadFuncionario;
 
 
 public class Dono extends Pessoa implements DonoGUI,DonoAlterDB {
-
+    private String cnpjEmpresa;
     public Dono( String nome, 
                  String login, 
                  String senha, 
@@ -155,8 +155,8 @@ public class Dono extends Pessoa implements DonoGUI,DonoAlterDB {
         menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     @Override
-    public void administrarSetores() {
-        MenuDono_AdmSetor menu = new MenuDono_AdmSetor(this.cpf); 
+    public void administrarSetores(String cnpj) {
+        MenuDono_AdmSetor menu = new MenuDono_AdmSetor(cnpj, this.cpf); 
         
         menu.setVisible(true);
         menu.pack();
