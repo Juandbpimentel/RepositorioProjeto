@@ -81,7 +81,7 @@ public class MenuDono_AdmSetor extends javax.swing.JFrame {
         admFuncionariosButton = new javax.swing.JButton();
         admEstagiariosButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        deleteCheckBox = new javax.swing.JCheckBox();
         errorMessage = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
@@ -181,17 +181,18 @@ public class MenuDono_AdmSetor extends javax.swing.JFrame {
 
         deleteButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         deleteButton.setText("Excluir Setor");
+        deleteButton.setPreferredSize(new java.awt.Dimension(102, 24));
         deleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteButtonActionPerformed(evt);
             }
         });
 
-        jCheckBox1.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jCheckBox1.setText("Confirmar exclusão ");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        deleteCheckBox.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        deleteCheckBox.setText("Confirmar exclusão ");
+        deleteCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                deleteCheckBoxActionPerformed(evt);
             }
         });
 
@@ -211,38 +212,36 @@ public class MenuDono_AdmSetor extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addComponent(admFuncionariosButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(admEstagiariosButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(backDonoButton)
+                        .addGap(127, 127, 127)
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(errorMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(orcamentoTextField)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(orcamentoTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
                                     .addComponent(nomeSetorTextField)))
-                            .addComponent(errorMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(orcamentoAlterButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(nomeAlterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jCheckBox1)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(clearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(backDonoButton)
-                        .addGap(127, 127, 127)
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(admFuncionariosButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(admEstagiariosButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(clearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(nomeAlterButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(orcamentoAlterButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(deleteCheckBox, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addGap(24, 24, 24))
         );
         layout.setVerticalGroup(
@@ -253,8 +252,8 @@ public class MenuDono_AdmSetor extends javax.swing.JFrame {
                     .addComponent(backDonoButton)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(nomeSetorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -268,15 +267,15 @@ public class MenuDono_AdmSetor extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(clearButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(deleteButton))
+                        .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(errorMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox1)
+                    .addComponent(deleteCheckBox)
                     .addComponent(admFuncionariosButton)
                     .addComponent(admEstagiariosButton)
                     .addComponent(jButton1))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
@@ -313,7 +312,39 @@ public class MenuDono_AdmSetor extends javax.swing.JFrame {
     }//GEN-LAST:event_admFuncionariosButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        // TODO add your handling code here:
+        boolean errorCheckbox = false, errorFild = false;
+
+        if(deleteCheckBox.isSelected() != true){
+            errorMessage.setText("Para deletar o setor, você deve marcar o campo confirmar exclusão.");
+            errorCheckbox = true;
+        }
+        if(!errorCheckbox){
+            errorMessage.setText("");
+        }
+        
+        if(errorCheckbox){
+            return;
+        }
+        
+        DefaultTableModel testetabela = (DefaultTableModel) tabelaDados.getModel();
+        if(tabelaDados.getSelectedRowCount() == 1){
+            int column = 0;
+            int row = tabelaDados.getSelectedRow();
+            String id = tabelaDados.getModel().getValueAt(column, row).toString();
+            DAOEmpresa daoEmpresa = new DAOEmpresa();
+            String cnpj = daoEmpresa.readOnEmpresa(dono.getCpf(), "cpf").getCnpj();
+            DAOSetor daoSetor = new DAOSetor();
+            //int id = daoSetor.readOnSetor("cnpj", cnpj).getId();
+            testetabela.removeRow(tabelaDados.getSelectedRow());
+            new DAOSetor().deleteSetor(id);
+            
+        } else {
+            if(tabelaDados.getRowCount() == 0){
+                errorMessage.setText("Tabela vazia.");
+            } else {
+                errorMessage.setText("É preciso selecionar a linha que deseja deletar.");
+            }
+        }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void admEstagiariosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admEstagiariosButtonActionPerformed
@@ -321,9 +352,9 @@ public class MenuDono_AdmSetor extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_admEstagiariosButtonActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void deleteCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCheckBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_deleteCheckBoxActionPerformed
 
     private void orcamentoAlterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orcamentoAlterButtonActionPerformed
         boolean error = false;
@@ -409,9 +440,9 @@ public class MenuDono_AdmSetor extends javax.swing.JFrame {
     private javax.swing.JButton backDonoButton;
     private javax.swing.JButton clearButton;
     private javax.swing.JButton deleteButton;
+    private javax.swing.JCheckBox deleteCheckBox;
     private javax.swing.JLabel errorMessage;
     private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

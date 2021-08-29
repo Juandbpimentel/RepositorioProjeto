@@ -50,11 +50,11 @@ public class DAOSetor {
             return null;
         }
     }
-    public boolean deleteSetor(int id){
+    public boolean deleteSetor(String pk){
         try{
             conexao.conect();
 
-            String codigoDelete = "delete from setor where id = "+ id;
+            String codigoDelete = "delete from setor where id = "+ pk;
             boolean resultado = conexao.executaSql(codigoDelete);
             
             if(!resultado){
