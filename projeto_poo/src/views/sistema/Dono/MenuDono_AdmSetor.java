@@ -38,7 +38,10 @@ public class MenuDono_AdmSetor extends javax.swing.JFrame {
     public void iniciaTabela(){
 
         ArrayList<Setor> setores = new DAOSetor().readAll();
-
+        
+        if(setores == null){
+            return;
+        }
         DefaultTableModel testetabela = (DefaultTableModel) tabelaDados.getModel();
         Object[] colunas = {"id","nome","orcamento"};
         testetabela.setColumnIdentifiers(colunas);
@@ -330,7 +333,7 @@ public class MenuDono_AdmSetor extends javax.swing.JFrame {
         if(tabelaDados.getSelectedRowCount() == 1){
             int column = 0;
             int row = tabelaDados.getSelectedRow();
-            String id = tabelaDados.getModel().getValueAt(column, row).toString();
+            String id = tabelaDados.getModel().getValueAt(row, column).toString();
             DAOEmpresa daoEmpresa = new DAOEmpresa();
             String cnpj = daoEmpresa.readOnEmpresa(dono.getCpf(), "cpf").getCnpj();
             DAOSetor daoSetor = new DAOSetor();

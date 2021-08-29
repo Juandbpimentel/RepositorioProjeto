@@ -24,14 +24,12 @@ import views.sistema.dono.MenuDono_AdmEmpresa;
  */
 public class CadEmpresa extends javax.swing.JFrame {
     private Dono dono;
-    private Empresa empresa;
     /**
      * Creates new form Empresa
      */
-    public CadEmpresa(String cpf, String cnpj) {
+    public CadEmpresa(String cpf) {
         if(cpf != null){
             this.dono = new DAODono().readOneDono(cpf);
-            this.empresa = new DAOEmpresa().readOnEmpresa(cnpj,"cnpj");
             initComponents();
         }else{
             initComponents();
@@ -265,7 +263,7 @@ public class CadEmpresa extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadEmpresa(null,null).setVisible(true);
+                new CadEmpresa(null).setVisible(true);
             }
         });
     }
