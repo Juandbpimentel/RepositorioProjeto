@@ -24,14 +24,14 @@ import modelos.empresa.Empresa;
  * @author Yara
  */
 public class CadastrarCategoria extends javax.swing.JFrame {
-    private Pessoa pessoa;
+    private Dono dono;
     private Empresa empresa;
     /**
      * Creates new form CadastrarCategoria
      */
     public CadastrarCategoria(String cpf, String cnpj) {
         if(cpf != null){
-            this.pessoa = new DAOPessoa().readOnePessoa(cpf);
+            this.dono = new DAODono().readOneDono(cpf);
             this.empresa = new DAOEmpresa().readOnEmpresa(cnpj,"cnpj");
             initComponents();
         }else{
@@ -223,10 +223,9 @@ public class CadastrarCategoria extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        switch (pessoa.getTipo()) {
+        switch (dono.getTipo()) {
             
             case "DON":
-                Dono dono = new DAODono().readOneDono(pessoa.getCpf());
                 dono.administrarEmpresa();
                 this.dispose();
                 break;
