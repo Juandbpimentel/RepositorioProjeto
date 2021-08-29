@@ -43,10 +43,11 @@ public class MenuDono_AdmEmpresa extends javax.swing.JFrame {
         this.empresa = new DAOEmpresa().readOnEmpresa(dono.getCpf(), "cpf");
 
         DefaultTableModel testetabela = (DefaultTableModel) tabelaDados.getModel();
-        Object[] colunas = {"nome","orcamento"};
+        Object[] colunas = {"nome","cnpj","orcamento"};
         final Object[] entrada = new Object[4];
         entrada[0] = empresa.getNome(); 
-        entrada[1] = empresa.getOrcamento();
+        entrada[1] = empresa.getCnpj();
+        entrada[2] = empresa.getOrcamento();
         if(testetabela.getRowCount() > 0){
             testetabela.removeRow(testetabela.getRowCount()-1);
         }
@@ -74,10 +75,9 @@ public class MenuDono_AdmEmpresa extends javax.swing.JFrame {
         nomeEmpresaTextField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         orcamentoTextField = new javax.swing.JTextField();
-        salvarButton = new javax.swing.JButton();
         clearButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        deleteCheckBox = new javax.swing.JCheckBox();
         criarCatButton = new javax.swing.JButton();
         admSetoresButton = new javax.swing.JButton();
         admDiretoresButton = new javax.swing.JButton();
@@ -87,7 +87,7 @@ public class MenuDono_AdmEmpresa extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Poppins", 3, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 153, 0));
-        jLabel1.setText("Alterar Dados - Empresa");
+        jLabel1.setText("Administrar Empresa");
 
         nomeAlterButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         nomeAlterButton.setText("Alterar Nome da Empresa");
@@ -118,18 +118,30 @@ public class MenuDono_AdmEmpresa extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome da Empresa", "Orçamento"
+                "Nome da Empresa", "CNPJ", "Orçamento"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Double.class
+                java.lang.String.class, java.lang.String.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         jScrollPane1.setViewportView(tabelaDados);
+        if (tabelaDados.getColumnModel().getColumnCount() > 0) {
+            tabelaDados.getColumnModel().getColumn(0).setResizable(false);
+            tabelaDados.getColumnModel().getColumn(1).setResizable(false);
+            tabelaDados.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         jLabel2.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jLabel2.setText("Nome da Empresa:");
@@ -146,22 +158,29 @@ public class MenuDono_AdmEmpresa extends javax.swing.JFrame {
             }
         });
 
-        salvarButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        salvarButton.setText("Salvar");
-        salvarButton.addActionListener(new java.awt.event.ActionListener() {
+        clearButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        clearButton.setText("Limpar");
+        clearButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                salvarButtonActionPerformed(evt);
+                clearButtonActionPerformed(evt);
             }
         });
 
-        clearButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        clearButton.setText("Limpar");
-
         deleteButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         deleteButton.setText("Excluir Empresa");
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
 
-        jCheckBox1.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jCheckBox1.setText("Selecione para comfirmar");
+        deleteCheckBox.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        deleteCheckBox.setText("confirmar");
+        deleteCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteCheckBoxActionPerformed(evt);
+            }
+        });
 
         criarCatButton.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         criarCatButton.setText("Criar Categoria");
@@ -208,12 +227,11 @@ public class MenuDono_AdmEmpresa extends javax.swing.JFrame {
                                     .addComponent(admSetoresButton, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(115, 115, 115))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(deleteButton)
-                                        .addGap(159, 159, 159))))
+                                    .addComponent(deleteButton)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(deleteCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(177, 177, 177))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(29, 29, 29)
                                 .addComponent(criarCatButton)
@@ -221,9 +239,7 @@ public class MenuDono_AdmEmpresa extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(6, 6, 6)
-                                        .addComponent(errorMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(salvarButton)
+                                        .addComponent(errorMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(clearButton))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -235,8 +251,7 @@ public class MenuDono_AdmEmpresa extends javax.swing.JFrame {
                                             .addComponent(jLabel2)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(nomeEmpresaTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE))))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(18, 18, 18)
+                                .addGap(0, 18, Short.MAX_VALUE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nomeAlterButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(orcamentoAlterButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -274,12 +289,10 @@ public class MenuDono_AdmEmpresa extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(admDiretoresButton)
-                            .addComponent(jCheckBox1))
+                            .addComponent(deleteCheckBox))
                         .addGap(0, 25, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(salvarButton)
-                            .addComponent(clearButton))
+                        .addComponent(clearButton)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
@@ -311,10 +324,6 @@ public class MenuDono_AdmEmpresa extends javax.swing.JFrame {
         
         iniciaTabela();
     }//GEN-LAST:event_nomeAlterButtonActionPerformed
-
-    private void salvarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_salvarButtonActionPerformed
 
     private void criarCatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarCatButtonActionPerformed
         CadastrarCategoria menuCadCategoria = new CadastrarCategoria( dono.getCpf());
@@ -350,7 +359,7 @@ public class MenuDono_AdmEmpresa extends javax.swing.JFrame {
         String orcamento = orcamentoTextField.getText();
         
         if(orcamento.length() == 0){
-            errorMessage.setText("O campo nome da empresa não pode estar vazio");
+            errorMessage.setText("O campo orçamento da empresa não pode estar vazio");
             error = true;
         }
         
@@ -369,6 +378,45 @@ public class MenuDono_AdmEmpresa extends javax.swing.JFrame {
         
         iniciaTabela();
     }//GEN-LAST:event_orcamentoAlterButtonActionPerformed
+
+    private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
+        nomeEmpresaTextField.setText("");
+        orcamentoTextField.setText("");
+    }//GEN-LAST:event_clearButtonActionPerformed
+
+    private void deleteCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteCheckBoxActionPerformed
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        boolean errorCheckbox = false, errorFild = false;
+
+        if(deleteCheckBox.isSelected() != true){
+            errorMessage.setText("Para deletar a empresa, você deve marcar o campo confirmar.");
+            errorCheckbox = true;
+        }
+        if(!errorCheckbox){
+            errorMessage.setText("");
+        }
+        
+        if(errorCheckbox){
+            return;
+        }
+        
+        DefaultTableModel testetabela = (DefaultTableModel) tabelaDados.getModel();
+        if(tabelaDados.getSelectedRowCount() == 1){
+            testetabela.removeRow(tabelaDados.getSelectedRow());
+            new DAOEmpresa().deleteEmpresa(this.empresa.getCnpj());
+            
+        } else {
+            if(tabelaDados.getRowCount() == 0){
+                errorMessage.setText("Tabela vazia.");
+            } else {
+                errorMessage.setText("É preciso selecionar a linha que deseja deletar.");
+            }
+        }
+        
+    }//GEN-LAST:event_deleteButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -413,8 +461,8 @@ public class MenuDono_AdmEmpresa extends javax.swing.JFrame {
     private javax.swing.JButton clearButton;
     private javax.swing.JButton criarCatButton;
     private javax.swing.JButton deleteButton;
+    private javax.swing.JCheckBox deleteCheckBox;
     private javax.swing.JLabel errorMessage;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -423,7 +471,6 @@ public class MenuDono_AdmEmpresa extends javax.swing.JFrame {
     private javax.swing.JTextField nomeEmpresaTextField;
     private javax.swing.JButton orcamentoAlterButton;
     private javax.swing.JTextField orcamentoTextField;
-    private javax.swing.JButton salvarButton;
     private javax.swing.JTable tabelaDados;
     // End of variables declaration//GEN-END:variables
 }
