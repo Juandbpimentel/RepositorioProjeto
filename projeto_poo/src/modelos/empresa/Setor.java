@@ -15,10 +15,9 @@ public class Setor {
     private ArrayList<Estagiario> estagiario;
     private Gerente gerente;
 
-    public Setor(Double orcamento, String nome, int id, String cnpj_empresa) {
+    public Setor(Double orcamento, String nome, String cnpj_empresa) {
         this.orcamento = orcamento;
         this.nome = nome;
-        this.id = id;
         this.cnpj_empresa = cnpj_empresa;
         /*
         this.funcionarios = funcionarios;

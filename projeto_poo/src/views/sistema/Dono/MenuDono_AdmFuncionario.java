@@ -5,6 +5,7 @@
  */
 package views.sistema.dono;
 
+import dao.empresa.DAOSetor;
 import javax.swing.JFrame;
 
 import dao.usuarios.DAODono;
@@ -19,12 +20,14 @@ import views.sistema.diretor.*;
  */
 public class MenuDono_AdmFuncionario extends javax.swing.JFrame {
     private Dono dono;
+    private int id_setor;
     /**
      * Creates new form AdmitirFuncionario
      */
-    public MenuDono_AdmFuncionario(String cpf) {
+    public MenuDono_AdmFuncionario(String cpf, int id_setor) {
         if(cpf != null){
             this.dono = new DAODono().readOneDono(cpf);
+            this.id_setor = id_setor;
             initComponents();
         }else{
             initComponents();
@@ -241,7 +244,7 @@ public class MenuDono_AdmFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        dono.admitirFuncionario();
+        dono.admitirFuncionario(id_setor);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -258,7 +261,8 @@ public class MenuDono_AdmFuncionario extends javax.swing.JFrame {
         switch (dono.getTipo()) {
 
             case "DON":
-                dono.administrarSetores();
+                String id = ""+id_setor;
+                dono.administrarSetores(new DAOSetor().readOnSetor("id", id).getCnpj_empresa());
                 this.dispose();
                 return;
                 
@@ -303,7 +307,7 @@ public class MenuDono_AdmFuncionario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuDono_AdmFuncionario(null).setVisible(true);
+                new MenuDono_AdmFuncionario(null,-1).setVisible(true);
             }
         });
     }

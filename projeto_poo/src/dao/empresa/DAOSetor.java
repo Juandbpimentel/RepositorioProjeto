@@ -32,7 +32,8 @@ public class DAOSetor {
                     nome = resultado.getString("nome");
                     cnpj = resultado.getString("cnpj_empresa");
                     orc = resultado.getDouble("orcamento");
-                    Setor setor = new Setor (orc, nome, id, cnpj);
+                    Setor setor = new Setor (orc, nome, cnpj);
+                    setor.setId(id);
                     arraySetor.add(setor);
                 }while(resultado.next());
             }
@@ -109,7 +110,8 @@ public class DAOSetor {
                     int id = resultadoQuery.getInt("id");
                     String nome = resultadoQuery.getString("nome"), cnpj_empresa = resultadoQuery.getString("cnpj_empresa");
                     Double orcamento = resultadoQuery.getDouble("orcamento");
-                    setor = new Setor(orcamento, nome, id, cnpj_empresa);
+                    setor = new Setor(orcamento, nome, cnpj_empresa);
+                    setor.setId(id);
                 }
                 conexao.disconect();
                 return setor;
@@ -127,7 +129,8 @@ public class DAOSetor {
                     int id = resultadoQuery.getInt("id");
                     String nome = resultadoQuery.getString("nome"), cnpj_empresa = resultadoQuery.getString("cnpj_empresa");
                     Double orcamento = resultadoQuery.getDouble("orcamento");
-                    setor = new Setor(orcamento, nome, id, cnpj_empresa);
+                    setor = new Setor(orcamento, nome, cnpj_empresa);
+                    setor.setId(id);
                 }
                 conexao.disconect();
                 return setor;
