@@ -200,7 +200,7 @@ public class CadEmpresa extends javax.swing.JFrame {
     }//GEN-LAST:event_nomeFieldActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-                boolean erroNome = false, erroCnpj = false, erroOrcamento = false;
+        boolean erroNome = false, erroCnpj = false, erroOrcamento = false;
         
         if(nomeField.getText().length() == 0){
             erroNome = true;
@@ -227,6 +227,9 @@ public class CadEmpresa extends javax.swing.JFrame {
         Empresa empresa = new Empresa(nome, orcamento, cnpj, dono.getCpf());
         new DAOEmpresa().insertEmpresa(empresa);
         System.out.println("Deu certo empresa");
+        
+        dono.administrarEmpresa();
+        this.dispose();
         
         
         

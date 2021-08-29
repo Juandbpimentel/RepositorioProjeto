@@ -119,8 +119,8 @@ public class DAOCategoria {
         try{
             conexao.conect();
             
-            String sqlInsertion = "Insert into public Categoria(carga_horaria, nome, descricao, salario, cnpj_empresa)"
-                                + " values ( " + categoria.getCarga_horaria() +""  ;
+            String sqlInsertion = "Insert into Categoria(carga_horaria, nome, descricao, salario, cnpj_empresa)"
+                                + " values ( " + categoria.getCarga_horaria() +", \'"+categoria.getNome()+"\' ,\'"+categoria.getDescricao()+"\',"+categoria.getSalario()+",\'"+categoria.getCnpj_empresa()+"\');"  ;
             boolean resultado = conexao.executaSql(sqlInsertion);
             
             if(!resultado){
